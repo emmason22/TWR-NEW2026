@@ -1,0 +1,674 @@
+:root{
+  /* Design-system colors (only) */
+  --navy: #01387e;
+  --text: #0b1a2b;
+  --muted: #475569;
+  --bg: #ffffff;
+  --surface: #f5f7fb;
+
+  /* Updated gold (sitewide) */
+  --gold: #fcb212;
+
+  /* Black tones (specified) */
+  --ink: #000000;
+  --heroBox: #00020b;
+
+  /* Layout measurements */
+  --container: 1120px;
+
+  /* Box sizing requirements */
+  --primaryBoxW: 300px; /* HALVED from previous 600px per spec */
+  --primaryBoxH: 800px;
+
+  /* No gaps: vertical lines act as separators */
+  --sep: 1px; /* thin vertical line thickness */
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Merriweather", serif;
+  line-height: 1.35;
+}
+
+.skip-link{
+  position: absolute;
+  left: 12px;
+  top: -100px;
+  background: #000;
+  color: #fff;
+  padding: 10px 12px;
+  z-index: 100;
+  text-decoration: none;
+}
+
+.skip-link:focus{
+  top: 12px;
+}
+
+.container{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Typography hierarchy */
+h1,h2,h3{
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+a{ color: inherit; }
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible{
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Header */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.header-inner{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand{
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand-logo{
+  width: 88px; /* DOUBLED from 44px per spec */
+  height: auto;
+  display: block;
+}
+
+.site-nav{
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.site-nav a{
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.site-nav a:hover{
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.site-nav a[aria-current="page"]{
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.header-actions{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.donate-btn{
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--gold);
+  color: var(--bg);
+  padding: 12px 18px;
+  border-radius: 0; /* square */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donate-btn:hover{
+  filter: brightness(0.95);
+}
+
+/* HERO */
+.hero{
+  position: relative;
+  width: 100%;
+  height: 72vh;
+  min-height: 520px;
+}
+
+.hero-media{
+  position: absolute;
+  inset: 0;
+}
+
+.hero-video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: var(--ink);
+}
+
+/* Visible error overlay (hidden by default; script enables) */
+.hero-video-error{
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  max-width: 520px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.92);
+  color: var(--text);
+  display: none;
+}
+
+/* Overlay positioned on left side */
+.hero-overlay{
+  position: absolute;
+  /* Align left edge with the .container left edge (Mission) */
+  left: calc((100vw - min(var(--container), 100vw))/2 + 20px);
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* Black box behind logo + buttons (specified) */
+.hero-brand-box{
+  background: var(--heroBox);
+  padding: 18px 18px 16px 18px;
+  border-radius: 0; /* square */
+  display: inline-flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Larger-than-standard logo overlay */
+.hero-logo{
+  width: 340px;
+  max-width: calc(100vw - 72px);
+  height: auto;
+  display: block;
+}
+
+/* Hero CTA buttons: gold-bordered square, hover becomes solid gold */
+.hero-ctas{
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-btn{
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 14px 18px;
+  border-radius: 0; /* square */
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  text-transform: uppercase;
+}
+
+.hero-btn:hover{
+  background: var(--gold);
+  color: var(--text);
+}
+
+/* Mission directly under hero */
+.mission{
+  padding: 44px 0 22px;
+  background: var(--bg);
+}
+
+.mission-lead{
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 3.2vw, 46px);
+  letter-spacing: -0.02em;
+  margin: 0 0 12px 0;
+}
+
+.mission-body{
+  margin: 0 0 14px 0;
+  color: var(--muted);
+  font-size: 18px;
+  max-width: 920px;
+
+  /* Oswald for all small text in mission section per spec */
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
+}
+
+.learn-more{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  text-decoration: none;
+}
+
+/* Thick black horizontal line below mission */
+.mission-divider{
+  width: 100%;
+  height: 8px; /* thick */
+  background: var(--ink);
+}
+
+/* BOX SECTION */
+.box-section{
+  background: var(--surface);
+  padding: 24px 0 56px;
+}
+
+/* Layout: no gaps; separators are thin vertical black lines */
+.box-layout{
+  display: grid;
+  grid-template-columns: var(--primaryBoxW) var(--sep) 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+/* Thin vertical separator element (between primary and right grid) */
+.v-sep{
+  background: var(--ink);
+  width: var(--sep);
+}
+.v-sep-main{
+  /* full height divider next to the primary box */
+  height: 100%;
+}
+
+/* All boxes: square corners, no borders */
+.box{
+  background: var(--bg);
+  border: none;
+  border-radius: 0;
+  padding: 18px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.box-primary{
+  width: var(--primaryBoxW);
+  height: var(--primaryBoxH);
+  background: var(--navy);
+  color: var(--bg);
+}
+
+/* RIGHT: 2x2 grid with a real vertical separator column */
+.box-right-grid{
+  display: grid;
+  grid-template-columns: 1fr var(--sep) 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0;
+  height: 100%;
+  position: relative;
+}
+
+/* Separator inside right grid (spans both rows) */
+.v-sep-right{
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+/* Place the 4 boxes around the separator */
+.box-heart{ grid-column: 1; grid-row: 1; }
+.box-homeless{ grid-column: 3; grid-row: 1; }
+.box-veteran{ grid-column: 1; grid-row: 2; }
+.box-emergency{ grid-column: 3; grid-row: 2; }
+
+/* Box internals */
+.box-top{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.box-title-row{
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.box-title{
+  font-size: 30px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+}
+
+.box-primary .box-title{
+  font-size: 38px;
+}
+
+.box-arrow{
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.box-text{
+  margin: 0 0 12px 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.box-primary .box-text{
+  color: rgba(255,255,255,0.92);
+}
+
+/* Right-side Learn more link now sits BELOW small text */
+.box-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+/* Missing asset placeholder style (script.js uses this) */
+.asset-missing{
+  background: var(--surface);
+  color: var(--ink);
+  padding: 14px;
+  border-radius: 0;
+  border: none;
+  font-family: "Oswald", sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .box-layout{
+    grid-template-columns: 1fr;
+  }
+  .v-sep{
+    display: none;
+  }
+  .box-primary{
+    width: 100%;
+    height: auto;
+    min-height: 520px;
+  }
+  .box-right-grid{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .box-heart, .box-homeless, .box-veteran, .box-emergency{
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .box-layout::after{
+    display: none;
+  }
+  .box-right-grid::before{
+    display: none;
+  }
+
+}
+
+@media (max-width: 780px){
+  .site-nav{
+    gap: 14px;
+  }
+  .site-nav a{
+    font-size: 16px;
+  }
+  .hero{
+    height: 62vh;
+    min-height: 440px;
+  }
+  .hero-logo{
+    width: 300px;
+  }
+  .hero-btn{
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+/* Images inside right-side boxes */
+.box-image{
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  margin: 8px 0 12px;
+}
+
+/* Subpages */
+.subpage-main {
+  background: var(--surface);
+  min-height: 60vh;
+}
+
+.subpage-hero {
+  background: linear-gradient(120deg, #0a2e5e, #01387e);
+  color: #fff;
+  padding: 56px 0;
+}
+
+.subpage-hero h1 {
+  font-size: clamp(34px, 5vw, 56px);
+  margin-bottom: 10px;
+}
+
+.subpage-hero p {
+  max-width: 760px;
+  margin: 0;
+  font-family: "Oswald", sans-serif;
+  font-size: 21px;
+  line-height: 1.4;
+}
+
+.subpage-section {
+  padding: 34px 0;
+}
+
+.narrow {
+  max-width: 820px;
+}
+
+.subpage-section h2 {
+  margin: 0 0 10px;
+  font-size: 34px;
+}
+
+.subpage-section p,
+.subpage-section li {
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.support-form {
+  background: #fff;
+  border: 1px solid #dbe1ea;
+  padding: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+.support-form label {
+  font-family: "Oswald", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.support-form input,
+.support-form textarea {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  padding: 12px;
+  font: inherit;
+}
+
+.support-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  margin-top: 14px;
+  background: var(--gold);
+  color: #0b1a2b;
+  border: 0;
+  padding: 12px 16px;
+  font-family: "Oswald", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.form-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.form-status {
+  margin: 8px 0 0;
+  color: #0b5b2b;
+  font-family: "Oswald", sans-serif;
+  min-height: 1.3em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+.resource-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.resource-list li {
+  margin-bottom: 8px;
+}
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.event-card {
+  background: #fff;
+  border: 1px solid #dbe1ea;
+  padding: 18px;
+}
+
+.event-card h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.donate-panel {
+  background: #e9eff9;
+}
+
+.donate-solid {
+  background: var(--gold);
+  color: #0b1a2b;
+  margin-top: 8px;
+}
+
+.site-footer {
+  background: #060b14;
+  color: #fff;
+  padding: 26px 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.footer-title {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.footer-copy {
+  margin: 0;
+  color: #d0dae6;
+}
+
+.footer-links {
+  display: grid;
+  gap: 8px;
+  justify-content: start;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 780px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .subpage-hero p {
+    font-size: 18px;
+  }
+}

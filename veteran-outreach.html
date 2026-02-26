@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Veteran Outreach | Tonight We Ride</title>
+  <meta name="description" content="Connect a veteran to support services through Tonight We Ride's veteran outreach program." />
+  <meta name="twr-form-endpoint" content="" />
+  <link rel="canonical" href="https://www.tonightweride.org/veteran-outreach.html" />
+  <meta property="og:title" content="Veteran Outreach | Tonight We Ride" />
+  <meta property="og:description" content="Connect a veteran to support services through Tonight We Ride's veteran outreach program." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.tonightweride.org/veteran-outreach.html" />
+  <meta property="og:image" content="https://www.tonightweride.org/assets/DallasHero.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="refresh.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Tonight We Ride home">
+        <img class="brand-logo" src="assets/TWRLogo.png" alt="Tonight We Ride logo" data-asset="assets/TWRLogo.png" />
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="about.html">About</a>
+        <a href="veteran-outreach.html" aria-current="page">Veteran Outreach</a>
+        <a href="homeless-outreach.html">Homeless Outreach</a>
+        <a href="emergency-relief.html">Emergency Relief</a>
+        <a href="events.html">Events</a>
+      </nav>
+      <div class="header-actions">
+        <a class="donate-btn" href="donate-now.html" aria-label="Donate">DONATE NOW</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="subpage-main" id="main-content">
+    <section class="subpage-hero">
+      <div class="container">
+        <h1>Veteran Outreach</h1>
+        <p>
+          We support veterans facing housing instability, financial crisis, and isolation through direct action and referrals.
+        </p>
+      </div>
+    </section>
+
+    <section class="subpage-section" id="support-form">
+      <div class="container narrow">
+        <h2>Request Veteran Support</h2>
+        <form class="support-form" data-form-name="Veteran Outreach" data-endpoint="">
+          <label for="vo-name">Name</label>
+          <input id="vo-name" name="name" type="text" required />
+
+          <label for="vo-contact">Email or Phone</label>
+          <input id="vo-contact" name="contact" type="text" required />
+
+          <label for="vo-branch">Branch of Service (optional)</label>
+          <input id="vo-branch" name="branch" type="text" />
+
+          <label for="vo-request">How can we help?</label>
+          <textarea id="vo-request" name="request" rows="5" required></textarea>
+
+          <label class="sr-only" for="vo-company">Leave this field blank</label>
+          <input id="vo-company" name="company" type="text" tabindex="-1" autocomplete="off" class="hp-field" />
+
+          <button class="btn-primary" type="submit">Submit Veteran Request</button>
+          <p class="form-note">Response goal: within 48 hours.</p>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-extended">
+        <div class="footer-col">
+          <h3>Tonight We Ride</h3>
+          <p>
+            Dallas-based non-profit outreach focused on dignity, consistency, and practical support for neighbors in crisis.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="donate-now.html">Donate Now</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Programs</h3>
+          <ul>
+            <li><a href="homeless-outreach.html">Homeless Outreach</a></li>
+            <li><a href="veteran-outreach.html">Veteran Outreach</a></li>
+            <li><a href="emergency-relief.html">Emergency Relief</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Be an Insider</h3>
+          <form class="footer-insider insider-form" aria-label="Footer insider signup">
+            <input type="email" name="email" placeholder="Email address" required />
+            <button type="submit">Sign Up</button>
+            <p class="insider-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Tonight We Ride. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
