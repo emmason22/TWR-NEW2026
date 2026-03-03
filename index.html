@@ -12,24 +12,42 @@
   <meta property="og:url" content="https://www.tonightweride.org/" />
   <meta property="og:image" content="https://www.tonightweride.org/assets/DallasHero.png" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tonight We Ride | Dallas Non-Profit Outreach" />
+  <meta name="twitter:description" content="Tonight We Ride serves Dallas through homeless outreach, veteran support, emergency relief, and community events." />
+  <meta name="twitter:image" content="https://www.tonightweride.org/assets/DallasHero.png" />
+  <meta name="twr-analytics-endpoint" content="" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="refresh.css" />
+  <link rel="stylesheet" href="refresh.css?v=3" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NonProfit",
+      "name": "Tonight We Ride",
+      "url": "https://www.tonightweride.org/",
+      "logo": "https://www.tonightweride.org/assets/TonightWeRideLogo.png",
+      "areaServed": "Dallas, Texas",
+      "sameAs": [
+        "https://www.tonightweride.org/"
+      ]
+    }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header" role="banner">
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Tonight We Ride home">
-        <img class="brand-logo" src="assets/TWRLogo.png" alt="Tonight We Ride logo" data-asset="assets/TWRLogo.png" />
+        <img class="brand-logo" src="assets/TonightWeRideLogo.png" alt="Tonight We Ride logo" data-asset="assets/TonightWeRideLogo.png" />
       </a>
 
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="about.html">About</a>
         <a href="veteran-outreach.html">Veteran Outreach</a>
         <a href="homeless-outreach.html">Homeless Outreach</a>
+        <a href="community-outreach.html">Community Outreach</a>
         <a href="emergency-relief.html">Emergency Relief</a>
         <a href="events.html">Events</a>
       </nav>
@@ -55,7 +73,6 @@
           data-asset="assets/Dallas.mp4"
         >
           <source src="assets/Dallas.mp4" type="video/mp4" />
-          <track kind="captions" src="assets/Dallas.en.vtt" srclang="en" label="English captions" default />
           Your browser does not support the video tag.
         </video>
 
@@ -65,30 +82,53 @@
         </div>
       </div>
 
-      <div class="hero-overlay" aria-label="Hero overlay content">
-        <div class="hero-brand-box" aria-label="Hero logo and buttons">
-          <img class="hero-logo" src="assets/TonightWeRideLogo.png" alt="Tonight We Ride logo" data-asset="assets/TonightWeRideLogo.png" />
-          <div class="hero-ctas" aria-label="Primary calls to action">
-            <a class="hero-btn" href="homeless-outreach.html#support-form" role="button">TAKE ACTION</a>
-            <a class="hero-btn" href="donate-now.html" role="button">DONATE NOW</a>
-          </div>
-        </div>
+      <div class="hero-words" aria-label="Tonight We Ride">
+        <span class="hero-phrase hero-title">Tonight We Ride</span>
+        <span class="hero-phrase hero-tagline">Changing the World, One Person At a Time</span>
       </div>
+
     </section>
 
     <section class="mission" aria-label="Mission">
       <div class="container">
         <p class="mission-lead">
-          At Tonight We Ride, our mission is simple yet powerful: changing the world, one person at a time.
+          At Tonight We Ride, our mission is to serve individuals and families in need through faith, compassion, and human connection.
         </p>
         <p class="mission-body">
-          We believe that every individual, regardless of circumstance, deserves compassion, dignity, and human connection.
-          By meeting people where they are and building genuine relationships, we offer meaningful support, resources, and hope.
+          We believe every person is created with dignity and purpose, and that through kindness, service, and community outreach,
+          we can bring hope, healing, and practical support to those facing hardship.
+        </p>
+        <p class="mission-body">
+          Through faith-based programs and hands-on service, we seek to meet physical, emotional, and spiritual needs — changing the world, one person at a time.
         </p>
       </div>
     </section>
 
-    <section class="programs-structure" aria-label="Programs">
+    <section class="subpage-section" aria-label="Impact snapshot">
+      <div class="container narrow">
+        <h2>Impact Snapshot</h2>
+        <div class="donate-tier-grid">
+          <article class="donate-tier">
+            <h3>48 Hours</h3>
+            <p>Typical response target for incoming outreach requests.</p>
+          </article>
+          <article class="donate-tier">
+            <h3>3 Programs</h3>
+            <p>Core initiatives serving homelessness, veterans, and emergency relief.</p>
+          </article>
+          <article class="donate-tier">
+            <h3>Partner Network</h3>
+            <p>Collaboration with trusted Dallas providers for long-term stabilization.</p>
+          </article>
+          <article class="donate-tier">
+            <h3>Relationship First</h3>
+            <p>Consistent follow-up built on dignity, trust, and practical support.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="programs-structure" id="community-outreach" aria-label="Programs">
       <div class="container programs-split">
         <aside class="programs-lead">
           <p class="block-kicker">Programs</p>
@@ -98,7 +138,7 @@
             veteran support, and emergency relief response. We deliver practical aid quickly, then stay present long enough to
             build trust and connect people to stable next steps.
           </p>
-          <a class="editorial-link" href="about.html">How We Work <span aria-hidden="true">→</span></a>
+          <a class="editorial-link" href="about.html">Learn More <span aria-hidden="true">→</span></a>
         </aside>
 
         <div class="program-cards">
@@ -124,7 +164,7 @@
           </article>
 
           <article class="program-card">
-            <img class="program-photo" src="assets/DallasHero.png" alt="Emergency relief support" data-asset="assets/DallasHero.png" />
+            <img class="program-photo" src="assets/EmergencyOutreachpic.png" alt="Emergency relief support" data-asset="assets/EmergencyOutreachpic.png" />
             <h3>Emergency Outreach</h3>
             <p>When a crisis hits, fast support can prevent long-term damage. This fund helps us respond quickly and with dignity.</p>
             <a class="editorial-link" href="emergency-relief.html">Explore Program <span aria-hidden="true">→</span></a>
@@ -137,12 +177,8 @@
       <div class="container">
         <div class="insider-divider" aria-hidden="true"></div>
         <div class="be-insider-grid">
-          <article class="cream-block be-block">
-            <h2>Be</h2>
-            <p>Join a community that responds with compassion and action.</p>
-          </article>
           <article class="cream-block insider-block">
-            <h2>Insider</h2>
+            <h2>Be An Insider</h2>
             <p>Get frontline updates, upcoming outreach opportunities, and urgent action alerts from Tonight We Ride.</p>
             <form class="insider-form" aria-label="Insider signup form">
               <label class="insider-label" for="insider-email-home">Email Address</label>
@@ -160,7 +196,7 @@
       <div class="container donate-jumbo-inner">
         <p class="block-kicker" style="color:#b8cdf7;">Fuel the Mission</p>
         <h2 class="donate-jumbo-title">Donate Now</h2>
-        <a class="donate-jumbo-btn" href="donate-now.html">GIVE TODAY</a>
+        <a class="donate-jumbo-btn" href="donate-now.html" data-track="donate-jumbo-cta">GIVE TODAY</a>
       </div>
     </section>
   </main>

@@ -1,0 +1,25 @@
+{
+  "organization": {
+    "name": "Tonight We Ride",
+    "tagline": "Changing the world, one person at a time"
+  },
+  "response_target": "within 48 hours",
+  "programs": {
+    "homeless_outreach": {
+      "title": "Homeless Outreach",
+      "summary": "Relationship-first outreach with practical support and trusted referrals."
+    },
+    "veteran_outreach": {
+      "title": "Veteran Outreach",
+      "summary": "Direct support and coordinated referrals for veterans in crisis."
+    },
+    "emergency_relief": {
+      "title": "Emergency Relief",
+      "summary": "Rapid stabilization support for urgent and destabilizing emergencies."
+    },
+    "community_outreach": {
+      "title": "Community Outreach",
+      "summary": "Compassionate frontline support connected to long-term local services."
+    }
+  }
+}
