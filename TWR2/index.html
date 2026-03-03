@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>tonight we ride</title>
+  <meta name="description" content="tonight we ride — community action when it matters most." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Sticky header -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="brand" href="#top" aria-label="Tonight We Ride home">
+        <span class="brand__text brand__text--stack" aria-label="Tonight We Ride">
+          <span>TONIGHT</span>
+          <span>WE</span>
+          <span>RIDE</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <div class="navGroup" data-dropdown="about">
+          <button class="navBtn" type="button" aria-haspopup="true" aria-expanded="false">
+            ABOUT <span class="chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="dropdown" role="menu" aria-label="About menu">
+            <a href="#mission">Our mission</a>
+            <a href="#impact">Our impact</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div class="navGroup" data-dropdown="eventsMenu">
+          <button class="navBtn" type="button" aria-haspopup="true" aria-expanded="false">
+            EVENTS <span class="chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="dropdown" role="menu" aria-label="Events menu">
+            <a href="#events">Overview</a>
+            <a href="#events">Upcoming events</a>
+            <a href="#events">Past events</a>
+          </div>
+        </div>
+
+        <a class="navLink" href="#community-outreach">COMMUNITY OUTREACH</a>
+
+        <div class="navGroup" data-dropdown="help">
+          <button class="navBtn" type="button" aria-haspopup="true" aria-expanded="false">
+            HOW TO HELP <span class="chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="dropdown" role="menu" aria-label="How to help menu">
+            <a href="#donate">Donate</a>
+            <a href="#volunteer">Volunteer</a>
+            <a href="#events">Events</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header__ctas">
+        <a class="pill" href="#get-help">GET HELP</a>
+        <a class="pill pill--accent" href="#donate">DONATE</a>
+
+        <button class="hamburger" id="openDrawer" type="button" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile drawer -->
+  <div class="backdrop" id="backdrop" hidden></div>
+
+  <aside class="drawer" id="drawer" aria-label="Mobile navigation" aria-hidden="true">
+    <div class="drawer__top">
+      <div class="drawer__brand">
+        <span class="brand__text brand__text--stack" aria-label="Tonight We Ride">
+          <span>TONIGHT</span>
+          <span>WE</span>
+          <span>RIDE</span>
+        </span>
+      </div>
+      <button class="hamburger" id="closeDrawer" type="button" aria-label="Close menu">✕</button>
+    </div>
+
+    <nav class="drawer__nav">
+      <a href="#top">HOME</a>
+      <a href="#mission">ABOUT</a>
+      <a href="#events">EVENTS</a>
+      <a href="#community-outreach">COMMUNITY OUTREACH</a>
+      <a href="#get-help">GET HELP</a>
+      <a href="#donate">DONATE</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+
+    <div class="drawer__actions">
+      <a class="btn btn--primary" href="#donate">DONATE</a>
+      <a class="btn btn--ghost" href="#get-help">REQUEST HELP</a>
+    </div>
+  </aside>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero">
+      <div class="container hero__inner">
+        <div class="heroLogo" aria-label="Tonight We Ride logo">
+          <img
+            src="TonightWeRide.png"
+            alt="Tonight We Ride logo"
+            class="heroLogo__image"
+          />
+        </div>
+
+        <div class="heroCopy">
+          <p class="kicker">WE SHOW UP • WHEN IT MATTERS</p>
+
+          <h1 class="heroTitle heroTitle--sentence">
+            Changing the world, one person at a time.
+          </h1>
+
+          <div class="heroCtas heroCtas--stack">
+            <a class="btn btn--primary" href="#get-help">GET HELP</a>
+            <a class="btn btn--ghost" href="#donate">DONATE</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="section" id="mission">
+      <div class="container sectionGrid">
+        <div class="gutter" aria-hidden="true"></div>
+
+        <div class="sectionContent">
+          <div class="sectionHead">
+            <h2>OUR MISSION</h2>
+            <div class="ruleColumn" aria-hidden="true"></div>
+          </div>
+
+          <p class="lead">
+            We unite our community to take action when it matters most — providing comfort during crises, joy during the holidays,
+            and care for those who’ve served or are struggling. Together, we create brighter days for every neighbor in need.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY OUTREACH -->
+    <section class="section" id="community-outreach">
+      <div class="container sectionGrid">
+        <div class="gutter" aria-hidden="true"></div>
+
+        <div class="sectionContent">
+          <div class="sectionHead">
+            <h2>COMMUNITY OUTREACH</h2>
+            <div class="ruleColumn" aria-hidden="true"></div>
+          </div>
+
+          <p class="intro">
+            Add your community outreach initiatives here. Describe programs, partnerships, and ways neighbors can plug in.
+          </p>
+
+          <div class="programLinks">
+            <a class="btn btn--ghost btn--small" href="#volunteer">VOLUNTEER</a>
+            <a class="btn btn--primary btn--small" href="#donate">SUPPORT OUTREACH</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GET HELP -->
+    <section class="section" id="get-help">
+      <div class="container sectionGrid">
+        <div class="gutter" aria-hidden="true"></div>
+
+        <div class="sectionContent">
+          <div class="sectionHead">
+            <h2>GET HELP</h2>
+            <div class="ruleColumn" aria-hidden="true"></div>
+          </div>
+
+          <p class="intro">Demo form — connect to your email/CRM later.</p>
+
+          <form class="form" id="helpForm">
+            <label>
+              Full name
+              <input required name="name" placeholder="Your name" />
+            </label>
+
+            <label>
+              Email
+              <input required type="email" name="email" placeholder="you@email.com" />
+            </label>
+
+            <label>
+              Type of support
+              <select required name="type">
+                <option value="" selected disabled>Select one…</option>
+                <option>Comfort in crisis</option>
+                <option>Holiday support</option>
+                <option>Care + services</option>
+                <option>Other</option>
+              </select>
+            </label>
+
+            <label class="full">
+              What’s going on?
+              <textarea required name="details" rows="5" placeholder="Share what you’re comfortable sharing…"></textarea>
+            </label>
+
+            <div class="full actions">
+              <button class="btn btn--primary" type="submit">SUBMIT REQUEST</button>
+              <a class="btn btn--ghost" href="#donate">DONATE</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW TO HELP -->
+    <section class="section" id="donate">
+      <div class="container sectionGrid">
+        <div class="gutter" aria-hidden="true"></div>
+
+        <div class="sectionContent">
+          <div class="sectionHead">
+            <h2>HOW TO HELP</h2>
+            <div class="ruleColumn" aria-hidden="true"></div>
+          </div>
+
+          <div class="twoCol" id="volunteer">
+            <div class="block">
+              <h3>DONATE</h3>
+              <p>Link this to your donation platform (Stripe, Donorbox, PayPal, etc.).</p>
+              <a class="btn btn--primary" href="#" data-demo-link>DONATE NOW</a>
+            </div>
+
+            <div class="block">
+              <h3>VOLUNTEER / PARTNER</h3>
+              <p>Link this to a signup form for volunteering or partnerships.</p>
+              <a class="btn btn--ghost" href="#" data-demo-link>GET INVOLVED</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="section" id="events">
+      <div class="container sectionGrid">
+        <div class="gutter" aria-hidden="true"></div>
+
+        <div class="sectionContent">
+          <div class="sectionHead">
+            <h2>EVENTS</h2>
+            <div class="ruleColumn" aria-hidden="true"></div>
+          </div>
+
+          <div class="block">
+            <h3>NEXT UP</h3>
+            <p>Community Ride Night • First Friday • 7:00 PM</p>
+            <div class="row">
+              <a class="btn btn--ghost" href="#" data-demo-link>VIEW DETAILS</a>
+              <a class="btn btn--primary" href="#donate">SPONSOR AN EVENT</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section class="section footerSection" id="contact">
+      <div class="container footerWrap">
+        <div class="footerRow">
+          <img
+            src="TonightWeRide.png"
+            alt="Tonight We Ride logo"
+            class="footerLogo__image"
+          />
+
+          <div class="footerTextBlock">
+            <p class="footerTitle">TONIGHT WE RIDE</p>
+            <p class="footerText">
+              Comfort in crisis, joy during the holidays, and care for those who’ve served or are struggling.
+            </p>
+
+            <p class="footerMeta">
+              Reach out: <a class="footerLink" href="mailto:info@tonightweride.org">info@tonightweride.org</a>
+            </p>
+
+            <nav class="footerNav" aria-label="Footer navigation">
+              <a class="footerLink" href="#mission">ABOUT</a>
+              <a class="footerLink" href="#events">EVENTS</a>
+              <a class="footerLink" href="#community-outreach">COMMUNITY OUTREACH</a>
+              <a class="footerLink" href="#get-help">GET HELP</a>
+              <a class="footerLink" href="#donate">DONATE</a>
+            </nav>
+          </div>
+        </div>
+
+        <div class="fine">
+          <span>© <span id="year"></span> tonight we ride.</span>
+          <span>ALL RIGHTS RESERVED.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

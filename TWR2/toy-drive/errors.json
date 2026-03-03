@@ -1,0 +1,22 @@
+[
+  {
+    "file": "Dallas.en.vtt",
+    "error": "Asset not found in provided directory. Expected under assets/."
+  },
+  {
+    "file": "Dallas.mp4",
+    "error": "Asset not found in provided directory. Expected under assets/."
+  },
+  {
+    "file": "DallasHero.png",
+    "error": "Asset not found in provided directory. Expected under assets/."
+  },
+  {
+    "file": "TWRLogo.png",
+    "error": "Asset not found in provided directory. Expected under assets/."
+  },
+  {
+    "file": "TonightWeRideLogo.png",
+    "error": "Asset not found in provided directory. Expected under assets/."
+  }
+]

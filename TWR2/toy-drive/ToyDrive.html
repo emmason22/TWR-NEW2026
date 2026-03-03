@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Tonight We Ride - Chad D's 26th Annual Toy Drive Charity Event" />
+    <title>Tonight We Ride - Chad D's 26th Annual Toy Drive</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<!-- ========================================================
+     NAVIGATION
+======================================================== -->
+<nav class="navbar">
+    <div class="nav-container">
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#event-details">Event Details</a></li>
+            <li><a href="#bands">Bands</a></li>
+            <li><a href="#charities">Charities</a></li>
+            <li><a href="#past-drives">Past Toy Drives</a></li>
+            <li><a href="#cta" class="cta-btn">Get Involved</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+<!-- ========================================================
+     HERO
+======================================================== -->
+<header class="hero">
+    <img src="ToyDrivePosterHero.png" alt="Toy Drive Poster" class="hero-poster" />
+</header>
+
+<!-- ========================================================
+     DONATE NOW BAR
+======================================================== -->
+<section class="donate-bar">
+    <button class="donate-btn" onclick="document.querySelector('#charities').scrollIntoView({ behavior: 'smooth' })">
+        Donate Now
+    </button>
+</section>
+
+<!-- ========================================================
+     ABOUT SECTION
+======================================================== -->
+<section id="about" class="about">
+    <div class="container">
+
+        <p class="about-kicker">Tonight We Ride Presents</p>
+
+        <h2 class="about-main-title">Chad D's 26th Annual Toy Drive</h2>
+
+        <p class="about-body">
+            Y'all ready to rock? If so, please join us for a night of great music for a great cause.
+            7 bands and the show is free with an unwrapped toy or a monetary donation of ANY size at the door.
+        </p>
+
+        <h3 class="about-bands-heading">The Bands</h3>
+
+        <ul class="about-bands-list">
+            <li>RTB2</li>
+            <li>Rhett Miller <span class="note">(Vid from NYC)</span></li>
+            <li>Ottoman Turks</li>
+            <li>Nothing Strikes Back</li>
+            <li>Armchair Rebels</li>
+            <li>Meat Sweats</li>
+            <li>New Ellum</li>
+        </ul>
+
+        <h3 class="about-details-heading">Details</h3>
+
+<p class="about-body">
+    Chad Davenport's Annual Toy Drive returns on Sunday, December 15, bringing an evening of live music, generosity, and holiday spirit to The Barley House from 6:30 PM to midnight. The event will feature seven live bands, with free admission for all attendees. Guests are encouraged to bring new, unwrapped toys, as well as cash or pay-app donations at the door. Those who are unable to donate are still welcome—no one is ever turned away.
+</p>
+
+<p class="about-body">
+    All proceeds from the event directly benefit Dallas Life Homeless Shelter and The Family Place, two organizations that provide critical support to families and individuals in crisis. Every dollar raised helps purchase holiday gifts for children, essential toiletries for adults, and canned goods for the Dallas Life food pantry.
+</p>
+
+<p class="about-body">
+    On Christmas Day, the Toy Drive’s longtime volunteer team personally delivers all donations to both organizations—The Family Place in the morning and Dallas Life in the evening. A volunteer dressed as Santa Claus joins the deliveries each year, creating a meaningful and memorable experience for the families served.
+</p>
+
+    </div>
+</section>
+
+<!-- ========================================================
+     EVENT DETAILS
+======================================================== -->
+<section id="event-details" class="event-details">
+    <div class="container">
+
+        <h2>Event Details</h2>
+
+        <div class="event-flex">
+
+            <div class="event-left">
+                <a href="https://barleyhouse.com/" target="_blank" rel="noopener noreferrer">
+                    <img src="BarleyHouseLogo.png" alt="Barley House Logo" class="event-venue-logo" />
+                </a>
+            </div>
+
+            <div class="event-right">
+
+                <h3 class="event-venue-title">The Barley House</h3>
+
+                <p class="event-info">
+                    5612 SMU Boulevard<br />
+                    Dallas, TX 75206
+                </p>
+
+                <p class="event-info">
+                    <strong>Date:</strong> December 15<br />
+                    <strong>Time:</strong> 6:30 PM – 11:30 PM
+                </p>
+
+                <p class="event-info">
+                    Bring an unwrapped toy or a monetary donation of ANY size.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ========================================================
+     BANDS SECTION
+======================================================== -->
+<section id="bands" class="bands">
+    <div class="bands-overlay"></div>
+
+    <div class="container">
+        <h2>7 Bands Performing</h2>
+
+        <div class="bands-grid">
+
+            <div class="band-card">
+                <img src="RTB2.jpg" class="band-img" alt="RTB2" />
+                <h3>RTB2</h3>
+            </div>
+
+            <div class="band-card">
+                <img src="RhettMiller.jpg" class="band-img" alt="Rhett Miller" />
+                <h3>Rhett Miller</h3>
+                <p class="band-feature">Vid from NYC</p>
+            </div>
+
+            <div class="band-card">
+                <img src="OttomanTurks.jpg" class="band-img" alt="Ottoman Turks" />
+                <h3>Ottoman Turks</h3>
+            </div>
+
+            <div class="band-card">
+                <img src="NothingStrikesBack.jpg" class="band-img" alt="Nothing Strikes Back" />
+                <h3>Nothing Strikes Back</h3>
+            </div>
+
+            <div class="band-card">
+                <img src="ArmchairRebels.jpg" class="band-img" alt="Armchair Rebels" />
+                <h3>Armchair Rebels</h3>
+            </div>
+
+            <div class="band-card">
+                <img src="MeatSweats.jpg" class="band-img" alt="Meat Sweats" />
+                <h3>Meat Sweats</h3>
+            </div>
+
+            <div class="band-card">
+                <img src="NewEllum.jpg" class="band-img" alt="New Ellum" />
+                <h3>New Ellum</h3>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========================================================
+     CHARITIES
+======================================================== -->
+<section id="charities" class="charities">
+    <div class="container">
+
+        <h2>Supporting Local Charities</h2>
+
+        <p class="charities-intro">
+            Every dollar and toy collected benefits these amazing organizations:
+        </p>
+
+        <div class="charities-logos">
+
+            <div class="charity-item">
+                <a href="https://dallaslife.org/" target="_blank">
+                    <div class="charity-logo-box">
+                        <img src="DallasLife.jpg" alt="Dallas Life" class="charity-logo" />
+                    </div>
+                </a>
+                <h3>Dallas Life Homeless Shelter</h3>
+                <p>Providing shelter, meals, and support services.</p>
+            </div>
+
+            <div class="charity-item">
+                <a href="https://familyplace.org/" target="_blank">
+                    <div class="charity-logo-box">
+                        <img src="TheFamilyPlace.png" alt="The Family Place" class="charity-logo" />
+                    </div>
+                </a>
+                <h3>The Family Place</h3>
+                <p>Offering abuse treatment, safety, and healing programs.</p>
+            </div>
+
+        </div>
+
+        <!-- QR DONATION SECTION -->
+        <div class="donate-section">
+            <h3 class="donate-title">Donate</h3>
+            <p class="donate-caption">Scan or click to donate</p>
+
+            <div class="qr-grid">
+
+                <!-- VENMO -->
+                <a href="https://venmo.com/u/CHADD214"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="qr-item qr-item--venmo">
+
+                    <img src="VenmoQR.jpg" alt="Venmo QR" class="venmo-qr" loading="lazy" />
+                    <p class="qr-text">Venmo</p>
+
+                    <img src="Venmo.png" alt="Venmo Logo" class="qr-logo small" loading="lazy" />
+                    <p class="qr-open venmo-open">Open Venmo</p>
+
+                </a>
+
+                <!-- PAYPAL -->
+                <div class="qr-item">
+                    <img src="PayPalQR.jpg" alt="PayPal QR" loading="lazy" />
+                    <p class="qr-text">PayPal</p>
+                </div>
+
+                <!-- ZELLE -->
+                <div class="qr-item">
+                    <img src="ZelleQR.jpg" alt="Zelle QR" loading="lazy" />
+                    <p class="qr-text">Zelle</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SIMPLE DONATION TEXT -->
+        <div class="donation-text">
+            <h3>Donations:</h3>
+            <p>PayPal: <span>TOYDRIVE214@gmail.com</span></p>
+            <p>Zelle: <span>TOYDRIVE214@gmail.com</span></p>
+            <p>Venmo: <span>@CHADD214</span></p>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- ========================================================
+     CALL TO ACTION
+======================================================== -->
+<section id="cta" class="call-to-action">
+    <div class="container">
+
+        <h2>Come One, Come All!</h2>
+
+        <p class="cta-message">
+            This year is gonna be huge. Whether you're an early bird or an all-nighter,
+            there's a place for you at Tonight We Ride.
+        </p>
+
+        <div class="cta-options">
+
+            <div class="cta-card">
+                <h3>Bring a Toy</h3>
+                <p>Unwrapped toys make great gifts and get you in free!</p>
+            </div>
+
+            <div class="cta-card">
+                <h3>Donate</h3>
+                <p>Every dollar matters — donate anything you can.</p>
+            </div>
+
+            <div class="cta-card">
+                <h3>Just Come</h3>
+                <p>No toy? No cash? No problem. You won't be turned away.</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ========================================================
+     PAST DRIVES
+======================================================== -->
+<section id="past-drives" class="past-drives">
+    <div class="container">
+
+        <h2>Past Toy Drives</h2>
+
+        <p class="past-drives-intro">Take a look back at past posters.</p>
+
+        <div class="past-drives-grid">
+
+            <figure class="past-drive-card">
+                <img src="ToyDrive18.jpg" alt="2018 Poster" />
+                <figcaption>2018</figcaption>
+            </figure>
+
+            <figure class="past-drive-card">
+                <img src="ToyDrive20.jpg" alt="2020 Poster" />
+                <figcaption>2020</figcaption>
+            </figure>
+
+            <figure class="past-drive-card">
+                <img src="ToyDrive21.jpg" alt="2021 Poster" />
+                <figcaption>2021</figcaption>
+            </figure>
+
+            <figure class="past-drive-card">
+                <img src="ToyDrive22.jpg" alt="2022 Poster" />
+                <figcaption>2022</figcaption>
+            </figure>
+
+            <figure class="past-drive-card">
+                <img src="ToyDrive23.jpg" alt="2023 Poster" />
+                <figcaption>2023</figcaption>
+            </figure>
+
+            <figure class="past-drive-card">
+                <img src="ToyDrive24.jpg" alt="2024 Poster" />
+                <figcaption>2024</figcaption>
+            </figure>
+
+            <figure class="past-drive-card">
+                <img src="ToyDrive25.jpg" alt="2025 Poster" />
+                <figcaption>2025</figcaption>
+            </figure>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ========================================================
+     FOOTER
+======================================================== -->
+<footer class="footer">
+    <div class="container">
+
+        <div class="footer-top">
+
+            <div class="footer-logo-block">
+                <img src="TonightWeRideLogo.png" alt="Tonight We Ride Logo" class="footer-logo-img" />
+                <p class="footer-tagline">Changing the world, one person at a time</p>
+            </div>
+
+            <div class="footer-mission-and-social">
+
+                <div class="footer-mission">
+                    <h4>Our Mission</h4>
+                    <p>
+                        We unite our community to take action when it matters most —
+                        providing comfort during crises, joy during the holidays,
+                        and care for those who’ve served or are struggling.
+                    </p>
+                </div>
+
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=61582349795893" target="_blank">
+                        <img src="facebook.png" class="footer-social-icon" alt="Facebook" />
+                    </a>
+                    <a href="https://www.instagram.com/twrbigd/" target="_blank">
+                        <img src="instagram.png" class="footer-social-icon" alt="Instagram" />
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tonight We Ride — All proceeds benefit our community.</p>
+        </div>
+
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,454 @@
+:root{
+  /* Design-system colors (only) */
+  --navy: #01387e;
+  --text: #0b1a2b;
+  --muted: #475569;
+  --bg: #ffffff;
+  --surface: #f5f7fb;
+
+  /* Updated gold (sitewide) */
+  --gold: #fcb212;
+
+  /* Black tones (specified) */
+  --ink: #000000;
+  --heroBox: #00020b;
+
+  /* Layout measurements */
+  --container: 1120px;
+
+  /* Box sizing requirements */
+  --primaryBoxW: 300px; /* HALVED from previous 600px per spec */
+  --primaryBoxH: 800px;
+
+  /* No gaps: vertical lines act as separators */
+  --sep: 1px; /* thin vertical line thickness */
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Merriweather", serif;
+  line-height: 1.35;
+}
+
+.container{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Typography hierarchy */
+h1,h2,h3{
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+a{ color: inherit; }
+
+/* Header */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.header-inner{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand{
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand-logo{
+  width: 88px; /* DOUBLED from 44px per spec */
+  height: auto;
+  display: block;
+}
+
+.site-nav{
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.site-nav a{
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.site-nav a:hover{
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.header-actions{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.donate-btn{
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--gold);
+  color: var(--bg);
+  padding: 12px 18px;
+  border-radius: 0; /* square */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donate-btn:hover{
+  filter: brightness(0.95);
+}
+
+/* HERO */
+.hero{
+  position: relative;
+  width: 100%;
+  height: 72vh;
+  min-height: 520px;
+}
+
+.hero-media{
+  position: absolute;
+  inset: 0;
+}
+
+.hero-video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: var(--ink);
+}
+
+/* Visible error overlay (hidden by default; script enables) */
+.hero-video-error{
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  max-width: 520px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.92);
+  color: var(--text);
+  display: none;
+}
+
+/* Overlay positioned on left side */
+.hero-overlay{
+  position: absolute;
+  left: 44px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* Black box behind logo + buttons (specified) */
+.hero-brand-box{
+  background: var(--heroBox);
+  padding: 18px 18px 16px 18px;
+  border-radius: 0; /* square */
+  display: inline-flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Larger-than-standard logo overlay */
+.hero-logo{
+  width: 340px;
+  max-width: calc(100vw - 72px);
+  height: auto;
+  display: block;
+}
+
+/* Hero CTA buttons: gold-bordered square, hover becomes solid gold */
+.hero-ctas{
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-btn{
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 14px 18px;
+  border-radius: 0; /* square */
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  text-transform: uppercase;
+}
+
+.hero-btn:hover{
+  background: var(--gold);
+  color: var(--text);
+}
+
+/* Mission directly under hero */
+.mission{
+  padding: 44px 0 22px;
+  background: var(--bg);
+}
+
+.mission-lead{
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 3.2vw, 46px);
+  letter-spacing: -0.02em;
+  margin: 0 0 12px 0;
+}
+
+.mission-body{
+  margin: 0 0 14px 0;
+  color: var(--muted);
+  font-size: 18px;
+  max-width: 920px;
+
+  /* Oswald for all small text in mission section per spec */
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
+}
+
+.learn-more{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  text-decoration: none;
+}
+
+/* Thick black horizontal line below mission */
+.mission-divider{
+  width: 100%;
+  height: 8px; /* thick */
+  background: var(--ink);
+}
+
+/* BOX SECTION */
+.box-section{
+  background: var(--surface);
+  padding: 24px 0 56px;
+}
+
+/* Layout: no gaps; separators are thin vertical black lines */
+.box-layout{
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--primaryBoxW) 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+/* Thin vertical separator between primary blue box and right-side boxes */
+.box-layout::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--primaryBoxW);
+  width: var(--sep);
+  background: var(--ink);
+  pointer-events: none;
+}
+
+/* All boxes: square corners, no borders */
+.box{
+  background: var(--bg);
+  border: none;
+  border-radius: 0;
+  padding: 18px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.box-primary{
+  width: var(--primaryBoxW);
+  height: var(--primaryBoxH);
+  background: var(--navy);
+  color: var(--bg);
+}
+
+/* RIGHT: 2x2 grid with vertical separators */
+.box-right-grid{
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+/* Thin vertical separator between right-side columns */
+.box-right-grid::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: var(--sep);
+  background: var(--ink);
+  transform: translateX(-0.5px); /* keeps 1px line visually centered */
+  pointer-events: none;
+}
+
+/* Box internals */
+.box-top{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.box-title-row{
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.box-title{
+  font-size: 30px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+}
+
+.box-primary .box-title{
+  font-size: 38px;
+}
+
+.box-arrow{
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.box-text{
+  margin: 0 0 12px 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.box-primary .box-text{
+  color: rgba(255,255,255,0.92);
+}
+
+/* Right-side Learn more link now sits BELOW small text */
+.box-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+/* CTA button style (gold border, fill on hover) */
+.box-cta{
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 12px 14px;
+  border-radius: 0; /* square */
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+  text-transform: uppercase;
+}
+
+.box-cta:hover{
+  background: var(--gold);
+  color: var(--text);
+}
+
+/* Missing asset placeholder style (script.js uses this) */
+.asset-missing{
+  background: var(--surface);
+  color: var(--ink);
+  padding: 14px;
+  border-radius: 0;
+  border: none;
+  font-family: "Oswald", sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .box-layout{
+    grid-template-columns: 1fr;
+  }
+  .box-primary{
+    width: 100%;
+    height: auto;
+    min-height: 520px;
+  }
+  .box-right-grid{
+    grid-template-columns: 1fr;
+  }
+  .box-layout::after{
+    display: none;
+  }
+  .box-right-grid::before{
+    display: none;
+  }
+
+}
+
+@media (max-width: 780px){
+  .site-nav{
+    gap: 14px;
+  }
+  .site-nav a{
+    font-size: 16px;
+  }
+  .hero{
+    height: 62vh;
+    min-height: 440px;
+  }
+  .hero-logo{
+    width: 300px;
+  }
+  .hero-btn{
+    width: 100%;
+    min-width: unset;
+  }
+}

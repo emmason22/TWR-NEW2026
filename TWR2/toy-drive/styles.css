@@ -1,0 +1,996 @@
+/* =============================================
+ROOT & GLOBAL STYLES – MATCH POSTER
+============================================= */
+
+:root {
+  --primary-color: #e2b649;
+  --secondary-color: #051933;
+  --accent-color: #d6452f;
+  --success-color: #1d6b3c;
+  --warning-color: #f57c00;
+  --text-dark: #f3e7c5;
+  --text-light: #c6b68a;
+  --bg-light: #0d2747;
+  --bg-white: #07152b;
+  --border-color: rgba(255, 255, 255, 0.1);
+
+  /* Fonts */
+  --font-primary: "Roboto", sans-serif;
+  --font-heading: "Bangers", cursive;
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 4rem;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 10px 18px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 22px 30px rgba(0, 0, 0, 0.7);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global body + starry background */
+body {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--text-dark);
+  background-image: url('StarryBackground.jpg');
+  background-size: cover;
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-attachment: fixed;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+/* =============================================
+TYPOGRAPHY
+============================================= */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.35);
+}
+
+/* Section titles (shared style) */
+.section-title,
+.about h2,
+.bands h2,
+.charities h2,
+.event-details h2,
+.call-to-action h2,
+.past-drives h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--primary-color);
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Paragraphs */
+p {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  line-height: 1.75;
+}
+
+/* Shared small headings */
+.detail-card h3,
+.band-card h3,
+.charity-card h3,
+.cta-card h3,
+.footer-section h4 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  color: var(--primary-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* =============================================
+NAVIGATION
+============================================= */
+
+.navbar {
+  background: rgba(5, 25, 51, 0.98);
+  color: var(--text-dark);
+  padding: var(--spacing-md) 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(10px);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  display: flex;
+  justify-content: flex-end; /* since logo is removed */
+  align-items: center;
+}
+
+/* logo styles kept in case you re-add later, but unused now */
+.logo {
+  display: none;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+/* CTA button in nav – now matches header text color */
+.nav-links .cta-btn {
+  background-color: var(--primary-color); /* match header text color */
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 999px;
+  color: #1a1306;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-links .cta-btn:hover {
+  background-color: #f7d46a;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* =============================================
+HERO – IMAGE HERO THAT FILLS SCREEN ON DESKTOP
+WITHOUT CROPPING WIDTH
+============================================= */
+
+.hero {
+  width: 100%;
+  background: black; /* keeps edges clean on ultra-wide/tall screens */
+  padding: 0;
+  margin: 0;
+
+  /* Full-screen feel on larger devices */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Don't clip image horizontally */
+  overflow: visible;
+}
+
+.hero-poster {
+  width: 100%;
+  height: auto;
+  display: block;
+
+  /* No forced cropping by height */
+  max-height: none;
+  object-fit: contain; /* shows full poster, no cropping */
+}
+
+/* =============================================
+DONATE NOW BAR – STICKY GOLD STRIP BELOW HERO
+============================================= */
+
+.donate-bar {
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    #f4d26a,
+    #e2b649,
+    #f8e49b
+  );
+  padding: var(--spacing-md) 0;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+
+  position: sticky;
+  top: 64px; /* adjust if your navbar is taller/shorter */
+  z-index: 90;
+}
+
+.donate-btn {
+  background: #061322;
+  color: #fbe8a5;
+  padding: var(--spacing-sm) var(--spacing-xl);
+  border-radius: 999px;
+  font-size: 1.3rem;
+  font-weight: 900;
+  font-family: "Bangers", var(--font-heading), system-ui;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  border: 3px solid #fbe8a5;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.25s ease, background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.donate-btn:hover {
+  background: #0b223d;
+  transform: scale(1.06);
+  box-shadow: var(--shadow-lg);
+}
+
+/* =============================================
+ABOUT SECTION
+============================================= */
+
+.about {
+  padding: var(--spacing-xxl) 0;
+  background-color: rgba(13, 39, 71, 0.9);
+}
+
+.about-kicker {
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+.about-main-title {
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.about-body {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-dark);
+  line-height: 1.8;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-bands-heading,
+.about-details-heading {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
+}
+
+.about-bands-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: var(--spacing-lg);
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-dark);
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-bands-list li + li {
+  margin-top: 0.25rem;
+}
+
+.about-bands-list .note {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* =============================================
+EVENT DETAILS — CLEAN LAYOUT
+============================================= */
+
+.event-details {
+  padding: var(--spacing-xxl) 0;
+  padding-bottom: calc(var(--spacing-xxl) * 1.8);
+  background-color: rgba(5, 25, 51, 0.9);
+}
+
+.event-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xxl);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-xl);
+}
+
+.event-left {
+  flex: 1;
+  text-align: center;
+}
+
+.event-venue-logo {
+  width: 340px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-venue-logo:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 24px rgba(226, 182, 73, 0.75);
+}
+
+.event-right {
+  flex: 1;
+  color: var(--text-dark);
+}
+
+.event-venue-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--primary-color);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  margin-bottom: var(--spacing-sm);
+}
+
+.event-info {
+  font-family: var(--font-primary);
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.7;
+}
+
+/* =============================================
+BANDS SECTION — IMAGES + DARK OVERLAY
+============================================= */
+
+.bands {
+  position: relative;
+  padding: var(--spacing-xxl) 0;
+  background: transparent;
+}
+
+.bands-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 8, 20, 0.9);
+  z-index: 0;
+}
+
+.bands .container {
+  position: relative;
+  z-index: 1;
+}
+
+.bands-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.band-card {
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.band-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.band-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-sm);
+  font-weight: bold;
+  color: #ffe9a5;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+.band-time,
+.band-feature {
+  font-size: 1rem;
+  opacity: 0.9;
+  font-style: italic;
+}
+
+/* =============================================
+CHARITIES SECTION — LOGOS + DONATE QR
+============================================= */
+
+.charities {
+  padding: var(--spacing-xxl) 0;
+  background-color: rgba(5, 25, 51, 0.9);
+}
+
+.charities-intro {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-xl);
+  color: var(--text-light);
+}
+
+/* Charity logos row */
+.charities-logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--spacing-xl);
+  align-items: flex-start;
+  margin-bottom: var(--spacing-xxl);
+}
+
+.charity-item {
+  text-align: center;
+}
+
+/* white boxes with rounded corners, consistent size */
+.charity-logo-box {
+  width: 260px;
+  height: 180px;
+  margin: 0 auto var(--spacing-md);
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.charity-logo {
+  max-width: 90%;
+  max-height: 80%;
+  height: auto;
+}
+
+.charity-item h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-xs);
+}
+
+.charity-item p {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  color: var(--text-dark);
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* Donate QR Section */
+
+.donate-section {
+  margin-top: var(--spacing-xl);
+  text-align: center;
+}
+
+.donate-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-xs);
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+.donate-caption {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: var(--spacing-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.qr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-xl);
+  justify-items: center;
+  align-items: stretch;
+}
+
+.qr-item {
+  background-color: rgba(7, 21, 43, 0.92);
+  padding: var(--spacing-md);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ✅ Make Venmo card feel clickable */
+.qr-item--venmo {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.qr-item--venmo p {
+  text-decoration: none;
+}
+
+/* QR CODES (big squares) */
+.qr-item img:not(.qr-logo) {
+  width: 230px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-sm);
+  transition: box-shadow 0.25s ease;
+}
+
+/* Text directly under QR (Venmo/PayPal/Zelle labels) */
+.qr-text {
+  margin-top: 0;
+  margin-bottom: var(--spacing-xs);
+  font-family: var(--font-primary);
+  font-size: 1.1rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+/* Default <p> in qr-item (fallback if qr-text isn't used) */
+.qr-item p {
+  margin-top: 0;
+  font-family: var(--font-primary);
+  font-size: 1.1rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Small payment service logos below text (50% smaller than QR codes) */
+.qr-logo {
+  width: 115px; /* ~50% of 230px QR code width */
+  height: auto;
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* In case you want an extra-small modifier */
+.qr-logo.small {
+  width: 115px;
+}
+
+.qr-item:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Clickable link styling under QR */
+.qr-link {
+  margin-top: var(--spacing-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background-color: rgba(3, 8, 20, 0.85);
+  border: 1px solid rgba(243, 231, 197, 0.35);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+}
+
+.qr-link span {
+  color: var(--text-dark);
+}
+
+.qr-link:hover {
+  background-color: rgba(10, 25, 55, 0.95);
+  border-color: var(--primary-color);
+}
+
+/* ---------------------------------------------
+   SIMPLE DONATION TEXT (JUST LINES OF TEXT)
+---------------------------------------------- */
+
+.donation-text {
+  margin-top: var(--spacing-xl);
+  text-align: center;
+  font-family: var(--font-primary);
+}
+
+.donation-text h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.donation-text p {
+  font-size: 1rem;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.donation-text p span {
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+/* =============================================
+CALL TO ACTION
+============================================= */
+
+.call-to-action {
+  background: radial-gradient(circle at center,
+    rgba(20, 58, 99, 0.95) 0%,
+    rgba(5, 25, 51, 0.95) 70%);
+  color: var(--text-dark);
+  padding: var(--spacing-xxl) 0;
+  text-align: center;
+}
+
+.cta-message {
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-xl);
+  opacity: 0.95;
+  line-height: 1.8;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.cta-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xxl);
+}
+
+.cta-card {
+  background: rgba(7, 21, 43, 0.9);
+  padding: var(--spacing-lg);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.cta-card:hover {
+  background: rgba(226, 182, 73, 0.12);
+  transform: translateY(-5px);
+}
+
+/* =============================================
+PAST TOY DRIVES – POSTER GALLERY
+============================================= */
+
+.past-drives {
+  padding: var(--spacing-xxl) 0;
+  background-color: rgba(2, 10, 20, 0.95);
+}
+
+.past-drives-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--spacing-xl);
+  font-size: 1.2rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+.past-drives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-xl);
+  align-items: stretch;
+}
+
+/* clean posters – no card background */
+.past-drive-card {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: center;
+  transition: transform 0.25s ease;
+}
+
+/* consistent height on posters (desktop/tablet) */
+.past-drive-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+.past-drive-card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.past-drive-card figcaption {
+  margin-top: var(--spacing-xs);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  color: var(--primary-color);
+}
+
+/* =============================================
+FOOTER
+============================================= */
+
+.footer {
+  background-color: #030203;
+  color: var(--text-light);
+  padding: var(--spacing-xl) 0 var(--spacing-lg);
+}
+
+/* Top row: logo block + mission/social */
+.footer-top {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(260px, 2fr);
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+/* Logo + tagline block */
+.footer-logo-block {
+  text-align: center;
+}
+
+.footer-logo-img {
+  width: 260px;
+  max-width: 80%;
+  height: auto;
+  filter: drop-shadow(0 0 18px rgba(0,0,0,0.7));
+  margin: 0 auto;
+}
+
+.footer-tagline {
+  margin-top: var(--spacing-sm);
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  color: var(--text-light);
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+
+/* Mission + socials wrapper */
+.footer-mission-and-social {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Mission text */
+.footer-mission h4 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-mission p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* Social icons stack */
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xs);
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.footer-social-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Bottom line */
+.footer-bottom {
+  text-align: center;
+  padding-top: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.95rem;
+}
+
+/* =============================================
+RESPONSIVE
+============================================= */
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-container {
+    justify-content: space-between;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    background: rgba(5, 25, 51, 0.98);
+    flex-direction: column;
+    padding: var(--spacing-lg);
+    gap: var(--spacing-md);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .qr-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .qr-item img:not(.qr-logo) {
+    width: 260px;
+  }
+
+  .event-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .event-venue-logo {
+    width: 280px;
+  }
+
+  .charities-logos {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .footer-logo-block {
+    text-align: center;
+  }
+
+  .footer-mission-and-social {
+    align-items: flex-start;
+  }
+
+  .past-drives-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    /* Allow hero to be natural height on very small phones
+       while still not cropping width */
+    min-height: auto;
+  }
+
+  .hero-poster {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
+
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: 0.02em;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* extra emphasis on QR cards as tappable */
+  .qr-item {
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* ✅ Prevent past toy drive posters from being cut off on mobile */
+  .past-drive-card img {
+    height: auto;
+    object-fit: contain;
+  }
+}
