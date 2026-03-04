@@ -100,6 +100,56 @@ function isRateLimited(formName) {
   return false;
 }
 
+function setFieldValidityState(field) {
+  if (!field || !field.willValidate) return;
+  field.setAttribute("aria-invalid", field.checkValidity() ? "false" : "true");
+}
+
+function clearFormValidityStates(form) {
+  form.querySelectorAll("input, textarea, select").forEach((field) => {
+    if (!field.willValidate) return;
+    field.setAttribute("aria-invalid", "false");
+  });
+}
+
+function applyAutocompleteHint(field) {
+  if (!field || field.hasAttribute("autocomplete")) return;
+
+  const key = `${field.name || ""} ${field.id || ""}`.toLowerCase();
+  if (key.includes("email")) {
+    field.setAttribute("autocomplete", "email");
+    return;
+  }
+  if (key.includes("phone") || key.includes("contact") || key.includes("tel")) {
+    field.setAttribute("autocomplete", "tel");
+    return;
+  }
+  if (key.includes("name")) {
+    field.setAttribute("autocomplete", "name");
+  }
+}
+
+function initFormAccessibility() {
+  const fields = document.querySelectorAll("form input, form textarea, form select");
+  fields.forEach((field) => {
+    if (field.classList.contains("hp-field")) return;
+
+    applyAutocompleteHint(field);
+
+    if (field.willValidate) {
+      field.addEventListener("blur", () => {
+        setFieldValidityState(field);
+      });
+
+      field.addEventListener("input", () => {
+        if (field.getAttribute("aria-invalid") === "true") {
+          setFieldValidityState(field);
+        }
+      });
+    }
+  });
+}
+
 function initSupportForms() {
   const forms = document.querySelectorAll("form.support-form");
   forms.forEach((form) => {
@@ -110,6 +160,12 @@ function initSupportForms() {
       event.preventDefault();
 
       if (!form.checkValidity()) {
+        const firstInvalid = form.querySelector(":invalid");
+        if (firstInvalid) {
+          setFieldValidityState(firstInvalid);
+          firstInvalid.focus();
+        }
+        if (statusEl) statusEl.textContent = "Please complete all required fields and try again.";
         form.reportValidity();
         return;
       }
@@ -151,6 +207,7 @@ function initSupportForms() {
           emitTelemetry("form_submit_local_capture", { formName, endpointConfigured: false });
         }
         form.reset();
+        clearFormValidityStates(form);
         form.setAttribute("data-started-at", String(Date.now()));
       } catch (error) {
         if (statusEl) {
@@ -169,13 +226,21 @@ function initInsiderForms() {
   const forms = document.querySelectorAll("form.insider-form");
   forms.forEach((form) => {
     const statusEl = form.querySelector(".insider-status");
+    const email = form.querySelector("input[type='email']");
+    if (email) applyAutocompleteHint(email);
+
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      const email = form.querySelector("input[type='email']");
-      if (!email || !email.value.trim()) {
+      if (!email || !email.value.trim() || !email.checkValidity()) {
+        if (email) {
+          setFieldValidityState(email);
+          email.focus();
+          email.reportValidity();
+        }
         if (statusEl) statusEl.textContent = "Please enter an email address.";
         return;
       }
+      email.setAttribute("aria-invalid", "false");
       if (statusEl) statusEl.textContent = "Thanks for signing up. You are on the insider list.";
       emitTelemetry("insider_signup", { location: window.location.pathname });
       form.reset();
@@ -250,8 +315,21 @@ function initImagePerformanceDefaults() {
     if (!insideHero && !img.hasAttribute("loading")) {
       img.setAttribute("loading", "lazy");
     }
+    if (!img.hasAttribute("fetchpriority")) {
+      img.setAttribute("fetchpriority", insideHero ? "high" : "low");
+    }
     if (!img.hasAttribute("decoding")) {
       img.setAttribute("decoding", "async");
+    }
+    if (img.closest(".events-gallery-grid") && !img.hasAttribute("sizes")) {
+      img.setAttribute("sizes", "(max-width: 520px) 100vw, (max-width: 780px) 50vw, (max-width: 1180px) 33vw, 220px");
+    }
+  });
+
+  const iframes = document.querySelectorAll("iframe");
+  iframes.forEach((frame) => {
+    if (!frame.hasAttribute("loading")) {
+      frame.setAttribute("loading", "lazy");
     }
   });
 }
@@ -283,7 +361,7 @@ function initRevealOnScroll() {
 document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
   initImagePerformanceDefaults();
-  initRevealOnScroll();
+  initFormAccessibility();
   initSupportForms();
   initInsiderForms();
   initTrackedInteractions();

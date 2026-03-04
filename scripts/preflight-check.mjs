@@ -39,7 +39,9 @@ for (const file of htmlFiles) {
 
     const cleanRef = ref.split('#')[0].split('?')[0];
     if (!cleanRef) continue;
-    const refPath = resolve(dirname(abs), cleanRef);
+    const refPath = cleanRef.startsWith('/')
+      ? resolve(root, cleanRef.replace(/^\/+/, ''))
+      : resolve(dirname(abs), cleanRef);
     if (!existsSync(refPath)) {
       missing.push(`${file}: missing local reference -> ${ref}`);
     }

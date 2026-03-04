@@ -49,6 +49,7 @@
         <a href="homeless-outreach.html">Homeless Outreach</a>
         <a href="community-outreach.html">Community Outreach</a>
         <a href="emergency-relief.html">Emergency Relief</a>
+        <a href="crisis-relief.html">Crisis Relief</a>
         <a href="events.html">Events</a>
       </nav>
 
@@ -67,7 +68,7 @@
           muted
           loop
           playsinline
-          controls
+          preload="metadata"
           poster="assets/DallasHero.png"
           aria-label="Video background showing Dallas"
           data-asset="assets/Dallas.mp4"
@@ -101,10 +102,11 @@
         <p class="mission-body">
           Through faith-based programs and hands-on service, we seek to meet physical, emotional, and spiritual needs — changing the world, one person at a time.
         </p>
+        <a class="editorial-link" href="about.html">About <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
-    <section class="subpage-section" aria-label="Impact snapshot">
+    <section class="subpage-section impact-snapshot" aria-label="Impact snapshot">
       <div class="container narrow">
         <h2>Impact Snapshot</h2>
         <div class="donate-tier-grid">
@@ -113,8 +115,8 @@
             <p>Typical response target for incoming outreach requests.</p>
           </article>
           <article class="donate-tier">
-            <h3>3 Programs</h3>
-            <p>Core initiatives serving homelessness, veterans, and emergency relief.</p>
+            <h3>5 Programs</h3>
+            <p>Core initiatives serving homelessness, community outreach, veterans, emergency relief, and crisis relief.</p>
           </article>
           <article class="donate-tier">
             <h3>Partner Network</h3>
@@ -173,7 +175,7 @@
       </div>
     </section>
 
-    <section class="be-insider-section" id="insider" aria-label="Sign Up for Help">
+    <section class="be-insider-section" id="insider" aria-label="Sign Up">
       <div class="container">
         <div class="insider-divider" aria-hidden="true"></div>
         <div class="be-insider-grid">
@@ -183,7 +185,7 @@
             <form class="insider-form" aria-label="Insider signup form">
               <label class="insider-label" for="insider-email-home">Email Address</label>
               <input id="insider-email-home" type="email" name="email" placeholder="you@example.com" required />
-              <button type="submit" class="insider-submit">Sign Up for Help</button>
+              <button type="submit" class="insider-submit">Sign Up</button>
               <p class="insider-status" role="status" aria-live="polite"></p>
             </form>
           </article>
@@ -192,9 +194,38 @@
       </div>
     </section>
 
+    <section class="programs-structure events-structure" aria-label="Events feature">
+      <div class="container programs-split">
+        <aside class="programs-lead events-lead">
+          <p class="block-kicker">Community</p>
+          <h2 class="programs-title">Our Events</h2>
+          <p class="programs-copy">
+            From annual toy drives to urgent crisis response events, we mobilize quickly and serve with consistency.
+          </p>
+          <a class="editorial-link" href="events.html">View Events <span aria-hidden="true">→</span></a>
+        </aside>
+
+        <div class="program-cards events-cards">
+          <article class="program-card">
+            <img class="program-photo" src="assets/ToyDrivePoster.jpg" alt="Toy Drive poster" data-asset="assets/ToyDrivePoster.jpg" loading="lazy" decoding="async" />
+            <h3>Annual Toy Drive</h3>
+            <p>For 26 years, our Christmas Toy Drive has brought Dallas together to share holiday cheer and support local families. What began as a simple idea has grown into a beloved tradition-powered by community, live music, and the spirit of giving. And we're proud to keep it going year after year.</p>
+            <a class="editorial-link" href="TWR2/toy-drive/ToyDrive.html">View Toy Drive <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="program-card">
+            <img class="program-photo" src="assets/KindnessforKerr.webp" alt="Kindness for Kerr crisis events support" data-asset="assets/KindnessforKerr.webp" loading="lazy" decoding="async" />
+            <h3>Crisis Relieft &amp; Benefit Concert Series</h3>
+            <p>When crisis strikes — whether it’s a storm, fire, or local tragedy — our community shows up. The Crisis Benefit Concert Series brings people together through live music and generosity to support families and neighbors when they need it most.</p>
+            <a class="editorial-link" href="crisis-relief.html">Learn More <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="donate-jumbo" aria-label="Donate now">
       <div class="container donate-jumbo-inner">
-        <p class="block-kicker" style="color:#b8cdf7;">Fuel the Mission</p>
+        <p class="block-kicker kicker-light">Fuel the Mission</p>
         <h2 class="donate-jumbo-title">Donate Now</h2>
         <a class="donate-jumbo-btn" href="donate-now.html" data-track="donate-jumbo-cta">GIVE TODAY</a>
       </div>
@@ -205,6 +236,7 @@
     <div class="container">
       <div class="footer-extended">
         <div class="footer-col">
+          <img class="footer-logo" src="assets/TonightWeRideLogo.png" alt="Tonight We Ride logo" data-asset="assets/TonightWeRideLogo.png" loading="lazy" decoding="async" />
           <h3>Tonight We Ride</h3>
           <p>
             Dallas-based non-profit outreach focused on dignity, consistency, and practical support for neighbors in crisis.
@@ -214,9 +246,11 @@
         <div class="footer-col">
           <h3>Explore</h3>
           <ul>
+            <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="events.html">Events</a></li>
             <li><a href="donate-now.html">Donate Now</a></li>
+            <li><a href="TWR2/toy-drive/ToyDrive.html">Toy Drive</a></li>
           </ul>
         </div>
 
@@ -224,16 +258,30 @@
           <h3>Programs</h3>
           <ul>
             <li><a href="homeless-outreach.html">Homeless Outreach</a></li>
+            <li><a href="community-outreach.html">Community Outreach</a></li>
             <li><a href="veteran-outreach.html">Veteran Outreach</a></li>
             <li><a href="emergency-relief.html">Emergency Relief</a></li>
+            <li><a href="crisis-relief.html">Crisis Relief</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h3>Sign Up for Help</h3>
+          <h3>Social</h3>
+          <div class="footer-social-links" aria-label="Social media links">
+            <a href="https://www.facebook.com/profile.php?id=61582349795893" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <img class="footer-social-icon" src="assets/facebook.png" alt="Facebook" loading="lazy" decoding="async" />
+            </a>
+            <a href="https://www.instagram.com/twrbigd/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <img class="footer-social-icon" src="assets/instagram.png" alt="Instagram" loading="lazy" decoding="async" />
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Sign Up</h3>
           <form class="footer-insider insider-form" aria-label="Footer insider signup">
             <input type="email" name="email" placeholder="Email address" required />
-            <button type="submit">Sign Up for Help</button>
+            <button type="submit">Sign Up</button>
             <p class="insider-status" role="status" aria-live="polite"></p>
           </form>
         </div>

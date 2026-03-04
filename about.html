@@ -35,6 +35,7 @@
         <a href="homeless-outreach.html">Homeless Outreach</a>
         <a href="community-outreach.html">Community Outreach</a>
         <a href="emergency-relief.html">Emergency Relief</a>
+        <a href="crisis-relief.html">Crisis Relief</a>
         <a href="events.html">Events</a>
       </nav>
       <div class="header-actions">
@@ -44,35 +45,105 @@
   </header>
 
   <main class="subpage-main" id="main-content">
-    <section class="subpage-hero">
-      <div class="container">
-        <h1>About Tonight We Ride</h1>
-        <p>
-          We are a Dallas-based non-profit focused on relationship-driven outreach for people facing homelessness,
-          veterans in crisis, and families navigating emergencies.
-        </p>
+    <h1 class="sr-only">About Tonight We Ride</h1>
+    <section class="hero" aria-label="About hero">
+      <div class="hero-media">
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="assets/DallasHero.png"
+          aria-label="Video background showing Tonight We Ride charity outreach"
+          data-asset="assets/Dallas.mp4"
+        >
+          <source src="assets/Dallas.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <div class="hero-video-error" role="alert" aria-live="polite">
+          <strong>Video unavailable.</strong>
+          <div>Could not load <code>assets/Dallas.mp4</code>. Showing poster image if available.</div>
+        </div>
+      </div>
+
+      <div class="hero-words" aria-label="About Tonight We Ride">
+        <span class="hero-phrase hero-title">About Tonight We Ride</span>
+        <span class="hero-phrase hero-tagline">Relationship-Driven Outreach Across Dallas</span>
       </div>
     </section>
 
     <section class="subpage-section">
       <div class="container narrow">
-        <h2>Our Mission</h2>
+        <div class="about-intro-layout">
+          <div class="about-main-copy">
+            <h2>Our Mission</h2>
+            <p>
+              At Tonight We Ride, our mission is simple yet powerful:
+            </p>
+            <p class="about-mission-emphasis">Changing the world, one person at a time.</p>
+            <p>
+              We believe that every individual, regardless of circumstance, deserves compassion, dignity, and human connection. By meeting people where they are and building genuine relationships, we gain a deeper understanding of their needs — allowing us to offer meaningful support, resources, and hope for a better tomorrow.
+            </p>
+
+            <h2>The Heart of Tonight We Ride</h2>
+            <p>
+              At its core, Tonight We Ride exists to restore dignity, hope, and human connection to people who are often invisible — starting right here in Dallas.
+            </p>
+            <p>
+              Not just through charity... ...but through relationship, consistency, and presence.
+            </p>
+          </div>
+
+          <img class="about-page-logo" src="assets/TonightWeRideLogo.png" alt="Tonight We Ride logo" data-asset="assets/TonightWeRideLogo.png" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </section>
+
+    <section class="subpage-section" id="about-connect">
+      <div class="container narrow">
+        <h2>Stay Connected. Stay Compassionate.</h2>
+
+        <h3>Join Our Mailing List Today</h3>
         <p>
-          Changing the world, one person at a time. We respond with compassion and practical support, then stay engaged
-          long enough to help create a path forward.
+          Be the first to hear about upcoming events, volunteer opportunities, and the powerful stories of the lives you help change.
         </p>
 
-        <h2>How We Work</h2>
+        <h3>Learn How to Volunteer</h3>
         <p>
-          Our team serves directly in the community, partners with trusted local organizations, and mobilizes volunteers
-          and donors to meet urgent needs quickly and responsibly.
+          At Tonight We Ride, we're always grateful for helping hands and open hearts. Fill out the form learn how you can get involved and make a lasting impact in your community.
         </p>
 
-        <h2>What Makes Us Different</h2>
+        <h3>Share Your Project or Charity Idea</h3>
         <p>
-          We prioritize consistency, trust, and dignity. We do not treat outreach as one-time transactions; we build
-          relationships that support long-term restoration.
+          Our mission is built on collaboration. Let us know how we can help your effort make an impact.
         </p>
+
+        <form class="support-form" data-form-name="About Contact" data-endpoint="">
+          <label for="about-name">Name</label>
+          <input id="about-name" name="name" type="text" required />
+
+          <label for="about-email">Email</label>
+          <input id="about-email" name="email" type="email" required />
+
+          <label for="about-phone">Phone Number</label>
+          <input id="about-phone" name="phone" type="tel" required />
+
+          <label for="about-interest">How would you like to get involved?</label>
+          <input id="about-interest" name="interest" type="text" required />
+
+          <label for="about-message">Tell us about a Project or Charity Idea</label>
+          <textarea id="about-message" name="message" rows="5" required></textarea>
+
+          <label class="sr-only" for="about-company">Leave this field blank</label>
+          <input id="about-company" name="company" type="text" tabindex="-1" autocomplete="off" class="hp-field" />
+
+          <button class="btn-primary" type="submit">Send Message</button>
+          <p class="form-note">Thanks for supporting Tonight We Ride. We'll follow up soon.</p>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
@@ -81,6 +152,7 @@
     <div class="container">
       <div class="footer-extended">
         <div class="footer-col">
+          <img class="footer-logo" src="assets/TonightWeRideLogo.png" alt="Tonight We Ride logo" data-asset="assets/TonightWeRideLogo.png" loading="lazy" decoding="async" />
           <h3>Tonight We Ride</h3>
           <p>
             Dallas-based non-profit outreach focused on dignity, consistency, and practical support for neighbors in crisis.
@@ -89,19 +161,35 @@
         <div class="footer-col">
           <h3>Explore</h3>
           <ul>
+            <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="events.html">Events</a></li>
             <li><a href="donate-now.html">Donate Now</a></li>
+            <li><a href="TWR2/toy-drive/ToyDrive.html">Toy Drive</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h3>Programs</h3>
           <ul>
             <li><a href="homeless-outreach.html">Homeless Outreach</a></li>
+            <li><a href="community-outreach.html">Community Outreach</a></li>
             <li><a href="veteran-outreach.html">Veteran Outreach</a></li>
             <li><a href="emergency-relief.html">Emergency Relief</a></li>
+            <li><a href="crisis-relief.html">Crisis Relief</a></li>
           </ul>
         </div>
+        <div class="footer-col">
+          <h3>Social</h3>
+          <div class="footer-social-links" aria-label="Social media links">
+            <a href="https://www.facebook.com/profile.php?id=61582349795893" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <img class="footer-social-icon" src="assets/facebook.png" alt="Facebook" loading="lazy" decoding="async" />
+            </a>
+            <a href="https://www.instagram.com/twrbigd/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <img class="footer-social-icon" src="assets/instagram.png" alt="Instagram" loading="lazy" decoding="async" />
+            </a>
+          </div>
+        </div>
+
         <div class="footer-col">
           <h3>Be an Insider</h3>
           <form class="footer-insider insider-form" aria-label="Footer insider signup">
