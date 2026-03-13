@@ -259,6 +259,154 @@ function initTrackedInteractions() {
   });
 }
 
+function buildMailtoHref(subject, body) {
+  return `mailto:info@tonightweride.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function initFoundingMemberSection() {
+  const section = document.querySelector(".founding-member-section");
+  if (!section) return;
+
+  const cards = Array.from(section.querySelectorAll(".founding-tier-card"));
+  const frequencyInputs = Array.from(section.querySelectorAll("input[name='founding-frequency']"));
+  const selectionEl = section.querySelector("[data-founding-selection]");
+  const cta = section.querySelector("[data-founding-cta]");
+
+  if (!cards.length || !frequencyInputs.length || !selectionEl || !cta) return;
+
+  const getFrequency = () => {
+    const checked = frequencyInputs.find((input) => input.checked);
+    return checked ? checked.value : "monthly";
+  };
+
+  const getSelectedCard = () => cards.find((card) => card.classList.contains("is-selected")) || cards[0];
+
+  const updateCardDisplays = () => {
+    const frequency = getFrequency();
+    cards.forEach((card) => {
+      const display = card.querySelector("[data-amount-display]");
+      if (!display) return;
+      const amount = card.dataset[frequency === "monthly" ? "monthlyAmount" : "oneTimeAmount"] || "";
+      display.textContent = amount;
+    });
+  };
+
+  const updateSelection = () => {
+    const frequency = getFrequency();
+    const selectedCard = getSelectedCard();
+    const tier = selectedCard.dataset.tier || "Founding Member";
+    const amount = selectedCard.dataset[frequency === "monthly" ? "monthlyAmount" : "oneTimeAmount"] || "";
+    const cadenceLabel = frequency === "monthly" ? "monthly recurring donation" : "one-time donation";
+    const subject = `Founding Member - ${tier} ${frequency === "monthly" ? "Monthly" : "One-Time"}`;
+    const body = `I want to join Tonight We Ride as a ${tier} Founding Member with a ${cadenceLabel} of ${amount}.`;
+
+    selectionEl.textContent = `Selected: ${tier}, ${cadenceLabel}, ${amount}`;
+    cta.href = buildMailtoHref(subject, body);
+    cta.textContent = frequency === "monthly" ? "Become a Founding Member" : "Support Tonight We Ride";
+
+    cards.forEach((card) => {
+      const btn = card.querySelector(".founding-tier-select");
+      const isSelected = card === selectedCard;
+      card.classList.toggle("is-selected", isSelected);
+      if (btn) {
+        btn.setAttribute("aria-pressed", isSelected ? "true" : "false");
+        btn.textContent = isSelected ? `${card.dataset.tier} Selected` : `Choose ${card.dataset.tier}`;
+      }
+    });
+
+    updateCardDisplays();
+  };
+
+  cards.forEach((card) => {
+    const btn = card.querySelector(".founding-tier-select");
+    const selectCard = () => {
+      cards.forEach((item) => item.classList.remove("is-selected"));
+      card.classList.add("is-selected");
+      updateSelection();
+    };
+
+    card.addEventListener("click", (event) => {
+      if (event.target instanceof HTMLElement && event.target.closest("a")) return;
+      selectCard();
+    });
+
+    if (btn) {
+      btn.addEventListener("click", (event) => {
+        event.preventDefault();
+        selectCard();
+      });
+    }
+  });
+
+  frequencyInputs.forEach((input) => {
+    input.addEventListener("change", updateSelection);
+  });
+
+  updateSelection();
+}
+
+function initFoundingMemberPromo() {
+  const existingPromo = document.querySelector(".founding-promo");
+  if (existingPromo) return;
+
+  // Built in JS so the promotion can appear site-wide without duplicating markup.
+  const promo = document.createElement("aside");
+  promo.className = "founding-promo";
+  promo.setAttribute("role", "dialog");
+  promo.setAttribute("aria-labelledby", "founding-promo-title");
+  promo.setAttribute("aria-describedby", "founding-promo-copy");
+
+  promo.innerHTML = `
+    <button type="button" class="founding-promo-dismiss" aria-label="Dismiss Founding Member promotion">Close</button>
+    <p class="founding-promo-kicker">Limited Promotion</p>
+    <h2 id="founding-promo-title">Become a Founding Member</h2>
+    <p id="founding-promo-copy">
+      Join a core group of supporters helping Tonight We Ride build lasting outreach impact and receive VIP event status.
+    </p>
+    <a class="founding-promo-cta" href="donate-now.html#founding-member" data-track="founding-promo-cta">
+      Join as a Founding Member
+    </a>
+  `;
+
+  document.body.appendChild(promo);
+
+  const dismissBtn = promo.querySelector(".founding-promo-dismiss");
+  const cta = promo.querySelector(".founding-promo-cta");
+  let closeTimer = null;
+  const onKeydown = (event) => {
+    if (event.key === "Escape" && promo.isConnected) {
+      closePromo("escape");
+    }
+  };
+
+  const closePromo = (reason) => {
+    if (!promo.isConnected) return;
+    if (closeTimer) {
+      window.clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+    document.removeEventListener("keydown", onKeydown);
+    promo.classList.remove("is-visible");
+    emitTelemetry("founding_promo_closed", { reason });
+    window.setTimeout(() => {
+      promo.remove();
+    }, 220);
+  };
+
+  dismissBtn?.addEventListener("click", () => closePromo("dismiss"));
+  cta?.addEventListener("click", () => closePromo("cta"));
+  document.addEventListener("keydown", onKeydown);
+
+  window.setTimeout(() => {
+    promo.classList.add("is-visible");
+    emitTelemetry("founding_promo_shown", { path: window.location.pathname });
+  }, 300);
+
+  closeTimer = window.setTimeout(() => {
+    closePromo("timeout");
+  }, 12000);
+}
+
 function initMobileNav() {
   const headers = document.querySelectorAll(".site-header");
   headers.forEach((header, idx) => {
@@ -338,7 +486,7 @@ function initRevealOnScroll() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const targets = document.querySelectorAll(
-    ".program-card, .resource-card, .event-card, .donate-tier, .support-form, .block-panel, .cream-block, .footer-col"
+    ".program-card, .resource-card, .event-card, .donate-tier, .support-form, .block-panel, .cream-block, .footer-col, .founding-member-card, .founding-tier-card, .founding-benefits"
   );
   if (!targets.length) return;
 
@@ -359,9 +507,11 @@ function initRevealOnScroll() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initFoundingMemberPromo();
   initMobileNav();
   initImagePerformanceDefaults();
   initFormAccessibility();
+  initFoundingMemberSection();
   initSupportForms();
   initInsiderForms();
   initTrackedInteractions();

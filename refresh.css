@@ -2283,3 +2283,267 @@ label,
   padding-top: clamp(42px, 5vw, 62px);
   padding-bottom: clamp(42px, 5vw, 62px);
 }
+
+.founding-member-section {
+  padding-top: clamp(40px, 6vw, 70px);
+  padding-bottom: clamp(40px, 6vw, 70px);
+  background:
+    radial-gradient(circle at top right, rgba(223, 177, 57, 0.14), transparent 34%),
+    linear-gradient(180deg, #fffaf0 0%, #f4f7fd 100%);
+}
+
+.founding-member-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.founding-member-copy {
+  margin: 0 0 14px;
+}
+
+.founding-benefits {
+  margin-top: 20px;
+  padding: 18px;
+  border: 1px solid rgba(12, 30, 63, 0.12);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--rf-shadow-sm);
+}
+
+.founding-benefits h3,
+.founding-member-card h3 {
+  margin: 0 0 8px;
+}
+
+.founding-benefits-list {
+  margin-bottom: 0;
+}
+
+.founding-member-panel {
+  min-width: 0;
+}
+
+.founding-member-card {
+  padding: 22px;
+  border: 1px solid rgba(12, 30, 63, 0.14);
+  background: #fff;
+  box-shadow: var(--rf-shadow-md);
+}
+
+.founding-member-eyebrow {
+  margin: 0 0 8px;
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7d5f16;
+}
+
+.founding-member-note {
+  margin: 0;
+  color: #5c6781;
+  font-size: 15px;
+}
+
+.founding-choice-group {
+  margin: 18px 0;
+  padding: 0;
+  border: 0;
+}
+
+.founding-choice-group legend {
+  margin-bottom: 10px;
+  padding: 0;
+  font-family: "Oswald", sans-serif;
+  font-size: 21px;
+  color: #0c1e3f;
+}
+
+.founding-toggle-row {
+  display: grid;
+  gap: 10px;
+}
+
+.founding-toggle {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border: 1px solid rgba(12, 30, 63, 0.12);
+  background: #f8fbff;
+  cursor: pointer;
+}
+
+.founding-toggle input {
+  margin-top: 4px;
+}
+
+.founding-tier-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.founding-tier-card {
+  padding: 16px;
+  border: 1px solid rgba(12, 30, 63, 0.12);
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+  box-shadow: var(--rf-shadow-sm);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.founding-tier-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--rf-shadow-md);
+}
+
+.founding-tier-card.is-selected {
+  border-color: rgba(197, 148, 17, 0.9);
+  box-shadow: 0 18px 38px rgba(12, 30, 63, 0.14);
+  background: linear-gradient(180deg, #fffdf7 0%, #fff6dc 100%);
+}
+
+.founding-tier-name {
+  margin: 0 0 6px;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(24px, 3vw, 30px);
+  color: #0c1e3f;
+}
+
+.founding-tier-amount {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #7d5f16;
+}
+
+.founding-tier-copy {
+  margin: 0 0 14px;
+  color: #44516c;
+}
+
+.founding-tier-select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 14px;
+  border: 2px solid var(--rf-blue);
+  background: transparent;
+  color: var(--rf-blue);
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.founding-tier-card.is-selected .founding-tier-select {
+  border-color: var(--rf-gold);
+  background: var(--rf-gold);
+  color: #111;
+}
+
+.founding-member-cta-group {
+  margin-top: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.founding-member-selection {
+  margin: 0;
+  font-weight: 700;
+  color: #0c1e3f;
+}
+
+.founding-member-cta {
+  min-width: 0;
+}
+
+.founding-promo {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1200;
+  width: min(360px, calc(100vw - 24px));
+  padding: 18px 18px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(255, 210, 90, 0.18), transparent 36%),
+    linear-gradient(145deg, rgba(7, 19, 43, 0.98), rgba(17, 39, 76, 0.97));
+  color: #f8fbff;
+  box-shadow: 0 22px 54px rgba(12, 30, 63, 0.36);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.founding-promo.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.founding-promo-kicker {
+  margin: 0 0 8px;
+  font-family: "Oswald", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd25a;
+}
+
+.founding-promo h2 {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 4vw, 34px);
+  line-height: 0.98;
+  color: #fff;
+}
+
+.founding-promo p {
+  margin: 0 0 14px;
+  color: #dbe7fa;
+}
+
+.founding-promo-dismiss {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 6px 8px;
+  border: 0;
+  background: transparent;
+  color: #dbe7fa;
+  font: inherit;
+  cursor: pointer;
+}
+
+.founding-promo-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 16px;
+  background: var(--rf-gold);
+  color: #111;
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  box-shadow: var(--rf-shadow-sm);
+}
+
+@media (max-width: 920px) {
+  .founding-member-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .founding-member-card,
+  .founding-benefits {
+    padding: 18px;
+  }
+
+  .founding-promo {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    bottom: 12px;
+  }
+}

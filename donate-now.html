@@ -56,6 +56,12 @@
         <div class="donate-cta-row">
           <a class="donate-cta-pill primary" href="mailto:info@tonightweride.org?subject=One-Time%20Donation%20Inquiry">Give Once</a>
           <a class="donate-cta-pill" href="mailto:info@tonightweride.org?subject=Monthly%20Donation%20Inquiry">Give Monthly</a>
+          <a
+            class="donate-cta-pill"
+            href="mailto:info@tonightweride.org?subject=Custom%20Amount%20Donation%20Inquiry&body=I%20would%20like%20to%20support%20Tonight%20We%20Ride%20with%20a%20donation%20of%20my%20choosing."
+          >
+            Donate Any Amount
+          </a>
         </div>
 
         <h2 class="section-title-spaced">Choose Your Impact</h2>
@@ -76,6 +82,119 @@
             <h3>$250+</h3>
             <p>Strengthens multi-program outreach through direct aid and coordinated referrals.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="subpage-section founding-member-section" id="founding-member" aria-label="Founding Member giving">
+      <div class="container">
+        <div class="founding-member-shell">
+          <div class="founding-member-lead">
+            <p class="block-kicker">Founding Member Access</p>
+            <h2>Become a Founding Member</h2>
+            <p class="founding-member-copy">
+              Help strengthen Tonight We Ride at a deeper level through a flagship giving program built for supporters
+              who want to stand with the mission in a bigger way.
+            </p>
+            <p class="founding-member-copy">
+              Founding Members receive VIP status at all Tonight We Ride events while helping fuel outreach, emergency
+              response, and community impact year-round.
+            </p>
+
+            <div class="founding-benefits" aria-label="Founding Member VIP benefits">
+              <h3>VIP Benefits</h3>
+              <p class="founding-member-note">Placeholder benefits below are easy to revise as the program is finalized.</p>
+              <ul class="resource-list founding-benefits-list">
+                <li>Two complimentary drinks at events</li>
+                <li>A commemorative event poster</li>
+                <li>Reserved seating or table access</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="founding-member-panel">
+            <div class="founding-member-card">
+              <p class="founding-member-eyebrow">Support Tonight We Ride</p>
+              <h3>Join as a Founding Member</h3>
+              <p class="founding-member-note">
+                Tier names, benefit copy, and suggested amounts below are placeholders and can be updated later without
+                changing the layout.
+              </p>
+
+              <fieldset class="founding-choice-group" aria-label="Donation frequency">
+                <legend>Choose your support type</legend>
+                <div class="founding-toggle-row">
+                  <label class="founding-toggle">
+                    <input type="radio" name="founding-frequency" value="monthly" checked />
+                    <span>Monthly recurring donation</span>
+                  </label>
+                  <label class="founding-toggle">
+                    <input type="radio" name="founding-frequency" value="one-time" />
+                    <span>One-time donation</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <!-- Placeholder amounts stay editable in the tier data attributes below. -->
+              <div class="founding-tier-grid" role="list" aria-label="Founding Member tiers">
+                <article
+                  class="founding-tier-card"
+                  role="listitem"
+                  data-tier="Silver"
+                  data-monthly-amount="$25/month"
+                  data-one-time-amount="$300 one-time"
+                >
+                  <p class="founding-tier-name">Silver</p>
+                  <p class="founding-tier-amount" data-amount-display>$25/month</p>
+                  <p class="founding-tier-copy">A strong entry point for recurring supporters who want to help sustain direct outreach.</p>
+                  <button type="button" class="founding-tier-select">Choose Silver</button>
+                </article>
+
+                <article
+                  class="founding-tier-card is-selected"
+                  role="listitem"
+                  data-tier="Gold"
+                  data-monthly-amount="$50/month"
+                  data-one-time-amount="$600 one-time"
+                >
+                  <p class="founding-tier-name">Gold</p>
+                  <p class="founding-tier-amount" data-amount-display>$50/month</p>
+                  <p class="founding-tier-copy">Designed for donors ready to make a visible, ongoing impact across multiple programs.</p>
+                  <button type="button" class="founding-tier-select">Choose Gold</button>
+                </article>
+
+                <article
+                  class="founding-tier-card"
+                  role="listitem"
+                  data-tier="Platinum"
+                  data-monthly-amount="$100/month"
+                  data-one-time-amount="$1,200 one-time"
+                >
+                  <p class="founding-tier-name">Platinum</p>
+                  <p class="founding-tier-amount" data-amount-display>$100/month</p>
+                  <p class="founding-tier-copy">Built for deeper mission partners who want to champion Tonight We Ride at the highest level.</p>
+                  <button type="button" class="founding-tier-select">Choose Platinum</button>
+                </article>
+              </div>
+
+              <div class="founding-member-cta-group">
+                <p class="founding-member-selection" data-founding-selection>
+                  Selected: Gold, monthly recurring donation, $50/month
+                </p>
+                <a
+                  class="donate-cta-pill primary founding-member-cta"
+                  data-founding-cta
+                  data-track="founding-member-cta"
+                  href="mailto:info@tonightweride.org?subject=Founding%20Member%20-%20Gold%20Monthly&body=I%20want%20to%20join%20Tonight%20We%20Ride%20as%20a%20Gold%20Founding%20Member%20with%20a%20monthly%20recurring%20donation%20of%20%2450%2Fmonth."
+                >
+                  Become a Founding Member
+                </a>
+                <p class="founding-member-note">
+                  Current donation flow uses email inquiry. Replace the CTA target later if a live payment integration is added.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
