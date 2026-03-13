@@ -114,6 +114,42 @@ textarea:focus-visible {
   padding: 70px 0 42px;
 }
 
+.home-video-cta-band {
+  padding: 18px 0 10px;
+}
+
+.home-video-cta-band .container {
+  display: flex;
+  justify-content: center;
+}
+
+.home-video-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 2px solid var(--rf-gold);
+  background: var(--rf-gold);
+  color: #111;
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(18px, 2.1vw, 24px);
+  letter-spacing: 0.03em;
+  box-shadow: var(--rf-shadow-sm);
+  transition: filter 160ms ease, transform 160ms ease;
+}
+
+.home-video-cta-btn:hover {
+  filter: brightness(0.96);
+  transform: translateY(-1px);
+}
+
+.home-video-cta-btn:focus-visible {
+  outline: 3px solid #f7cf75;
+  outline-offset: 2px;
+}
+
 .mission .container {
   max-width: 1200px;
 }
@@ -1233,6 +1269,31 @@ img,
 .page-homeless .subpage-section {
   padding-top: 48px;
   padding-bottom: 48px;
+}
+
+.page-homeless .homeless-video-hero {
+  padding: 0;
+}
+
+.page-homeless .homeless-video-hero::before {
+  display: none;
+}
+
+.page-homeless .homeless-video-hero .hero-words {
+  z-index: 3;
+}
+
+.page-homeless .homeless-hero-media {
+  position: absolute;
+  inset: 0;
+  background: #0b1222;
+}
+
+.page-homeless .homeless-hero-video-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 
 .page-homeless .subpage-section h2 {
