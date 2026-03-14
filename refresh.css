@@ -1305,6 +1305,13 @@ img,
 
 .page-homeless .homeless-video-hero .hero-words {
   z-index: 3;
+  transition: opacity 320ms ease, transform 320ms ease;
+}
+
+.page-homeless .homeless-video-hero.is-video-playing .hero-words {
+  opacity: 0;
+  transform: translate(-50%, -54%);
+  pointer-events: none;
 }
 
 .page-homeless .homeless-hero-media {

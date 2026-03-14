@@ -510,10 +510,47 @@ function initRevealOnScroll() {
   targets.forEach((el) => observer.observe(el));
 }
 
+function initHomelessHeroVideoFade() {
+  const hero = document.querySelector(".page-homeless .homeless-video-hero");
+  const media = hero?.querySelector(".homeless-hero-media");
+  const frame = hero?.querySelector(".homeless-hero-video-frame");
+  if (!hero || !media || !frame) return;
+
+  let hasActivated = false;
+  const activateFade = (reason) => {
+    if (hasActivated) return;
+    hasActivated = true;
+    hero.classList.add("is-video-playing");
+    emitTelemetry("homeless_hero_video_interaction", { reason });
+  };
+
+  media.addEventListener("pointerdown", () => activateFade("pointerdown"), { passive: true });
+  media.addEventListener("touchstart", () => activateFade("touchstart"), { passive: true });
+  frame.addEventListener("focus", () => activateFade("focus"));
+
+  window.addEventListener("blur", () => {
+    if (document.activeElement === frame) {
+      activateFade("frame_focus_blur");
+    }
+  });
+
+  // Some embedded players emit postMessage play state updates.
+  window.addEventListener("message", (event) => {
+    if (hasActivated) return;
+    if (typeof event.origin !== "string" || !event.origin.includes("facebook.com")) return;
+
+    const payload = typeof event.data === "string" ? event.data : JSON.stringify(event.data);
+    if (/play|started|video/i.test(payload)) {
+      activateFade("postmessage");
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initFoundingMemberPromo();
   initMobileNav();
   initImagePerformanceDefaults();
+  initHomelessHeroVideoFade();
   initFormAccessibility();
   initFoundingMemberSection();
   initSupportForms();
