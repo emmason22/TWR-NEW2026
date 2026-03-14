@@ -2632,3 +2632,15 @@ label,
     bottom: 12px;
   }
 }
+
+/* Final mobile guard for homepage "What We Do" section */
+@media (max-width: 900px) {
+  #community-outreach .program-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  #community-outreach .program-cards > .program-card {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+}
