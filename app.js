@@ -349,7 +349,11 @@ function initFoundingMemberPromo() {
   const existingPromo = document.querySelector(".founding-promo");
   if (existingPromo) return;
 
-  // Built in JS so the promotion can appear site-wide without duplicating markup.
+  const path = window.location.pathname.toLowerCase();
+  const isHomepage = path === "/" || path.endsWith("/index.html") || path.endsWith("index.html");
+  if (!isHomepage) return;
+
+  // Built in JS so the promotion is managed in one place and only appears on homepage.
   const promo = document.createElement("aside");
   promo.className = "founding-promo";
   promo.setAttribute("role", "dialog");

@@ -1160,6 +1160,12 @@ img,
     grid-template-columns: 1fr;
   }
 
+  /* Reset explicit desktop card placement when the grid collapses to one column. */
+  .program-cards > .program-card {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
   .be-insider-grid {
     grid-template-columns: 1fr;
   }
@@ -1167,6 +1173,24 @@ img,
   .be-block {
     border-right: 1px solid #d7cfbf;
     border-bottom: 0;
+  }
+}
+
+@media (max-width: 780px) {
+  .programs-lead {
+    padding: 28px 22px 34px;
+    gap: 14px;
+  }
+
+  .programs-title {
+    font-size: clamp(42px, 12vw, 64px);
+    line-height: 0.94;
+  }
+
+  .programs-copy {
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.5;
   }
 }
 
