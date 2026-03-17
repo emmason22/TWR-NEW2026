@@ -1800,6 +1800,22 @@ label,
   }
 }
 
+.legal-page h1 {
+  font-size: clamp(24px, 3.2vw, 30px);
+  line-height: 1.1;
+}
+
+.legal-page h2 {
+  font-size: clamp(19px, 2.4vw, 23px);
+  line-height: 1.18;
+  margin-top: 18px;
+}
+
+.legal-page h3 {
+  font-size: clamp(16px, 1.9vw, 19px);
+  line-height: 1.24;
+}
+
 /* Visual system pass v3 (no layout structure changes) */
 :root {
   --vs-section-pad: clamp(44px, 6.2vw, 84px);
@@ -2405,9 +2421,7 @@ label,
 }
 
 /* Performance + mobile rhythm pass */
-.resource-stack,
-.events-gallery-grid,
-.performer-video-stack {
+.resource-stack {
   content-visibility: auto;
   contain-intrinsic-size: 1px 820px;
 }

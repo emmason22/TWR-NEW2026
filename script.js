@@ -20,7 +20,7 @@ function replaceWithMissingAsset(el, expectedPath, altText) {
 }
 
 function initImageFallbacks() {
-  const imgs = document.querySelectorAll("img[data-asset]");
+  const imgs = document.querySelectorAll("img");
   imgs.forEach((img) => {
     img.addEventListener("error", () => {
       const expected = img.getAttribute("data-asset") || img.getAttribute("src") || "(unknown path)";
