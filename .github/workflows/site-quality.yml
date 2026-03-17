@@ -1,0 +1,32 @@
+name: Site Quality
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Preflight Link and Meta Check
+        run: node scripts/preflight-check.mjs
+
+      - name: HTML Lint
+        run: npx --yes htmlhint "*.html"
+
+      - name: Lighthouse CI (Performance/Accessibility/SEO)
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./.lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true

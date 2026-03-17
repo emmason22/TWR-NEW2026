@@ -421,13 +421,14 @@ function initMobileNav() {
     nav.id = navId;
 
     if (header.querySelector(".nav-toggle")) return;
+    header.classList.add("nav-enhanced");
 
     const toggle = document.createElement("button");
     toggle.type = "button";
     toggle.className = "nav-toggle";
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-controls", navId);
-    toggle.setAttribute("aria-label", "Toggle navigation");
+    toggle.setAttribute("aria-label", "Open navigation");
     toggle.innerHTML = "<span></span><span></span><span></span>";
 
     const brand = header.querySelector(".brand");
@@ -440,12 +441,14 @@ function initMobileNav() {
     const closeNav = () => {
       header.classList.remove("nav-open");
       toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open navigation");
     };
 
     toggle.addEventListener("click", () => {
       const opening = !header.classList.contains("nav-open");
       header.classList.toggle("nav-open", opening);
       toggle.setAttribute("aria-expanded", opening ? "true" : "false");
+      toggle.setAttribute("aria-label", opening ? "Close navigation" : "Open navigation");
     });
 
     nav.querySelectorAll("a").forEach((link) => {
@@ -546,11 +549,49 @@ function initHomelessHeroVideoFade() {
   });
 }
 
+function initHomelessSupportFormToggle() {
+  const form = document.querySelector(".page-homeless form.support-form");
+  if (!form) return;
+
+  const intentInputs = Array.from(form.querySelectorAll("input[data-ho-intent]"));
+  const requestLabel = form.querySelector("[data-ho-request-label]");
+  const submitBtn = form.querySelector("[data-ho-submit-text]");
+  const formNote = form.querySelector("[data-ho-form-note]");
+  const requestField = form.querySelector("#ho-request");
+  if (!intentInputs.length || !requestLabel || !submitBtn || !formNote || !requestField) return;
+
+  const updateState = () => {
+    const checked = intentInputs.find((input) => input.checked);
+    const intent = checked ? checked.value : "Request Support";
+    const isVolunteer = intent.toLowerCase() === "volunteer";
+
+    form.setAttribute(
+      "data-form-name",
+      isVolunteer ? "Homeless Outreach Volunteer" : "Homeless Outreach Request Support"
+    );
+    requestLabel.textContent = isVolunteer ? "How would you like to volunteer?" : "How can we help?";
+    submitBtn.textContent = isVolunteer ? "Volunteer with Tonight We Ride" : "Request Support";
+    formNote.textContent = isVolunteer
+      ? "Thanks for volunteering. We'll follow up with outreach details."
+      : "Response goal: within 48 hours.";
+    requestField.placeholder = isVolunteer
+      ? "Share your availability, skills, or preferred way to help."
+      : "Share details so our team can respond with appropriate support.";
+  };
+
+  intentInputs.forEach((input) => {
+    input.addEventListener("change", updateState);
+  });
+
+  updateState();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initFoundingMemberPromo();
   initMobileNav();
   initImagePerformanceDefaults();
   initHomelessHeroVideoFade();
+  initHomelessSupportFormToggle();
   initFormAccessibility();
   initFoundingMemberSection();
   initSupportForms();

@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="refresh.css?v=5" />
+  <link rel="stylesheet" href="refresh.css?v=12" />
 </head>
 <body class="page-homeless">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -34,10 +34,10 @@
         <a href="about.html">About</a>
         <a href="veteran-outreach.html">Veteran Outreach</a>
         <a href="homeless-outreach.html" aria-current="page">Homeless Outreach</a>
-        <a href="community-outreach.html">Community Outreach</a>
-        <a href="emergency-relief.html">Emergency Relief</a>
         <a href="crisis-relief.html">Crisis Relief</a>
+        <a href="emergency-relief.html">Community Partners</a>
         <a href="events.html">Events</a>
+        <a href="community-outreach.html">Need Help?</a>
       </nav>
       <div class="header-actions">
         <a class="donate-btn" href="donate-now.html" aria-label="Donate">DONATE NOW</a>
@@ -67,15 +67,16 @@
       <div class="container narrow">
         <h2>Restoring Dignity. Saving Lives.</h2>
         <p>
-          Our homeless outreach is rooted in faith, consistency, and relationship-first care. Guided by compassion and service, we meet people where they are with practical support, dignity, and presence-and we return again and again to build trust, restore hope, and walk alongside those in need.
+          Our homeless outreach is rooted in <strong>faith, consistency, and relationship-first care.</strong> Guided by compassion and service, we meet people where they are with practical support, dignity, and presence — returning again and again to build trust, restore hope, and walk alongside those in need.
         </p>
-        <h3>How You Can Help:</h3>
+        <p><strong>We believe real change happens through relationships — not one-time encounters.</strong></p>
+        <h3>How You Can Help</h3>
         <ul class="resource-list">
-          <li>Volunteer at our meal drives, clothing distributions, or veteran resource days.</li>
-          <li>Donate essential items or make a monthly contribution to sustain year-round outreach.</li>
-          <li>Spread the word by sharing our mission and connecting us with local businesses or organizations who want to make a difference.</li>
+          <li><strong>Volunteer</strong><br>Join us at meal drives, clothing distributions, or veteran outreach days.</li>
+          <li><strong>Donate</strong><br>Contribute essential items or make a monthly donation to sustain year-round outreach.</li>
+          <li><strong>Spread the Word</strong><br>Share our mission and connect us with local businesses or organizations that want to make a difference.</li>
         </ul>
-        <p>Every act of kindness moves someone closer to home.</p>
+        <p><strong>Every act of kindness moves someone closer to home.</strong></p>
       </div>
     </section>
 
@@ -86,20 +87,34 @@
           Use this form to request assistance, connect someone who needs help, or volunteer to join an outreach and serve with us.
         </p>
         <form class="support-form" data-form-name="Homeless Outreach" data-endpoint="">
+          <fieldset class="form-intent-toggle" aria-label="Form intent">
+            <legend>I want to:</legend>
+            <div class="form-intent-options" role="radiogroup" aria-label="Choose request type">
+              <label class="intent-option">
+                <input type="radio" name="intake_type" value="Request Support" checked data-ho-intent />
+                <span>Request Support</span>
+              </label>
+              <label class="intent-option">
+                <input type="radio" name="intake_type" value="Volunteer" data-ho-intent />
+                <span>Volunteer</span>
+              </label>
+            </div>
+          </fieldset>
+
           <label for="ho-name">Name</label>
           <input id="ho-name" name="name" type="text" required />
 
           <label for="ho-contact">Email or Phone</label>
           <input id="ho-contact" name="contact" type="text" required />
 
-          <label for="ho-request">How can we help?</label>
+          <label for="ho-request" data-ho-request-label>How can we help?</label>
           <textarea id="ho-request" name="request" rows="5" required></textarea>
 
           <label class="sr-only" for="ho-company">Leave this field blank</label>
           <input id="ho-company" name="company" type="text" tabindex="-1" autocomplete="off" class="hp-field" />
 
-          <button class="btn-primary" type="submit">Request Support</button>
-          <p class="form-note">Response goal: within 48 hours.</p>
+          <button class="btn-primary" type="submit" data-ho-submit-text>Request Support</button>
+          <p class="form-note" data-ho-form-note>Response goal: within 48 hours.</p>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -198,15 +213,18 @@
             <li><a href="events.html">Events</a></li>
             <li><a href="donate-now.html">Donate Now</a></li>
             <li><a href="TWR2/toy-drive/ToyDrive.html">Toy Drive</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+            <li><a href="donation-disclosure.html">Donation Disclosure</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h3>Programs</h3>
           <ul>
             <li><a href="homeless-outreach.html">Homeless Outreach</a></li>
-            <li><a href="community-outreach.html">Community Outreach</a></li>
+            <li><a href="community-outreach.html">Need Help?</a></li>
             <li><a href="veteran-outreach.html">Veteran Outreach</a></li>
-            <li><a href="emergency-relief.html">Emergency Relief</a></li>
+            <li><a href="emergency-relief.html">Community Partners</a></li>
             <li><a href="crisis-relief.html">Crisis Relief</a></li>
           </ul>
         </div>
@@ -236,6 +254,6 @@
   </footer>
 
   <script src="script.js" defer></script>
-  <script src="app.js?v=5" defer></script>
+  <script src="app.js?v=12" defer></script>
 </body>
 </html>

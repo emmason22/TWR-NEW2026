@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="refresh.css?v=5" />
+  <link rel="stylesheet" href="refresh.css?v=12" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -34,10 +34,10 @@
         <a href="about.html">About</a>
         <a href="veteran-outreach.html" aria-current="page">Veteran Outreach</a>
         <a href="homeless-outreach.html">Homeless Outreach</a>
-        <a href="community-outreach.html">Community Outreach</a>
-        <a href="emergency-relief.html">Emergency Relief</a>
         <a href="crisis-relief.html">Crisis Relief</a>
+        <a href="emergency-relief.html">Community Partners</a>
         <a href="events.html">Events</a>
+        <a href="community-outreach.html">Need Help?</a>
       </nav>
       <div class="header-actions">
         <a class="donate-btn" href="donate-now.html" aria-label="Donate">DONATE NOW</a>
@@ -56,14 +56,42 @@
       </div>
     </section>
 
-    <section class="subpage-section" id="support-form">
+    <section class="subpage-section">
+      <div class="container narrow">
+        <h2>Veteran Support Programs</h2>
+
+        <h3>Comms Up</h3>
+        <p><strong>A Tonight We Ride Veteran Connectivity Program</strong><br>Through Comms Up, Tonight We Ride provides mobile phones and communication access to veterans experiencing hardship, helping them reconnect with family, services, and opportunity.</p>
+
+        <h3>L.I.F.T.</h3>
+        <p><strong>Logistics &amp; Intervention For Teammates</strong><br>Through the L.I.F.T. program, Tonight We Ride helps veterans overcome transportation barriers by coordinating rides to medical appointments, support services, and other essential resources.</p>
+        <p>
+          Because sometimes the difference between getting help and going without is simply having a way to get there.
+        </p>
+
+        <h3>Veteran Resource Navigation</h3>
+        <p>
+          Many veterans simply need help finding the right door. Through our Veteran Resource Navigation effort, Tonight We Ride works with trusted local partners to help veterans reconnect with essential support, including:
+        </p>
+        <ul class="resource-list">
+          <li><strong>VA Healthcare</strong></li>
+          <li><strong>Housing Assistance Programs</strong></li>
+          <li><strong>Mental Health Resources</strong></li>
+          <li><strong>Employment Services</strong></li>
+          <li><strong>Veteran Support Organizations</strong></li>
+        </ul>
+        <p>
+          Sometimes the hardest part is simply knowing where to start — and we're here to help guide that first step.
+        </p>
+        <a class="editorial-link" href="#request-form">Request Veteran Support <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="subpage-section" id="request-form">
       <div class="container narrow">
         <h2>Request Veteran Support</h2>
         <p>
-          Veterans deserve more than thanks—they deserve follow-through. Rooted in service,
-          respect, and commitment, our outreach provides urgent support, stability resources,
-          and consistent community connection. We walk alongside veterans—because no one
-          who served should face hardship alone.
+          Tell us what support is needed and we will coordinate next steps with urgency and care.
         </p>
         <form class="support-form" data-form-name="Veteran Outreach" data-endpoint="">
           <label for="vo-name">Name</label>
@@ -82,20 +110,9 @@
           <input id="vo-company" name="company" type="text" tabindex="-1" autocomplete="off" class="hp-field" />
 
           <button class="btn-primary" type="submit">Submit Veteran Request</button>
-          <p class="form-note">Response goal: within 48 hours.</p>
+          <p class="form-note">Response goal: within 48 hours for standard requests.</p>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
-      </div>
-    </section>
-
-    <section class="subpage-section">
-      <div class="container narrow">
-        <h2>How Veteran Support Works</h2>
-        <p>1. Intake: we gather immediate needs and contact details.</p>
-        <p>2. Stabilization: we coordinate practical help and referrals.</p>
-        <p>3. Follow-through: we stay in contact to support next-step progress.</p>
-        <h3>Response Timeline</h3>
-        <p>Initial response target is within 48 hours, with urgent safety needs prioritized as fast as possible.</p>
       </div>
     </section>
   </main>
@@ -118,15 +135,18 @@
             <li><a href="events.html">Events</a></li>
             <li><a href="donate-now.html">Donate Now</a></li>
             <li><a href="TWR2/toy-drive/ToyDrive.html">Toy Drive</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+            <li><a href="donation-disclosure.html">Donation Disclosure</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h3>Programs</h3>
           <ul>
             <li><a href="homeless-outreach.html">Homeless Outreach</a></li>
-            <li><a href="community-outreach.html">Community Outreach</a></li>
+            <li><a href="community-outreach.html">Need Help?</a></li>
             <li><a href="veteran-outreach.html">Veteran Outreach</a></li>
-            <li><a href="emergency-relief.html">Emergency Relief</a></li>
+            <li><a href="emergency-relief.html">Community Partners</a></li>
             <li><a href="crisis-relief.html">Crisis Relief</a></li>
           </ul>
         </div>
@@ -156,6 +176,6 @@
   </footer>
 
   <script src="script.js" defer></script>
-  <script src="app.js?v=5" defer></script>
+  <script src="app.js?v=12" defer></script>
 </body>
 </html>
