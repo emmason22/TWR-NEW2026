@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#000000" />
   <title>Crisis Relief | Tonight We Ride</title>
   <meta name="description" content="Request crisis support or stand with Tonight We Ride as we respond with urgent, compassionate relief." />
   <meta name="twr-form-endpoint" content="" />
@@ -97,6 +99,34 @@
             </div>
           </aside>
         </div>
+
+        <h3>Request Crisis Support</h3>
+        <p>
+          If you or someone you know is facing an urgent hardship, share details below so our team can review and respond.
+        </p>
+        <form class="support-form" data-form-name="Crisis Relief Request" data-endpoint="">
+          <label for="cr-name">Name</label>
+          <input id="cr-name" name="name" type="text" required />
+
+          <label for="cr-contact">Email or Phone</label>
+          <input id="cr-contact" name="contact" type="text" required />
+
+          <label for="cr-location">City / Area</label>
+          <input id="cr-location" name="location" type="text" required />
+
+          <label for="cr-crisis-type">Type of Crisis</label>
+          <input id="cr-crisis-type" name="crisis_type" type="text" placeholder="Fire, flood, displacement, utility shutoff, etc." required />
+
+          <label for="cr-request">Tell us what support is needed</label>
+          <textarea id="cr-request" name="request" rows="5" required></textarea>
+
+          <label class="sr-only" for="cr-company">Leave this field blank</label>
+          <input id="cr-company" name="company" type="text" tabindex="-1" autocomplete="off" class="hp-field" />
+
+          <button class="btn-primary" type="submit" data-track="crisis-request-submit">Request Crisis Support</button>
+          <p class="form-note">Response goal: within 48 hours. If this is life-threatening, call 911 immediately.</p>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
 
@@ -159,7 +189,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=2" defer></script>
+  <script src="script.js?v=3" defer></script>
   <script src="app.js?v=18" defer></script>
 </body>
 </html>
