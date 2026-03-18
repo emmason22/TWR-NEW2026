@@ -58,7 +58,7 @@ const TAB_COLUMNS = {
 
 function doPost(e) {
   try {
-    const incoming = parseIncomingPayload_(e);
+    const incoming = normalizeIncomingPayload_(parseIncomingPayload_(e));
     const tab = String(incoming.tab || "").trim();
 
     if (!TAB_COLUMNS[tab]) {
@@ -91,6 +91,75 @@ function parseIncomingPayload_(e) {
   }
 
   return e.parameter || {};
+}
+
+function normalizeIncomingPayload_(rawInput) {
+  const input = rawInput && typeof rawInput === "object" ? { ...rawInput } : {};
+  let normalized = { ...input };
+
+  // Backward compatibility with wrapped payloads: { formName, payload: { ...fields } }
+  if (normalized.payload) {
+    let nestedPayload = normalized.payload;
+    if (typeof nestedPayload === "string") {
+      try {
+        nestedPayload = JSON.parse(nestedPayload);
+      } catch (_) {
+        nestedPayload = {};
+      }
+    }
+    if (nestedPayload && typeof nestedPayload === "object") {
+      normalized = { ...normalized, ...nestedPayload };
+    }
+  }
+
+  // Map legacy form names to tab names if tab is missing.
+  if (!normalized.tab && normalized.formName) {
+    const formName = String(normalized.formName).trim();
+    const formNameToTab = {
+      "Need Help Request": "Need Help",
+      "Veteran Outreach": "Veteran Outreach",
+      "Homeless Outreach": "Homeless Outreach",
+      "Crisis Relief Request": "Crisis Relief",
+    };
+    if (formNameToTab[formName]) {
+      normalized.tab = formNameToTab[formName];
+    }
+  }
+
+  // Normalize key aliases from previous versions.
+  if (!normalized.city_area && normalized.location) {
+    normalized.city_area = normalized.location;
+  }
+  if (!normalized.intake_type && normalized.intakeType) {
+    normalized.intake_type = normalized.intakeType;
+  }
+  if (!normalized.crisis_type && normalized.crisisType) {
+    normalized.crisis_type = normalized.crisisType;
+  }
+  if (!normalized.person_needing_help && normalized.personNeedingHelp) {
+    normalized.person_needing_help = normalized.personNeedingHelp;
+  }
+
+  // Legacy combined contact field fallback.
+  if (normalized.contact) {
+    const contact = String(normalized.contact).trim();
+    if (contact) {
+      if (!normalized.email && contact.includes("@")) {
+        normalized.email = contact;
+      }
+      if (!normalized.phone && !contact.includes("@")) {
+        normalized.phone = contact;
+      }
+    }
+  }
+
+  // Preserve honeypot for anti-spam checks on frontend but never store it.
+  delete normalized.company;
+  delete normalized.payload;
+  delete normalized.formName;
+  delete normalized.submittedAt;
+
+  return normalized;
 }
 
 function applyDefaults_(payload, tab) {
