@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#000000" />
   <title>Homeless Outreach | Tonight We Ride</title>
   <meta name="description" content="Request support or volunteer with Tonight We Ride's homeless outreach in Dallas." />
   <meta name="twr-form-endpoint" content="" />
@@ -105,8 +107,11 @@
           <label for="ho-name">Name</label>
           <input id="ho-name" name="name" type="text" required />
 
-          <label for="ho-contact">Email or Phone</label>
-          <input id="ho-contact" name="contact" type="text" required />
+          <label for="ho-email">Email</label>
+          <input id="ho-email" name="email" type="email" required />
+
+          <label for="ho-phone">Phone Number</label>
+          <input id="ho-phone" name="phone" type="tel" required />
 
           <label for="ho-request" data-ho-request-label>How can we help?</label>
           <textarea id="ho-request" name="request" rows="5" required></textarea>
@@ -253,7 +258,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=2" defer></script>
+  <script src="script.js?v=3" defer></script>
   <script src="app.js?v=18" defer></script>
 </body>
 </html>

@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#000000" />
   <title>Veteran Outreach | Tonight We Ride</title>
   <meta name="description" content="Connect a veteran to support services through Tonight We Ride's veteran outreach program." />
   <meta name="twr-form-endpoint" content="" />
@@ -98,8 +100,11 @@
           <label for="vo-name">Name</label>
           <input id="vo-name" name="name" type="text" required />
 
-          <label for="vo-contact">Email or Phone</label>
-          <input id="vo-contact" name="contact" type="text" required />
+          <label for="vo-email">Email</label>
+          <input id="vo-email" name="email" type="email" required />
+
+          <label for="vo-phone">Phone Number</label>
+          <input id="vo-phone" name="phone" type="tel" required />
 
           <label for="vo-branch">Branch of Service (optional)</label>
           <input id="vo-branch" name="branch" type="text" />
@@ -175,7 +180,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=2" defer></script>
+  <script src="script.js?v=3" defer></script>
   <script src="app.js?v=18" defer></script>
 </body>
 </html>

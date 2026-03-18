@@ -25,6 +25,42 @@ function initImageFallbacks() {
     img.addEventListener("error", () => {
       const expected = img.getAttribute("data-asset") || img.getAttribute("src") || "(unknown path)";
       const alt = img.getAttribute("alt") || "Image asset";
+      const currentSrc = img.getAttribute("src") || "";
+
+      // Attempt likely extension/case variants before showing missing placeholder.
+      const triedSet = new Set(
+        (img.dataset.fallbackTried || "")
+          .split("|")
+          .map((item) => item.trim())
+          .filter(Boolean)
+      );
+      triedSet.add(currentSrc);
+
+      const candidates = [];
+      if (expected && expected !== currentSrc) {
+        candidates.push(expected);
+      }
+
+      const extMatch = currentSrc.match(/\.(jpg|jpeg|png|webp|gif)$/i);
+      if (extMatch) {
+        const ext = extMatch[1];
+        const base = currentSrc.slice(0, -ext.length);
+        const extVariants = [ext.toLowerCase(), ext.toUpperCase()];
+        if (ext.toLowerCase() === "jpg") extVariants.push("jpeg");
+        if (ext.toLowerCase() === "jpeg") extVariants.push("jpg");
+        extVariants.forEach((variant) => {
+          candidates.push(`${base}${variant}`);
+        });
+      }
+
+      const nextSrc = candidates.find((candidate) => candidate && !triedSet.has(candidate));
+      if (nextSrc) {
+        triedSet.add(nextSrc);
+        img.dataset.fallbackTried = Array.from(triedSet).join("|");
+        img.src = nextSrc;
+        return;
+      }
+
       replaceWithMissingAsset(img, expected, alt);
     });
   });
