@@ -1,3 +1,5 @@
+const APPS_SCRIPT_WEB_APP_URL = "APPS_SCRIPT_WEB_APP_URL";
+
 function serializeForm(form) {
   const data = new FormData(form);
   const out = {};
@@ -16,6 +18,11 @@ function getFormEndpoint(form) {
   const formEndpoint = form.getAttribute("data-endpoint");
   if (formEndpoint) return formEndpoint;
   return getMetaContent("twr-form-endpoint");
+}
+
+function isLiveEndpoint(endpoint) {
+  const normalized = String(endpoint || "").trim();
+  return Boolean(normalized && normalized !== APPS_SCRIPT_WEB_APP_URL);
 }
 
 function getAnalyticsEndpoint() {
@@ -64,22 +71,103 @@ function setSubmittingState(form, isSubmitting) {
   submitBtn.setAttribute("aria-busy", isSubmitting ? "true" : "false");
 }
 
-async function submitPayload(endpoint, formName, payload) {
+async function submitPayload(endpoint, payload) {
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "text/plain;charset=utf-8",
     },
-    body: JSON.stringify({
-      formName,
-      payload,
-      submittedAt: new Date().toISOString(),
-    }),
+    body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
     throw new Error(`Submission failed with status ${response.status}`);
   }
+}
+
+function toBoolean(value) {
+  return value === "yes" || value === "on" || value === "true" || value === "1";
+}
+
+function buildGoogleSheetsPayload(form, payload) {
+  const tab = (form.getAttribute("data-sheet-tab") || "").trim();
+  if (!tab) return null;
+
+  const submittedAt = new Date().toISOString();
+  const optedIn = toBoolean(payload.email_opt_in);
+  const mailerliteStatus = optedIn ? "pending" : "skipped";
+  const mailerliteGroup = form.getAttribute("data-mailerlite-group") || tab;
+
+  if (tab === "Need Help") {
+    return {
+      tab,
+      submitted_at: submittedAt,
+      status: "new",
+      name: payload.name || "",
+      email: payload.email || "",
+      phone: payload.phone || "",
+      person_needing_help: payload.person_needing_help || "",
+      request: payload.request || "",
+      email_opt_in: optedIn ? "yes" : "no",
+      mailerlite_group: mailerliteGroup,
+      mailerlite_status: mailerliteStatus,
+      internal_notes: "",
+    };
+  }
+
+  if (tab === "Veteran Outreach") {
+    return {
+      tab,
+      submitted_at: submittedAt,
+      status: "new",
+      name: payload.name || "",
+      email: payload.email || "",
+      phone: payload.phone || "",
+      branch: payload.branch || "",
+      request: payload.request || "",
+      email_opt_in: optedIn ? "yes" : "no",
+      mailerlite_group: mailerliteGroup,
+      mailerlite_status: mailerliteStatus,
+      internal_notes: "",
+    };
+  }
+
+  if (tab === "Homeless Outreach") {
+    return {
+      tab,
+      submitted_at: submittedAt,
+      status: "new",
+      intake_type: payload.intake_type || "Request Support",
+      name: payload.name || "",
+      email: payload.email || "",
+      phone: payload.phone || "",
+      request: payload.request || "",
+      email_opt_in: optedIn ? "yes" : "no",
+      mailerlite_group: mailerliteGroup,
+      mailerlite_status: mailerliteStatus,
+      internal_notes: "",
+    };
+  }
+
+  if (tab === "Crisis Relief") {
+    return {
+      tab,
+      submitted_at: submittedAt,
+      status: "new",
+      name: payload.name || "",
+      email: payload.email || "",
+      phone: payload.phone || "",
+      city_area: payload.city_area || "",
+      crisis_type: payload.crisis_type || "",
+      request: payload.request || "",
+      email_opt_in: optedIn ? "yes" : "no",
+      mailerlite_group: mailerliteGroup,
+      mailerlite_status: mailerliteStatus,
+      internal_notes: "",
+    };
+  }
+
+  return null;
 }
 
 function getRateLimitKey(formName) {
@@ -173,12 +261,14 @@ function initSupportForms() {
       const payload = serializeForm(form);
       const formName = form.getAttribute("data-form-name") || "Support Request";
       const endpoint = getFormEndpoint(form);
+      const endpointConfigured = isLiveEndpoint(endpoint);
 
       if (payload.company) {
         if (statusEl) statusEl.textContent = "Submission blocked.";
         emitTelemetry("form_blocked_honeypot", { formName });
         return;
       }
+      delete payload.company;
 
       const startedAt = Number(form.getAttribute("data-started-at") || "0");
       if (startedAt && Date.now() - startedAt < 2500) {
@@ -196,13 +286,23 @@ function initSupportForms() {
       setSubmittingState(form, true);
 
       try {
-        if (endpoint) {
-          await submitPayload(endpoint, formName, payload);
+        const sheetsPayload = buildGoogleSheetsPayload(form, payload);
+
+        if (endpointConfigured) {
+          if (sheetsPayload) {
+            await submitPayload(endpoint, sheetsPayload);
+          } else {
+            await submitPayload(endpoint, {
+              formName,
+              submitted_at: new Date().toISOString(),
+              ...payload,
+            });
+          }
           if (statusEl) statusEl.textContent = "Thanks. Your request was submitted successfully.";
           emitTelemetry("form_submit_success", { formName, endpointConfigured: true });
         } else {
           if (statusEl) {
-            statusEl.textContent = "Thanks. Your request was captured locally. Add your endpoint in the page meta tag to enable live submission.";
+            statusEl.textContent = "Thanks. Your request was captured locally. Replace APPS_SCRIPT_WEB_APP_URL with your deployed Apps Script URL to enable live submission.";
           }
           emitTelemetry("form_submit_local_capture", { formName, endpointConfigured: false });
         }

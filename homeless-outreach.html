@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#000000" />
   <title>Homeless Outreach | Tonight We Ride</title>
   <meta name="description" content="Request support or volunteer with Tonight We Ride's homeless outreach in Dallas." />
-  <meta name="twr-form-endpoint" content="" />
+  <meta name="twr-form-endpoint" content="APPS_SCRIPT_WEB_APP_URL" />
   <link rel="canonical" href="https://www.tonightweride.org/homeless-outreach.html" />
   <meta property="og:title" content="Homeless Outreach | Tonight We Ride" />
   <meta property="og:description" content="Request support or volunteer with Tonight We Ride's homeless outreach in Dallas." />
@@ -89,7 +89,13 @@
         <p>
           Use this form to request assistance, connect someone who needs help, or volunteer to join an outreach and serve with us.
         </p>
-        <form class="support-form" data-form-name="Homeless Outreach" data-endpoint="">
+        <form
+          class="support-form"
+          data-form-name="Homeless Outreach"
+          data-sheet-tab="Homeless Outreach"
+          data-mailerlite-group="Homeless Outreach"
+          data-endpoint="APPS_SCRIPT_WEB_APP_URL"
+        >
           <fieldset class="form-intent-toggle" aria-label="Form intent">
             <legend>I want to:</legend>
             <div class="form-intent-options" role="radiogroup" aria-label="Choose request type">
@@ -115,6 +121,11 @@
 
           <label for="ho-request" data-ho-request-label>How can we help?</label>
           <textarea id="ho-request" name="request" rows="5" required></textarea>
+
+          <label class="form-checkbox">
+            <input id="ho-email-opt-in" name="email_opt_in" type="checkbox" value="yes" />
+            <span>Email me updates from Tonight We Ride.</span>
+          </label>
 
           <label class="sr-only" for="ho-company">Leave this field blank</label>
           <input id="ho-company" name="company" type="text" tabindex="-1" autocomplete="off" class="hp-field" />
@@ -259,6 +270,6 @@
   </footer>
 
   <script src="script.js?v=3" defer></script>
-  <script src="app.js?v=18" defer></script>
+  <script src="app.js?v=19" defer></script>
 </body>
 </html>

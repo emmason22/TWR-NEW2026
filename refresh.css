@@ -433,6 +433,22 @@ textarea:focus-visible {
   box-shadow: 0 0 0 3px rgba(92, 136, 211, 0.18);
 }
 
+.support-form .form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 6px 0 2px;
+  font-family: "Source Sans 3", Arial, Helvetica, sans-serif;
+  font-size: 0.98rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.support-form .form-checkbox input[type="checkbox"] {
+  width: auto;
+  margin-top: 3px;
+}
+
 .form-intent-toggle {
   border: 1px solid #c9d4e8;
   border-radius: 10px;

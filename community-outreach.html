@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#000000" />
   <title>Need Help? | Tonight We Ride</title>
   <meta name="description" content="Request help for yourself or someone else through Tonight We Ride's intake form." />
-  <meta name="twr-form-endpoint" content="" />
+  <meta name="twr-form-endpoint" content="APPS_SCRIPT_WEB_APP_URL" />
   <link rel="canonical" href="https://www.tonightweride.org/community-outreach.html" />
   <meta property="og:title" content="Need Help? | Tonight We Ride" />
   <meta property="og:description" content="Request help for yourself or someone else through Tonight We Ride's intake form." />
@@ -83,7 +83,13 @@
         <p>
           Use the form below to share details so our team can review and follow up.
         </p>
-        <form class="support-form" data-form-name="Need Help Request" data-endpoint="">
+        <form
+          class="support-form"
+          data-form-name="Need Help Request"
+          data-sheet-tab="Need Help"
+          data-mailerlite-group="Need Help"
+          data-endpoint="APPS_SCRIPT_WEB_APP_URL"
+        >
           <label for="co-name">Name</label>
           <input id="co-name" name="name" type="text" required />
 
@@ -98,6 +104,11 @@
 
           <label for="co-request">Tell us what support is needed</label>
           <textarea id="co-request" name="request" rows="5" required></textarea>
+
+          <label class="form-checkbox">
+            <input id="co-email-opt-in" name="email_opt_in" type="checkbox" value="yes" />
+            <span>Email me updates from Tonight We Ride.</span>
+          </label>
 
           <label class="sr-only" for="co-company">Leave this field blank</label>
           <input id="co-company" name="company" type="text" tabindex="-1" autocomplete="off" class="hp-field" />
@@ -168,6 +179,6 @@
   </footer>
 
   <script src="script.js?v=3" defer></script>
-  <script src="app.js?v=18" defer></script>
+  <script src="app.js?v=19" defer></script>
 </body>
 </html>

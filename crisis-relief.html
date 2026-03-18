@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#000000" />
   <title>Crisis Relief | Tonight We Ride</title>
   <meta name="description" content="Request crisis support or stand with Tonight We Ride as we respond with urgent, compassionate relief." />
-  <meta name="twr-form-endpoint" content="" />
+  <meta name="twr-form-endpoint" content="APPS_SCRIPT_WEB_APP_URL" />
   <link rel="canonical" href="https://www.tonightweride.org/crisis-relief.html" />
   <meta property="og:title" content="Crisis Relief | Tonight We Ride" />
   <meta property="og:description" content="Request crisis support or stand with Tonight We Ride as we respond with urgent, compassionate relief." />
@@ -104,7 +104,13 @@
         <p>
           If you or someone you know is facing an urgent hardship, share details below so our team can review and respond.
         </p>
-        <form class="support-form" data-form-name="Crisis Relief Request" data-endpoint="">
+        <form
+          class="support-form"
+          data-form-name="Crisis Relief Request"
+          data-sheet-tab="Crisis Relief"
+          data-mailerlite-group="Crisis Relief"
+          data-endpoint="APPS_SCRIPT_WEB_APP_URL"
+        >
           <label for="cr-name">Name</label>
           <input id="cr-name" name="name" type="text" required />
 
@@ -114,14 +120,19 @@
           <label for="cr-phone">Phone Number</label>
           <input id="cr-phone" name="phone" type="tel" required />
 
-          <label for="cr-location">City / Area</label>
-          <input id="cr-location" name="location" type="text" required />
+          <label for="cr-city-area">City / Area</label>
+          <input id="cr-city-area" name="city_area" type="text" required />
 
           <label for="cr-crisis-type">Type of Crisis</label>
           <input id="cr-crisis-type" name="crisis_type" type="text" placeholder="Fire, flood, displacement, utility shutoff, etc." required />
 
           <label for="cr-request">Tell us what support is needed</label>
           <textarea id="cr-request" name="request" rows="5" required></textarea>
+
+          <label class="form-checkbox">
+            <input id="cr-email-opt-in" name="email_opt_in" type="checkbox" value="yes" />
+            <span>Email me updates from Tonight We Ride.</span>
+          </label>
 
           <label class="sr-only" for="cr-company">Leave this field blank</label>
           <input id="cr-company" name="company" type="text" tabindex="-1" autocomplete="off" class="hp-field" />
@@ -193,6 +204,6 @@
   </footer>
 
   <script src="script.js?v=3" defer></script>
-  <script src="app.js?v=18" defer></script>
+  <script src="app.js?v=19" defer></script>
 </body>
 </html>
