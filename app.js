@@ -84,20 +84,21 @@ async function submitPayload(endpoint, payload) {
     throw new Error(`Submission failed with status ${response.status}`);
   }
 
-  // Apps Script typically returns JSON: { ok: true/false, ... }.
+  // Require a strict Apps Script JSON success response.
   const responseText = await response.text();
-  if (!responseText) return;
+  if (!responseText) {
+    throw new Error("Submission endpoint returned an empty response.");
+  }
 
   let parsed = null;
   try {
     parsed = JSON.parse(responseText);
   } catch (_) {
-    // Non-JSON response; keep current success behavior.
-    return;
+    throw new Error("Submission endpoint returned a non-JSON response.");
   }
 
-  if (parsed && parsed.ok === false) {
-    throw new Error(parsed.error || "Submission was rejected by endpoint.");
+  if (!parsed || parsed.ok !== true) {
+    throw new Error((parsed && parsed.error) || "Submission was rejected by endpoint.");
   }
 }
 
