@@ -72,6 +72,27 @@ function setSubmittingState(form, isSubmitting) {
 }
 
 async function submitPayload(endpoint, payload) {
+  try {
+    await submitPayloadJson(endpoint, payload);
+  } catch (postError) {
+    // Some Apps Script deployments redirect POST to a GET-only URL.
+    if (!shouldTryGetFallback(postError)) {
+      throw postError;
+    }
+    await submitPayloadQuery(endpoint, payload);
+  }
+}
+
+function shouldTryGetFallback(error) {
+  const message = String(error || "").toLowerCase();
+  return (
+    message.includes("status 405") ||
+    message.includes("non-json response") ||
+    message.includes("empty response")
+  );
+}
+
+async function submitPayloadJson(endpoint, payload) {
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
@@ -80,11 +101,27 @@ async function submitPayload(endpoint, payload) {
     body: JSON.stringify(payload),
   });
 
+  return parseSubmissionResponse(response);
+}
+
+async function submitPayloadQuery(endpoint, payload) {
+  const url = new URL(endpoint);
+  Object.entries(payload).forEach(([key, value]) => {
+    url.searchParams.set(key, value == null ? "" : String(value));
+  });
+
+  const response = await fetch(url.toString(), {
+    method: "GET",
+  });
+
+  return parseSubmissionResponse(response);
+}
+
+async function parseSubmissionResponse(response) {
   if (!response.ok) {
     throw new Error(`Submission failed with status ${response.status}`);
   }
 
-  // Require a strict Apps Script JSON success response.
   const responseText = await response.text();
   if (!responseText) {
     throw new Error("Submission endpoint returned an empty response.");

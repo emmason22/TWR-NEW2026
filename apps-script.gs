@@ -57,6 +57,14 @@ const TAB_COLUMNS = {
 };
 
 function doPost(e) {
+  return handleSubmit_(e);
+}
+
+function doGet(e) {
+  return handleSubmit_(e);
+}
+
+function handleSubmit_(e) {
   try {
     const incoming = normalizeIncomingPayload_(parseIncomingPayload_(e));
     const tab = String(incoming.tab || "").trim();
@@ -112,6 +120,18 @@ function normalizeIncomingPayload_(rawInput) {
     }
   }
 
+  // Backward compatibility for GET fallback payloads.
+  if (normalized.payload_json && typeof normalized.payload_json === "string") {
+    try {
+      const jsonPayload = JSON.parse(normalized.payload_json);
+      if (jsonPayload && typeof jsonPayload === "object") {
+        normalized = { ...normalized, ...jsonPayload };
+      }
+    } catch (_) {
+      // Keep non-JSON as-is and continue.
+    }
+  }
+
   // Map legacy form names to tab names if tab is missing.
   if (!normalized.tab && normalized.formName) {
     const formName = String(normalized.formName).trim();
@@ -156,6 +176,7 @@ function normalizeIncomingPayload_(rawInput) {
   // Preserve honeypot for anti-spam checks on frontend but never store it.
   delete normalized.company;
   delete normalized.payload;
+  delete normalized.payload_json;
   delete normalized.formName;
   delete normalized.submittedAt;
 
