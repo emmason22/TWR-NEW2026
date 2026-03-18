@@ -2662,6 +2662,14 @@ label,
   color: #44516c;
 }
 
+.founding-tier-benefits {
+  margin: 0 0 14px;
+}
+
+.founding-tier-benefits li {
+  margin: 0 0 6px;
+}
+
 .founding-tier-select {
   display: inline-flex;
   align-items: center;
