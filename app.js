@@ -71,6 +71,16 @@ function setSubmittingState(form, isSubmitting) {
   submitBtn.setAttribute("aria-busy", isSubmitting ? "true" : "false");
 }
 
+function setStatusMessage(statusEl, message, state = "info") {
+  if (!statusEl) return;
+  statusEl.textContent = message;
+  statusEl.setAttribute("data-state", state);
+  statusEl.classList.remove("status-burst");
+  // Restart small entrance animation when message changes.
+  void statusEl.offsetWidth;
+  statusEl.classList.add("status-burst");
+}
+
 async function submitPayload(endpoint, payload) {
   try {
     await submitPayloadJson(endpoint, payload);
@@ -307,7 +317,7 @@ function initSupportForms() {
           setFieldValidityState(firstInvalid);
           firstInvalid.focus();
         }
-        if (statusEl) statusEl.textContent = "Please complete all required fields and try again.";
+        setStatusMessage(statusEl, "Please complete all required fields and try again.", "error");
         form.reportValidity();
         return;
       }
@@ -318,7 +328,7 @@ function initSupportForms() {
       const endpointConfigured = isLiveEndpoint(endpoint);
 
       if (payload.company) {
-        if (statusEl) statusEl.textContent = "Submission blocked.";
+        setStatusMessage(statusEl, "Submission blocked.", "error");
         emitTelemetry("form_blocked_honeypot", { formName });
         return;
       }
@@ -326,13 +336,13 @@ function initSupportForms() {
 
       const startedAt = Number(form.getAttribute("data-started-at") || "0");
       if (startedAt && Date.now() - startedAt < 2500) {
-        if (statusEl) statusEl.textContent = "Please review your information and try again.";
+        setStatusMessage(statusEl, "Please review your information and try again.", "error");
         emitTelemetry("form_blocked_fast_submit", { formName });
         return;
       }
 
       if (isRateLimited(formName)) {
-        if (statusEl) statusEl.textContent = "Please wait a moment before submitting again.";
+        setStatusMessage(statusEl, "Please wait a moment before submitting again.", "error");
         emitTelemetry("form_blocked_rate_limit", { formName });
         return;
       }
@@ -352,21 +362,21 @@ function initSupportForms() {
               ...payload,
             });
           }
-          if (statusEl) statusEl.textContent = "Thanks. Your request was submitted successfully.";
+          setStatusMessage(statusEl, "Thanks. Your request was submitted successfully.", "success");
           emitTelemetry("form_submit_success", { formName, endpointConfigured: true });
         } else {
-          if (statusEl) {
-            statusEl.textContent = "Thanks. Your request was captured locally. Replace APPS_SCRIPT_WEB_APP_URL with your deployed Apps Script URL to enable live submission.";
-          }
+          setStatusMessage(
+            statusEl,
+            "Thanks. Your request was captured locally. Replace APPS_SCRIPT_WEB_APP_URL with your deployed Apps Script URL to enable live submission.",
+            "info"
+          );
           emitTelemetry("form_submit_local_capture", { formName, endpointConfigured: false });
         }
         form.reset();
         clearFormValidityStates(form);
         form.setAttribute("data-started-at", String(Date.now()));
       } catch (error) {
-        if (statusEl) {
-          statusEl.textContent = "We could not submit right now. Please try again shortly.";
-        }
+        setStatusMessage(statusEl, "We could not submit right now. Please try again shortly.", "error");
         emitTelemetry("form_submit_error", { formName, message: String(error) });
         console.error("Form submission error:", error);
       } finally {
@@ -391,11 +401,11 @@ function initInsiderForms() {
           email.focus();
           email.reportValidity();
         }
-        if (statusEl) statusEl.textContent = "Please enter an email address.";
+        setStatusMessage(statusEl, "Please enter an email address.", "error");
         return;
       }
       email.setAttribute("aria-invalid", "false");
-      if (statusEl) statusEl.textContent = "Thanks for signing up. You are on the insider list.";
+      setStatusMessage(statusEl, "Thanks for signing up. You are on the insider list.", "success");
       emitTelemetry("insider_signup", { location: window.location.pathname });
       form.reset();
     });
@@ -677,11 +687,20 @@ function initRevealOnScroll() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   const targets = document.querySelectorAll(
-    ".program-card, .resource-card, .event-card, .donate-tier, .support-form, .block-panel, .cream-block, .footer-col, .founding-member-card, .founding-tier-card, .founding-benefits"
+    ".program-card, .resource-card, .event-card, .donate-tier, .support-form, .block-panel, .cream-block, .footer-col, .founding-member-card, .founding-tier-card, .founding-benefits, .news-card, .about-team-card, .poster-card, .toy-dropoff-gallery-item, .partner-logo-grid a, .insider-form-shell"
   );
   if (!targets.length) return;
 
-  targets.forEach((el) => el.classList.add("reveal-item"));
+  const perParentCounters = new Map();
+  targets.forEach((el) => {
+    el.classList.add("reveal-item");
+
+    const parent = el.parentElement;
+    if (!parent) return;
+    const index = perParentCounters.get(parent) || 0;
+    el.style.setProperty("--reveal-delay", `${Math.min(index, 6) * 70}ms`);
+    perParentCounters.set(parent, index + 1);
+  });
 
   const observer = new IntersectionObserver(
     (entries, obs) => {
@@ -695,6 +714,22 @@ function initRevealOnScroll() {
   );
 
   targets.forEach((el) => observer.observe(el));
+}
+
+function initMotionReadyState() {
+  const body = document.body;
+  if (!body) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    body.classList.add("motion-ready");
+    return;
+  }
+
+  body.classList.add("motion-pending");
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      body.classList.add("motion-ready");
+    });
+  });
 }
 
 function initHomelessHeroVideoFade() {
@@ -771,6 +806,7 @@ function initHomelessSupportFormToggle() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initMotionReadyState();
   initFoundingMemberPromo();
   initAboutNavDropdown();
   initMobileNav();
