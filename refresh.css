@@ -76,6 +76,47 @@ body {
   color: #ffd96a;
 }
 
+.site-nav .nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+
+.site-nav .nav-dropdown-trigger::after {
+  content: "▾";
+  margin-left: 6px;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.site-nav .nav-submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 170px;
+  padding: 10px 12px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: var(--rf-shadow-sm);
+  z-index: 40;
+}
+
+.site-nav .nav-submenu a {
+  display: block;
+  padding: 6px 0;
+  min-height: 40px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.site-nav .nav-dropdown:hover .nav-submenu,
+.site-nav .nav-dropdown:focus-within .nav-submenu {
+  display: block;
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -1775,6 +1816,26 @@ label,
   .site-header.nav-enhanced .site-nav a {
     min-height: 44px;
   }
+
+  .site-nav .nav-dropdown {
+    display: block;
+    width: 100%;
+  }
+
+  .site-nav .nav-submenu {
+    position: static;
+    display: block;
+    min-width: 0;
+    border: 0;
+    box-shadow: none;
+    padding: 0 0 0 14px;
+    margin-top: 0;
+  }
+
+  .site-nav .nav-submenu a {
+    font-size: 13px;
+    opacity: 0.92;
+  }
 }
 
 .site-header .site-nav a:focus-visible,
@@ -2168,6 +2229,82 @@ label,
   border-radius: 8px !important;
 }
 
+.about-team-section {
+  padding-top: clamp(28px, 4vw, 44px);
+}
+
+.about-team-dropdown {
+  border: 1px solid rgba(12, 30, 63, 0.16);
+  background: #fff;
+  box-shadow: var(--rf-shadow-sm);
+  padding: 0;
+}
+
+.about-team-dropdown > summary {
+  list-style: none;
+  cursor: pointer;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(30px, 4vw, 42px);
+  line-height: 1;
+  padding: 16px 18px;
+  color: #0c1e3f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.about-team-dropdown > summary::-webkit-details-marker {
+  display: none;
+}
+
+.about-team-dropdown > summary::after {
+  content: "+";
+  font-size: 28px;
+  color: #355280;
+}
+
+.about-team-dropdown[open] > summary::after {
+  content: "−";
+}
+
+.about-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding: 0 18px 18px;
+}
+
+.about-team-card {
+  border: 1px solid rgba(12, 30, 63, 0.12);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  box-shadow: var(--rf-shadow-sm);
+  padding: 12px;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.about-team-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+.about-team-photo-top {
+  object-position: top center;
+}
+
+.about-team-card h3 {
+  margin: 0;
+  font-size: clamp(25px, 2.6vw, 34px);
+  line-height: 1.05;
+}
+
+.about-team-card p {
+  margin: 0;
+}
+
 @media (max-width: 900px) {
   .about-intro-layout {
     grid-template-columns: 1fr;
@@ -2176,6 +2313,10 @@ label,
   .about-page-logo {
     width: min(300px, 100%);
     justify-self: start;
+  }
+
+  .about-team-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -2293,6 +2434,12 @@ label,
 .events-feature-grid .event-card .editorial-link {
   margin-top: 2px;
   justify-self: start;
+}
+
+.events-gallery-link-row {
+  margin: 10px 0 0;
+  text-align: left;
+  padding-left: 22px;
 }
 
 .events-poster-strip {
@@ -2957,6 +3104,44 @@ label,
 
 @media (max-width: 640px) {
   .news-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.toy-dropoff-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.toy-dropoff-gallery-item {
+  margin: 0;
+  background: #fff;
+  box-shadow: var(--rf-shadow-sm);
+  overflow: hidden;
+}
+
+.toy-dropoff-gallery-item img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 1100px) {
+  .toy-dropoff-gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 780px) {
+  .toy-dropoff-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .toy-dropoff-gallery-grid {
     grid-template-columns: 1fr;
   }
 }

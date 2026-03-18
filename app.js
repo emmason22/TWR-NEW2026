@@ -463,6 +463,36 @@ function initMobileNav() {
   });
 }
 
+function initAboutNavDropdown() {
+  const navs = document.querySelectorAll(".site-nav");
+  navs.forEach((nav) => {
+    if (nav.querySelector(".nav-dropdown")) return;
+
+    const aboutLink = nav.querySelector("a[href='about.html']");
+    if (!aboutLink) return;
+
+    const dropdown = document.createElement("div");
+    dropdown.className = "nav-dropdown";
+
+    aboutLink.classList.add("nav-dropdown-trigger");
+    aboutLink.insertAdjacentElement("beforebegin", dropdown);
+    dropdown.appendChild(aboutLink);
+
+    const submenu = document.createElement("div");
+    submenu.className = "nav-submenu";
+    submenu.setAttribute("role", "menu");
+
+    const teamLink = document.createElement("a");
+    teamLink.href = "team.html";
+    teamLink.textContent = "Our Team";
+    teamLink.setAttribute("role", "menuitem");
+    teamLink.setAttribute("data-track", "nav-about-our-team");
+
+    submenu.appendChild(teamLink);
+    dropdown.appendChild(submenu);
+  });
+}
+
 function initImagePerformanceDefaults() {
   const images = document.querySelectorAll("img");
   images.forEach((img) => {
@@ -588,6 +618,7 @@ function initHomelessSupportFormToggle() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initFoundingMemberPromo();
+  initAboutNavDropdown();
   initMobileNav();
   initImagePerformanceDefaults();
   initHomelessHeroVideoFade();
