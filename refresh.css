@@ -2534,9 +2534,13 @@ label,
 
 .founding-member-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  grid-template-columns: 1fr;
   gap: 22px;
   align-items: start;
+}
+
+.founding-member-lead {
+  max-width: none;
 }
 
 .founding-member-copy {
@@ -2586,6 +2590,10 @@ label,
   font-size: 15px;
 }
 
+.founding-member-close-note {
+  margin-top: 18px;
+}
+
 .founding-choice-group {
   margin: 18px 0;
   padding: 0;
@@ -2621,10 +2629,15 @@ label,
 
 .founding-tier-grid {
   display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
+  align-items: start;
 }
 
 .founding-tier-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 16px;
   border: 1px solid rgba(12, 30, 63, 0.12);
   background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
@@ -2633,7 +2646,7 @@ label,
 }
 
 .founding-tier-card:hover {
-  transform: translateY(-2px);
+  transform: none;
   box-shadow: var(--rf-shadow-md);
 }
 
@@ -2641,6 +2654,26 @@ label,
   border-color: rgba(197, 148, 17, 0.9);
   box-shadow: 0 18px 38px rgba(12, 30, 63, 0.14);
   background: linear-gradient(180deg, #fffdf7 0%, #fff6dc 100%);
+}
+
+.founding-tier-card.tier-entry {
+  border-color: rgba(12, 30, 63, 0.08);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.founding-tier-card.tier-popular {
+  position: relative;
+  border-color: rgba(197, 148, 17, 0.94);
+  background: linear-gradient(180deg, #fffef8 0%, #fff4cf 100%);
+  box-shadow: 0 24px 44px rgba(12, 30, 63, 0.2);
+}
+
+.founding-tier-card.tier-popular:hover {
+  transform: none;
+}
+
+.founding-tier-card.tier-premium {
+  border-color: rgba(125, 95, 22, 0.44);
 }
 
 .founding-tier-name {
@@ -2662,6 +2695,25 @@ label,
   color: #44516c;
 }
 
+.founding-tier-anchor {
+  margin: -4px 0 12px;
+  font-weight: 700;
+  color: #0f2c61;
+}
+
+.founding-tier-badge {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0 0 8px;
+  padding: 4px 9px;
+  font-family: "Oswald", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #dfb13a;
+  color: #111;
+}
+
 .founding-tier-benefits {
   margin: 0 0 14px;
 }
@@ -2675,10 +2727,13 @@ label,
   align-items: center;
   justify-content: center;
   min-height: 44px;
+  width: 100%;
+  margin-top: auto;
   padding: 11px 14px;
   border: 2px solid var(--rf-blue);
   background: transparent;
   color: var(--rf-blue);
+  text-decoration: none;
   font-family: "Oswald", sans-serif;
   font-size: 16px;
   cursor: pointer;
@@ -2704,6 +2759,23 @@ label,
 
 .founding-member-cta {
   min-width: 0;
+}
+
+@media (max-width: 1320px) {
+  .founding-tier-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .founding-tier-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .founding-tier-card.tier-popular,
+  .founding-tier-card.tier-popular:hover {
+    transform: none;
+  }
 }
 
 .founding-promo {
@@ -2774,12 +2846,6 @@ label,
   font-family: "Oswald", sans-serif;
   font-size: 18px;
   box-shadow: var(--rf-shadow-sm);
-}
-
-@media (max-width: 920px) {
-  .founding-member-shell {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 680px) {

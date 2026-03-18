@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="refresh.css?v=16" />
+  <link rel="stylesheet" href="refresh.css?v=19" />
 </head>
 <body class="page-donate">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -107,20 +107,60 @@
             <div class="founding-member-card">
               <p class="founding-member-eyebrow">Monthly Membership Tiers</p>
               <h3>Join as a Founding Member</h3>
-
-              <fieldset class="founding-choice-group" aria-label="Donation frequency">
-                <legend>Monthly support</legend>
-                <div class="founding-toggle-row">
-                  <label class="founding-toggle">
-                    <input type="radio" name="founding-frequency" value="monthly" checked />
-                    <span>Monthly recurring donation</span>
-                  </label>
-                </div>
-              </fieldset>
+              <p class="founding-member-note">Choose a tier below to donate directly.</p>
 
               <div class="founding-tier-grid" role="list" aria-label="Founding Member tiers">
                 <article
-                  class="founding-tier-card"
+                  class="founding-tier-card tier-entry"
+                  role="listitem"
+                  data-tier="Neighbor in Action"
+                  data-monthly-amount="$50/month"
+                  data-one-time-amount="$50/month"
+                >
+                  <p class="founding-tier-name">Neighbor in Action</p>
+                  <p class="founding-tier-amount" data-amount-display>$50/month</p>
+                  <p class="founding-tier-copy">Be part of the consistent, boots-on-the-ground support that keeps Tonight We Ride showing up — week after week — for those who need it most.</p>
+                  <ul class="resource-list founding-tier-benefits">
+                    <li>Priority entry at Tonight We Ride events where available</li>
+                    <li>Annual commemorative event poster</li>
+                    <li>Insider updates on homeless outreach, veteran support, and community care efforts</li>
+                    <li>Optional name listing on the website as a Founding Member</li>
+                  </ul>
+                  <a
+                    class="founding-tier-select"
+                    href="mailto:info@tonightweride.org?subject=Founding%20Member%20-%20Neighbor%20in%20Action%20Monthly&body=I%20want%20to%20join%20Tonight%20We%20Ride%20as%20a%20Neighbor%20in%20Action%20Founding%20Member%20with%20a%20monthly%20donation%20of%20%2450%2Fmonth."
+                    data-track="founding-tier-neighbor-cta"
+                  >Join Neighbor in Action</a>
+                </article>
+
+                <article
+                  class="founding-tier-card tier-popular is-selected"
+                  role="listitem"
+                  data-tier="Beacon of Hope"
+                  data-monthly-amount="$100/month"
+                  data-one-time-amount="$100/month"
+                >
+                  <p class="founding-tier-badge">Most Popular</p>
+                  <p class="founding-tier-name">Beacon of Hope</p>
+                  <p class="founding-tier-amount" data-amount-display>$100/month</p>
+                  <p class="founding-tier-copy">Support critical outreach and crisis response when it matters most.</p>
+                  <p class="founding-tier-anchor">Provides consistent support for both outreach and crisis response efforts.</p>
+                  <ul class="resource-list founding-tier-benefits">
+                    <li>VIP access at events with early entry and priority seating when available</li>
+                    <li>Two complimentary drinks at one flagship event per year</li>
+                    <li>Commemorative “Beacon of Hope” print</li>
+                    <li>Name listed (with permission) on the Founding Member section of the website</li>
+                    <li>Annual impact update focused on crisis response and second chances</li>
+                  </ul>
+                  <a
+                    class="founding-tier-select"
+                    href="mailto:info@tonightweride.org?subject=Founding%20Member%20-%20Beacon%20of%20Hope%20Monthly&body=I%20want%20to%20join%20Tonight%20We%20Ride%20as%20a%20Beacon%20of%20Hope%20Founding%20Member%20with%20a%20monthly%20donation%20of%20%24100%2Fmonth."
+                    data-track="founding-tier-beacon-cta"
+                  >Join Beacon of Hope</a>
+                </article>
+
+                <article
+                  class="founding-tier-card tier-premium"
                   role="listitem"
                   data-tier="Pillar of Stability"
                   data-monthly-amount="$250/month"
@@ -136,65 +176,14 @@
                     <li>Annual limited-edition “Pillar of Stability” item</li>
                     <li>Twice-yearly impact updates highlighting stories of lives being rebuilt</li>
                   </ul>
-                  <button type="button" class="founding-tier-select">Choose Pillar of Stability</button>
-                </article>
-
-                <article
-                  class="founding-tier-card is-selected"
-                  role="listitem"
-                  data-tier="Beacon of Hope"
-                  data-monthly-amount="$100/month"
-                  data-one-time-amount="$100/month"
-                >
-                  <p class="founding-tier-name">Beacon of Hope</p>
-                  <p class="founding-tier-amount" data-amount-display>$100/month</p>
-                  <p class="founding-tier-copy">Support critical outreach and crisis response when it matters most.</p>
-                  <ul class="resource-list founding-tier-benefits">
-                    <li>VIP access at events with early entry and priority seating when available</li>
-                    <li>Two complimentary drinks at one flagship event per year</li>
-                    <li>Commemorative “Beacon of Hope” print</li>
-                    <li>Name listed (with permission) on the Founding Member section of the website</li>
-                    <li>Annual impact update focused on crisis response and second chances</li>
-                  </ul>
-                  <button type="button" class="founding-tier-select">Choose Beacon of Hope</button>
-                </article>
-
-                <article
-                  class="founding-tier-card"
-                  role="listitem"
-                  data-tier="Neighbor in Action"
-                  data-monthly-amount="$50/month"
-                  data-one-time-amount="$50/month"
-                >
-                  <p class="founding-tier-name">Neighbor in Action</p>
-                  <p class="founding-tier-amount" data-amount-display>$50/month</p>
-                  <p class="founding-tier-copy">Be part of the consistent, boots-on-the-ground support that keeps Tonight We Ride showing up — week after week — for those who need it most.</p>
-                  <ul class="resource-list founding-tier-benefits">
-                    <li>Priority entry at Tonight We Ride events where available</li>
-                    <li>Annual commemorative event poster</li>
-                    <li>Insider updates on homeless outreach, veteran support, and community care efforts</li>
-                    <li>Optional name listing on the website as a Founding Member</li>
-                  </ul>
-                  <button type="button" class="founding-tier-select">Choose Neighbor in Action</button>
+                  <a
+                    class="founding-tier-select"
+                    href="mailto:info@tonightweride.org?subject=Founding%20Member%20-%20Pillar%20of%20Stability%20Monthly&body=I%20want%20to%20join%20Tonight%20We%20Ride%20as%20a%20Pillar%20of%20Stability%20Founding%20Member%20with%20a%20monthly%20donation%20of%20%24250%2Fmonth."
+                    data-track="founding-tier-pillar-cta"
+                  >Join Pillar of Stability</a>
                 </article>
               </div>
-
-              <div class="founding-member-cta-group">
-                <p class="founding-member-selection" data-founding-selection>
-                  Selected: Beacon of Hope, monthly recurring donation, $100/month
-                </p>
-                <a
-                  class="donate-cta-pill primary founding-member-cta"
-                  data-founding-cta
-                  data-track="founding-member-cta"
-                  href="mailto:info@tonightweride.org?subject=Founding%20Member%20-%20Beacon%20of%20Hope%20Monthly&body=I%20want%20to%20join%20Tonight%20We%20Ride%20as%20a%20Beacon%20of%20Hope%20Founding%20Member%20with%20a%20monthly%20recurring%20donation%20of%20%24100%2Fmonth."
-                >
-                  Become a Founding Member
-                </a>
-                <p class="founding-member-note">
-                  Because lasting change doesn’t happen all at once — it happens through consistency.
-                </p>
-              </div>
+              <p class="founding-member-note founding-member-close-note"><strong>Because lasting change doesn’t happen all at once — it happens through consistency.</strong></p>
             </div>
           </div>
         </div>
