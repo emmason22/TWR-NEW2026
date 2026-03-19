@@ -3474,3 +3474,40 @@ label,
   color: var(--rf-link-hover);
   transform: none;
 }
+
+/* Need Help MailerLite embed sizing */
+.page-community #support-form .container.form-wide {
+  max-width: 1040px;
+}
+
+.page-community #support-form .support-form {
+  padding: clamp(20px, 3vw, 32px);
+}
+
+.page-community #support-form .ml-embedded {
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.page-community #support-form .ml-embedded iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* MailerLite generated wrappers */
+.page-community #support-form .ml-form-embedContainer,
+.page-community #support-form .ml-form-embedWrapper,
+.page-community #support-form .ml-form-successBody {
+  width: 100% !important;
+  max-width: 940px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.page-community #support-form .ml-form-embedBody,
+.page-community #support-form .ml-form-embedContent,
+.page-community #support-form .ml-form-embedSubmit {
+  width: 100% !important;
+  max-width: 100% !important;
+}
