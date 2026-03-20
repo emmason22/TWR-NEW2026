@@ -57,23 +57,31 @@
           Your gift supports immediate outreach and long-term stabilization pathways for people navigating homelessness,
           veterans in crisis, and families facing emergencies.
         </p>
-        <div class="donate-cta-row">
-          <a class="donate-cta-pill primary" href="mailto:info@tonightweride.org?subject=One-Time%20Donation%20Inquiry">Give Once</a>
-          <a class="donate-cta-pill" href="mailto:info@tonightweride.org?subject=Monthly%20Donation%20Inquiry">Give Monthly</a>
-          <a
-            class="donate-cta-pill"
-            href="mailto:info@tonightweride.org?subject=Custom%20Amount%20Donation%20Inquiry&body=I%20would%20like%20to%20support%20Tonight%20We%20Ride%20with%20a%20donation%20of%20my%20choosing."
-          >
-            Donate Any Amount
-          </a>
-        </div>
-        <div class="stripe-donate-wrap" aria-label="Donate securely with Stripe">
-          <p class="stripe-donate-label">Donate securely online</p>
-          <stripe-buy-button
-            buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
-            publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
-          >
-          </stripe-buy-button>
+        <div class="donate-cta-row donate-cta-stripe-row" aria-label="Donate options">
+          <div class="stripe-donate-option">
+            <p class="stripe-donate-label">Give Once</p>
+            <stripe-buy-button
+              buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
+              publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
+            >
+            </stripe-buy-button>
+          </div>
+          <div class="stripe-donate-option">
+            <p class="stripe-donate-label">Give Monthly</p>
+            <stripe-buy-button
+              buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
+              publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
+            >
+            </stripe-buy-button>
+          </div>
+          <div class="stripe-donate-option">
+            <p class="stripe-donate-label">Donate Any Amount</p>
+            <stripe-buy-button
+              buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
+              publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
+            >
+            </stripe-buy-button>
+          </div>
         </div>
         <p class="founding-member-note">
           Tonight We Ride has applied for federal 501(c)(3) tax-exempt status and is currently pending IRS determination.
@@ -141,11 +149,14 @@
                     <li>Insider updates on homeless outreach, veteran support, and community care efforts</li>
                     <li>Optional name listing on the website as a Founding Member</li>
                   </ul>
-                  <a
-                    class="founding-tier-select"
-                    href="mailto:info@tonightweride.org?subject=Founding%20Member%20-%20Neighbor%20in%20Action%20Monthly&body=I%20want%20to%20join%20Tonight%20We%20Ride%20as%20a%20Neighbor%20in%20Action%20Founding%20Member%20with%20a%20monthly%20donation%20of%20%2450%2Fmonth."
-                    data-track="founding-tier-neighbor-cta"
-                  >Join Neighbor in Action</a>
+                  <div class="founding-tier-stripe">
+                    <p class="stripe-donate-label">Join Neighbor in Action</p>
+                    <stripe-buy-button
+                      buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
+                      publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
+                    >
+                    </stripe-buy-button>
+                  </div>
                 </article>
 
                 <article
@@ -167,11 +178,14 @@
                     <li>Name listed (with permission) on the Founding Member section of the website</li>
                     <li>Annual impact update focused on crisis response and second chances</li>
                   </ul>
-                  <a
-                    class="founding-tier-select"
-                    href="mailto:info@tonightweride.org?subject=Founding%20Member%20-%20Beacon%20of%20Hope%20Monthly&body=I%20want%20to%20join%20Tonight%20We%20Ride%20as%20a%20Beacon%20of%20Hope%20Founding%20Member%20with%20a%20monthly%20donation%20of%20%24100%2Fmonth."
-                    data-track="founding-tier-beacon-cta"
-                  >Join Beacon of Hope</a>
+                  <div class="founding-tier-stripe">
+                    <p class="stripe-donate-label">Join Beacon of Hope</p>
+                    <stripe-buy-button
+                      buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
+                      publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
+                    >
+                    </stripe-buy-button>
+                  </div>
                 </article>
 
                 <article
@@ -191,11 +205,14 @@
                     <li>Annual limited-edition “Pillar of Stability” item</li>
                     <li>Twice-yearly impact updates highlighting stories of lives being rebuilt</li>
                   </ul>
-                  <a
-                    class="founding-tier-select"
-                    href="mailto:info@tonightweride.org?subject=Founding%20Member%20-%20Pillar%20of%20Stability%20Monthly&body=I%20want%20to%20join%20Tonight%20We%20Ride%20as%20a%20Pillar%20of%20Stability%20Founding%20Member%20with%20a%20monthly%20donation%20of%20%24250%2Fmonth."
-                    data-track="founding-tier-pillar-cta"
-                  >Join Pillar of Stability</a>
+                  <div class="founding-tier-stripe">
+                    <p class="stripe-donate-label">Join Pillar of Stability</p>
+                    <stripe-buy-button
+                      buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
+                      publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
+                    >
+                    </stripe-buy-button>
+                  </div>
                 </article>
               </div>
               <p class="founding-member-note founding-member-close-note"><strong>Because lasting change doesn’t happen all at once — it happens through consistency.</strong></p>

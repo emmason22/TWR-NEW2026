@@ -805,6 +805,32 @@ function initHomelessSupportFormToggle() {
   updateState();
 }
 
+function initHomelessMailerLiteToggle() {
+  const root = document.querySelector(".page-homeless [data-ho-ml-toggle]");
+  if (!root) return;
+
+  const intentInputs = Array.from(root.querySelectorAll("input[data-ho-ml-intent]"));
+  const panels = Array.from(root.querySelectorAll("[data-ho-ml-panel]"));
+  if (!intentInputs.length || !panels.length) return;
+
+  const updateState = () => {
+    const checked = intentInputs.find((input) => input.checked) || intentInputs[0];
+    const selected = checked ? checked.value : "support";
+
+    panels.forEach((panel) => {
+      const isActive = panel.getAttribute("data-ho-ml-panel") === selected;
+      panel.hidden = !isActive;
+      panel.classList.toggle("is-active", isActive);
+    });
+  };
+
+  intentInputs.forEach((input) => {
+    input.addEventListener("change", updateState);
+  });
+
+  updateState();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initMotionReadyState();
   initFoundingMemberPromo();
@@ -813,6 +839,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initImagePerformanceDefaults();
   initHomelessHeroVideoFade();
   initHomelessSupportFormToggle();
+  initHomelessMailerLiteToggle();
   initFormAccessibility();
   initFoundingMemberSection();
   initSupportForms();

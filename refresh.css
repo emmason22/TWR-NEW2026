@@ -2672,11 +2672,17 @@ label,
   margin-bottom: 14px;
 }
 
-.page-donate .stripe-donate-wrap {
-  margin: 0 0 14px;
+.page-donate .donate-cta-stripe-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.page-donate .stripe-donate-option {
   display: grid;
   gap: 8px;
-  justify-items: start;
+  align-content: start;
 }
 
 .page-donate .stripe-donate-label {
@@ -2688,8 +2694,30 @@ label,
   color: #1b2f55;
 }
 
-.page-donate .stripe-donate-wrap stripe-buy-button {
-  width: min(100%, 420px);
+.page-donate .stripe-donate-option stripe-buy-button {
+  width: 100%;
+}
+
+.page-donate .founding-tier-stripe {
+  margin-top: auto;
+  display: grid;
+  gap: 8px;
+}
+
+.page-donate .founding-tier-stripe stripe-buy-button {
+  width: 100%;
+}
+
+@media (max-width: 980px) {
+  .page-donate .donate-cta-stripe-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .page-donate .donate-cta-stripe-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .page-donate .section-title-spaced {
@@ -3497,7 +3525,7 @@ label,
 
 /* Need Help MailerLite embed sizing */
 .page-community #support-form .container.form-wide {
-  max-width: 1040px;
+  max-width: 1200px;
 }
 
 .page-community #support-form .support-form {
@@ -3506,7 +3534,7 @@ label,
 
 .page-community #support-form .ml-embedded {
   width: 100%;
-  max-width: 940px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -3520,7 +3548,7 @@ label,
 .page-community #support-form .ml-form-embedWrapper,
 .page-community #support-form .ml-form-successBody {
   width: 100% !important;
-  max-width: 940px !important;
+  max-width: 100% !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
@@ -3548,6 +3576,77 @@ label,
 .page-veteran #request-form .ml-form-embedBody,
 .page-veteran #request-form .ml-form-embedContent,
 .page-veteran #request-form .ml-form-embedSubmit {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Crisis Relief MailerLite embed sizing */
+.page-crisis #support-form .container.form-wide {
+  max-width: 1200px;
+}
+
+.page-crisis #support-form .support-form {
+  padding: clamp(20px, 2.8vw, 32px);
+}
+
+.page-crisis #support-form .ml-embedded,
+.page-crisis #support-form .ml-form-embedContainer,
+.page-crisis #support-form .ml-form-embedWrapper,
+.page-crisis #support-form .ml-form-successBody,
+.page-crisis #support-form .ml-form-embedBody,
+.page-crisis #support-form .ml-form-embedContent,
+.page-crisis #support-form .ml-form-embedSubmit {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Homeless Outreach MailerLite embed sizing */
+.page-homeless #support-form .container.form-wide {
+  max-width: 1200px;
+}
+
+.page-homeless #support-form .support-form-mailerlite {
+  padding: clamp(20px, 2.8vw, 32px);
+  gap: 14px;
+}
+
+.page-homeless #support-form .ho-ml-panel[hidden] {
+  display: none !important;
+}
+
+.page-homeless #support-form .ml-embedded,
+.page-homeless #support-form .ml-form-embedContainer,
+.page-homeless #support-form .ml-form-embedWrapper,
+.page-homeless #support-form .ml-form-successBody,
+.page-homeless #support-form .ml-form-embedBody,
+.page-homeless #support-form .ml-form-embedContent,
+.page-homeless #support-form .ml-form-embedSubmit {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Homepage Stay Connected MailerLite embed sizing */
+.page-home #insider .container.form-wide {
+  max-width: 1200px;
+}
+
+.page-home #insider .support-form-mailerlite {
+  padding: clamp(20px, 2.8vw, 32px);
+}
+
+.page-home #insider .ml-embedded,
+.page-home #insider .ml-form-embedContainer,
+.page-home #insider .ml-form-embedWrapper,
+.page-home #insider .ml-form-successBody,
+.page-home #insider .ml-form-embedBody,
+.page-home #insider .ml-form-embedContent,
+.page-home #insider .ml-form-embedSubmit {
   width: 100% !important;
   max-width: 100% !important;
   margin-left: auto !important;

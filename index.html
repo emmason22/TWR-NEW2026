@@ -21,8 +21,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2199291');
+  </script>
+  <!-- End MailerLite Universal -->
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="refresh.css?v=24" />
+  <link rel="stylesheet" href="refresh.css?v=26" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -37,7 +46,7 @@
     }
   </script>
 </head>
-<body>
+<body class="page-home">
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header" role="banner">
     <div class="header-inner">
@@ -184,18 +193,15 @@
     </section>
 
     <section class="be-insider-section" id="insider" aria-label="Sign Up">
-      <div class="container">
+      <div class="container form-wide">
         <div class="insider-divider" aria-hidden="true"></div>
         <div class="be-insider-grid">
           <article class="cream-block insider-block">
-            <h2>Be An Insider</h2>
+            <h2>Stay Connected</h2>
             <p>Get frontline updates, upcoming outreach opportunities, and urgent action alerts from Tonight We Ride.</p>
-            <form class="insider-form" aria-label="Insider signup form">
-              <label class="insider-label" for="insider-email-home">Email Address</label>
-              <input id="insider-email-home" type="email" name="email" placeholder="you@example.com" required />
-              <button type="submit" class="insider-submit">Sign Up</button>
-              <p class="insider-status" role="status" aria-live="polite"></p>
-            </form>
+            <div class="support-form support-form-mailerlite" aria-label="Stay connected MailerLite form embed">
+              <div class="ml-embedded" data-form="NwEkXj"></div>
+            </div>
           </article>
         </div>
         <div class="insider-divider" aria-hidden="true"></div>

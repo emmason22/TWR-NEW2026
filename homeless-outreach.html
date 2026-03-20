@@ -22,8 +22,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2199291');
+  </script>
+  <!-- End MailerLite Universal -->
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="refresh.css?v=24" />
+  <link rel="stylesheet" href="refresh.css?v=26" />
 </head>
 <body class="page-homeless">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -84,56 +93,33 @@
     </section>
 
     <section class="subpage-section" id="support-form">
-      <div class="container narrow">
+      <div class="container form-wide">
         <h2>Request Support or Volunteer</h2>
         <p>
           Use this form to request assistance, connect someone who needs help, or volunteer to join an outreach and serve with us.
         </p>
-        <form
-          class="support-form"
-          data-form-name="Homeless Outreach"
-          data-sheet-tab="Homeless Outreach"
-          data-mailerlite-group="Homeless Outreach"
-          data-endpoint="https://script.google.com/macros/s/AKfycbzfuDxh3cTNzRy3skLhk8efWCgxHQ0tkDCMGrnyHBhaWpsk1zBU8oJoFEEYhoidlY1wAQ/exec"
-        >
+        <div class="support-form support-form-mailerlite" data-ho-ml-toggle aria-label="Homeless Outreach and Volunteer forms">
           <fieldset class="form-intent-toggle" aria-label="Form intent">
             <legend>I want to:</legend>
             <div class="form-intent-options" role="radiogroup" aria-label="Choose request type">
               <label class="intent-option">
-                <input type="radio" name="intake_type" value="Request Support" checked data-ho-intent />
+                <input type="radio" name="ho_mailerlite_intent" value="support" checked data-ho-ml-intent />
                 <span>Request Support</span>
               </label>
               <label class="intent-option">
-                <input type="radio" name="intake_type" value="Volunteer" data-ho-intent />
+                <input type="radio" name="ho_mailerlite_intent" value="volunteer" data-ho-ml-intent />
                 <span>Volunteer</span>
               </label>
             </div>
           </fieldset>
-
-          <label for="ho-name">Name</label>
-          <input id="ho-name" name="name" type="text" required />
-
-          <label for="ho-email">Email</label>
-          <input id="ho-email" name="email" type="email" required />
-
-          <label for="ho-phone">Phone Number</label>
-          <input id="ho-phone" name="phone" type="tel" required />
-
-          <label for="ho-request" data-ho-request-label>How can we help?</label>
-          <textarea id="ho-request" name="request" rows="5" required></textarea>
-
-          <label class="form-checkbox">
-            <input id="ho-email-opt-in" name="email_opt_in" type="checkbox" value="yes" />
-            <span>Email me updates from Tonight We Ride.</span>
-          </label>
-
-          <label class="sr-only" for="ho-company">Leave this field blank</label>
-          <input id="ho-company" name="company" type="text" tabindex="-1" autocomplete="off" class="hp-field" />
-
-          <button class="btn-primary" type="submit" data-ho-submit-text>Request Support</button>
-          <p class="form-note" data-ho-form-note>Response goal: within 48 hours.</p>
-          <p class="form-status" role="status" aria-live="polite"></p>
-        </form>
+          <div class="ho-ml-panel is-active" data-ho-ml-panel="support">
+            <div class="ml-embedded" data-form="k87oR3"></div>
+          </div>
+          <div class="ho-ml-panel" data-ho-ml-panel="volunteer" hidden>
+            <div class="ml-embedded" data-form="BSSLBu"></div>
+          </div>
+          <p class="form-note">Response goal: within 48 hours.</p>
+        </div>
       </div>
     </section>
 
@@ -270,6 +256,6 @@
   </footer>
 
   <script src="script.js?v=3" defer></script>
-  <script src="app.js?v=23" defer></script>
+  <script src="app.js?v=24" defer></script>
 </body>
 </html>
