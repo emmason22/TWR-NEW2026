@@ -22,6 +22,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2199291');
+  </script>
+  <!-- End MailerLite Universal -->
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="refresh.css?v=24" />
 </head>
@@ -104,43 +113,10 @@
         <p>
           If you or someone you know is facing an urgent hardship, share details below so our team can review and respond.
         </p>
-        <form
-          class="support-form"
-          data-form-name="Crisis Relief Request"
-          data-sheet-tab="Crisis Relief"
-          data-mailerlite-group="Crisis Relief"
-          data-endpoint="https://script.google.com/macros/s/AKfycbzfuDxh3cTNzRy3skLhk8efWCgxHQ0tkDCMGrnyHBhaWpsk1zBU8oJoFEEYhoidlY1wAQ/exec"
-        >
-          <label for="cr-name">Name</label>
-          <input id="cr-name" name="name" type="text" required />
-
-          <label for="cr-email">Email</label>
-          <input id="cr-email" name="email" type="email" required />
-
-          <label for="cr-phone">Phone Number</label>
-          <input id="cr-phone" name="phone" type="tel" required />
-
-          <label for="cr-city-area">City / Area</label>
-          <input id="cr-city-area" name="city_area" type="text" required />
-
-          <label for="cr-crisis-type">Type of Crisis</label>
-          <input id="cr-crisis-type" name="crisis_type" type="text" placeholder="Fire, flood, displacement, utility shutoff, etc." required />
-
-          <label for="cr-request">Tell us what support is needed</label>
-          <textarea id="cr-request" name="request" rows="5" required></textarea>
-
-          <label class="form-checkbox">
-            <input id="cr-email-opt-in" name="email_opt_in" type="checkbox" value="yes" />
-            <span>Email me updates from Tonight We Ride.</span>
-          </label>
-
-          <label class="sr-only" for="cr-company">Leave this field blank</label>
-          <input id="cr-company" name="company" type="text" tabindex="-1" autocomplete="off" class="hp-field" />
-
-          <button class="btn-primary" type="submit" data-track="crisis-request-submit">Request Crisis Support</button>
+        <div class="support-form" aria-label="Crisis Relief MailerLite form embed">
+          <div class="ml-embedded" data-form="aQOfBj"></div>
           <p class="form-note">Response goal: within 48 hours. If this is life-threatening, call 911 immediately.</p>
-          <p class="form-status" role="status" aria-live="polite"></p>
-        </form>
+        </div>
       </div>
     </section>
 

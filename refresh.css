@@ -2672,6 +2672,26 @@ label,
   margin-bottom: 14px;
 }
 
+.page-donate .stripe-donate-wrap {
+  margin: 0 0 14px;
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.page-donate .stripe-donate-label {
+  margin: 0;
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1b2f55;
+}
+
+.page-donate .stripe-donate-wrap stripe-buy-button {
+  width: min(100%, 420px);
+}
+
 .page-donate .section-title-spaced {
   margin-top: 18px;
   margin-bottom: 12px;

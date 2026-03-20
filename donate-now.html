@@ -21,8 +21,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="refresh.css?v=24" />
+  <link rel="stylesheet" href="refresh.css?v=25" />
 </head>
 <body class="page-donate">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -65,6 +66,14 @@
           >
             Donate Any Amount
           </a>
+        </div>
+        <div class="stripe-donate-wrap" aria-label="Donate securely with Stripe">
+          <p class="stripe-donate-label">Donate securely online</p>
+          <stripe-buy-button
+            buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
+            publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
+          >
+          </stripe-buy-button>
         </div>
         <p class="founding-member-note">
           Tonight We Ride has applied for federal 501(c)(3) tax-exempt status and is currently pending IRS determination.
