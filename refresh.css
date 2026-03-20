@@ -3511,3 +3511,25 @@ label,
   width: 100% !important;
   max-width: 100% !important;
 }
+
+/* Veteran Outreach MailerLite embed sizing */
+.page-veteran #request-form .container.form-wide {
+  max-width: 1200px;
+}
+
+.page-veteran #request-form .support-form {
+  padding: clamp(20px, 2.8vw, 32px);
+}
+
+.page-veteran #request-form .ml-embedded,
+.page-veteran #request-form .ml-form-embedContainer,
+.page-veteran #request-form .ml-form-embedWrapper,
+.page-veteran #request-form .ml-form-successBody,
+.page-veteran #request-form .ml-form-embedBody,
+.page-veteran #request-form .ml-form-embedContent,
+.page-veteran #request-form .ml-form-embedSubmit {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}

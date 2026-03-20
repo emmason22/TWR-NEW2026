@@ -22,10 +22,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2199291');
+  </script>
+  <!-- End MailerLite Universal -->
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="refresh.css?v=24" />
+  <link rel="stylesheet" href="refresh.css?v=25" />
 </head>
-<body>
+<body class="page-veteran">
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header" role="banner">
     <div class="header-inner">
@@ -91,45 +100,15 @@
     </section>
 
     <section class="subpage-section" id="request-form">
-      <div class="container narrow">
+      <div class="container form-wide">
         <h2>Request Veteran Support</h2>
         <p>
           Tell us what support is needed and we will coordinate next steps with urgency and care.
         </p>
-        <form
-          class="support-form"
-          data-form-name="Veteran Outreach"
-          data-sheet-tab="Veteran Outreach"
-          data-mailerlite-group="Veteran Outreach"
-          data-endpoint="https://script.google.com/macros/s/AKfycbzfuDxh3cTNzRy3skLhk8efWCgxHQ0tkDCMGrnyHBhaWpsk1zBU8oJoFEEYhoidlY1wAQ/exec"
-        >
-          <label for="vo-name">Name</label>
-          <input id="vo-name" name="name" type="text" required />
-
-          <label for="vo-email">Email</label>
-          <input id="vo-email" name="email" type="email" required />
-
-          <label for="vo-phone">Phone Number</label>
-          <input id="vo-phone" name="phone" type="tel" required />
-
-          <label for="vo-branch">Branch of Service (optional)</label>
-          <input id="vo-branch" name="branch" type="text" />
-
-          <label for="vo-request">How can we help?</label>
-          <textarea id="vo-request" name="request" rows="5" required></textarea>
-
-          <label class="form-checkbox">
-            <input id="vo-email-opt-in" name="email_opt_in" type="checkbox" value="yes" />
-            <span>Email me updates from Tonight We Ride.</span>
-          </label>
-
-          <label class="sr-only" for="vo-company">Leave this field blank</label>
-          <input id="vo-company" name="company" type="text" tabindex="-1" autocomplete="off" class="hp-field" />
-
-          <button class="btn-primary" type="submit">Submit Veteran Request</button>
+        <div class="support-form" aria-label="Veteran Outreach MailerLite form embed">
+          <div class="ml-embedded" data-form="txayMW"></div>
           <p class="form-note">Response goal: within 48 hours for standard requests.</p>
-          <p class="form-status" role="status" aria-live="polite"></p>
-        </form>
+        </div>
       </div>
     </section>
   </main>
