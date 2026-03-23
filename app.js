@@ -575,6 +575,71 @@ function initFoundingMemberPromo() {
   }, 12000);
 }
 
+function initMailingListThirdPagePopup() {
+  const countKey = "twr_page_visit_count";
+  const lastPathKey = "twr_last_page_path";
+  const shownKey = "twr_mailing_popup_shown";
+
+  const path = window.location.pathname.toLowerCase();
+  const normalizedPath = path || "/";
+
+  try {
+    const lastPath = sessionStorage.getItem(lastPathKey);
+    const previousCount = Number(sessionStorage.getItem(countKey) || "0");
+    const nextCount = lastPath === normalizedPath ? previousCount : previousCount + 1;
+
+    sessionStorage.setItem(countKey, String(nextCount));
+    sessionStorage.setItem(lastPathKey, normalizedPath);
+
+    if (sessionStorage.getItem(shownKey) === "true" || nextCount < 3) return;
+    sessionStorage.setItem(shownKey, "true");
+  } catch (error) {
+    // If storage is blocked we skip popup behavior.
+    return;
+  }
+
+  const overlay = document.createElement("div");
+  overlay.className = "mailing-popup-overlay";
+  overlay.setAttribute("role", "presentation");
+  overlay.innerHTML = `
+    <aside class="mailing-popup" role="dialog" aria-modal="true" aria-labelledby="mailing-popup-title" aria-describedby="mailing-popup-copy">
+      <button type="button" class="mailing-popup-dismiss" aria-label="Close mailing list popup">Close</button>
+      <p class="mailing-popup-kicker">Stay Connected</p>
+      <h2 id="mailing-popup-title">Join Our Mailing List</h2>
+      <p id="mailing-popup-copy">Get outreach updates, event announcements, and ways to support Tonight We Ride.</p>
+      <a class="mailing-popup-cta" href="index.html#insider" data-track="mailing-popup-cta">Join the Mailing List</a>
+    </aside>
+  `;
+
+  const close = (reason) => {
+    if (!overlay.isConnected) return;
+    overlay.classList.remove("is-visible");
+    emitTelemetry("mailing_popup_closed", { reason });
+    window.setTimeout(() => {
+      overlay.remove();
+    }, 180);
+    document.removeEventListener("keydown", onKeydown);
+  };
+
+  const onKeydown = (event) => {
+    if (event.key === "Escape") close("escape");
+  };
+
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) close("backdrop");
+  });
+
+  overlay.querySelector(".mailing-popup-dismiss")?.addEventListener("click", () => close("dismiss"));
+  overlay.querySelector(".mailing-popup-cta")?.addEventListener("click", () => close("cta"));
+
+  document.body.appendChild(overlay);
+  document.addEventListener("keydown", onKeydown);
+  window.requestAnimationFrame(() => {
+    overlay.classList.add("is-visible");
+  });
+  emitTelemetry("mailing_popup_shown", { path: window.location.pathname });
+}
+
 function initMobileNav() {
   const headers = document.querySelectorAll(".site-header");
   headers.forEach((header, idx) => {
@@ -834,6 +899,7 @@ function initHomelessMailerLiteToggle() {
 document.addEventListener("DOMContentLoaded", () => {
   initMotionReadyState();
   initFoundingMemberPromo();
+  initMailingListThirdPagePopup();
   initAboutNavDropdown();
   initMobileNav();
   initImagePerformanceDefaults();

@@ -3652,3 +3652,88 @@ label,
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+/* Mailing list popup on third page view */
+.mailing-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: rgba(5, 12, 27, 0.48);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.mailing-popup-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mailing-popup {
+  position: relative;
+  width: min(460px, calc(100vw - 24px));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background:
+    radial-gradient(circle at top right, rgba(231, 173, 47, 0.2), transparent 38%),
+    linear-gradient(145deg, rgba(7, 19, 43, 0.98), rgba(17, 39, 76, 0.98));
+  color: #f8fbff;
+  box-shadow: 0 20px 50px rgba(12, 30, 63, 0.38);
+  padding: 20px 20px 18px;
+  transform: translateY(10px);
+  transition: transform 180ms ease;
+}
+
+.mailing-popup-overlay.is-visible .mailing-popup {
+  transform: translateY(0);
+}
+
+.mailing-popup-dismiss {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 0;
+  background: transparent;
+  color: #dbe7fa;
+  cursor: pointer;
+  font: inherit;
+  padding: 6px 8px;
+}
+
+.mailing-popup-kicker {
+  margin: 0 0 6px;
+  font-family: "Oswald", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f0cf76;
+}
+
+.mailing-popup h2 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: clamp(28px, 4vw, 36px);
+  line-height: 0.98;
+}
+
+.mailing-popup p {
+  margin: 0 0 14px;
+  color: #dbe7fa;
+}
+
+.mailing-popup-cta {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border: 1px solid var(--rf-gold);
+  background: var(--rf-gold);
+  color: #111;
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
