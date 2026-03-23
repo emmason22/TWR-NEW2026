@@ -427,6 +427,13 @@ function buildMailtoHref(subject, body) {
   return `mailto:info@tonightweride.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
+function isHomepageView() {
+  if (document.body?.classList.contains("page-home")) return true;
+  const path = (window.location.pathname || "").toLowerCase();
+  const lastSegment = path.slice(path.lastIndexOf("/") + 1);
+  return lastSegment === "" || lastSegment === "index.html";
+}
+
 function initFoundingMemberSection() {
   const section = document.querySelector(".founding-member-section");
   if (!section) return;
@@ -513,8 +520,7 @@ function initFoundingMemberPromo() {
   const existingPromo = document.querySelector(".founding-promo");
   if (existingPromo) return;
 
-  const path = window.location.pathname.toLowerCase();
-  const isHomepage = path === "/" || path.endsWith("/index.html") || path.endsWith("index.html");
+  const isHomepage = isHomepageView();
   if (!isHomepage) return;
 
   // Built in JS so the promotion is managed in one place and only appears on homepage.
@@ -577,19 +583,13 @@ function initFoundingMemberPromo() {
 
 function initMailingListThirdPagePopup() {
   const countKey = "twr_page_visit_count";
-  const lastPathKey = "twr_last_page_path";
   const shownKey = "twr_mailing_popup_shown";
 
-  const path = window.location.pathname.toLowerCase();
-  const normalizedPath = path || "/";
-
   try {
-    const lastPath = sessionStorage.getItem(lastPathKey);
     const previousCount = Number(sessionStorage.getItem(countKey) || "0");
-    const nextCount = lastPath === normalizedPath ? previousCount : previousCount + 1;
+    const nextCount = previousCount + 1;
 
     sessionStorage.setItem(countKey, String(nextCount));
-    sessionStorage.setItem(lastPathKey, normalizedPath);
 
     if (sessionStorage.getItem(shownKey) === "true" || nextCount < 3) return;
     sessionStorage.setItem(shownKey, "true");
