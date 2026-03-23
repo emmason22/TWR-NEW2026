@@ -2694,8 +2694,29 @@ label,
   color: #1b2f55;
 }
 
-.page-donate .stripe-donate-option stripe-buy-button {
+.page-donate .stripe-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
   width: 100%;
+  padding: 11px 14px;
+  border: 2px solid var(--rf-gold);
+  background: var(--rf-gold);
+  color: #111;
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.page-donate .stripe-link-btn:hover,
+.page-donate .stripe-link-btn:focus-visible {
+  background: #f0c75f;
+  border-color: #f0c75f;
+  transform: translateY(-1px);
 }
 
 .page-donate .founding-tier-stripe {

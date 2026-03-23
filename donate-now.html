@@ -21,7 +21,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
-  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="refresh.css?v=25" />
 </head>
@@ -60,27 +59,33 @@
         <div class="donate-cta-row donate-cta-stripe-row" aria-label="Donate options">
           <div class="stripe-donate-option">
             <p class="stripe-donate-label">Give Once</p>
-            <stripe-buy-button
-              buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
-              publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
-            >
-            </stripe-buy-button>
+            <a
+              class="stripe-link-btn"
+              href="https://buy.stripe.com/REPLACE_WITH_ONE_TIME_LINK"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Give once with Stripe"
+            >Donate Once</a>
           </div>
           <div class="stripe-donate-option">
             <p class="stripe-donate-label">Give Monthly</p>
-            <stripe-buy-button
-              buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
-              publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
-            >
-            </stripe-buy-button>
+            <a
+              class="stripe-link-btn"
+              href="https://buy.stripe.com/REPLACE_WITH_MONTHLY_LINK"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Give monthly with Stripe"
+            >Start Monthly Giving</a>
           </div>
           <div class="stripe-donate-option">
             <p class="stripe-donate-label">Donate Any Amount</p>
-            <stripe-buy-button
-              buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
-              publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
-            >
-            </stripe-buy-button>
+            <a
+              class="stripe-link-btn"
+              href="https://buy.stripe.com/REPLACE_WITH_ANY_AMOUNT_LINK"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Donate any amount with Stripe"
+            >Choose Any Amount</a>
           </div>
         </div>
         <p class="founding-member-note">
@@ -149,14 +154,13 @@
                     <li>Insider updates on homeless outreach, veteran support, and community care efforts</li>
                     <li>Optional name listing on the website as a Founding Member</li>
                   </ul>
-                  <div class="founding-tier-stripe">
-                    <p class="stripe-donate-label">Join Neighbor in Action</p>
-                    <stripe-buy-button
-                      buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
-                      publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
-                    >
-                    </stripe-buy-button>
-                  </div>
+                  <a
+                    class="founding-tier-select"
+                    href="https://buy.stripe.com/REPLACE_WITH_FM_50_MONTHLY_LINK"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Join Neighbor in Action at fifty dollars per month"
+                  >Donate $50 / Month</a>
                 </article>
 
                 <article
@@ -178,14 +182,13 @@
                     <li>Name listed (with permission) on the Founding Member section of the website</li>
                     <li>Annual impact update focused on crisis response and second chances</li>
                   </ul>
-                  <div class="founding-tier-stripe">
-                    <p class="stripe-donate-label">Join Beacon of Hope</p>
-                    <stripe-buy-button
-                      buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
-                      publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
-                    >
-                    </stripe-buy-button>
-                  </div>
+                  <a
+                    class="founding-tier-select"
+                    href="https://buy.stripe.com/REPLACE_WITH_FM_100_MONTHLY_LINK"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Join Beacon of Hope at one hundred dollars per month"
+                  >Donate $100 / Month</a>
                 </article>
 
                 <article
@@ -205,14 +208,13 @@
                     <li>Annual limited-edition “Pillar of Stability” item</li>
                     <li>Twice-yearly impact updates highlighting stories of lives being rebuilt</li>
                   </ul>
-                  <div class="founding-tier-stripe">
-                    <p class="stripe-donate-label">Join Pillar of Stability</p>
-                    <stripe-buy-button
-                      buy-button-id="buy_btn_1TD1PnQcl8Qj1YcVqPMarfCB"
-                      publishable-key="pk_live_51TBwkWQcl8Qj1YcV9bOjqib7I8t6lCabMkobLsb458AU0kJrelNAbcv0B7aMzLq1RhCnlCWIbEnNtIZd56oaKCny00LnvpMS88"
-                    >
-                    </stripe-buy-button>
-                  </div>
+                  <a
+                    class="founding-tier-select"
+                    href="https://buy.stripe.com/REPLACE_WITH_FM_250_MONTHLY_LINK"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Join Pillar of Stability at two hundred fifty dollars per month"
+                  >Donate $250 / Month</a>
                 </article>
               </div>
               <p class="founding-member-note founding-member-close-note"><strong>Because lasting change doesn’t happen all at once — it happens through consistency.</strong></p>
