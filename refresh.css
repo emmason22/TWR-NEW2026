@@ -3674,6 +3674,25 @@ label,
   margin-right: auto !important;
 }
 
+/* About page mailing list MailerLite sizing */
+#about-connect .about-mailing-form {
+  margin: 10px 0 26px;
+  padding: clamp(18px, 2.4vw, 28px);
+}
+
+#about-connect .ml-embedded,
+#about-connect .ml-form-embedContainer,
+#about-connect .ml-form-embedWrapper,
+#about-connect .ml-form-successBody,
+#about-connect .ml-form-embedBody,
+#about-connect .ml-form-embedContent,
+#about-connect .ml-form-embedSubmit {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 /* Mailing list popup on third page view */
 .mailing-popup-overlay {
   position: fixed;
