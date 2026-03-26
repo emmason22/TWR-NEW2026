@@ -2751,6 +2751,22 @@ label,
   gap: 12px;
 }
 
+.page-donate .donate-tier-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.page-donate .donate-tier-featured {
+  border-color: rgba(197, 148, 17, 0.9);
+  background: linear-gradient(180deg, #fffdf7 0%, #fff3cf 100%);
+  box-shadow: 0 12px 28px rgba(12, 30, 63, 0.12);
+}
+
+.page-donate .donate-tier-featured h3 {
+  color: #7d5f16;
+}
+
 .page-donate .insider-section {
   padding-top: clamp(42px, 5vw, 62px);
   padding-bottom: clamp(42px, 5vw, 62px);
