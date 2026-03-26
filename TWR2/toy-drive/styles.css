@@ -66,6 +66,117 @@ img {
   padding: 0 var(--spacing-lg);
 }
 
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -100px;
+  background: #000;
+  color: #fff;
+  padding: 10px 12px;
+  z-index: 140;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* =============================================
+SHARED SITE HEADER (MATCHES MAIN SITE)
+============================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 130;
+  background: #000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.header-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "brand nav actions";
+  align-items: center;
+  gap: 14px;
+}
+
+.brand {
+  grid-area: brand;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 88px;
+  height: auto;
+  display: block;
+}
+
+.site-nav {
+  grid-area: nav;
+  display: flex;
+  gap: clamp(10px, 1.6vw, 20px);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.site-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.site-nav a {
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: clamp(12px, 1.1vw, 16px);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.site-nav a:hover {
+  color: #fcb212;
+}
+
+.header-actions {
+  grid-area: actions;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+.site-header .donate-btn {
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: #fcb212;
+  color: #000;
+  border: 1px solid #fcb212;
+  padding: 12px 18px;
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  text-transform: uppercase;
+}
+
+.site-header .donate-btn:hover {
+  filter: brightness(0.95);
+  transform: none;
+  box-shadow: none;
+}
+
 /* =============================================
 TYPOGRAPHY
 ============================================= */
@@ -263,21 +374,20 @@ WITHOUT CROPPING WIDTH
 }
 
 .hero-poster {
-  width: min(92vw, 1120px);
+  width: 100%;
+  max-width: none;
   height: auto;
   display: block;
   position: relative;
   z-index: 1;
 
   /* No forced cropping by height */
-  max-height: 74vh;
+  max-height: none;
   object-fit: contain; /* shows full poster, no cropping */
-  border-radius: 14px;
-  border: 1px solid rgba(226, 182, 73, 0.35);
-  box-shadow:
-    0 26px 56px rgba(0, 0, 0, 0.58),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  filter: saturate(1.05) contrast(1.03);
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  filter: saturate(1.03) contrast(1.02);
 }
 
 /* =============================================
@@ -297,7 +407,7 @@ DONATE NOW BAR – STICKY GOLD STRIP BELOW HERO
   box-shadow: var(--shadow-md);
 
   position: sticky;
-  top: 64px; /* adjust if your navbar is taller/shorter */
+  top: 98px; /* keep below sticky site header */
   z-index: 90;
 }
 
@@ -929,6 +1039,33 @@ RESPONSIVE
     background-attachment: scroll;
   }
 
+  .header-inner {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  .brand {
+    justify-content: center;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+  }
+
+  .header-actions {
+    justify-content: center;
+  }
+
+  .site-header .donate-btn {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+
+  .donate-bar {
+    top: 146px;
+  }
+
   .menu-toggle {
     display: flex;
   }
@@ -993,6 +1130,26 @@ RESPONSIVE
   }
 }
 
+@media (min-width: 769px) and (max-width: 1500px) {
+  .header-inner {
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      "brand actions"
+      "nav nav";
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    overflow: visible;
+    gap: 8px 14px;
+  }
+
+  .site-nav a {
+    font-size: clamp(12px, 1.1vw, 14px);
+  }
+}
+
 @media (max-width: 640px) {
   .hero {
     /* Allow hero to be natural height on very small phones
@@ -1006,9 +1163,10 @@ RESPONSIVE
     height: auto;
     max-height: none;
     object-fit: contain;
-    border-radius: 0;
-    border: 0;
-    box-shadow: none;
+  }
+
+  .donate-bar {
+    top: 142px;
   }
 
   .container {
