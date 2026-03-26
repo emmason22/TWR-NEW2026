@@ -711,12 +711,19 @@ function initAboutNavDropdown() {
     submenu.className = "nav-submenu";
     submenu.setAttribute("role", "menu");
 
+    const aboutPageLink = document.createElement("a");
+    aboutPageLink.href = "about.html";
+    aboutPageLink.textContent = "About";
+    aboutPageLink.setAttribute("role", "menuitem");
+    aboutPageLink.setAttribute("data-track", "nav-about-page");
+
     const teamLink = document.createElement("a");
     teamLink.href = "team.html";
     teamLink.textContent = "Meet the Board";
     teamLink.setAttribute("role", "menuitem");
     teamLink.setAttribute("data-track", "nav-about-meet-the-board");
 
+    submenu.appendChild(aboutPageLink);
     submenu.appendChild(teamLink);
     dropdown.appendChild(submenu);
   });
