@@ -217,7 +217,10 @@ WITHOUT CROPPING WIDTH
 
 .hero {
   width: 100%;
-  background: var(--bg-white); /* match toy drive hero palette */
+  background:
+    radial-gradient(circle at 50% 10%, rgba(37, 105, 209, 0.45) 0%, rgba(12, 44, 104, 0.78) 38%, rgba(5, 16, 38, 0.98) 72%, rgba(2, 6, 16, 1) 100%),
+    radial-gradient(circle at 50% 88%, rgba(226, 182, 73, 0.18) 0%, rgba(226, 182, 73, 0) 52%),
+    linear-gradient(180deg, #0a1f45 0%, #07152b 48%, #030814 100%);
   padding: clamp(12px, 2.2vw, 24px) 0;
   margin: 0;
 
