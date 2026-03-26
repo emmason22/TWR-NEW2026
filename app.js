@@ -713,9 +713,9 @@ function initAboutNavDropdown() {
 
     const teamLink = document.createElement("a");
     teamLink.href = "team.html";
-    teamLink.textContent = "Our Team";
+    teamLink.textContent = "Meet the Board";
     teamLink.setAttribute("role", "menuitem");
-    teamLink.setAttribute("data-track", "nav-about-our-team");
+    teamLink.setAttribute("data-track", "nav-about-meet-the-board");
 
     submenu.appendChild(teamLink);
     dropdown.appendChild(submenu);
