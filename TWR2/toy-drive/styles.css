@@ -217,12 +217,12 @@ WITHOUT CROPPING WIDTH
 
 .hero {
   width: 100%;
-  background: black; /* keeps edges clean on ultra-wide/tall screens */
-  padding: 0;
+  background: var(--bg-white); /* match toy drive hero palette */
+  padding: clamp(12px, 2.2vw, 24px) 0;
   margin: 0;
 
-  /* Full-screen feel on larger devices */
-  min-height: 100vh;
+  /* Slightly smaller hero so poster does not dominate page height */
+  min-height: 78vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -232,12 +232,12 @@ WITHOUT CROPPING WIDTH
 }
 
 .hero-poster {
-  width: 100%;
+  width: min(88vw, 980px);
   height: auto;
   display: block;
 
   /* No forced cropping by height */
-  max-height: none;
+  max-height: 72vh;
   object-fit: contain; /* shows full poster, no cropping */
 }
 
@@ -959,6 +959,7 @@ RESPONSIVE
     /* Allow hero to be natural height on very small phones
        while still not cropping width */
     min-height: auto;
+    padding: 0;
   }
 
   .hero-poster {
