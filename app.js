@@ -537,7 +537,7 @@ function initFoundingMemberPromo() {
     <p id="founding-promo-copy">
       Join a core group of supporters helping Tonight We Ride build lasting outreach impact and receive VIP event status.
     </p>
-    <a class="founding-promo-cta" href="donate-now.html#founding-member" data-track="founding-promo-cta">
+    <a class="founding-promo-cta" href="founding-member.html" data-track="founding-promo-cta">
       Join as a Founding Member
     </a>
   `;
