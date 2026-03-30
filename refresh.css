@@ -1105,6 +1105,15 @@ textarea:focus-visible {
   z-index: 1;
 }
 
+.programs-subtitle {
+  margin: 8px 0 0;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
 .programs-lead .editorial-link {
   margin-top: 16px;
   font-size: 18px;
@@ -1251,30 +1260,6 @@ img,
 .footer-insider input,
 .insider-form input {
   border-radius: 0 !important;
-}
-
-.program-cards .heart-card {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.program-cards .heart-card + .program-card {
-  grid-column: 2;
-  grid-row: 1;
-}
-
-.program-cards .heart-card + .program-card + .program-card {
-  grid-column: 1;
-  grid-row: 2;
-}
-
-.program-cards .heart-card + .program-card + .program-card + .program-card {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-.program-cards .heart-card .program-photo {
-  content: normal;
 }
 
 @media (max-width: 1100px) {
@@ -3226,6 +3211,29 @@ label,
     left: 12px;
     width: auto;
     bottom: 12px;
+    padding: 16px 16px 14px;
+    border-radius: 18px;
+  }
+
+  .founding-promo h2 {
+    font-size: clamp(24px, 8vw, 30px);
+  }
+
+  .founding-promo p {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .founding-promo-dismiss {
+    top: 8px;
+    right: 8px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .founding-promo-cta {
+    width: 100%;
+    font-size: 17px;
   }
 }
 
@@ -3768,6 +3776,11 @@ label,
   pointer-events: auto;
 }
 
+.mailing-popup-overlay.is-opposite-side {
+  place-items: end start;
+  padding: 18px;
+}
+
 .mailing-popup {
   position: relative;
   width: min(460px, calc(100vw - 24px));
@@ -3832,4 +3845,38 @@ label,
   font-family: "Oswald", sans-serif;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .mailing-popup-overlay.is-opposite-side {
+    place-items: center;
+    padding: 12px;
+  }
+
+  .mailing-popup {
+    width: min(100%, calc(100vw - 24px));
+    padding: 18px 18px 16px;
+    border-radius: 18px;
+  }
+
+  .mailing-popup h2 {
+    font-size: clamp(24px, 8vw, 32px);
+  }
+
+  .mailing-popup p {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .mailing-popup-dismiss {
+    top: 8px;
+    right: 8px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .mailing-popup-cta {
+    width: 100%;
+    font-size: 17px;
+  }
 }

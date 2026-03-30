@@ -434,6 +434,17 @@ function isHomepageView() {
   return lastSegment === "" || lastSegment === "index.html";
 }
 
+function incrementSessionVisitCount(key) {
+  try {
+    const previousCount = Number(sessionStorage.getItem(key) || "0");
+    const nextCount = previousCount + 1;
+    sessionStorage.setItem(key, String(nextCount));
+    return nextCount;
+  } catch (error) {
+    return 1;
+  }
+}
+
 function initFoundingMemberSection() {
   const section = document.querySelector(".founding-member-section");
   if (!section) return;
@@ -523,6 +534,10 @@ function initFoundingMemberPromo() {
   const isHomepage = isHomepageView();
   if (!isHomepage) return;
 
+  const visitNumber = incrementSessionVisitCount("twr_homepage_visit_count");
+  const shouldShowPromo = visitNumber === 1 || visitNumber === 6;
+  if (!shouldShowPromo) return;
+
   // Built in JS so the promotion is managed in one place and only appears on homepage.
   const promo = document.createElement("aside");
   promo.className = "founding-promo";
@@ -564,6 +579,11 @@ function initFoundingMemberPromo() {
     emitTelemetry("founding_promo_closed", { reason });
     window.setTimeout(() => {
       promo.remove();
+      document.dispatchEvent(
+        new CustomEvent("twr:founding-promo-closed", {
+          detail: { reason },
+        })
+      );
     }, 220);
   };
 
@@ -573,7 +593,10 @@ function initFoundingMemberPromo() {
 
   window.setTimeout(() => {
     promo.classList.add("is-visible");
-    emitTelemetry("founding_promo_shown", { path: window.location.pathname });
+    emitTelemetry("founding_promo_shown", {
+      path: window.location.pathname,
+      visitNumber,
+    });
   }, 300);
 
   closeTimer = window.setTimeout(() => {
@@ -581,25 +604,20 @@ function initFoundingMemberPromo() {
   }, 12000);
 }
 
-function initMailingListThirdPagePopup() {
-  const countKey = "twr_page_visit_count";
-  const shownKey = "twr_mailing_popup_shown";
+function showMailingListPopup(options = {}) {
+  const {
+    side = "center",
+    autoCloseMs = 0,
+    shownEvent = "mailing_popup_shown",
+    closedEvent = "mailing_popup_closed",
+  } = options;
 
-  try {
-    const previousCount = Number(sessionStorage.getItem(countKey) || "0");
-    const nextCount = previousCount + 1;
-
-    sessionStorage.setItem(countKey, String(nextCount));
-
-    if (sessionStorage.getItem(shownKey) === "true" || nextCount < 3) return;
-    sessionStorage.setItem(shownKey, "true");
-  } catch (error) {
-    // If storage is blocked we skip popup behavior.
-    return;
-  }
-
+  if (document.querySelector(".mailing-popup-overlay")) return null;
   const overlay = document.createElement("div");
   overlay.className = "mailing-popup-overlay";
+  if (side === "opposite") {
+    overlay.classList.add("is-opposite-side");
+  }
   overlay.setAttribute("role", "presentation");
   overlay.innerHTML = `
     <aside class="mailing-popup" role="dialog" aria-modal="true" aria-labelledby="mailing-popup-title" aria-describedby="mailing-popup-copy">
@@ -611,10 +629,15 @@ function initMailingListThirdPagePopup() {
     </aside>
   `;
 
+  let autoCloseTimer = null;
   const close = (reason) => {
     if (!overlay.isConnected) return;
+    if (autoCloseTimer) {
+      window.clearTimeout(autoCloseTimer);
+      autoCloseTimer = null;
+    }
     overlay.classList.remove("is-visible");
-    emitTelemetry("mailing_popup_closed", { reason });
+    emitTelemetry(closedEvent, { reason, side });
     window.setTimeout(() => {
       overlay.remove();
     }, 180);
@@ -637,7 +660,62 @@ function initMailingListThirdPagePopup() {
   window.requestAnimationFrame(() => {
     overlay.classList.add("is-visible");
   });
-  emitTelemetry("mailing_popup_shown", { path: window.location.pathname });
+  emitTelemetry(shownEvent, { path: window.location.pathname, side });
+
+  if (autoCloseMs > 0) {
+    autoCloseTimer = window.setTimeout(() => {
+      close("timeout");
+    }, autoCloseMs);
+  }
+
+  return overlay;
+}
+
+function initMailingListThirdPagePopup() {
+  const isHomepage = isHomepageView();
+  if (isHomepage) {
+    let delayedPopupTimer = null;
+
+    document.addEventListener(
+      "twr:founding-promo-closed",
+      (event) => {
+        if (delayedPopupTimer) {
+          window.clearTimeout(delayedPopupTimer);
+        }
+
+        delayedPopupTimer = window.setTimeout(() => {
+          showMailingListPopup({
+            side: "opposite",
+            autoCloseMs: 15000,
+            shownEvent: "mailing_popup_sequence_shown",
+            closedEvent: "mailing_popup_sequence_closed",
+          });
+        }, 10000);
+
+        emitTelemetry("mailing_popup_sequence_scheduled", {
+          path: window.location.pathname,
+          reason: event?.detail?.reason || "unknown",
+        });
+      },
+      { once: true }
+    );
+    return;
+  }
+
+  const countKey = "twr_page_visit_count";
+  const shownKey = "twr_mailing_popup_shown";
+
+  try {
+    const nextCount = incrementSessionVisitCount(countKey);
+
+    if (sessionStorage.getItem(shownKey) === "true" || nextCount < 3) return;
+    sessionStorage.setItem(shownKey, "true");
+  } catch (error) {
+    // If storage is blocked we skip popup behavior.
+    return;
+  }
+
+  showMailingListPopup();
 }
 
 function initMobileNav() {
