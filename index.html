@@ -6,18 +6,18 @@
   <link rel="icon" type="image/png" href="assets/TonightWeRideFavcon-rounded.png" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#000000" />
-  <title>Tonight We Ride | Dallas Non-Profit Outreach</title>
-  <meta name="description" content="Tonight We Ride serves Dallas through homeless outreach, veteran support, need-help intake, community partners, and community events." />
-  <link rel="canonical" href="https://www.tonightweride.org/" />
-  <meta property="og:title" content="Tonight We Ride | Dallas Non-Profit Outreach" />
-  <meta property="og:description" content="Tonight We Ride serves Dallas through homeless outreach, veteran support, need-help intake, community partners, and community events." />
+  <title>Tonight We Ride | Dallas Community Outreach</title>
+  <meta name="description" content="Tonight We Ride is a Dallas community outreach nonprofit serving through homeless outreach, veteran support, crisis relief, community partnerships, and seasonal giving." />
+  <link rel="canonical" href="https://tonightweride.org/" />
+  <meta property="og:title" content="Tonight We Ride | Dallas Community Outreach" />
+  <meta property="og:description" content="Tonight We Ride is a Dallas community outreach nonprofit serving through homeless outreach, veteran support, crisis relief, community partnerships, and seasonal giving." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.tonightweride.org/" />
-  <meta property="og:image" content="https://www.tonightweride.org/assets/DallasHero.png" />
+  <meta property="og:url" content="https://tonightweride.org/" />
+  <meta property="og:image" content="https://tonightweride.org/assets/DallasHero.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Tonight We Ride | Dallas Non-Profit Outreach" />
-  <meta name="twitter:description" content="Tonight We Ride serves Dallas through homeless outreach, veteran support, need-help intake, community partners, and community events." />
-  <meta name="twitter:image" content="https://www.tonightweride.org/assets/DallasHero.png" />
+  <meta name="twitter:title" content="Tonight We Ride | Dallas Community Outreach" />
+  <meta name="twitter:description" content="Tonight We Ride is a Dallas community outreach nonprofit serving through homeless outreach, veteran support, crisis relief, community partnerships, and seasonal giving." />
+  <meta name="twitter:image" content="https://tonightweride.org/assets/DallasHero.png" />
   <meta name="twr-analytics-endpoint" content="" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,13 +36,51 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "NonProfit",
-      "name": "Tonight We Ride",
-      "url": "https://www.tonightweride.org/",
-      "logo": "https://www.tonightweride.org/assets/TonightWeRideLogo.png",
-      "areaServed": "Dallas, Texas",
-      "sameAs": [
-        "https://www.tonightweride.org/"
+      "@graph": [
+        {
+          "@type": "NonProfit",
+          "@id": "https://tonightweride.org/#organization",
+          "name": "Tonight We Ride",
+          "url": "https://tonightweride.org/",
+          "logo": "https://tonightweride.org/assets/TonightWeRideLogo.png",
+          "description": "Tonight We Ride is a Dallas community outreach nonprofit serving through homeless outreach, veteran support, crisis relief, community partnerships, and seasonal giving.",
+          "areaServed": {
+            "@type": "City",
+            "name": "Dallas, Texas"
+          },
+          "sameAs": [
+            "https://tonightweride.org/",
+            "https://www.facebook.com/profile.php?id=61582349795893",
+            "https://www.instagram.com/twrbigd/"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://tonightweride.org/#website",
+          "url": "https://tonightweride.org/",
+          "name": "Tonight We Ride",
+          "publisher": {
+            "@id": "https://tonightweride.org/#organization"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://tonightweride.org/#organization-contact",
+          "name": "Tonight We Ride",
+          "url": "https://tonightweride.org/",
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "contactType": "community outreach",
+              "url": "https://tonightweride.org/community-outreach.html"
+            },
+            {
+              "@type": "ContactPoint",
+              "contactType": "donations",
+              "url": "https://tonightweride.org/donate-now.html"
+            }
+          ]
+        }
       ]
     }
   </script>
@@ -114,7 +152,7 @@
       <div class="container">
         <p class="block-kicker">Our Mission</p>
         <p class="mission-lead">
-          Tonight We Ride exists to serve individuals and communities in need through direct action, meaningful connection, and compassionate outreach—providing food, resources, and support to the homeless, veterans, and those facing crisis.
+          Tonight We Ride is a Dallas community outreach nonprofit serving individuals and families in need through direct action, meaningful connection, and compassionate support for homelessness, veterans, crisis response, and neighborhood care.
         </p>
         <p class="mission-body">
           We are committed to showing up where help is needed most, building relationships, and changing the world, one person at a time.
