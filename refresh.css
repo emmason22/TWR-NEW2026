@@ -416,6 +416,8 @@ textarea:focus-visible {
 
 .support-form input,
 .support-form textarea {
+  box-sizing: border-box;
+  max-width: 100%;
   border-radius: 8px;
   border: 1px solid #c9d4e8;
   background: #fbfcff;
@@ -949,9 +951,14 @@ textarea:focus-visible {
 .footer-insider {
   display: grid;
   gap: 8px;
+  width: 100%;
 }
 
 .footer-insider input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.35);
   padding: 10px;
@@ -960,6 +967,8 @@ textarea:focus-visible {
 }
 
 .footer-insider button {
+  width: 100%;
+  min-width: 0;
   border: 0;
   border-radius: 999px;
   background: var(--rf-gold);
@@ -3225,6 +3234,7 @@ label,
     right: 12px;
     left: 12px;
     width: auto;
+    max-width: calc(100vw - 24px);
     bottom: 12px;
     padding: 16px 16px 14px;
     border-radius: 18px;
@@ -3249,6 +3259,16 @@ label,
   .founding-promo-cta {
     width: 100%;
     font-size: 17px;
+  }
+
+  .footer-insider {
+    gap: 10px;
+  }
+
+  .page-community #support-form .support-form,
+  .page-crisis #support-form .support-form {
+    padding: 16px;
+    overflow-x: clip;
   }
 }
 
@@ -3658,6 +3678,50 @@ label,
 .page-community #support-form .ml-form-embedSubmit {
   width: 100% !important;
   max-width: 100% !important;
+}
+
+.page-community #support-form .ml-form-embedBody *,
+.page-community #support-form .ml-form-embedContent *,
+.page-community #support-form .ml-form-embedSubmit *,
+.page-crisis #support-form .ml-form-embedBody *,
+.page-crisis #support-form .ml-form-embedContent *,
+.page-crisis #support-form .ml-form-embedSubmit * {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.page-community #support-form input,
+.page-community #support-form textarea,
+.page-community #support-form select,
+.page-crisis #support-form input,
+.page-crisis #support-form textarea,
+.page-crisis #support-form select {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.page-community #support-form input[type="checkbox"],
+.page-community #support-form input[type="radio"],
+.page-crisis #support-form input[type="checkbox"],
+.page-crisis #support-form input[type="radio"] {
+  width: auto !important;
+  max-width: none !important;
+}
+
+.page-community #support-form .ml-form-checkboxRow,
+.page-community #support-form .form-checkbox,
+.page-crisis #support-form .ml-form-checkboxRow,
+.page-crisis #support-form .form-checkbox {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+.page-community #support-form .ml-form-checkboxRow label,
+.page-crisis #support-form .ml-form-checkboxRow label {
+  flex: 1 1 220px;
+  min-width: 0;
 }
 
 /* Veteran Outreach MailerLite embed sizing */

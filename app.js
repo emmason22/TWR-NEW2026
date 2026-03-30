@@ -29,6 +29,10 @@ function getAnalyticsEndpoint() {
   return getMetaContent("twr-analytics-endpoint");
 }
 
+function isNarrowViewport() {
+  return window.matchMedia("(max-width: 680px)").matches;
+}
+
 function emitTelemetry(eventType, details) {
   const payload = {
     eventType,
@@ -591,17 +595,20 @@ function initFoundingMemberPromo() {
   cta?.addEventListener("click", () => closePromo("cta"));
   document.addEventListener("keydown", onKeydown);
 
+  const showDelayMs = isNarrowViewport() ? 1200 : 300;
+  const closeDelayMs = isNarrowViewport() ? 8000 : 12000;
+
   window.setTimeout(() => {
     promo.classList.add("is-visible");
     emitTelemetry("founding_promo_shown", {
       path: window.location.pathname,
       visitNumber,
     });
-  }, 300);
+  }, showDelayMs);
 
   closeTimer = window.setTimeout(() => {
     closePromo("timeout");
-  }, 12000);
+  }, closeDelayMs);
 }
 
 function showMailingListPopup(options = {}) {
@@ -674,6 +681,14 @@ function showMailingListPopup(options = {}) {
 function initMailingListThirdPagePopup() {
   const isHomepage = isHomepageView();
   if (isHomepage) {
+    if (isNarrowViewport()) {
+      emitTelemetry("mailing_popup_sequence_skipped", {
+        path: window.location.pathname,
+        reason: "narrow_viewport",
+      });
+      return;
+    }
+
     let delayedPopupTimer = null;
 
     document.addEventListener(
@@ -704,6 +719,14 @@ function initMailingListThirdPagePopup() {
 
   const countKey = "twr_page_visit_count";
   const shownKey = "twr_mailing_popup_shown";
+
+  if (isNarrowViewport()) {
+    emitTelemetry("mailing_popup_skipped", {
+      path: window.location.pathname,
+      reason: "narrow_viewport",
+    });
+    return;
+  }
 
   try {
     const nextCount = incrementSessionVisitCount(countKey);
@@ -988,6 +1011,53 @@ function initHomelessMailerLiteToggle() {
   updateState();
 }
 
+function initEmbeddedFormLabelOverrides() {
+  const configs = [
+    {
+      rootSelector: ".page-community .support-form",
+      buttonText: "Request Help",
+      formName: "Need Help Request",
+    },
+    {
+      rootSelector: ".page-crisis .support-form",
+      buttonText: "Request Crisis Support",
+      formName: "Crisis Relief Request",
+    },
+  ];
+
+  const applyOverride = (root, config) => {
+    const submitCandidates = root.querySelectorAll(
+      ".ml-form-embedSubmit button, .ml-form-embedSubmit [type='submit'], button[type='submit']"
+    );
+    submitCandidates.forEach((button) => {
+      if (!button) return;
+      button.textContent = config.buttonText;
+      button.setAttribute("aria-label", config.buttonText);
+    });
+
+    const form = root.querySelector("form");
+    if (form && config.formName) {
+      form.setAttribute("data-form-name", config.formName);
+    }
+  };
+
+  configs.forEach((config) => {
+    const root = document.querySelector(config.rootSelector);
+    if (!root) return;
+
+    applyOverride(root, config);
+
+    const observer = new MutationObserver(() => {
+      applyOverride(root, config);
+    });
+
+    observer.observe(root, {
+      childList: true,
+      subtree: true,
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initMotionReadyState();
   initFoundingMemberPromo();
@@ -998,6 +1068,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHomelessHeroVideoFade();
   initHomelessSupportFormToggle();
   initHomelessMailerLiteToggle();
+  initEmbeddedFormLabelOverrides();
   initFormAccessibility();
   initFoundingMemberSection();
   initSupportForms();
