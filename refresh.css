@@ -1114,6 +1114,17 @@ textarea:focus-visible {
   z-index: 1;
 }
 
+.programs-lead-photo {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 .programs-lead .editorial-link {
   margin-top: 16px;
   font-size: 18px;
@@ -1306,6 +1317,10 @@ img,
     max-width: 100%;
     font-size: 16px;
     line-height: 1.5;
+  }
+
+  .programs-lead-photo {
+    max-width: 100%;
   }
 }
 
