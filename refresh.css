@@ -1900,6 +1900,9 @@ label,
   .site-nav .nav-submenu a {
     font-size: 13px;
     opacity: 0.92;
+    display: block;
+    width: 100%;
+    white-space: nowrap;
   }
 }
 
