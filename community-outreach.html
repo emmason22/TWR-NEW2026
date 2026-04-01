@@ -104,15 +104,6 @@
       ]
     }
   </script>
-  <!-- MailerLite Universal -->
-  <script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-    (window,document,"script","https://assets.mailerlite.com/js/universal.js","ml");
-    ml("account", "2199291");
-  </script>
-  <!-- End MailerLite Universal -->
 </head>
 <body class="page-community">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -167,10 +158,33 @@
         <p>
           Please fill out the form below, and a member of Tonight We Ride will review your request as soon as possible.
         </p>
-        <div class="support-form" aria-label="Need Help MailerLite form embed">
-          <div class="ml-embedded" data-form="5z3Byd"></div>
+        <form class="support-form" aria-label="Need Help form" data-sheet-tab="Need Help" data-form-name="Need Help Request">
+          <label for="nh-name">Your Name</label>
+          <input id="nh-name" name="name" type="text" required />
+
+          <label for="nh-email">Email Address</label>
+          <input id="nh-email" name="email" type="email" required />
+
+          <label for="nh-phone">Phone Number</label>
+          <input id="nh-phone" name="phone" type="tel" required />
+
+          <label for="nh-person">Who Needs Help?</label>
+          <input id="nh-person" name="person_needing_help" type="text" placeholder="Your name or the name of the person needing support" required />
+
+          <label for="nh-request">How Can We Help?</label>
+          <textarea id="nh-request" name="request" rows="6" placeholder="Share what is happening and what support is needed." required></textarea>
+
+          <label class="form-checkbox" for="nh-opt-in">
+            <input id="nh-opt-in" name="email_opt_in" type="checkbox" value="yes" />
+            <span>Yes, keep me updated by email.</span>
+          </label>
+
+          <input class="hp-field" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <button class="btn-primary" type="submit">Request Help</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
           <p class="form-note">Requests are reviewed with care and confidentiality.</p>
-        </div>
+        </form>
       </div>
     </section>
   </main>
@@ -233,6 +247,6 @@
   </footer>
 
   <script src="script.js?v=3" defer></script>
-  <script src="app.js?v=29" defer></script>
+  <script src="app.js?v=30" defer></script>
 </body>
 </html>
