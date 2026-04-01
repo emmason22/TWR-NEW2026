@@ -1026,35 +1026,57 @@ function initEmbeddedFormLabelOverrides() {
   ];
 
   const applyOverride = (root, config) => {
+    let foundTargets = false;
     const submitCandidates = root.querySelectorAll(
       ".ml-form-embedSubmit button, .ml-form-embedSubmit [type='submit'], button[type='submit']"
     );
     submitCandidates.forEach((button) => {
       if (!button) return;
-      button.textContent = config.buttonText;
-      button.setAttribute("aria-label", config.buttonText);
+      foundTargets = true;
+
+      const currentText = (button.textContent || "").trim();
+      if (currentText !== config.buttonText) {
+        button.textContent = config.buttonText;
+      }
+
+      if (button.getAttribute("aria-label") !== config.buttonText) {
+        button.setAttribute("aria-label", config.buttonText);
+      }
     });
 
     const form = root.querySelector("form");
     if (form && config.formName) {
-      form.setAttribute("data-form-name", config.formName);
+      foundTargets = true;
+      if (form.getAttribute("data-form-name") !== config.formName) {
+        form.setAttribute("data-form-name", config.formName);
+      }
     }
+
+    return foundTargets;
   };
 
   configs.forEach((config) => {
     const root = document.querySelector(config.rootSelector);
     if (!root) return;
 
-    applyOverride(root, config);
+    if (applyOverride(root, config)) {
+      return;
+    }
 
     const observer = new MutationObserver(() => {
-      applyOverride(root, config);
+      if (applyOverride(root, config)) {
+        observer.disconnect();
+      }
     });
 
     observer.observe(root, {
       childList: true,
       subtree: true,
     });
+
+    window.setTimeout(() => {
+      observer.disconnect();
+    }, 10000);
   });
 }
 
