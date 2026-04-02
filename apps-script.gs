@@ -1,4 +1,17 @@
 const SPREADSHEET_ID = "1R023xpsvux5rK2TvaHP9iEKfsMSd_9flh_WFXzIOwY4";
+const MAILERLITE_SUBSCRIBERS_ENDPOINT = "https://connect.mailerlite.com/api/subscribers";
+const MAILERLITE_API_TOKEN_PROPERTY = "MAILERLITE_API_TOKEN";
+
+const MAILERLITE_GROUPS = {
+  "Need Help": {
+    id: "182321240648713577",
+    label: "Help Requests",
+  },
+  "Crisis Relief": {
+    id: "182321240648713577",
+    label: "Help Requests",
+  },
+};
 
 const TAB_COLUMNS = {
   "Need Help": [
@@ -80,8 +93,15 @@ function handleSubmit_(e) {
     const row = columns.map((column) => normalizeCell_(payload[column]));
 
     sheet.appendRow(row);
+    const rowNumber = sheet.getLastRow();
+    const mailerLiteResult = syncMailerLiteIfNeeded_(payload, tab);
+    updateMailerliteStatus_(sheet, rowNumber, columns, payload, mailerLiteResult);
 
-    return jsonResponse_({ ok: true, tab: tab });
+    return jsonResponse_({
+      ok: true,
+      tab: tab,
+      mailerlite_status: mailerLiteResult.status,
+    });
   } catch (error) {
     return jsonResponse_({ ok: false, error: String(error) });
   }
@@ -185,14 +205,17 @@ function normalizeIncomingPayload_(rawInput) {
 
 function applyDefaults_(payload, tab) {
   const optedIn = toBoolean_(payload.email_opt_in);
+  const mailerLiteGroup = getMailerLiteGroup_(tab);
+  const mailerLiteLabel = mailerLiteGroup ? mailerLiteGroup.label : (payload.mailerlite_group || tab);
+  const mailerLiteStatus = !optedIn ? "skipped" : (payload.mailerlite_status || "pending");
 
   return {
     ...payload,
     submitted_at: payload.submitted_at || new Date().toISOString(),
     status: payload.status || "new",
     email_opt_in: optedIn ? "yes" : "no",
-    mailerlite_group: payload.mailerlite_group || tab,
-    mailerlite_status: payload.mailerlite_status || (optedIn ? "pending" : "skipped"),
+    mailerlite_group: mailerLiteLabel,
+    mailerlite_status: mailerLiteStatus,
     internal_notes: payload.internal_notes || "",
   };
 }
@@ -218,6 +241,109 @@ function toBoolean_(value) {
 function normalizeCell_(value) {
   if (value === null || value === undefined) return "";
   return String(value);
+}
+
+function getMailerLiteGroup_(tab) {
+  return MAILERLITE_GROUPS[tab] || null;
+}
+
+function getMailerLiteToken_() {
+  return PropertiesService.getScriptProperties().getProperty(MAILERLITE_API_TOKEN_PROPERTY) || "";
+}
+
+function syncMailerLiteIfNeeded_(payload, tab) {
+  if (!toBoolean_(payload.email_opt_in)) {
+    return { status: "skipped" };
+  }
+
+  const email = normalizeCell_(payload.email).trim();
+  if (!email) {
+    return { status: "skipped_missing_email" };
+  }
+
+  const group = getMailerLiteGroup_(tab);
+  if (!group || !group.id) {
+    return { status: "skipped_missing_group" };
+  }
+
+  const token = getMailerLiteToken_().trim();
+  if (!token) {
+    return { status: "pending_missing_token" };
+  }
+
+  const requestBody = {
+    email: email,
+    groups: [group.id],
+    fields: buildMailerLiteFields_(payload),
+  };
+
+  const response = UrlFetchApp.fetch(MAILERLITE_SUBSCRIBERS_ENDPOINT, {
+    method: "post",
+    contentType: "application/json",
+    headers: {
+      Authorization: "Bearer " + token,
+      Accept: "application/json",
+    },
+    payload: JSON.stringify(requestBody),
+    muteHttpExceptions: true,
+  });
+
+  const code = response.getResponseCode();
+  const body = response.getContentText();
+
+  if (code >= 200 && code < 300) {
+    return { status: "synced", code: code };
+  }
+
+  return {
+    status: "failed",
+    code: code,
+    message: extractMailerLiteError_(body),
+  };
+}
+
+function buildMailerLiteFields_(payload) {
+  const fields = {};
+
+  if (payload.name) {
+    fields.name = normalizeCell_(payload.name);
+  }
+
+  if (payload.phone) {
+    fields.phone = normalizeCell_(payload.phone);
+  }
+
+  return fields;
+}
+
+function extractMailerLiteError_(body) {
+  if (!body) return "Unknown MailerLite error";
+
+  try {
+    const parsed = JSON.parse(body);
+    if (parsed && parsed.message) {
+      return String(parsed.message);
+    }
+    if (parsed && parsed.error && parsed.error.message) {
+      return String(parsed.error.message);
+    }
+  } catch (_) {
+    // Fall through and return raw body.
+  }
+
+  return String(body).slice(0, 180);
+}
+
+function updateMailerliteStatus_(sheet, rowNumber, columns, payload, result) {
+  const statusIndex = columns.indexOf("mailerlite_status");
+  if (statusIndex === -1) return;
+
+  let statusValue = result.status || normalizeCell_(payload.mailerlite_status);
+  if (result.status === "failed" && result.message) {
+    statusValue = result.status + ": " + result.message;
+  }
+
+  sheet.getRange(rowNumber, statusIndex + 1).setValue(statusValue);
 }
 
 function jsonResponse_(obj) {

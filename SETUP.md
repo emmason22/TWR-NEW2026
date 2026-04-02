@@ -5,12 +5,14 @@ Use these steps to connect the live support forms to Google Sheets.
 1. Open **Google Sheets** for your form responses, then click **Extensions > Apps Script**.
 2. In Apps Script, replace all code in `Code.gs` with the contents of this repo file: `apps-script.gs`.
 3. In the script, set `SPREADSHEET_ID` to your target sheet ID (the long ID in the Google Sheets URL).
-4. Click **Deploy > New deployment**:
+4. In Apps Script, open **Project Settings > Script properties** and add:
+   - `MAILERLITE_API_TOKEN` = your MailerLite API token
+5. Click **Deploy > New deployment**:
    - Type: **Web app**
    - Execute as: **Me**
    - Who has access: **Anyone**
    - Click **Deploy** and copy the **Web app URL** (the `/exec` URL).
-5. In this website codebase, replace every `APPS_SCRIPT_WEB_APP_URL` placeholder with your deployed Web app URL, then redeploy the site.
+6. In this website codebase, replace every `APPS_SCRIPT_WEB_APP_URL` placeholder with your deployed Web app URL, then redeploy the site.
 
 ## Frontend files already wired
 
@@ -30,3 +32,8 @@ Use these steps to connect the live support forms to Google Sheets.
   `submitted_at, status, intake_type, name, email, phone, request, email_opt_in, mailerlite_group, mailerlite_status, internal_notes`
 - Crisis Relief:
   `submitted_at, status, name, email, phone, city_area, crisis_type, request, email_opt_in, mailerlite_group, mailerlite_status, internal_notes`
+
+## MailerLite sync behavior
+
+- Opted-in submissions from `Need Help` and `Crisis Relief` are sent server-side to the `Help Requests` MailerLite group.
+- If MailerLite is unavailable or rejects a contact, the form still succeeds and the MailerLite result is recorded in `mailerlite_status`.
