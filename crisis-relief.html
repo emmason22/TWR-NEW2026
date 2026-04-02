@@ -23,6 +23,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2199291');
+  </script>
+  <!-- End MailerLite Universal -->
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="refresh.css?v=25" />
   <script type="application/ld+json">
@@ -182,44 +191,10 @@
         <p>
           If you or someone you know is facing an urgent hardship, share details below so our team can review and respond.
         </p>
-        <form class="support-form" aria-label="Crisis Relief request form" data-sheet-tab="Crisis Relief" data-form-name="Crisis Relief Request">
-          <label for="cr-name">Your Name</label>
-          <input id="cr-name" name="name" type="text" required />
-
-          <label for="cr-email">Email Address</label>
-          <input id="cr-email" name="email" type="email" required />
-
-          <label for="cr-phone">Phone Number</label>
-          <input id="cr-phone" name="phone" type="tel" required />
-
-          <label for="cr-city">City / Area</label>
-          <input id="cr-city" name="city_area" type="text" placeholder="Where is the crisis happening?" required />
-
-          <label for="cr-type">Type of Crisis</label>
-          <select id="cr-type" name="crisis_type" required>
-            <option value="">Select one</option>
-            <option value="Housing emergency">Housing emergency</option>
-            <option value="Fire or storm damage">Fire or storm damage</option>
-            <option value="Medical hardship">Medical hardship</option>
-            <option value="Food insecurity">Food insecurity</option>
-            <option value="Transportation crisis">Transportation crisis</option>
-            <option value="Other urgent hardship">Other urgent hardship</option>
-          </select>
-
-          <label for="cr-request">What Support Is Needed?</label>
-          <textarea id="cr-request" name="request" rows="6" placeholder="Share the situation and the support being requested." required></textarea>
-
-          <label class="form-checkbox" for="cr-opt-in">
-            <input id="cr-opt-in" name="email_opt_in" type="checkbox" value="yes" />
-            <span>Yes, keep me updated by email.</span>
-          </label>
-
-          <input class="hp-field" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
-
-          <button class="btn-primary" type="submit">Request Crisis Support</button>
-          <p class="form-status" role="status" aria-live="polite"></p>
+        <div class="support-form support-form-mailerlite" aria-label="Crisis Relief MailerLite form embed">
+          <div class="ml-embedded" data-form="aQOfBj"></div>
           <p class="form-note">Response goal: within 48 hours. If this is life-threatening, call 911 immediately.</p>
-        </form>
+        </div>
       </div>
     </section>
 
@@ -271,11 +246,9 @@
 
         <div class="footer-col">
           <h3>Be an Insider</h3>
-          <form class="footer-insider insider-form" aria-label="Footer insider signup">
-            <input type="email" name="email" placeholder="Email address" required />
-            <button type="submit">Sign Up</button>
-            <p class="insider-status" role="status" aria-live="polite"></p>
-          </form>
+          <div class="support-form support-form-mailerlite footer-mailing-form" aria-label="Footer mailing list signup">
+            <div class="ml-embedded" data-form="NwEkXj"></div>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">© 2026 Tonight We Ride. All rights reserved.</div>

@@ -3807,6 +3807,56 @@ label,
   padding: clamp(20px, 2.8vw, 32px);
 }
 
+/* Footer + donate MailerLite embeds */
+.footer-mailing-form,
+.insider-mailerlite-form {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.footer-mailing-form .ml-embedded,
+.insider-mailerlite-form .ml-embedded,
+.footer-mailing-form .ml-form-embedContainer,
+.footer-mailing-form .ml-form-embedWrapper,
+.footer-mailing-form .ml-form-successBody,
+.footer-mailing-form .ml-form-embedBody,
+.footer-mailing-form .ml-form-embedContent,
+.footer-mailing-form .ml-form-embedSubmit,
+.insider-mailerlite-form .ml-form-embedContainer,
+.insider-mailerlite-form .ml-form-embedWrapper,
+.insider-mailerlite-form .ml-form-successBody,
+.insider-mailerlite-form .ml-form-embedBody,
+.insider-mailerlite-form .ml-form-embedContent,
+.insider-mailerlite-form .ml-form-embedSubmit {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.footer-mailing-form .ml-form-embedContainer,
+.footer-mailing-form .ml-form-embedWrapper,
+.footer-mailing-form .ml-form-successBody,
+.insider-mailerlite-form .ml-form-embedContainer,
+.insider-mailerlite-form .ml-form-embedWrapper,
+.insider-mailerlite-form .ml-form-successBody {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.footer-mailing-form .ml-form-embedBody *,
+.footer-mailing-form .ml-form-embedContent *,
+.footer-mailing-form .ml-form-embedSubmit *,
+.insider-mailerlite-form .ml-form-embedBody *,
+.insider-mailerlite-form .ml-form-embedContent *,
+.insider-mailerlite-form .ml-form-embedSubmit * {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
 .page-home #insider .ml-embedded,
 .page-home #insider .ml-form-embedContainer,
 .page-home #insider .ml-form-embedWrapper,
