@@ -1,18 +1,17 @@
-# Google Sheets Form Setup (Apps Script Web App)
+# MailerLite Form Setup (Apps Script Web App)
 
-Use these steps to connect the live support forms to Google Sheets.
+Use these steps to connect the live support forms directly to MailerLite through Apps Script.
 
-1. Open **Google Sheets** for your form responses, then click **Extensions > Apps Script**.
+1. Open the existing **Apps Script** project that powers your live form endpoint.
 2. In Apps Script, replace all code in `Code.gs` with the contents of this repo file: `apps-script.gs`.
-3. In the script, set `SPREADSHEET_ID` to your target sheet ID (the long ID in the Google Sheets URL).
-4. In Apps Script, open **Project Settings > Script properties** and add:
+3. In Apps Script, open **Project Settings > Script properties** and add:
    - `MAILERLITE_API_TOKEN` = your MailerLite API token
-5. Click **Deploy > New deployment**:
+4. Click **Deploy > Manage deployments** and edit the existing web app deployment, or create a new one:
    - Type: **Web app**
    - Execute as: **Me**
    - Who has access: **Anyone**
    - Click **Deploy** and copy the **Web app URL** (the `/exec` URL).
-6. In this website codebase, replace every `APPS_SCRIPT_WEB_APP_URL` placeholder with your deployed Web app URL, then redeploy the site.
+5. If your website files are still using the same deployed `/exec` URL, no frontend changes are needed. If the Apps Script URL changes, update the `twr-form-endpoint` meta tag values in the site pages.
 
 ## Frontend files already wired
 
@@ -22,18 +21,10 @@ Use these steps to connect the live support forms to Google Sheets.
 - `crisis-relief.html`
 - `app.js`
 
-## Sheet tabs and columns expected by the script
-
-- Need Help:
-  `submitted_at, status, name, email, phone, person_needing_help, request, email_opt_in, mailerlite_group, mailerlite_status, internal_notes`
-- Veteran Outreach:
-  `submitted_at, status, name, email, phone, branch, request, email_opt_in, mailerlite_group, mailerlite_status, internal_notes`
-- Homeless Outreach:
-  `submitted_at, status, intake_type, name, email, phone, request, email_opt_in, mailerlite_group, mailerlite_status, internal_notes`
-- Crisis Relief:
-  `submitted_at, status, name, email, phone, city_area, crisis_type, request, email_opt_in, mailerlite_group, mailerlite_status, internal_notes`
-
 ## MailerLite sync behavior
 
-- Opted-in submissions from `Need Help` and `Crisis Relief` are sent server-side to the `Help Requests` MailerLite group.
-- If MailerLite is unavailable or rejects a contact, the form still succeeds and the MailerLite result is recorded in `mailerlite_status`.
+- `Need Help` submissions are sent server-side to the `Help Requests` MailerLite group.
+- `Crisis Relief` submissions are sent server-side to the `Help Requests` MailerLite group.
+- All submissions are stored in MailerLite, even when the checkbox is unchecked.
+- Unchecked submissions are sent with MailerLite status `unconfirmed`; checked submissions are sent with status `active`.
+- The script creates any missing MailerLite custom fields it needs for the intake data.

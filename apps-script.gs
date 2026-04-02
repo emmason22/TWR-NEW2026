@@ -1,6 +1,7 @@
-const SPREADSHEET_ID = "1R023xpsvux5rK2TvaHP9iEKfsMSd_9flh_WFXzIOwY4";
 const MAILERLITE_SUBSCRIBERS_ENDPOINT = "https://connect.mailerlite.com/api/subscribers";
+const MAILERLITE_FIELDS_ENDPOINT = "https://connect.mailerlite.com/api/fields";
 const MAILERLITE_API_TOKEN_PROPERTY = "MAILERLITE_API_TOKEN";
+const MAILERLITE_FIELDS_CACHE_KEY = "MAILERLITE_FIELDS_BY_KEY";
 
 const MAILERLITE_GROUPS = {
   "Need Help": {
@@ -13,61 +14,15 @@ const MAILERLITE_GROUPS = {
   },
 };
 
-const TAB_COLUMNS = {
-  "Need Help": [
-    "submitted_at",
-    "status",
-    "name",
-    "email",
-    "phone",
-    "person_needing_help",
-    "request",
-    "email_opt_in",
-    "mailerlite_group",
-    "mailerlite_status",
-    "internal_notes",
-  ],
-  "Veteran Outreach": [
-    "submitted_at",
-    "status",
-    "name",
-    "email",
-    "phone",
-    "branch",
-    "request",
-    "email_opt_in",
-    "mailerlite_group",
-    "mailerlite_status",
-    "internal_notes",
-  ],
-  "Homeless Outreach": [
-    "submitted_at",
-    "status",
-    "intake_type",
-    "name",
-    "email",
-    "phone",
-    "request",
-    "email_opt_in",
-    "mailerlite_group",
-    "mailerlite_status",
-    "internal_notes",
-  ],
-  "Crisis Relief": [
-    "submitted_at",
-    "status",
-    "name",
-    "email",
-    "phone",
-    "city_area",
-    "crisis_type",
-    "request",
-    "email_opt_in",
-    "mailerlite_group",
-    "mailerlite_status",
-    "internal_notes",
-  ],
-};
+const SUPPORTED_TABS = ["Need Help", "Crisis Relief"];
+const CUSTOM_FIELD_DEFS = [
+  { key: "support_form", name: "support_form", type: "text" },
+  { key: "email_opt_in", name: "email_opt_in", type: "text" },
+  { key: "person_needing_help", name: "person_needing_help", type: "text" },
+  { key: "city_area", name: "city_area", type: "text" },
+  { key: "crisis_type", name: "crisis_type", type: "text" },
+  { key: "request", name: "request", type: "text" },
+];
 
 function doPost(e) {
   return handleSubmit_(e);
@@ -82,25 +37,18 @@ function handleSubmit_(e) {
     const incoming = normalizeIncomingPayload_(parseIncomingPayload_(e));
     const tab = String(incoming.tab || "").trim();
 
-    if (!TAB_COLUMNS[tab]) {
+    if (SUPPORTED_TABS.indexOf(tab) === -1) {
       return jsonResponse_({ ok: false, error: "Unknown tab" });
     }
 
     const payload = applyDefaults_(incoming, tab);
-    const columns = TAB_COLUMNS[tab];
-    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
-    const sheet = getOrCreateSheet_(spreadsheet, tab, columns);
-    const row = columns.map((column) => normalizeCell_(payload[column]));
-
-    sheet.appendRow(row);
-    const rowNumber = sheet.getLastRow();
     const mailerLiteResult = syncMailerLiteIfNeeded_(payload, tab);
-    updateMailerliteStatus_(sheet, rowNumber, columns, payload, mailerLiteResult);
 
     return jsonResponse_({
-      ok: true,
+      ok: mailerLiteResult.status !== "failed",
       tab: tab,
       mailerlite_status: mailerLiteResult.status,
+      error: mailerLiteResult.status === "failed" ? (mailerLiteResult.message || "MailerLite sync failed") : undefined,
     });
   } catch (error) {
     return jsonResponse_({ ok: false, error: String(error) });
@@ -207,7 +155,7 @@ function applyDefaults_(payload, tab) {
   const optedIn = toBoolean_(payload.email_opt_in);
   const mailerLiteGroup = getMailerLiteGroup_(tab);
   const mailerLiteLabel = mailerLiteGroup ? mailerLiteGroup.label : (payload.mailerlite_group || tab);
-  const mailerLiteStatus = !optedIn ? "skipped" : (payload.mailerlite_status || "pending");
+  const mailerLiteStatus = payload.mailerlite_status || "pending";
 
   return {
     ...payload,
@@ -216,22 +164,7 @@ function applyDefaults_(payload, tab) {
     email_opt_in: optedIn ? "yes" : "no",
     mailerlite_group: mailerLiteLabel,
     mailerlite_status: mailerLiteStatus,
-    internal_notes: payload.internal_notes || "",
   };
-}
-
-function getOrCreateSheet_(spreadsheet, tabName, columns) {
-  let sheet = spreadsheet.getSheetByName(tabName);
-  if (!sheet) {
-    sheet = spreadsheet.insertSheet(tabName);
-  }
-
-  const hasHeader = sheet.getLastRow() > 0;
-  if (!hasHeader) {
-    sheet.getRange(1, 1, 1, columns.length).setValues([columns]);
-  }
-
-  return sheet;
 }
 
 function toBoolean_(value) {
@@ -252,30 +185,37 @@ function getMailerLiteToken_() {
 }
 
 function syncMailerLiteIfNeeded_(payload, tab) {
-  if (!toBoolean_(payload.email_opt_in)) {
-    return { status: "skipped" };
-  }
-
   const email = normalizeCell_(payload.email).trim();
   if (!email) {
-    return { status: "skipped_missing_email" };
+    return { status: "failed", message: "Email is required for MailerLite intake." };
   }
 
   const group = getMailerLiteGroup_(tab);
   if (!group || !group.id) {
-    return { status: "skipped_missing_group" };
+    return { status: "failed", message: "MailerLite group is not configured." };
   }
 
   const token = getMailerLiteToken_().trim();
   if (!token) {
-    return { status: "pending_missing_token" };
+    return { status: "failed", message: "MailerLite API token is missing." };
   }
+
+  ensureMailerLiteFields_(token);
+
+  const optedIn = toBoolean_(payload.email_opt_in);
+  const now = formatMailerLiteTimestamp_(new Date());
 
   const requestBody = {
     email: email,
     groups: [group.id],
     fields: buildMailerLiteFields_(payload),
+    status: optedIn ? "active" : "unconfirmed",
+    subscribed_at: now,
   };
+
+  if (optedIn) {
+    requestBody.opted_in_at = now;
+  }
 
   const response = UrlFetchApp.fetch(MAILERLITE_SUBSCRIBERS_ENDPOINT, {
     method: "post",
@@ -303,7 +243,10 @@ function syncMailerLiteIfNeeded_(payload, tab) {
 }
 
 function buildMailerLiteFields_(payload) {
-  const fields = {};
+  const fields = {
+    support_form: normalizeCell_(payload.tab || ""),
+    email_opt_in: toBoolean_(payload.email_opt_in) ? "yes" : "no",
+  };
 
   if (payload.name) {
     fields.name = normalizeCell_(payload.name);
@@ -311,6 +254,22 @@ function buildMailerLiteFields_(payload) {
 
   if (payload.phone) {
     fields.phone = normalizeCell_(payload.phone);
+  }
+
+  if (payload.person_needing_help) {
+    fields.person_needing_help = normalizeCell_(payload.person_needing_help);
+  }
+
+  if (payload.city_area) {
+    fields.city_area = normalizeCell_(payload.city_area);
+  }
+
+  if (payload.crisis_type) {
+    fields.crisis_type = normalizeCell_(payload.crisis_type);
+  }
+
+  if (payload.request) {
+    fields.request = normalizeCell_(payload.request);
   }
 
   return fields;
@@ -334,16 +293,100 @@ function extractMailerLiteError_(body) {
   return String(body).slice(0, 180);
 }
 
-function updateMailerliteStatus_(sheet, rowNumber, columns, payload, result) {
-  const statusIndex = columns.indexOf("mailerlite_status");
-  if (statusIndex === -1) return;
+function ensureMailerLiteFields_(token) {
+  const existing = getMailerLiteFieldsByKey_(token);
+  let changed = false;
 
-  let statusValue = result.status || normalizeCell_(payload.mailerlite_status);
-  if (result.status === "failed" && result.message) {
-    statusValue = result.status + ": " + result.message;
+  CUSTOM_FIELD_DEFS.forEach((fieldDef) => {
+    if (existing[fieldDef.key]) return;
+
+    const response = UrlFetchApp.fetch(MAILERLITE_FIELDS_ENDPOINT, {
+      method: "post",
+      contentType: "application/json",
+      headers: {
+        Authorization: "Bearer " + token,
+        Accept: "application/json",
+      },
+      payload: JSON.stringify({
+        name: fieldDef.name,
+        type: fieldDef.type,
+      }),
+      muteHttpExceptions: true,
+    });
+
+    const code = response.getResponseCode();
+    const body = response.getContentText();
+    if (code >= 200 && code < 300) {
+      existing[fieldDef.key] = true;
+      changed = true;
+      return;
+    }
+
+    if (code === 422 && /already|taken/i.test(body)) {
+      existing[fieldDef.key] = true;
+      changed = true;
+      return;
+    }
+
+    throw new Error("MailerLite field setup failed: " + extractMailerLiteError_(body));
+  });
+
+  if (changed) {
+    CacheService.getScriptCache().put(MAILERLITE_FIELDS_CACHE_KEY, JSON.stringify(existing), 21600);
+  }
+}
+
+function getMailerLiteFieldsByKey_(token) {
+  const cache = CacheService.getScriptCache();
+  const cached = cache.get(MAILERLITE_FIELDS_CACHE_KEY);
+  if (cached) {
+    try {
+      return JSON.parse(cached);
+    } catch (_) {
+      // fall through
+    }
   }
 
-  sheet.getRange(rowNumber, statusIndex + 1).setValue(statusValue);
+  const response = UrlFetchApp.fetch(MAILERLITE_FIELDS_ENDPOINT, {
+    method: "get",
+    headers: {
+      Authorization: "Bearer " + token,
+      Accept: "application/json",
+    },
+    muteHttpExceptions: true,
+  });
+
+  const code = response.getResponseCode();
+  const body = response.getContentText();
+  if (code < 200 || code >= 300) {
+    throw new Error("MailerLite fields lookup failed: " + extractMailerLiteError_(body));
+  }
+
+  const parsed = JSON.parse(body);
+  const existing = {};
+  (parsed.data || []).forEach((field) => {
+    if (field && field.key) {
+      existing[String(field.key)] = true;
+    }
+  });
+
+  cache.put(MAILERLITE_FIELDS_CACHE_KEY, JSON.stringify(existing), 21600);
+  return existing;
+}
+
+function formatMailerLiteTimestamp_(date) {
+  const pad = function(value) {
+    return String(value).padStart(2, "0");
+  };
+
+  return (
+    date.getFullYear() +
+    "-" + pad(date.getMonth() + 1) +
+    "-" + pad(date.getDate()) +
+    " " + pad(date.getHours()) +
+    ":" + pad(date.getMinutes()) +
+    ":" + pad(date.getSeconds())
+  );
 }
 
 function jsonResponse_(obj) {
