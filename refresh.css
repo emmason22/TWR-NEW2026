@@ -40,19 +40,19 @@ body {
   display: grid;
   grid-template-columns: auto minmax(0,1fr) auto;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .site-nav {
-  gap: clamp(8px, 1.4vw, 16px);
+  gap: clamp(6px, 1vw, 12px);
   justify-content: center;
   flex-wrap: nowrap;
   min-width: 0;
 }
 
 .site-nav a {
-  font-size: clamp(11px, 1.02vw, 14px);
-  letter-spacing: 0.028em;
+  font-size: clamp(10px, 0.9vw, 13px);
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #fff;
   white-space: nowrap;
@@ -61,15 +61,43 @@ body {
   transition: color 160ms ease;
 }
 
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .donate-btn {
   color: #000;
   border: 1px solid var(--rf-gold);
   background: var(--rf-gold);
   border-radius: 999px;
-  padding: 10px 16px;
+  padding: 9px 13px;
   font-weight: 700;
   letter-spacing: 0.02em;
+  font-size: 12px;
   transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.volunteer-btn {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: transparent;
+  border-radius: 999px;
+  padding: 9px 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 12px;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.volunteer-btn:hover,
+.volunteer-btn:focus-visible {
+  background: var(--rf-gold);
+  border-color: var(--rf-gold);
+  color: #111;
 }
 
 .site-nav a:hover {
@@ -576,6 +604,17 @@ textarea:focus-visible {
   }
 }
 
+@media (max-width: 1120px) {
+  .site-nav {
+    gap: 8px;
+  }
+
+  .site-nav a {
+    font-size: 11px;
+    letter-spacing: 0.018em;
+  }
+}
+
 @media (max-width: 980px) {
   .header-inner {
     padding: 10px 14px;
@@ -892,7 +931,7 @@ textarea:focus-visible {
 
 .footer-extended {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  grid-template-columns: 1.35fr 1fr 1fr 0.9fr 1.1fr;
   gap: 24px;
 }
 
@@ -946,6 +985,34 @@ textarea:focus-visible {
   width: 24px;
   height: 24px;
   object-fit: contain;
+}
+
+.footer-cta-buttons {
+  display: grid;
+  gap: 10px;
+}
+
+.footer-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 42px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.footer-col .footer-cta-buttons .donate-btn.footer-cta-btn {
+  color: #000;
+}
+
+.footer-col .footer-cta-buttons .volunteer-btn.footer-cta-btn {
+  font-size: 14px;
+}
+
+.footer-col .footer-cta-buttons .volunteer-btn.footer-cta-btn:hover,
+.footer-col .footer-cta-buttons .volunteer-btn.footer-cta-btn:focus-visible {
+  color: #000;
 }
 
 .footer-insider {
@@ -1259,6 +1326,7 @@ textarea:focus-visible {
 
 /* Square treatment for images and buttons */
 .donate-btn,
+.volunteer-btn,
 .hero-btn,
 .btn-primary,
 .insider-submit,
@@ -1720,6 +1788,7 @@ h4,
 .donate-jumbo-title,
 .site-nav a,
 .donate-btn,
+.volunteer-btn,
 .hero-btn,
 .btn-primary,
 .insider-submit,
@@ -1765,6 +1834,7 @@ label,
 
 .site-nav a,
 .donate-btn,
+.volunteer-btn,
 .hero-btn,
 .btn-primary,
 .insider-submit,
@@ -1880,6 +1950,16 @@ label,
 
   .site-header.nav-enhanced .site-nav a {
     min-height: 44px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .volunteer-btn,
+  .donate-btn {
+    padding: 8px 12px;
+    font-size: 12px;
   }
 
   .site-nav .nav-dropdown {
@@ -3455,6 +3535,7 @@ label,
 }
 
 .donate-btn,
+.volunteer-btn,
 .hero-btn,
 .btn-primary,
 .donate-jumbo-btn,
@@ -3473,6 +3554,7 @@ label,
 }
 
 .donate-btn:hover,
+.volunteer-btn:hover,
 .hero-btn:hover,
 .btn-primary:hover,
 .donate-jumbo-btn:hover,
@@ -3486,6 +3568,7 @@ label,
 }
 
 .donate-btn:active,
+.volunteer-btn:active,
 .hero-btn:active,
 .btn-primary:active,
 .donate-jumbo-btn:active,
@@ -3527,6 +3610,47 @@ label,
 .footer-social-links a:hover .footer-social-icon,
 .footer-social-links a:focus-visible .footer-social-icon {
   transform: scale(1.07);
+}
+
+.page-volunteer #volunteer-form .container.form-wide {
+  max-width: 1200px;
+}
+
+.page-volunteer #volunteer-form .support-form {
+  padding: clamp(20px, 2.8vw, 32px);
+}
+
+.page-volunteer #volunteer-form .ml-embedded,
+.page-volunteer #volunteer-form .ml-form-embedContainer,
+.page-volunteer #volunteer-form .ml-form-embedWrapper,
+.page-volunteer #volunteer-form .ml-form-successBody,
+.page-volunteer #volunteer-form .ml-form-embedBody,
+.page-volunteer #volunteer-form .ml-form-embedContent,
+.page-volunteer #volunteer-form .ml-form-embedSubmit {
+  width: 100%;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.page-volunteer #volunteer-form .ml-form-embedBody *,
+.page-volunteer #volunteer-form .ml-form-embedContent *,
+.page-volunteer #volunteer-form .ml-form-embedSubmit * {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.page-volunteer #volunteer-form input,
+.page-volunteer #volunteer-form textarea,
+.page-volunteer #volunteer-form select {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.page-volunteer #volunteer-form input[type="checkbox"],
+.page-volunteer #volunteer-form input[type="radio"] {
+  width: auto !important;
+  max-width: none !important;
 }
 
 .reveal-item.is-visible {

@@ -154,8 +154,29 @@ textarea:focus-visible{
   justify-content: center;
 }
 
+.volunteer-btn{
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 12px 18px;
+  border-radius: 0; /* square */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .donate-btn:hover{
   filter: brightness(0.95);
+}
+
+.volunteer-btn:hover{
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000;
 }
 
 /* HERO */
