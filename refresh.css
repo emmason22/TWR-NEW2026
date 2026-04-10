@@ -1007,12 +1007,18 @@ textarea:focus-visible {
 }
 
 .footer-col .footer-cta-buttons .volunteer-btn.footer-cta-btn {
+  color: #0f2f73;
   font-size: 14px;
+}
+
+.footer-col .footer-cta-buttons .donate-btn.footer-cta-btn:hover,
+.footer-col .footer-cta-buttons .donate-btn.footer-cta-btn:focus-visible {
+  color: #000;
 }
 
 .footer-col .footer-cta-buttons .volunteer-btn.footer-cta-btn:hover,
 .footer-col .footer-cta-buttons .volunteer-btn.footer-cta-btn:focus-visible {
-  color: #000;
+  color: #0f2f73;
 }
 
 .footer-insider {
