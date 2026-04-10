@@ -81,6 +81,11 @@ body {
   transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
 }
 
+.header-actions .donate-btn {
+  padding: 10px 15px;
+  font-size: 13px;
+}
+
 .volunteer-btn {
   color: var(--rf-gold);
   border: 1px solid var(--rf-gold);
@@ -1962,10 +1967,14 @@ label,
     gap: 8px;
   }
 
-  .volunteer-btn,
-  .donate-btn {
+  .volunteer-btn {
     padding: 8px 12px;
     font-size: 12px;
+  }
+
+  .header-actions .donate-btn {
+    padding: 9px 14px;
+    font-size: 13px;
   }
 
   .site-nav .nav-dropdown {

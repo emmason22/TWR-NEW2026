@@ -154,6 +154,11 @@ textarea:focus-visible{
   justify-content: center;
 }
 
+.header-actions .donate-btn{
+  padding: 13px 20px;
+  font-size: 13px;
+}
+
 .volunteer-btn{
   text-decoration: none;
   font-family: "Oswald", sans-serif;
