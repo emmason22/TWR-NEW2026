@@ -82,9 +82,9 @@ body {
 }
 
 .volunteer-btn {
-  color: #0f2f73;
-  border: 1px solid #f4ecde;
-  background: #f4ecde;
+  color: var(--rf-gold);
+  border: 1px solid var(--rf-gold);
+  background: #000;
   border-radius: 999px;
   padding: 9px 13px;
   font-weight: 700;
@@ -97,7 +97,7 @@ body {
 .volunteer-btn:focus-visible {
   background: var(--rf-gold);
   border-color: var(--rf-gold);
-  color: #111;
+  color: #000;
 }
 
 .site-nav a:hover {
@@ -1007,7 +1007,7 @@ textarea:focus-visible {
 }
 
 .footer-col .footer-cta-buttons .volunteer-btn.footer-cta-btn {
-  color: #0f2f73;
+  color: var(--rf-gold);
   font-size: 14px;
 }
 
@@ -1018,7 +1018,7 @@ textarea:focus-visible {
 
 .footer-col .footer-cta-buttons .volunteer-btn.footer-cta-btn:hover,
 .footer-col .footer-cta-buttons .volunteer-btn.footer-cta-btn:focus-visible {
-  color: #0f2f73;
+  color: #000;
 }
 
 .footer-insider {
