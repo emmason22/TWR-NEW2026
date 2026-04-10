@@ -135,7 +135,7 @@ textarea:focus-visible{
 .header-actions{
   display: flex;
   align-items: flex-end;
-  gap: 12px;
+  gap: 14px;
   flex: 0 0 auto;
 }
 
