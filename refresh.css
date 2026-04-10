@@ -63,7 +63,7 @@ body {
 
 .header-actions {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
   flex-wrap: wrap;
   gap: 8px;
