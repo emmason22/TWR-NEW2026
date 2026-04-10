@@ -705,7 +705,7 @@ function initMailingListThirdPagePopup() {
             shownEvent: "mailing_popup_sequence_shown",
             closedEvent: "mailing_popup_sequence_closed",
           });
-        }, 10000);
+        }, 4000);
 
         emitTelemetry("mailing_popup_sequence_scheduled", {
           path: window.location.pathname,
