@@ -3137,6 +3137,10 @@ label,
   cursor: pointer;
 }
 
+.founding-one-time-select {
+  margin: 14px 0 16px;
+}
+
 .founding-tier-select::after {
   content: "";
   position: absolute;
