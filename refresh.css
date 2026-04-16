@@ -2938,8 +2938,24 @@ label,
   max-width: none;
 }
 
-.founding-member-copy {
+.founding-member-lead .block-kicker {
+  margin-bottom: 10px;
+}
+
+.founding-member-lead h1 {
   margin: 0 0 14px;
+}
+
+.founding-member-lead .founding-member-note {
+  margin: 0 0 14px;
+  max-width: 1100px;
+  line-height: 1.55;
+}
+
+.founding-member-copy {
+  margin: 0 0 18px;
+  max-width: 1100px;
+  line-height: 1.5;
 }
 
 .founding-benefits {
@@ -2968,6 +2984,26 @@ label,
   border: 1px solid rgba(12, 30, 63, 0.14);
   background: #fff;
   box-shadow: var(--rf-shadow-md);
+}
+
+.founding-member-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.founding-member-card-intro {
+  min-width: 0;
+}
+
+.founding-member-card-intro h2 {
+  margin: 0 0 8px;
+}
+
+.founding-member-card-intro .founding-member-note {
+  line-height: 1.5;
 }
 
 .founding-member-eyebrow {
@@ -3138,7 +3174,27 @@ label,
 }
 
 .founding-one-time-select {
-  margin: 14px 0 16px;
+  margin: 0;
+  width: auto;
+  min-height: 36px;
+  padding: 8px 12px;
+  font-size: 13px;
+  border-color: var(--rf-blue);
+  background: var(--rf-blue);
+  color: #fff;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+.founding-one-time-select::after {
+  display: none;
+}
+
+.founding-one-time-select:hover,
+.founding-one-time-select:focus-visible {
+  border-color: var(--rf-blue-deep);
+  background: var(--rf-blue-deep);
+  color: #fff;
 }
 
 .founding-tier-select::after {
@@ -3185,6 +3241,16 @@ label,
 }
 
 @media (max-width: 760px) {
+  .founding-member-card-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .founding-one-time-select {
+    width: 100%;
+    justify-content: center;
+  }
+
   .founding-tier-grid {
     grid-template-columns: 1fr;
   }
