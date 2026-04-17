@@ -72,6 +72,15 @@ function initHeroVideoFallback() {
   const errorBox = document.querySelector(".hero-video-error");
 
   if (!video) return;
+  video.loop = false;
+
+  video.addEventListener("ended", () => {
+    // Keep the final frame visible after playback completes.
+    if (Number.isFinite(video.duration) && video.duration > 0) {
+      video.currentTime = Math.max(0, video.duration - 0.05);
+    }
+    video.pause();
+  });
 
   video.addEventListener("error", () => {
     if (errorBox) errorBox.style.display = "block";
