@@ -4276,8 +4276,8 @@ label,
   max-width: 1100px;
 }
 
-.page-volunteer .volunteer-role-section h2 {
-  margin: 0 0 96px;
+.page-volunteer .volunteer-role-section .container.narrow > h2 {
+  margin: 0 0 120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5232,8 +5232,8 @@ label,
     padding: 14px;
   }
 
-  .page-volunteer .volunteer-role-section h2 {
-    margin-bottom: 56px;
+  .page-volunteer .volunteer-role-section .container.narrow > h2 {
+    margin-bottom: 72px;
     font-size: clamp(28px, 7vw, 42px);
     gap: 10px;
   }
