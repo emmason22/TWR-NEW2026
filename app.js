@@ -87,13 +87,13 @@ function setStatusMessage(statusEl, message, state = "info") {
 
 async function submitPayload(endpoint, payload) {
   try {
-    await submitPayloadJson(endpoint, payload);
+    return await submitPayloadJson(endpoint, payload);
   } catch (postError) {
     // Some Apps Script deployments redirect POST to a GET-only URL.
     if (!shouldTryGetFallback(postError)) {
       throw postError;
     }
-    await submitPayloadQuery(endpoint, payload);
+    return await submitPayloadQuery(endpoint, payload);
   }
 }
 
@@ -151,6 +151,8 @@ async function parseSubmissionResponse(response) {
   if (!parsed || parsed.ok !== true) {
     throw new Error((parsed && parsed.error) || "Submission was rejected by endpoint.");
   }
+
+  return parsed;
 }
 
 function toBoolean(value) {
@@ -629,16 +631,30 @@ function showMailingListPopup(options = {}) {
   overlay.innerHTML = `
     <aside class="mailing-popup" role="dialog" aria-modal="true" aria-labelledby="mailing-popup-title" aria-describedby="mailing-popup-copy">
       <button type="button" class="mailing-popup-dismiss" aria-label="Close mailing list popup">Close</button>
+      <img class="mailing-popup-logo" src="assets/TonightWeRideFavcon-rounded.png" alt="Tonight We Ride emblem" loading="lazy" decoding="async" />
       <p class="mailing-popup-kicker">Stay Connected</p>
       <h2 id="mailing-popup-title">Join Our Mailing List</h2>
       <p id="mailing-popup-copy">Get outreach updates, event announcements, and ways to support Tonight We Ride.</p>
-      <a class="mailing-popup-cta" href="index.html#insider" data-track="mailing-popup-cta">Join the Mailing List</a>
+      <form class="mailing-popup-form" novalidate>
+        <label class="sr-only" for="mailing-popup-email">Email address</label>
+        <div class="mailing-popup-fields">
+          <input id="mailing-popup-email" name="email" type="email" inputmode="email" autocomplete="email" required placeholder="Enter your email" />
+          <button type="submit" class="mailing-popup-cta">Join the Mailing List</button>
+        </div>
+        <ul class="mailing-popup-benefits" aria-label="Newsletter benefits">
+          <li>See the impact of your donations in action.</li>
+          <li>Get alerted to upcoming events and volunteer opportunities.</li>
+        </ul>
+        <p class="mailing-popup-status" role="status" aria-live="polite"></p>
+      </form>
     </aside>
   `;
 
   let autoCloseTimer = null;
+  let isSubmitting = false;
   const close = (reason) => {
     if (!overlay.isConnected) return;
+    if (isSubmitting) return;
     if (autoCloseTimer) {
       window.clearTimeout(autoCloseTimer);
       autoCloseTimer = null;
@@ -659,8 +675,106 @@ function showMailingListPopup(options = {}) {
     if (event.target === overlay) close("backdrop");
   });
 
-  overlay.querySelector(".mailing-popup-dismiss")?.addEventListener("click", () => close("dismiss"));
-  overlay.querySelector(".mailing-popup-cta")?.addEventListener("click", () => close("cta"));
+  const dismissBtn = overlay.querySelector(".mailing-popup-dismiss");
+  const popupForm = overlay.querySelector(".mailing-popup-form");
+  const emailInput = overlay.querySelector("#mailing-popup-email");
+  const submitBtn = popupForm?.querySelector("button[type='submit']");
+  const statusEl = popupForm?.querySelector(".mailing-popup-status");
+
+  const setPopupStatus = (message, state = "info") => {
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.setAttribute("data-state", state);
+  };
+
+  const setPopupSubmitting = (submitting) => {
+    isSubmitting = submitting;
+    if (submitBtn) {
+      submitBtn.disabled = submitting;
+      submitBtn.setAttribute("aria-busy", submitting ? "true" : "false");
+    }
+  };
+
+  dismissBtn?.addEventListener("click", () => close("dismiss"));
+
+  popupForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!emailInput || isSubmitting) return;
+
+    const email = String(emailInput.value || "").trim();
+    if (!email || !emailInput.checkValidity()) {
+      emailInput.setAttribute("aria-invalid", "true");
+      emailInput.focus();
+      setPopupStatus("Enter a valid email address to continue.", "error");
+      emitTelemetry("mailing_popup_submit_invalid", { path: window.location.pathname });
+      return;
+    }
+
+    emailInput.setAttribute("aria-invalid", "false");
+    setPopupSubmitting(true);
+    setPopupStatus("Submitting...", "info");
+    emitTelemetry("mailing_popup_submit_attempt", {
+      path: window.location.pathname,
+      side,
+    });
+
+    const endpoint = getMetaContent("twr-form-endpoint");
+    const endpointConfigured = isLiveEndpoint(endpoint);
+
+    try {
+      if (endpointConfigured) {
+        const submission = await submitPayload(endpoint, {
+          tab: "Newsletter",
+          submitted_at: new Date().toISOString(),
+          status: "new",
+          name: "",
+          email,
+          email_opt_in: "yes",
+          source: "exit_popup",
+          mailerlite_group: "Newsletter",
+          mailerlite_status: "pending",
+        });
+        if (submission?.mailerlite_status === "skipped") {
+          setPopupStatus(
+            "Thanks. Your interest was captured, but newsletter sync is not configured yet.",
+            "info"
+          );
+          emitTelemetry("mailing_popup_submit_local_capture", {
+            path: window.location.pathname,
+            endpointConfigured: true,
+            mailerliteStatus: "skipped",
+          });
+        } else {
+          setPopupStatus("Thanks. You are signed up for updates.", "success");
+          emitTelemetry("mailing_popup_submit_success", {
+            path: window.location.pathname,
+            endpointConfigured: true,
+          });
+        }
+      } else {
+        setPopupStatus(
+          "Thanks. We captured your interest. Add your Apps Script endpoint to enable live newsletter signup.",
+          "info"
+        );
+        emitTelemetry("mailing_popup_submit_local_capture", {
+          path: window.location.pathname,
+          endpointConfigured: false,
+        });
+      }
+
+      window.setTimeout(() => {
+        setPopupSubmitting(false);
+        close("submit_success");
+      }, 700);
+    } catch (error) {
+      setPopupSubmitting(false);
+      setPopupStatus("Could not submit right now. Please try again in a moment.", "error");
+      emitTelemetry("mailing_popup_submit_error", {
+        path: window.location.pathname,
+        message: String(error),
+      });
+    }
+  });
 
   document.body.appendChild(overlay);
   document.addEventListener("keydown", onKeydown);
@@ -678,67 +792,75 @@ function showMailingListPopup(options = {}) {
   return overlay;
 }
 
-function initMailingListThirdPagePopup() {
-  const isHomepage = isHomepageView();
-  if (isHomepage) {
-    if (isNarrowViewport()) {
-      emitTelemetry("mailing_popup_sequence_skipped", {
-        path: window.location.pathname,
-        reason: "narrow_viewport",
-      });
-      return;
-    }
-
-    let delayedPopupTimer = null;
-
-    document.addEventListener(
-      "twr:founding-promo-closed",
-      (event) => {
-        if (delayedPopupTimer) {
-          window.clearTimeout(delayedPopupTimer);
-        }
-
-        delayedPopupTimer = window.setTimeout(() => {
-          showMailingListPopup({
-            side: "opposite",
-            autoCloseMs: 15000,
-            shownEvent: "mailing_popup_sequence_shown",
-            closedEvent: "mailing_popup_sequence_closed",
-          });
-        }, 4000);
-
-        emitTelemetry("mailing_popup_sequence_scheduled", {
-          path: window.location.pathname,
-          reason: event?.detail?.reason || "unknown",
-        });
-      },
-      { once: true }
-    );
-    return;
-  }
-
-  const countKey = "twr_page_visit_count";
-  const shownKey = "twr_mailing_popup_shown";
+function initMailingListExitIntentPopup() {
+  const pathname = window.location.pathname || "";
+  const highIntentPage = /\/(donate-now|founding-member)\.html$/i.test(pathname);
+  const shownKey = "twr_exit_intent_popup_shown";
 
   if (isNarrowViewport()) {
-    emitTelemetry("mailing_popup_skipped", {
-      path: window.location.pathname,
+    emitTelemetry("mailing_popup_exit_intent_skipped", {
+      path: pathname,
       reason: "narrow_viewport",
     });
     return;
   }
 
-  try {
-    const nextCount = incrementSessionVisitCount(countKey);
-
-    if (sessionStorage.getItem(shownKey) === "true" || nextCount < 3) return;
-    sessionStorage.setItem(shownKey, "true");
-  } catch (error) {
-    // If storage is blocked we skip popup behavior.
+  if (highIntentPage) {
+    emitTelemetry("mailing_popup_exit_intent_skipped", {
+      path: pathname,
+      reason: "high_intent_page",
+    });
     return;
   }
 
-  showMailingListPopup();
+  try {
+    if (sessionStorage.getItem(shownKey) === "true") {
+      emitTelemetry("mailing_popup_exit_intent_skipped", {
+        path: pathname,
+        reason: "already_shown_this_session",
+      });
+      return;
+    }
+  } catch (error) {
+    emitTelemetry("mailing_popup_exit_intent_skipped", {
+      path: pathname,
+      reason: "storage_unavailable",
+    });
+    return;
+  }
+
+  let hasTriggered = false;
+
+  const showPopup = () => {
+    if (hasTriggered) return;
+    hasTriggered = true;
+
+    try {
+      sessionStorage.setItem(shownKey, "true");
+    } catch (error) {
+      // Continue even if storage write fails.
+    }
+
+    showMailingListPopup({
+      shownEvent: "mailing_popup_exit_intent_shown",
+      closedEvent: "mailing_popup_exit_intent_closed",
+    });
+    emitTelemetry("mailing_popup_exit_intent_triggered", {
+      path: pathname,
+    });
+  };
+
+  const handleMouseOut = (event) => {
+    if (hasTriggered) return;
+    const related = event.relatedTarget || event.toElement;
+    if (related) return;
+    if (typeof event.clientY === "number" && event.clientY > 14) return;
+    document.removeEventListener("mouseout", handleMouseOut);
+    showPopup();
+  };
+
+  document.addEventListener("mouseout", handleMouseOut);
+  emitTelemetry("mailing_popup_exit_intent_armed", { path: pathname });
 }
 
 function initMobileNav() {
@@ -1080,10 +1202,262 @@ function initEmbeddedFormLabelOverrides() {
   });
 }
 
+function initVolunteerConversionFlow() {
+  const roleSection = document.querySelector(".page-volunteer .volunteer-role-section");
+  if (!roleSection) return;
+
+  const cards = Array.from(roleSection.querySelectorAll(".volunteer-role-card"));
+  const selectionMessage = roleSection.querySelector("[data-volunteer-role-selection]");
+  const hiddenRoleField = roleSection.querySelector("#volunteer-role-selection-field");
+  const formSection = document.querySelector(".page-volunteer #volunteer-form");
+  const formShell = formSection?.querySelector(".volunteer-form-shell");
+  const formHeading = formSection?.querySelector("h2");
+  if (!cards.length || !formSection || !formShell) return;
+
+  let activeRole = cards.find((card) => card.classList.contains("is-selected"))?.getAttribute("data-role") || "";
+
+  const upsertRoleField = (form, roleValue) => {
+    if (!form || !roleValue) return;
+
+    let hidden = form.querySelector("input[name='volunteer_role']");
+    if (!hidden) {
+      hidden = document.createElement("input");
+      hidden.type = "hidden";
+      hidden.name = "volunteer_role";
+      form.appendChild(hidden);
+    }
+    hidden.value = roleValue;
+
+    const selectTargets = form.querySelectorAll(
+      "select[name*='role' i], select[id*='role' i], select[name*='volunteer' i], select[id*='volunteer' i]"
+    );
+    selectTargets.forEach((select) => {
+      const option = Array.from(select.options || []).find((opt) => {
+        const text = `${opt.textContent || ""} ${opt.value || ""}`.toLowerCase();
+        return text.includes(roleValue.toLowerCase());
+      });
+      if (option) {
+        select.value = option.value;
+        select.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    });
+
+    const textTargets = form.querySelectorAll(
+      "input[type='text'][name*='role' i], input[type='text'][id*='role' i], textarea[name*='role' i], textarea[id*='role' i]"
+    );
+    textTargets.forEach((field) => {
+      field.value = roleValue;
+      field.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+  };
+
+  const syncRoleToForm = (roleValue) => {
+    if (!roleValue) return;
+    formShell.querySelectorAll("form").forEach((form) => upsertRoleField(form, roleValue));
+  };
+
+  const setActiveCard = (roleValue) => {
+    activeRole = roleValue;
+    cards.forEach((card) => {
+      const isActive = card.getAttribute("data-role") === roleValue;
+      card.classList.toggle("is-selected", isActive);
+      card.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+    if (selectionMessage) {
+      selectionMessage.textContent = `Selected pathway: ${roleValue}`;
+    }
+    if (hiddenRoleField) {
+      hiddenRoleField.value = roleValue;
+    }
+    syncRoleToForm(roleValue);
+  };
+
+  const focusVolunteerForm = () => {
+    formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (!formHeading) return;
+    if (!formHeading.hasAttribute("tabindex")) {
+      formHeading.setAttribute("tabindex", "-1");
+    }
+    window.setTimeout(() => {
+      formHeading.focus({ preventScroll: true });
+    }, 320);
+  };
+
+  cards.forEach((card) => {
+    card.setAttribute(
+      "aria-pressed",
+      card.getAttribute("data-role") === activeRole ? "true" : "false"
+    );
+    card.addEventListener("click", () => {
+      const roleValue = card.getAttribute("data-role") || "";
+      if (!roleValue) return;
+      setActiveCard(roleValue);
+      focusVolunteerForm();
+      emitTelemetry("volunteer_role_selected", {
+        path: window.location.pathname,
+        role: roleValue,
+      });
+    });
+  });
+
+  const formObserver = new MutationObserver(() => {
+    syncRoleToForm(activeRole);
+  });
+  formObserver.observe(formShell, { childList: true, subtree: true });
+  window.setTimeout(() => {
+    formObserver.disconnect();
+  }, 15000);
+
+  if (activeRole) {
+    setActiveCard(activeRole);
+  } else {
+    const defaultRole = cards[0]?.getAttribute("data-role") || "";
+    if (defaultRole) {
+      setActiveCard(defaultRole);
+    }
+  }
+}
+
+function normalizeVolunteerRole(value) {
+  const input = String(value || "").trim().toLowerCase();
+  if (!input) return "";
+
+  const roleMap = {
+    "outreach volunteer": "Outreach Volunteer",
+    "event volunteer": "Event Volunteer",
+    "skills volunteer": "Skills Volunteer",
+    outreach: "Outreach Volunteer",
+    event: "Event Volunteer",
+    skills: "Skills Volunteer",
+  };
+
+  return roleMap[input] || "";
+}
+
+function initVolunteerSignupPage() {
+  const page = document.querySelector(".page-volunteer-signup");
+  if (!page) return;
+
+  const form = page.querySelector("form.support-form");
+  if (!form) return;
+
+  const firstNameInput = form.querySelector("input[name='first_name']");
+  const lastNameInput = form.querySelector("input[name='last_name']");
+  const fullNameInput = form.querySelector("#volunteer-full-name");
+  const roleInput = form.querySelector("#volunteer-role-field");
+  const requestInput = form.querySelector("#volunteer-request-field");
+
+  const roleFromQuery = normalizeVolunteerRole(new URLSearchParams(window.location.search).get("role"));
+  const defaultRole = normalizeVolunteerRole(roleInput?.value) || "Outreach Volunteer";
+  const selectedRole = roleFromQuery || defaultRole;
+
+  const syncFullName = () => {
+    if (!fullNameInput) return;
+    const fullName = `${firstNameInput?.value || ""} ${lastNameInput?.value || ""}`
+      .replace(/\s+/g, " ")
+      .trim();
+    fullNameInput.value = fullName;
+  };
+
+  if (roleInput) {
+    roleInput.value = selectedRole;
+  }
+
+  if (requestInput) {
+    requestInput.value = `Volunteer pathway interest: ${selectedRole}`;
+  }
+
+  firstNameInput?.addEventListener("input", syncFullName);
+  lastNameInput?.addEventListener("input", syncFullName);
+
+  form.addEventListener("submit", () => {
+    syncFullName();
+    if (requestInput && !requestInput.value.trim()) {
+      requestInput.value = `Volunteer pathway interest: ${selectedRole}`;
+    }
+  });
+
+  syncFullName();
+}
+
+function initDonateConversionPanel() {
+  const panel = document.querySelector(".page-donate .donation-options-panel");
+  if (!panel) return;
+
+  const cards = Array.from(panel.querySelectorAll(".donation-choice-card"));
+  const customInput = panel.querySelector("#donation-custom-amount");
+  const monthlyToggle = panel.querySelector("#donation-monthly-toggle");
+  const cta = panel.querySelector("#donation-primary-cta");
+  if (!cards.length || !customInput || !monthlyToggle || !cta) return;
+
+  let selectedCard = cards.find((card) => card.classList.contains("is-selected")) || cards[0];
+
+  const setCardState = (activeCard) => {
+    cards.forEach((card) => {
+      const isActive = card === activeCard;
+      card.classList.toggle("is-selected", isActive);
+      card.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+    selectedCard = activeCard;
+  };
+
+  const updateCta = () => {
+    const defaultOnceUrl = cta.getAttribute("data-default-once-url") || "";
+    const customOnceUrl = cta.getAttribute("data-custom-once-url") || defaultOnceUrl;
+    const monthlyUrl = cta.getAttribute("data-monthly-url") || "#founding-member";
+    const customValue = Number(customInput.value || "0");
+    const hasCustomValue = Number.isFinite(customValue) && customValue > 0;
+    const isMonthly = Boolean(monthlyToggle.checked);
+
+    if (isMonthly) {
+      cta.href = monthlyUrl;
+      cta.removeAttribute("target");
+      cta.removeAttribute("rel");
+      cta.textContent = "Choose Monthly Membership";
+      panel.classList.add("is-monthly");
+      panel.classList.remove("has-custom-amount");
+      return;
+    }
+
+    panel.classList.remove("is-monthly");
+
+    if (hasCustomValue) {
+      cta.href = customOnceUrl;
+      cta.textContent = "Donate Custom Amount";
+      panel.classList.add("has-custom-amount");
+    } else {
+      cta.href = selectedCard?.getAttribute("data-donate-url") || defaultOnceUrl;
+      cta.textContent = "Donate Now";
+      panel.classList.remove("has-custom-amount");
+    }
+
+    cta.setAttribute("target", "_blank");
+    cta.setAttribute("rel", "noopener noreferrer");
+  };
+
+  cards.forEach((card) => {
+    card.setAttribute("aria-pressed", card === selectedCard ? "true" : "false");
+    card.addEventListener("click", () => {
+      setCardState(card);
+      if (!monthlyToggle.checked) {
+        updateCta();
+      }
+      emitTelemetry("donation_option_selected", {
+        path: window.location.pathname,
+        amount: card.getAttribute("data-amount") || "unknown",
+      });
+    });
+  });
+
+  customInput.addEventListener("input", updateCta);
+  monthlyToggle.addEventListener("change", updateCta);
+  updateCta();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initMotionReadyState();
   initFoundingMemberPromo();
-  initMailingListThirdPagePopup();
+  initMailingListExitIntentPopup();
   initAboutNavDropdown();
   initMobileNav();
   initImagePerformanceDefaults();
@@ -1091,6 +1465,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initHomelessSupportFormToggle();
   initHomelessMailerLiteToggle();
   initEmbeddedFormLabelOverrides();
+  initVolunteerConversionFlow();
+  initVolunteerSignupPage();
+  initDonateConversionPanel();
   initFormAccessibility();
   initFoundingMemberSection();
   initSupportForms();
