@@ -32,7 +32,7 @@
   </script>
   <!-- End MailerLite Universal -->
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="refresh.css?v=26" />
+  <link rel="stylesheet" href="refresh.css?v=31" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -80,18 +80,64 @@
 
   <main class="subpage-main" id="main-content">
     <h1 class="sr-only">Volunteer</h1>
-    <section class="subpage-section" id="volunteer-form">
-      <div class="container form-wide">
-        <h2>Volunteer With Tonight We Ride</h2>
-        <p>
-          Complete the form below to join outreach efforts and support neighbors in need across Dallas.
+    <section class="hero volunteer-page-hero" aria-label="Volunteer hero">
+      <div class="hero-media">
+        <img class="volunteer-hero-image" src="assets/HomelessHomepage.png" alt="Volunteer outreach in Dallas" loading="eager" decoding="async" />
+      </div>
+      <div class="hero-next volunteer-hero-next" aria-label="Volunteer call to action">
+        <h2 class="hero-headline">Volunteer With Tonight We Ride</h2>
+        <p class="hero-subline">Join outreach teams supporting homeless neighbors, veterans, and families in crisis across Dallas.</p>
+        <div class="hero-home-ctas volunteer-hero-ctas">
+          <a class="donate-btn" href="volunteer-signup.html" data-track="volunteer-hero-signup">SIGN UP TO VOLUNTEER</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="subpage-section impact-snapshot home-impact-proof" aria-label="Impact snapshot">
+      <div class="container narrow">
+        <h2>Dallas Outreach Impact Snapshot</h2>
+        <p class="home-impact-proof-intro">
+          Since 1996, Tonight We Ride has delivered direct outreach support for Dallas families, homeless neighbors, and veterans through consistent, community-led action.
         </p>
-        <div class="support-form volunteer-form-shell" aria-label="Volunteer form">
-          <div class="ml-embedded" data-form="BSSLBu"></div>
-          <p class="form-note">
-            If the form does not load, use
-            <a class="editorial-link" href="https://preview.mailerlite.io/forms/2199291/182463860197819815/share" target="_blank" rel="noopener noreferrer">this direct volunteer form link</a>.
-          </p>
+        <div class="donate-tier-grid home-impact-grid">
+          <article class="impact-stat">
+            <img class="impact-icon" src="assets/Icons/26Years.png" alt="26 years of Dallas community outreach" data-asset="assets/Icons/26Years.png" loading="lazy" decoding="async" />
+            <p class="impact-number">26 Years</p>
+            <p class="impact-label">Serving Dallas</p>
+          </article>
+          <article class="impact-stat">
+            <img class="impact-icon" src="assets/Icons/families.png" alt="Thousands of families supported through outreach" data-asset="assets/Icons/families.png" loading="lazy" decoding="async" />
+            <p class="impact-number">Thousands</p>
+            <p class="impact-label">of Families Supported</p>
+          </article>
+          <article class="impact-stat">
+            <img class="impact-icon" src="assets/Icons/Volunteer.png" alt="Hundreds of volunteers mobilized for community support" data-asset="assets/Icons/Volunteer.png" loading="lazy" decoding="async" />
+            <p class="impact-number">Hundreds</p>
+            <p class="impact-label">of Volunteers Mobilized</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="subpage-section volunteer-role-section" aria-label="Volunteer pathways">
+      <div class="container narrow">
+        <h2><span aria-hidden="true"></span>Volunteer Pathways<span aria-hidden="true"></span></h2>
+        <div class="volunteer-role-grid" role="list" aria-label="Volunteer role options">
+          <article class="volunteer-role-card is-selected" role="listitem">
+            <p class="volunteer-role-title">Outreach Volunteer</p>
+            <p class="volunteer-role-copy">Street outreach and supply distribution.</p>
+            <a class="volunteer-role-action donate-btn" href="volunteer-signup.html?role=Outreach%20Volunteer" data-track="volunteer-role-outreach-signup">Sign Up</a>
+          </article>
+          <article class="volunteer-role-card" role="listitem">
+            <p class="volunteer-role-title">Event Volunteer</p>
+            <p class="volunteer-role-copy">Toy drives and community events.</p>
+            <a class="volunteer-role-action donate-btn" href="volunteer-signup.html?role=Event%20Volunteer" data-track="volunteer-role-event-signup">Sign Up</a>
+          </article>
+          <article class="volunteer-role-card" role="listitem">
+            <p class="volunteer-role-title">Skills Volunteer</p>
+            <p class="volunteer-role-copy">Photography, logistics, and coordination.</p>
+            <a class="volunteer-role-action donate-btn" href="volunteer-signup.html?role=Skills%20Volunteer" data-track="volunteer-role-skills-signup">Sign Up</a>
+          </article>
         </div>
       </div>
     </section>
@@ -155,6 +201,6 @@
   </footer>
 
   <script src="script.js?v=3" defer></script>
-  <script src="app.js?v=30" defer></script>
+  <script src="app.js?v=31" defer></script>
 </body>
 </html>
