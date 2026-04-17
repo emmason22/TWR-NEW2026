@@ -4277,7 +4277,7 @@ label,
 }
 
 .page-volunteer .volunteer-role-section .container.narrow > h2 {
-  margin: 0 0 80px;
+  margin: 0 0 72px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5027,7 +5027,7 @@ label,
   margin: 0 0 9px;
   color: #fff;
   font-family: "Oswald", sans-serif;
-  font-size: clamp(30px, 4.1vw, 48px);
+  font-size: clamp(28px, 3.8vw, 44px);
   line-height: 0.92;
   letter-spacing: 0.01em;
   text-transform: uppercase;
@@ -5039,7 +5039,7 @@ label,
   max-width: 88%;
   color: #dbe7fa;
   font-family: "Source Sans 3", sans-serif;
-  font-size: clamp(17px, 1.45vw, 23px);
+  font-size: clamp(16px, 1.3vw, 21px);
   line-height: 1.25;
 }
 
@@ -5149,12 +5149,12 @@ label,
   }
 
   .mailing-popup h2 {
-    font-size: clamp(28px, 9vw, 42px);
+    font-size: clamp(26px, 8.2vw, 38px);
   }
 
   .mailing-popup #mailing-popup-copy {
     max-width: 100%;
-    font-size: clamp(15px, 4.1vw, 19px);
+    font-size: clamp(14px, 3.8vw, 18px);
     line-height: 1.25;
   }
 
@@ -5233,7 +5233,7 @@ label,
   }
 
   .page-volunteer .volunteer-role-section .container.narrow > h2 {
-    margin-bottom: 48px;
+    margin-bottom: 44px;
     font-size: clamp(28px, 7vw, 42px);
     gap: 10px;
   }
