@@ -1426,8 +1426,10 @@ function initDonateConversionPanel() {
       cta.textContent = "Donate Custom Amount";
       panel.classList.add("has-custom-amount");
     } else {
-      cta.href = selectedCard?.getAttribute("data-donate-url") || defaultOnceUrl;
-      cta.textContent = "Donate Now";
+      const selectedUrl = selectedCard?.getAttribute("data-donate-url") || defaultOnceUrl;
+      const selectedAmount = selectedCard?.getAttribute("data-amount") || "";
+      cta.href = selectedUrl;
+      cta.textContent = selectedAmount ? `Donate ${selectedAmount}` : "Donate Now";
       panel.classList.remove("has-custom-amount");
     }
 
@@ -1439,9 +1441,9 @@ function initDonateConversionPanel() {
     card.setAttribute("aria-pressed", card === selectedCard ? "true" : "false");
     card.addEventListener("click", () => {
       setCardState(card);
-      if (!monthlyToggle.checked) {
-        updateCta();
-      }
+      if (customInput.value) customInput.value = "";
+      if (monthlyToggle.checked) monthlyToggle.checked = false;
+      updateCta();
       emitTelemetry("donation_option_selected", {
         path: window.location.pathname,
         amount: card.getAttribute("data-amount") || "unknown",
