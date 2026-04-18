@@ -1404,7 +1404,7 @@ function initDonateConversionPanel() {
   const updateCta = () => {
     const defaultOnceUrl = cta.getAttribute("data-default-once-url") || "";
     const customOnceUrl = cta.getAttribute("data-custom-once-url") || defaultOnceUrl;
-    const monthlyUrl = cta.getAttribute("data-monthly-url") || "#founding-member";
+    const monthlyUrl = cta.getAttribute("data-monthly-url") || "founding-member.html#membership-tiers";
     const customValue = Number(customInput.value || "0");
     const hasCustomValue = Number.isFinite(customValue) && customValue > 0;
     const isMonthly = Boolean(monthlyToggle.checked);
