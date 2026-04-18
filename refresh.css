@@ -1212,10 +1212,20 @@ textarea:focus-visible {
 
 .page-donate .donation-options-panel .section-title-spaced {
   margin-top: 0;
-  margin-bottom: 4px;
+  margin-bottom: 0;
   font-size: clamp(30px, 3.6vw, 44px);
-  width: 100%;
+  width: auto;
   text-align: center;
+}
+
+.page-donate .donation-options-heading-row {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 8px;
 }
 
 .page-donate .donation-choice-grid {
@@ -1254,8 +1264,8 @@ textarea:focus-visible {
 }
 
 .page-donate .donation-most-impact-btn {
-  margin: 0 0 8px;
-  align-self: flex-start;
+  margin: 0;
+  align-self: center;
   text-align: center;
   padding: 6px 12px;
   border: 1px solid #c79d2a;
