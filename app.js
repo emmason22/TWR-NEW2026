@@ -631,7 +631,7 @@ function showMailingListPopup(options = {}) {
   overlay.innerHTML = `
     <aside class="mailing-popup" role="dialog" aria-modal="true" aria-labelledby="mailing-popup-title" aria-describedby="mailing-popup-copy">
       <button type="button" class="mailing-popup-dismiss" aria-label="Close mailing list popup">Close</button>
-      <img class="mailing-popup-logo" src="assets/TonightWeRideFavcon-rounded.png" alt="Tonight We Ride emblem" loading="lazy" decoding="async" />
+      <img class="mailing-popup-logo" src="assets/TonightWeRideLogo.png" alt="Tonight We Ride logo" loading="lazy" decoding="async" />
       <p class="mailing-popup-kicker">Stay Connected</p>
       <h2 id="mailing-popup-title">Join Our Mailing List</h2>
       <p id="mailing-popup-copy">Get outreach updates, event announcements, and ways to support Tonight We Ride.</p>

@@ -1226,6 +1226,16 @@ textarea:focus-visible {
   width: 100%;
 }
 
+.page-donate .donation-choice-featured {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.page-donate .donation-choice-featured .donation-choice-card {
+  flex: 1 1 auto;
+}
+
 .page-donate .donation-choice-card {
   display: flex;
   flex-direction: column;
@@ -1254,7 +1264,7 @@ textarea:focus-visible {
 }
 
 .page-donate .donation-most-impact-btn {
-  margin: 0 0 8px;
+  margin: 0;
   align-self: flex-start;
   text-align: center;
   padding: 6px 12px;
@@ -5011,9 +5021,9 @@ label,
 }
 
 .mailing-popup-logo {
-  width: clamp(58px, 8vw, 78px);
+  width: clamp(130px, 26vw, 220px);
   height: auto;
-  margin: 0 auto 6px;
+  margin: 0 auto 8px;
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.44));
 }
 
@@ -5147,7 +5157,7 @@ label,
   }
 
   .mailing-popup-logo {
-    width: 56px;
+    width: min(56vw, 180px);
     margin-bottom: 6px;
   }
 
