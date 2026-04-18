@@ -6,6 +6,7 @@ Use these steps to connect the live support forms directly to MailerLite through
 2. In Apps Script, replace all code in `Code.gs` with the contents of this repo file: `apps-script.gs`.
 3. In Apps Script, open **Project Settings > Script properties** and add:
    - `MAILERLITE_API_TOKEN` = your MailerLite API token
+   - `MAILERLITE_NEWSLETTER_GROUP_ID` = MailerLite group ID for newsletter popup signups (optional, but required for live newsletter sync)
 4. Click **Deploy > Manage deployments** and edit the existing web app deployment, or create a new one:
    - Type: **Web app**
    - Execute as: **Me**
@@ -25,6 +26,7 @@ Use these steps to connect the live support forms directly to MailerLite through
 
 - `Need Help` submissions are sent server-side to the `Help Requests` MailerLite group.
 - `Crisis Relief` submissions are sent server-side to the `Help Requests` MailerLite group.
+- `Newsletter` popup submissions are sent server-side to the group ID in `MAILERLITE_NEWSLETTER_GROUP_ID`.
 - All submissions are stored in MailerLite, even when the checkbox is unchecked.
 - Unchecked submissions are sent with MailerLite status `unconfirmed`; checked submissions are sent with status `active`.
 - The script creates any missing MailerLite custom fields it needs for the intake data.

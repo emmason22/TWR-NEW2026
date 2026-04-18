@@ -1,6 +1,7 @@
 const MAILERLITE_SUBSCRIBERS_ENDPOINT = "https://connect.mailerlite.com/api/subscribers";
 const MAILERLITE_FIELDS_ENDPOINT = "https://connect.mailerlite.com/api/fields";
 const MAILERLITE_API_TOKEN_PROPERTY = "MAILERLITE_API_TOKEN";
+const MAILERLITE_NEWSLETTER_GROUP_ID_PROPERTY = "MAILERLITE_NEWSLETTER_GROUP_ID";
 const MAILERLITE_FIELDS_CACHE_KEY = "MAILERLITE_FIELDS_BY_KEY";
 
 const MAILERLITE_GROUPS = {
@@ -14,7 +15,7 @@ const MAILERLITE_GROUPS = {
   },
 };
 
-const SUPPORTED_TABS = ["Need Help", "Crisis Relief"];
+const SUPPORTED_TABS = ["Need Help", "Crisis Relief", "Newsletter"];
 const CUSTOM_FIELD_DEFS = [
   { key: "support_form", name: "support_form", type: "text" },
   { key: "email_opt_in", name: "email_opt_in", type: "text" },
@@ -177,7 +178,26 @@ function normalizeCell_(value) {
 }
 
 function getMailerLiteGroup_(tab) {
+  if (tab === "Newsletter") {
+    const groupId = getNewsletterGroupId_();
+    if (!groupId) {
+      return {
+        id: "",
+        label: "Newsletter",
+        missingConfig: true,
+      };
+    }
+    return {
+      id: groupId,
+      label: "Newsletter",
+    };
+  }
+
   return MAILERLITE_GROUPS[tab] || null;
+}
+
+function getNewsletterGroupId_() {
+  return PropertiesService.getScriptProperties().getProperty(MAILERLITE_NEWSLETTER_GROUP_ID_PROPERTY) || "";
 }
 
 function getMailerLiteToken_() {
@@ -192,6 +212,9 @@ function syncMailerLiteIfNeeded_(payload, tab) {
 
   const group = getMailerLiteGroup_(tab);
   if (!group || !group.id) {
+    if (tab === "Newsletter") {
+      return { status: "skipped", message: "Newsletter group is not configured." };
+    }
     return { status: "failed", message: "MailerLite group is not configured." };
   }
 

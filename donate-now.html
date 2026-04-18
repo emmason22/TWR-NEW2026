@@ -79,41 +79,74 @@
   </header>
 
   <main class="subpage-main" id="main-content">
-    <section class="subpage-section">
+    <section class="subpage-section donate-conversion-section">
       <div class="container narrow">
-        <p class="block-kicker">Support Tonight We Ride</p>
-        <h1>Donate Now</h1>
-        <p>
-          Your gift supports immediate outreach and long-term stabilization pathways for people navigating homelessness,
-          veterans in crisis, and families facing emergencies.
-        </p>
-        <p class="founding-member-note">
-          Tonight We Ride has applied for federal 501(c)(3) tax-exempt status and is currently pending IRS determination.
-          Donations may not be tax-deductible unless and until that status is approved.
-        </p>
+        <div class="donate-hero-panel">
+          <p class="block-kicker">Support Tonight We Ride</p>
+          <h1>Make a Donation</h1>
+          <p>
+            Your donation helps us provide emergency assistance, homeless outreach, veteran support, and community events for neighbors in need.
+          </p>
+          <p class="founding-member-note">
+            Tonight We Ride has applied for federal 501(c)(3) tax-exempt status and is currently pending IRS determination.
+            Donations may not be tax-deductible unless and until that status is approved.
+          </p>
+          <p class="donate-top-cta-row">
+            <a class="donate-cta-pill primary donate-hero-cta" href="#donation-options" data-track="donate-page-jump-options">Choose an Amount</a>
+          </p>
+        </div>
 
-        <h2 class="section-title-spaced">Choose Your Impact</h2>
-        <div class="donate-tier-grid">
-          <a class="donate-tier donate-tier-link" href="https://buy.stripe.com/dRm4gBccHa8A3wA4yx3Nm04" target="_blank" rel="noopener noreferrer" aria-label="Donate any amount once">
-            <h3>Choose Your Donation</h3>
-            <p>Donate any amount, it all helps!</p>
-          </a>
-          <a class="donate-tier donate-tier-link" href="https://buy.stripe.com/cNi5kF6Sn0y03wAghf3Nm06" target="_blank" rel="noopener noreferrer" aria-label="Donate 25 dollars once">
-            <h3>$25</h3>
-            <p>Provides basic outreach kits including water and hygiene support.</p>
-          </a>
-          <a class="donate-tier donate-tier-link donate-tier-featured" href="https://buy.stripe.com/eVqdRb2C71C42swe973Nm05" target="_blank" rel="noopener noreferrer" aria-label="Donate 50 dollars once">
-            <h3>$50</h3>
-            <p>Helps cover urgent transportation and stabilization needs.</p>
-          </a>
-          <a class="donate-tier donate-tier-link" href="https://buy.stripe.com/dRmbJ3gsX3Kcebeghf3Nm07" target="_blank" rel="noopener noreferrer" aria-label="Donate 100 dollars once">
-            <h3>$100</h3>
-            <p>Supports crisis response for a family or individual in emergency conditions.</p>
-          </a>
-          <a class="donate-tier donate-tier-link" href="https://buy.stripe.com/3cIaEZ6Sn3Kcd7ad533Nm08" target="_blank" rel="noopener noreferrer" aria-label="Donate 250 dollars once">
-            <h3>$250</h3>
-            <p>Strengthens multi-program outreach through direct aid and coordinated referrals.</p>
-          </a>
+        <div class="donation-options-panel" id="donation-options">
+          <h2 class="section-title-spaced">Choose Your Donation Amount</h2>
+          <div class="donation-choice-grid" role="list" aria-label="One-time donation options">
+            <button class="donation-choice-card is-selected" type="button" role="listitem" data-donate-url="https://buy.stripe.com/3cIaEZ6Sn3Kcd7ad533Nm08" data-amount="$250" data-track="donate-choice-250">
+              <p class="donation-choice-badge">Most Impact</p>
+              <p class="donation-choice-amount">$250</p>
+              <p class="donation-choice-title">Outreach Drive Funding</p>
+              <p class="donation-choice-copy">Funds major support for outreach drives and rapid assistance.</p>
+            </button>
+            <button class="donation-choice-card" type="button" role="listitem" data-donate-url="https://buy.stripe.com/dRmbJ3gsX3Kcebeghf3Nm07" data-amount="$100" data-track="donate-choice-100">
+              <p class="donation-choice-amount">$100</p>
+              <p class="donation-choice-title">Crisis Response</p>
+              <p class="donation-choice-copy">Supports critical emergency assistance for families in urgent conditions.</p>
+            </button>
+            <button class="donation-choice-card" type="button" role="listitem" data-donate-url="https://buy.stripe.com/eVqdRb2C71C42swe973Nm05" data-amount="$50" data-track="donate-choice-50">
+              <p class="donation-choice-amount">$50</p>
+              <p class="donation-choice-title">Transportation & Essentials</p>
+              <p class="donation-choice-copy">Helps cover transportation and stabilization essentials.</p>
+            </button>
+            <button class="donation-choice-card" type="button" role="listitem" data-donate-url="https://buy.stripe.com/cNi5kF6Sn0y03wAghf3Nm06" data-amount="$25" data-track="donate-choice-25">
+              <p class="donation-choice-amount">$25</p>
+              <p class="donation-choice-title">Outreach Kit</p>
+              <p class="donation-choice-copy">Provides basic outreach kit essentials including water and hygiene support.</p>
+            </button>
+          </div>
+
+          <label class="donation-custom-input" for="donation-custom-amount">
+            <span>$</span>
+            <input id="donation-custom-amount" name="donation_custom_amount" type="number" min="1" step="1" inputmode="numeric" placeholder="Enter Custom Amount" />
+          </label>
+          <p class="donation-custom-caption">Choose any amount</p>
+
+          <label class="donation-monthly-toggle" for="donation-monthly-toggle">
+            <input id="donation-monthly-toggle" type="checkbox" />
+            <span>Make this a monthly donation</span>
+          </label>
+
+          <p class="donate-top-cta-row donate-submit-row">
+            <a
+              id="donation-primary-cta"
+              class="donate-cta-pill primary donate-submit-btn"
+              href="https://buy.stripe.com/3cIaEZ6Sn3Kcd7ad533Nm08"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-default-once-url="https://buy.stripe.com/3cIaEZ6Sn3Kcd7ad533Nm08"
+              data-custom-once-url="https://buy.stripe.com/dRm4gBccHa8A3wA4yx3Nm04"
+              data-monthly-url="#founding-member"
+              data-track="donate-primary-cta"
+            >Donate Now</a>
+          </p>
+          <p class="donation-impact-note">Your gift makes a difference in the lives of those in need.</p>
         </div>
       </div>
     </section>
