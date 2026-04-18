@@ -1229,6 +1229,7 @@ textarea:focus-visible {
 .page-donate .donation-choice-card {
   display: flex;
   flex-direction: column;
+  position: relative;
   border: 1px solid #d8e2f2;
   background: #fff;
   text-align: left;
@@ -1254,9 +1255,10 @@ textarea:focus-visible {
 }
 
 .page-donate .donation-choice-badge {
-  margin: 0 0 6px;
-  align-self: flex-start;
-  padding: 2px 8px;
+  margin: -14px -14px 10px;
+  align-self: stretch;
+  text-align: center;
+  padding: 6px 8px;
   border: 1px solid #c79d2a;
   background: #ffeaa8;
   color: #000;
