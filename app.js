@@ -635,6 +635,7 @@ function showMailingListPopup(options = {}) {
       <p class="mailing-popup-kicker">Stay Connected</p>
       <h2 id="mailing-popup-title">Join Our Mailing List</h2>
       <p id="mailing-popup-copy">Get outreach updates, event announcements, and ways to support Tonight We Ride.</p>
+      <p class="mailing-popup-privacy">No spam. Unsubscribe anytime.</p>
       <form class="mailing-popup-form" novalidate>
         <label class="sr-only" for="mailing-popup-email">Email address</label>
         <div class="mailing-popup-fields">

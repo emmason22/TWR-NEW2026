@@ -1360,6 +1360,15 @@ textarea:focus-visible {
   height: 16px;
 }
 
+.page-donate .donation-checkout-reassurance {
+  margin: 2px 0 0;
+  width: 100%;
+  text-align: center;
+  color: #3f5375;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
 .page-donate .donate-submit-row {
   margin-top: 4px;
   margin-bottom: 0;
@@ -4493,6 +4502,31 @@ label,
   line-height: 1.35;
 }
 
+.page-volunteer-signup .volunteer-next-steps {
+  margin: 0 auto 12px;
+  max-width: 820px;
+  border: 1px solid #d8e2f2;
+  background: #f7faff;
+  padding: 10px 14px;
+  text-align: center;
+}
+
+.page-volunteer-signup .volunteer-next-steps-title {
+  margin: 0 0 4px;
+  color: #102343;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.page-volunteer-signup .volunteer-next-steps-copy {
+  margin: 0;
+  color: #3d5277;
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.35;
+}
+
 .page-volunteer-signup .volunteer-signup-form {
   border: 0;
   box-shadow: none;
@@ -5056,6 +5090,14 @@ label,
   line-height: 1.25;
 }
 
+.mailing-popup-privacy {
+  margin: -6px auto 8px;
+  color: #dbe7fa;
+  font-size: 13px;
+  line-height: 1.2;
+  opacity: 0.95;
+}
+
 .mailing-popup-form {
   display: grid;
   gap: 10px;
@@ -5169,6 +5211,11 @@ label,
     max-width: 100%;
     font-size: clamp(14px, 3.8vw, 18px);
     line-height: 1.25;
+  }
+
+  .mailing-popup-privacy {
+    margin: -4px auto 8px;
+    font-size: 12px;
   }
 
   .mailing-popup-kicker {
