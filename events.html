@@ -21,19 +21,78 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
+      "@graph": [
         {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://tonightweride.org/"
+          "@type": "CollectionPage",
+          "@id": "https://tonightweride.org/events.html#webpage",
+          "url": "https://tonightweride.org/events.html",
+          "name": "Events | Tonight We Ride",
+          "description": "Browse Tonight We Ride events including the Annual Toy Drive, Crisis Concert Series, and community benefit nights in Dallas spanning over 26 years.",
+          "mainEntity": {
+            "@id": "https://tonightweride.org/events.html#event-list"
+          }
         },
         {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Events",
-          "item": "https://tonightweride.org/events.html"
+          "@type": "ItemList",
+          "@id": "https://tonightweride.org/events.html#event-list",
+          "name": "Tonight We Ride Signature Events",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "Event",
+                "name": "Annual Toy Drive",
+                "url": "https://tonightweride.org/TWR2/toy-drive/ToyDrive.html",
+                "location": {
+                  "@type": "Place",
+                  "name": "Dallas, Texas",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Dallas",
+                    "addressRegion": "TX",
+                    "addressCountry": "US"
+                  }
+                }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "Event",
+                "name": "TWR Crisis Concert Series",
+                "url": "https://tonightweride.org/crisis-relief.html",
+                "location": {
+                  "@type": "Place",
+                  "name": "Dallas, Texas",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Dallas",
+                    "addressRegion": "TX",
+                    "addressCountry": "US"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://tonightweride.org/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Events",
+              "item": "https://tonightweride.org/events.html"
+            }
+          ]
         }
       ]
     }

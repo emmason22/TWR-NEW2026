@@ -27,9 +27,62 @@
           "@id": "https://tonightweride.org/news.html#webpage",
           "url": "https://tonightweride.org/news.html",
           "name": "Tonight We Ride In The News",
+          "description": "Recent media coverage and press stories featuring Tonight We Ride.",
+          "mainEntity": {
+            "@id": "https://tonightweride.org/news.html#news-list"
+          },
           "isPartOf": {
             "@id": "https://tonightweride.org/#website"
           }
+        },
+        {
+          "@type": "ItemList",
+          "@id": "https://tonightweride.org/news.html#news-list",
+          "name": "Tonight We Ride News Coverage",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "NewsArticle",
+                "@id": "https://tonightweride.org/rabbit-hat-press-release.html#article",
+                "headline": "Tonight We Ride Names Rabbit Hat Promotions as Public Relations Partner",
+                "url": "https://tonightweride.org/rabbit-hat-press-release.html",
+                "publisher": {
+                  "@type": "NonProfit",
+                  "name": "Tonight We Ride",
+                  "url": "https://tonightweride.org/"
+                }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "WebPage",
+                "name": "Drinking + Donating: Chad D's Annual Toy Drive Is a Force for Holiday Cheer",
+                "url": "https://www.dallasobserver.com/music/drinking-donating-chad-ds-annual-toy-drive-is-a-force-for-holiday-cheer-40625457/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "WebPage",
+                "name": "Giving Back Sounds Good: Chad D's Annual Toy Drive Takes Over Barley House Tonight",
+                "url": "https://kxt.org/2025/12/giving-back-sounds-good-chad-ds-annual-toy-drive-takes-over-barley-house-tonight/"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "item": {
+                "@type": "WebPage",
+                "name": "Libertine Bar Celebrates 15 Years of Christmas Toy Drives With Concert Tonight",
+                "url": "https://www.dallasobserver.com/music/libertine-bar-celebrates-15-years-of-christmas-toy-drives-with-concert-tonight-7060882/"
+              }
+            }
+          ]
         },
         {
           "@type": "BreadcrumbList",
