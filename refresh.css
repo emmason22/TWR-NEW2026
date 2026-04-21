@@ -3433,8 +3433,8 @@ label,
 }
 
 .founding-member-section {
-  padding-top: clamp(40px, 6vw, 70px);
-  padding-bottom: clamp(40px, 6vw, 70px);
+  padding-top: clamp(26px, 4vw, 44px);
+  padding-bottom: clamp(26px, 4vw, 44px);
   background:
     radial-gradient(circle at top right, rgba(223, 177, 57, 0.14), transparent 34%),
     linear-gradient(180deg, #fffaf0 0%, #f4f7fd 100%);
@@ -3443,7 +3443,7 @@ label,
 .founding-member-shell {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 22px;
+  gap: 14px;
   align-items: start;
 }
 
@@ -3452,7 +3452,7 @@ label,
 }
 
 .founding-member-lead .block-kicker {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .founding-member-lead h1 {
@@ -3460,15 +3460,15 @@ label,
 }
 
 .founding-member-lead .founding-member-note {
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   max-width: 1100px;
-  line-height: 1.55;
+  line-height: 1.48;
 }
 
 .founding-member-copy {
-  margin: 0 0 18px;
+  margin: 0 0 12px;
   max-width: 1100px;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .founding-benefits {
