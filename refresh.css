@@ -1367,7 +1367,7 @@ textarea:focus-visible {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  font-size: 17px;
+  font-size: 34px;
   line-height: 1.2;
   color: #000;
 }
