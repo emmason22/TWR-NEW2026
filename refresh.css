@@ -1367,7 +1367,8 @@ textarea:focus-visible {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 17px;
+  line-height: 1.2;
   color: #000;
 }
 
@@ -4360,8 +4361,8 @@ label,
   border: 1px solid rgba(17, 35, 67, 0.14);
   background: #fff;
   color: #102343;
-  padding: 14px 14px 12px;
-  min-height: 300px;
+  padding: 12px 12px 10px;
+  min-height: 276px;
   cursor: default;
   box-shadow: 0 6px 18px rgba(11, 23, 43, 0.08);
   transition: border-color 160ms ease, box-shadow 180ms ease, transform 180ms ease, background-color 180ms ease;
@@ -5330,8 +5331,8 @@ label,
   }
 
   .page-volunteer .volunteer-role-card {
-    min-height: 240px;
-    padding: 14px;
+    min-height: 218px;
+    padding: 12px;
   }
 
   .page-volunteer .volunteer-role-section .container.narrow > h2 {

@@ -1324,12 +1324,30 @@ function normalizeVolunteerRole(value) {
   if (!input) return "";
 
   const roleMap = {
-    "outreach volunteer": "Outreach Volunteer",
-    "event volunteer": "Event Volunteer",
-    "skills volunteer": "Skills Volunteer",
-    outreach: "Outreach Volunteer",
-    event: "Event Volunteer",
-    skills: "Skills Volunteer",
+    "homeless outreach": "Homeless Outreach",
+    "veteran outreach": "Veteran Outreach",
+    "event support": "Event Support",
+    "fundraising/donor support": "Fundraising/Donor Support",
+    "media/content creation": "Media/Content Creation",
+    "general volunteering": "General Volunteering",
+    "homeless outreach volunteer": "Homeless Outreach",
+    "veteran outreach volunteer": "Veteran Outreach",
+    "event volunteer": "Event Support",
+    "fundraising volunteer": "Fundraising/Donor Support",
+    "donor support": "Fundraising/Donor Support",
+    "media volunteer": "Media/Content Creation",
+    "content creation": "Media/Content Creation",
+    "general volunteer": "General Volunteering",
+    "outreach volunteer": "Homeless Outreach",
+    "skills volunteer": "Media/Content Creation",
+    outreach: "Homeless Outreach",
+    event: "Event Support",
+    skills: "Media/Content Creation",
+    homeless: "Homeless Outreach",
+    veteran: "Veteran Outreach",
+    fundraising: "Fundraising/Donor Support",
+    media: "Media/Content Creation",
+    general: "General Volunteering",
   };
 
   return roleMap[input] || "";
@@ -1349,7 +1367,7 @@ function initVolunteerSignupPage() {
   const requestInput = form.querySelector("#volunteer-request-field");
 
   const roleFromQuery = normalizeVolunteerRole(new URLSearchParams(window.location.search).get("role"));
-  const defaultRole = normalizeVolunteerRole(roleInput?.value) || "Outreach Volunteer";
+  const defaultRole = normalizeVolunteerRole(roleInput?.value) || "Homeless Outreach";
   const selectedRole = roleFromQuery || defaultRole;
 
   const syncFullName = () => {
