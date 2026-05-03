@@ -1405,9 +1405,8 @@ function initDonateConversionPanel() {
 
   const cards = Array.from(panel.querySelectorAll(".donation-choice-card"));
   const customInput = panel.querySelector("#donation-custom-amount");
-  const monthlyToggle = panel.querySelector("#donation-monthly-toggle");
   const cta = panel.querySelector("#donation-primary-cta");
-  if (!cards.length || !customInput || !monthlyToggle || !cta) return;
+  if (!cards.length || !customInput || !cta) return;
 
   let selectedCard = cards.find((card) => card.classList.contains("is-selected")) || cards[0];
 
@@ -1423,22 +1422,8 @@ function initDonateConversionPanel() {
   const updateCta = () => {
     const defaultOnceUrl = cta.getAttribute("data-default-once-url") || "";
     const customOnceUrl = cta.getAttribute("data-custom-once-url") || defaultOnceUrl;
-    const monthlyUrl = cta.getAttribute("data-monthly-url") || "founding-member.html#membership-tiers";
     const customValue = Number(customInput.value || "0");
     const hasCustomValue = Number.isFinite(customValue) && customValue > 0;
-    const isMonthly = Boolean(monthlyToggle.checked);
-
-    if (isMonthly) {
-      cta.href = monthlyUrl;
-      cta.removeAttribute("target");
-      cta.removeAttribute("rel");
-      cta.textContent = "Choose Monthly Membership";
-      panel.classList.add("is-monthly");
-      panel.classList.remove("has-custom-amount");
-      return;
-    }
-
-    panel.classList.remove("is-monthly");
 
     if (hasCustomValue) {
       cta.href = customOnceUrl;
@@ -1461,7 +1446,6 @@ function initDonateConversionPanel() {
     card.addEventListener("click", () => {
       setCardState(card);
       if (customInput.value) customInput.value = "";
-      if (monthlyToggle.checked) monthlyToggle.checked = false;
       updateCta();
       emitTelemetry("donation_option_selected", {
         path: window.location.pathname,
@@ -1471,7 +1455,6 @@ function initDonateConversionPanel() {
   });
 
   customInput.addEventListener("input", updateCta);
-  monthlyToggle.addEventListener("change", updateCta);
   updateCta();
 }
 
