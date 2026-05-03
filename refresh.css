@@ -1371,23 +1371,6 @@ textarea:focus-visible {
   min-width: 260px;
 }
 
-.page-donate .donation-monthly-toggle {
-  margin-top: 2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  font-size: 27px;
-  line-height: 1.2;
-  color: #000;
-}
-
-.page-donate .donation-monthly-toggle input {
-  width: 22px;
-  height: 22px;
-  flex: 0 0 auto;
-}
-
 .page-donate .donation-checkout-reassurance {
   margin: 2px 0 0;
   width: 100%;
@@ -1457,8 +1440,18 @@ textarea:focus-visible {
   min-height: 320px;
 }
 
+.page-monthly-giving .monthly-tier-card .donation-choice-amount {
+  font-size: clamp(32px, 3.4vw, 48px);
+}
+
+.page-monthly-giving .monthly-tier-card .donation-choice-title {
+  font-size: clamp(17px, 1.1vw, 20px);
+}
+
 .page-monthly-giving .monthly-tier-card .donation-choice-copy {
   margin-bottom: 14px;
+  font-size: clamp(14px, 0.95vw, 16px);
+  line-height: 1.35;
 }
 
 .page-monthly-giving .monthly-tier-featured {
@@ -3440,6 +3433,7 @@ label,
 
   .page-donate .donation-choice-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-top: 40px;
   }
 
   .page-donate .donation-choice-card {
@@ -3448,6 +3442,10 @@ label,
 
   .page-monthly-giving .monthly-tier-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .page-monthly-giving .monthly-tier-card {
+    min-height: 290px;
   }
 }
 
@@ -3469,7 +3467,8 @@ label,
 
   .page-donate .donation-choice-grid {
     grid-template-columns: 1fr;
-    padding-top: 40px;
+    gap: 8px;
+    padding-top: 34px;
   }
 
   .page-donate .donation-choice-card {
@@ -3479,6 +3478,27 @@ label,
 
   .page-donate .donation-choice-amount {
     font-size: clamp(30px, 10vw, 44px);
+  }
+
+  .page-donate .donation-most-impact-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    transform: translateY(calc(-100% - 6px));
+  }
+
+  .page-donate .donation-choice-title {
+    margin-bottom: 8px;
+    font-size: clamp(16px, 5.1vw, 19px);
+  }
+
+  .page-donate .donation-choice-copy {
+    font-size: clamp(14px, 4.2vw, 16px);
+    line-height: 1.35;
+  }
+
+  .page-donate .donate-monthly-btn {
+    width: 100%;
+    min-width: 0;
   }
 
   .page-donate .donate-hero-cta,
@@ -3493,7 +3513,8 @@ label,
   }
 
   .page-monthly-giving .monthly-tier-card {
-    min-height: 260px;
+    min-height: 235px;
+    padding: 14px 12px;
   }
 
   .page-monthly-giving .donation-tier-cta {
