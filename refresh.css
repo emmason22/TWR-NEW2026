@@ -2833,6 +2833,10 @@ label,
   display: block;
 }
 
+.partner-logo--womack {
+  width: min(320px, 100%);
+}
+
 .subpage-section .container.narrow > h2 {
   margin-bottom: 14px;
 }
