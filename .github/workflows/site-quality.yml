@@ -22,7 +22,9 @@ jobs:
         run: node scripts/preflight-check.mjs
 
       - name: HTML Lint
-        run: npx --yes htmlhint "*.html"
+        run: |
+          find . -maxdepth 1 -name "*.html" ! -name "google8559ae4de0929c14.html" -print0 \
+            | xargs -0 npx --yes htmlhint
 
       - name: Lighthouse CI (Performance/Accessibility/SEO)
         uses: treosh/lighthouse-ci-action@v12
