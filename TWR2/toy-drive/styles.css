@@ -169,6 +169,45 @@ SHARED SITE HEADER (MATCHES MAIN SITE)
   color: #fcb212;
 }
 
+.site-nav .nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+
+.site-nav .nav-dropdown-trigger::after {
+  content: "▾";
+  margin-left: 6px;
+  font-size: 11px;
+}
+
+.site-nav .nav-submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 190px;
+  padding: 10px 12px;
+  background: #050505;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+  z-index: 40;
+}
+
+.site-nav .nav-submenu a {
+  display: block;
+  padding: 6px 0;
+  min-height: 40px;
+  font-size: 13px;
+}
+
+.site-nav .nav-dropdown:hover .nav-submenu,
+.site-nav .nav-dropdown:focus-within .nav-submenu {
+  display: block;
+}
+
 .header-actions {
   grid-area: actions;
   display: flex;
@@ -1117,6 +1156,30 @@ RESPONSIVE
 
   .site-nav a {
     font-size: 13px;
+  }
+
+  .site-nav .nav-dropdown {
+    display: block;
+    width: 100%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .site-nav .nav-submenu {
+    position: static;
+    display: block;
+    min-width: 0;
+    border: 0;
+    box-shadow: none;
+    padding: 0 0 0 14px;
+    margin-top: 0;
+    background: transparent;
+  }
+
+  .site-nav .nav-submenu a {
+    display: block;
+    width: 100%;
+    min-height: 34px;
   }
 
   .donate-bar {

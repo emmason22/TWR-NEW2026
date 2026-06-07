@@ -916,46 +916,38 @@ function initMobileNav() {
   });
 }
 
-function initAboutNavDropdown() {
+function initOutreachNavDropdown() {
   const navs = document.querySelectorAll(".site-nav");
   navs.forEach((nav) => {
     if (nav.querySelector(".nav-dropdown")) return;
 
-    const aboutLink = nav.querySelector("a[href='about.html']");
-    if (!aboutLink) return;
+    const outreachLinks = [
+      nav.querySelector("a[href='veteran-outreach.html'], a[href='../../veteran-outreach.html']"),
+      nav.querySelector("a[href='homeless-outreach.html'], a[href='../../homeless-outreach.html']"),
+      nav.querySelector("a[href='crisis-relief.html'], a[href='../../crisis-relief.html']"),
+      nav.querySelector("a[href='emergency-relief.html'], a[href='../../emergency-relief.html']")
+    ].filter(Boolean);
+
+    if (outreachLinks.length < 4) return;
 
     const dropdown = document.createElement("div");
     dropdown.className = "nav-dropdown";
 
-    aboutLink.classList.add("nav-dropdown-trigger");
-    aboutLink.insertAdjacentElement("beforebegin", dropdown);
-    dropdown.appendChild(aboutLink);
+    const trigger = document.createElement("a");
+    trigger.className = "nav-dropdown-trigger";
+    trigger.href = outreachLinks[1].getAttribute("href") || "homeless-outreach.html";
+    trigger.textContent = "Outreach";
+    outreachLinks[0].insertAdjacentElement("beforebegin", dropdown);
+    dropdown.appendChild(trigger);
 
     const submenu = document.createElement("div");
     submenu.className = "nav-submenu";
     submenu.setAttribute("role", "menu");
 
-    const aboutPageLink = document.createElement("a");
-    aboutPageLink.href = "about.html";
-    aboutPageLink.textContent = "About";
-    aboutPageLink.setAttribute("role", "menuitem");
-    aboutPageLink.setAttribute("data-track", "nav-about-page");
-
-    const teamLink = document.createElement("a");
-    teamLink.href = "our-team.html";
-    teamLink.textContent = "Our Team";
-    teamLink.setAttribute("role", "menuitem");
-    teamLink.setAttribute("data-track", "nav-about-our-team");
-
-    const boardLink = document.createElement("a");
-    boardLink.href = "team.html";
-    boardLink.textContent = "Meet the Board";
-    boardLink.setAttribute("role", "menuitem");
-    boardLink.setAttribute("data-track", "nav-about-meet-the-board");
-
-    submenu.appendChild(aboutPageLink);
-    submenu.appendChild(boardLink);
-    submenu.appendChild(teamLink);
+    outreachLinks.forEach((link) => {
+      link.setAttribute("role", "menuitem");
+      submenu.appendChild(link);
+    });
     dropdown.appendChild(submenu);
   });
 }
@@ -1462,7 +1454,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMotionReadyState();
   initFoundingMemberPromo();
   initMailingListExitIntentPopup();
-  initAboutNavDropdown();
+  initOutreachNavDropdown();
   initMobileNav();
   initImagePerformanceDefaults();
   initHomelessHeroVideoFade();
