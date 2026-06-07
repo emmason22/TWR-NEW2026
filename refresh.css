@@ -307,6 +307,19 @@ textarea:focus-visible {
   color: #ffffff;
 }
 
+.page-home .hero-home-ctas .hero-btn-launch {
+  background: var(--rf-blue);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.page-home .hero-home-ctas .hero-btn-launch:hover,
+.page-home .hero-home-ctas .hero-btn-launch:focus-visible {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--rf-blue);
+}
+
 .home-impact-proof {
   padding: 24px 0 14px;
 }
@@ -769,23 +782,6 @@ textarea:focus-visible {
 
 .community-partner-logo-grid > :nth-child(7) {
   grid-column: 4 / 5;
-}
-
-.launch-party-section .container.narrow {
-  text-align: center;
-}
-
-.launch-party-poster-link {
-  display: block;
-  margin: 22px auto 0;
-  max-width: 860px;
-}
-
-.launch-party-poster {
-  width: 100%;
-  display: block;
-  border: 1px solid rgba(12, 30, 63, 0.14);
-  box-shadow: var(--rf-shadow-md);
 }
 
 @media (max-width: 900px) {
