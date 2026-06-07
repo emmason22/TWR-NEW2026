@@ -771,6 +771,23 @@ textarea:focus-visible {
   grid-column: 4 / 5;
 }
 
+.launch-party-section .container.narrow {
+  text-align: center;
+}
+
+.launch-party-poster-link {
+  display: block;
+  margin: 22px auto 0;
+  max-width: 860px;
+}
+
+.launch-party-poster {
+  width: 100%;
+  display: block;
+  border: 1px solid rgba(12, 30, 63, 0.14);
+  box-shadow: var(--rf-shadow-md);
+}
+
 @media (max-width: 900px) {
   .community-partner-logo-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
