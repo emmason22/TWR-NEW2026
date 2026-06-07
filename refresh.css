@@ -310,14 +310,14 @@ textarea:focus-visible {
 .page-home .hero-home-ctas .hero-btn-launch {
   background: var(--rf-blue);
   border-color: #ffffff;
-  color: #ffffff;
+  color: #000000;
 }
 
 .page-home .hero-home-ctas .hero-btn-launch:hover,
 .page-home .hero-home-ctas .hero-btn-launch:focus-visible {
   background: #ffffff;
   border-color: #ffffff;
-  color: var(--rf-blue);
+  color: #000000;
 }
 
 .home-impact-proof {
