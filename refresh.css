@@ -1367,7 +1367,17 @@ textarea:focus-visible {
   width: 100%;
 }
 
+.page-donate .donate-founding-row {
+  margin-top: 8px;
+  margin-bottom: 0;
+  width: 100%;
+}
+
 .page-donate .donate-monthly-btn {
+  min-width: 260px;
+}
+
+.page-donate .donate-founding-btn {
   min-width: 260px;
 }
 
@@ -3513,7 +3523,8 @@ label,
     line-height: 1.35;
   }
 
-  .page-donate .donate-monthly-btn {
+  .page-donate .donate-monthly-btn,
+  .page-donate .donate-founding-btn {
     width: 100%;
     min-width: 0;
   }
