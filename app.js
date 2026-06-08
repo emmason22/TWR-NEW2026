@@ -1454,7 +1454,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initMotionReadyState();
   initFoundingMemberPromo();
   initMailingListExitIntentPopup();
-  initOutreachNavDropdown();
   initMobileNav();
   initImagePerformanceDefaults();
   initHomelessHeroVideoFade();

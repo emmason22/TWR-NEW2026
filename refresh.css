@@ -307,18 +307,6 @@ textarea:focus-visible {
   color: #ffffff;
 }
 
-.page-home .hero-home-ctas .hero-btn-launch {
-  background: var(--rf-gold);
-  border-color: var(--rf-gold);
-  color: #111;
-}
-
-.page-home .hero-home-ctas .hero-btn-launch:hover,
-.page-home .hero-home-ctas .hero-btn-launch:focus-visible {
-  filter: brightness(0.96);
-  color: #111;
-}
-
 .home-impact-proof {
   padding: 24px 0 14px;
 }
