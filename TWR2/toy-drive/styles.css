@@ -160,7 +160,7 @@ SHARED SITE HEADER (MATCHES MAIN SITE)
   text-decoration: none;
   font-family: "Oswald", sans-serif;
   font-weight: 700;
-  font-size: clamp(12px, 1.1vw, 16px);
+  font-size: clamp(11px, 1vw, 15px);
   color: #fff;
   white-space: nowrap;
 }
