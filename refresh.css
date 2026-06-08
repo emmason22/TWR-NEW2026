@@ -307,6 +307,18 @@ textarea:focus-visible {
   color: #ffffff;
 }
 
+.page-home .hero-home-ctas .hero-btn-launch {
+  background: var(--rf-gold);
+  border-color: var(--rf-gold);
+  color: #111;
+}
+
+.page-home .hero-home-ctas .hero-btn-launch:hover,
+.page-home .hero-home-ctas .hero-btn-launch:focus-visible {
+  filter: brightness(0.96);
+  color: #111;
+}
+
 .home-impact-proof {
   padding: 24px 0 14px;
 }
@@ -5004,6 +5016,35 @@ label,
 .site-nav a:hover,
 .site-nav a:focus-visible {
   color: #ffd96a;
+}
+
+@media (min-width: 901px) {
+  .header-inner {
+    max-width: min(100%, 1760px);
+    padding: 10px 18px;
+    gap: 8px;
+  }
+
+  .site-nav {
+    gap: clamp(4px, 0.48vw, 8px);
+  }
+
+  .site-nav a {
+    font-size: clamp(8px, 0.68vw, 11px);
+    letter-spacing: 0.005em;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-actions .volunteer-btn,
+  .header-actions .donate-btn {
+    padding: 9px 14px;
+    font-size: 12px;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
 }
 
 .box-link,
