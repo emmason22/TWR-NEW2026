@@ -790,6 +790,16 @@ textarea:focus-visible {
   height: 185px;
 }
 
+.community-partner-logo-grid .partner-logo--sweet-cakes {
+  width: min(380px, 100%);
+  height: 130px;
+}
+
+.partner-logo--sweet-cakes {
+  width: min(340px, 100%);
+  height: 132px;
+}
+
 .community-partner-logo-grid > :nth-child(5) {
   grid-column: 1 / 2;
 }
@@ -815,6 +825,11 @@ textarea:focus-visible {
     width: min(460px, 100%);
     height: 132px;
   }
+
+  .community-partner-logo-grid .partner-logo--sweet-cakes {
+    width: min(340px, 100%);
+    height: 124px;
+  }
 }
 
 @media (max-width: 560px) {
@@ -830,6 +845,11 @@ textarea:focus-visible {
   .community-partner-logo-grid .partner-logo--womack {
     width: min(320px, 100%);
     height: 108px;
+  }
+
+  .community-partner-logo-grid .partner-logo--sweet-cakes {
+    width: min(320px, 100%);
+    height: 118px;
   }
 }
 
