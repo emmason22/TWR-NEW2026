@@ -908,6 +908,27 @@ function initMobileNav() {
       link.addEventListener("click", closeNav);
     });
 
+    const actions = header.querySelector(".header-actions");
+    if (actions && !nav.querySelector(".mobile-nav-actions")) {
+      const mobileActions = document.createElement("div");
+      mobileActions.className = "mobile-nav-actions";
+      actions.querySelectorAll("a").forEach((action) => {
+        const clone = action.cloneNode(true);
+        clone.addEventListener("click", closeNav);
+        mobileActions.appendChild(clone);
+      });
+      nav.appendChild(mobileActions);
+    }
+
+    document.addEventListener("click", (event) => {
+      if (!header.classList.contains("nav-open")) return;
+      if (!header.contains(event.target)) closeNav();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeNav();
+    });
+
     window.addEventListener("resize", () => {
       if (window.innerWidth > 900) {
         closeNav();
