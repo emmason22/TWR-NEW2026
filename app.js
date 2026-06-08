@@ -873,22 +873,26 @@ function initMobileNav() {
     const navId = nav.id || `primary-nav-${idx + 1}`;
     nav.id = navId;
 
-    if (header.querySelector(".nav-toggle")) return;
     header.classList.add("nav-enhanced");
 
-    const toggle = document.createElement("button");
+    const existingToggle = header.querySelector(".nav-toggle");
+    const toggle = existingToggle || document.createElement("button");
     toggle.type = "button";
     toggle.className = "nav-toggle";
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-controls", navId);
     toggle.setAttribute("aria-label", "Open navigation");
-    toggle.innerHTML = "<span></span><span></span><span></span>";
+    if (!toggle.querySelector("span")) {
+      toggle.innerHTML = "<span></span><span></span><span></span>";
+    }
 
-    const brand = header.querySelector(".brand");
-    if (brand && brand.nextSibling) {
-      brand.insertAdjacentElement("afterend", toggle);
-    } else {
-      header.querySelector(".header-inner")?.prepend(toggle);
+    if (!existingToggle) {
+      const brand = header.querySelector(".brand");
+      if (brand && brand.nextSibling) {
+        brand.insertAdjacentElement("afterend", toggle);
+      } else {
+        header.querySelector(".header-inner")?.prepend(toggle);
+      }
     }
 
     const closeNav = () => {
