@@ -795,9 +795,19 @@ textarea:focus-visible {
   height: 130px;
 }
 
+.community-partner-logo-grid .partner-logo--playtri {
+  width: min(520px, 100%);
+  height: 132px;
+}
+
 .partner-logo--sweet-cakes {
   width: min(340px, 100%);
   height: 132px;
+}
+
+.partner-logo--playtri {
+  width: min(360px, 100%);
+  height: 120px;
 }
 
 .community-partner-logo-grid > :nth-child(5) {
@@ -810,6 +820,10 @@ textarea:focus-visible {
 
 .community-partner-logo-grid > :nth-child(7) {
   grid-column: 4 / 5;
+}
+
+.community-partner-logo-grid > :nth-child(8) {
+  grid-column: 2 / 4;
 }
 
 @media (max-width: 900px) {
@@ -829,6 +843,11 @@ textarea:focus-visible {
   .community-partner-logo-grid .partner-logo--sweet-cakes {
     width: min(340px, 100%);
     height: 124px;
+  }
+
+  .community-partner-logo-grid .partner-logo--playtri {
+    width: min(420px, 100%);
+    height: 116px;
   }
 }
 
@@ -850,6 +869,11 @@ textarea:focus-visible {
   .community-partner-logo-grid .partner-logo--sweet-cakes {
     width: min(320px, 100%);
     height: 118px;
+  }
+
+  .community-partner-logo-grid .partner-logo--playtri {
+    width: min(320px, 100%);
+    height: 98px;
   }
 }
 
