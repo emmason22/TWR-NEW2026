@@ -2344,11 +2344,7 @@ img,
 
 .page-homeless .homeless-mission-video-wrap {
   align-self: start;
-  border: 1px solid #bfcde4;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #0b1222;
-  box-shadow: 0 16px 32px rgba(8, 22, 50, 0.18);
+  overflow: visible;
 }
 
 .page-homeless .homeless-mission-video {
@@ -2357,13 +2353,16 @@ img,
   height: auto;
   max-height: 720px;
   background: #000;
+  border: 1px solid #bfcde4;
+  border-radius: 18px;
+  box-shadow: 0 16px 32px rgba(8, 22, 50, 0.18);
 }
 
 .page-homeless .homeless-reel-stack {
   display: grid;
-  gap: 32px;
+  gap: 56px;
   justify-items: start;
-  padding: 28px 16px;
+  padding: 56px 0 0;
 }
 
 .page-homeless .homeless-reel-embed {
@@ -2372,6 +2371,9 @@ img,
   aspect-ratio: 9 / 16;
   overflow: hidden;
   background: #000;
+  border: 1px solid #bfcde4;
+  border-radius: 18px;
+  box-shadow: 0 16px 32px rgba(8, 22, 50, 0.16);
 }
 
 .page-homeless .homeless-reel-embed iframe {
