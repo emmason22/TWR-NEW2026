@@ -2320,13 +2320,26 @@ img,
 
 .page-homeless .homeless-mission-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 420px);
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
   gap: clamp(18px, 3vw, 40px);
   align-items: start;
 }
 
 .page-homeless .homeless-mission-copy > :first-child {
   margin-top: 0;
+}
+
+.page-homeless .homeless-resource-links {
+  margin-top: 42px;
+}
+
+.page-homeless .homeless-resource-links .resource-stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.page-homeless .homeless-resource-links .resource-card {
+  width: 100%;
 }
 
 .page-homeless .homeless-mission-video-wrap {
@@ -2348,9 +2361,9 @@ img,
 
 .page-homeless .homeless-reel-stack {
   display: grid;
-  gap: 16px;
+  gap: 32px;
   justify-items: start;
-  padding: 16px;
+  padding: 28px 16px;
 }
 
 .page-homeless .homeless-reel-embed {
