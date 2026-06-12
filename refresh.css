@@ -2346,6 +2346,29 @@ img,
   background: #000;
 }
 
+.page-homeless .homeless-reel-stack {
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+  padding: 16px;
+}
+
+.page-homeless .homeless-reel-embed {
+  position: relative;
+  width: min(100%, 360px);
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background: #000;
+}
+
+.page-homeless .homeless-reel-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 @media (max-width: 980px) {
   .page-homeless .homeless-mission-layout {
     grid-template-columns: 1fr;
@@ -2355,6 +2378,10 @@ img,
     max-width: 520px;
     width: 100%;
     margin: 0 auto;
+  }
+
+  .page-homeless .homeless-reel-stack {
+    justify-items: center;
   }
 }
 
