@@ -39,6 +39,7 @@
     }
   </script>
   <meta name="twr-analytics-endpoint" content="" />
+  <meta name="twr-donation-ticker-endpoint" content="" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
@@ -103,6 +104,19 @@
             <a class="donate-cta-pill primary donate-hero-cta" href="#donation-options" data-track="donate-page-jump-options">Choose an Amount</a>
           </p>
         </div>
+
+        <section class="donation-ticker" aria-labelledby="donation-ticker-title" data-donation-ticker>
+          <div class="donation-ticker-summary">
+            <p class="block-kicker">Live Giving</p>
+            <h2 id="donation-ticker-title">Donation Tracker</h2>
+            <p class="donation-ticker-total" data-donation-ticker-total>Raised so far: --</p>
+            <p class="donation-ticker-updated" data-donation-ticker-updated>Live tracker is coming online.</p>
+          </div>
+          <div class="donation-ticker-recent" aria-live="polite">
+            <p class="donation-ticker-empty" data-donation-ticker-empty>Recent donations will appear here as they come in.</p>
+            <ul class="donation-ticker-list" data-donation-ticker-list></ul>
+          </div>
+        </section>
 
         <div class="donation-options-panel" id="donation-options">
           <div class="donation-choice-grid" role="list" aria-label="One-time donation options">

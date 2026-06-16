@@ -1345,6 +1345,86 @@ textarea:focus-visible {
   justify-items: center;
 }
 
+.page-donate .donation-ticker {
+  margin-top: 10px;
+  border: 1px solid #d5e0f0;
+  background: #071321;
+  color: #fff;
+  box-shadow: var(--rf-shadow-sm);
+  padding: clamp(18px, 3vw, 28px);
+  display: grid;
+  grid-template-columns: minmax(240px, 0.75fr) minmax(280px, 1fr);
+  gap: clamp(16px, 2.6vw, 28px);
+  align-items: center;
+}
+
+.page-donate .donation-ticker .block-kicker {
+  color: var(--rf-gold);
+  margin: 0 0 6px;
+}
+
+.page-donate .donation-ticker h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(30px, 3.4vw, 48px);
+  line-height: 0.98;
+}
+
+.page-donate .donation-ticker-total {
+  margin: 12px 0 0;
+  color: var(--rf-gold);
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(26px, 3vw, 42px);
+  line-height: 1;
+}
+
+.page-donate .donation-ticker-updated {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 13px;
+}
+
+.page-donate .donation-ticker-recent {
+  min-width: 0;
+}
+
+.page-donate .donation-ticker-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.page-donate .donation-ticker-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 10px 12px;
+}
+
+.page-donate .donation-ticker-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+
+.page-donate .donation-ticker-amount {
+  flex: 0 0 auto;
+  color: var(--rf-gold);
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+}
+
+.page-donate .donation-ticker-empty {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
 .page-donate .donation-options-panel .section-title-spaced {
   margin-top: 0;
   margin-bottom: 4px;
@@ -3658,8 +3738,13 @@ label,
   }
 
   .page-donate .donate-hero-panel,
+  .page-donate .donation-ticker,
   .page-donate .donation-options-panel {
     padding: 16px;
+  }
+
+  .page-donate .donation-ticker {
+    grid-template-columns: 1fr;
   }
 
   .page-donate .donation-choice-grid {

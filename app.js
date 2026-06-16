@@ -1475,6 +1475,90 @@ function initDonateConversionPanel() {
   updateCta();
 }
 
+function initDonationTicker() {
+  const ticker = document.querySelector("[data-donation-ticker]");
+  if (!ticker) return;
+
+  const endpoint = getMetaContent("twr-donation-ticker-endpoint");
+  const totalEl = ticker.querySelector("[data-donation-ticker-total]");
+  const updatedEl = ticker.querySelector("[data-donation-ticker-updated]");
+  const emptyEl = ticker.querySelector("[data-donation-ticker-empty]");
+  const listEl = ticker.querySelector("[data-donation-ticker-list]");
+
+  const formatCurrency = (amountCents, currency = "usd") => {
+    const amount = Number(amountCents || 0) / 100;
+    try {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: String(currency || "usd").toUpperCase(),
+        maximumFractionDigits: amount % 1 === 0 ? 0 : 2,
+      }).format(amount);
+    } catch (_) {
+      return `$${amount.toLocaleString("en-US", { maximumFractionDigits: 2 })}`;
+    }
+  };
+
+  const formatUpdatedAt = (value) => {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return "Live tracker updated recently.";
+    return `Last updated ${date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}`;
+  };
+
+  const renderFallback = (message) => {
+    if (totalEl) totalEl.textContent = "Raised so far: --";
+    if (updatedEl) updatedEl.textContent = message;
+    if (emptyEl) emptyEl.hidden = false;
+    if (listEl) listEl.replaceChildren();
+  };
+
+  const renderTicker = (data) => {
+    const currency = data.currency || "usd";
+    if (totalEl) totalEl.textContent = `Raised so far: ${formatCurrency(data.total_cents, currency)}`;
+    if (updatedEl) updatedEl.textContent = formatUpdatedAt(data.updated_at);
+
+    const recent = Array.isArray(data.recent) ? data.recent : [];
+    if (emptyEl) emptyEl.hidden = recent.length > 0;
+    if (!listEl) return;
+
+    const items = recent.slice(0, 8).map((donation) => {
+      const item = document.createElement("li");
+      item.className = "donation-ticker-item";
+
+      const name = document.createElement("span");
+      name.className = "donation-ticker-name";
+      name.textContent = `${donation.display_name || "Supporter"} gave`;
+
+      const amount = document.createElement("span");
+      amount.className = "donation-ticker-amount";
+      amount.textContent = formatCurrency(donation.amount_cents, donation.currency || currency);
+
+      item.append(name, amount);
+      return item;
+    });
+
+    listEl.replaceChildren(...items);
+  };
+
+  if (!endpoint) {
+    renderFallback("Live tracker is coming online.");
+    return;
+  }
+
+  const fetchTicker = async () => {
+    try {
+      const response = await fetch(endpoint, { cache: "no-store" });
+      if (!response.ok) throw new Error(`Ticker request failed with status ${response.status}`);
+      renderTicker(await response.json());
+    } catch (error) {
+      renderFallback("Live tracker is temporarily unavailable. Donation checkout still works.");
+      console.warn("Donation ticker failed:", error);
+    }
+  };
+
+  fetchTicker();
+  window.setInterval(fetchTicker, 30000);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initMotionReadyState();
   initFoundingMemberPromo();
@@ -1488,6 +1572,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initVolunteerConversionFlow();
   initVolunteerSignupPage();
   initDonateConversionPanel();
+  initDonationTicker();
   initFormAccessibility();
   initFoundingMemberSection();
   initSupportForms();
