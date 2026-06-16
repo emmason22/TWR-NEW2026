@@ -1263,12 +1263,13 @@ textarea:focus-visible {
 }
 
 .page-donate .donate-conversion-section .container.narrow {
-  max-width: 1100px;
+  width: min(94vw, 1400px);
+  max-width: 1400px;
 }
 
 .page-donate .donate-conversion-section {
-  padding-top: clamp(20px, 3.2vw, 30px);
-  padding-bottom: clamp(18px, 3vw, 26px);
+  padding-top: clamp(24px, 3.8vw, 54px);
+  padding-bottom: clamp(24px, 3.5vw, 48px);
 }
 
 .page-donate .donate-hero-panel {
@@ -1335,53 +1336,54 @@ textarea:focus-visible {
 }
 
 .page-donate .donation-options-panel {
-  margin-top: 10px;
+  margin-top: clamp(12px, 1.4vw, 22px);
   border: 1px solid #d5e0f0;
   box-shadow: var(--rf-shadow-sm);
   background: #ffffff;
-  padding: clamp(20px, 3.2vw, 30px);
+  padding: clamp(24px, 3.6vw, 46px);
   display: grid;
-  row-gap: 10px;
+  row-gap: clamp(12px, 1.6vw, 22px);
   justify-items: center;
 }
 
 .page-donate .donation-ticker {
-  margin-top: 10px;
+  margin-top: clamp(12px, 1.4vw, 22px);
   border: 1px solid #d5e0f0;
   background: #071321;
   color: #fff;
   box-shadow: var(--rf-shadow-sm);
-  padding: clamp(18px, 3vw, 28px);
+  padding: clamp(28px, 4.6vw, 70px);
   display: grid;
-  grid-template-columns: minmax(240px, 0.75fr) minmax(280px, 1fr);
-  gap: clamp(16px, 2.6vw, 28px);
+  grid-template-columns: minmax(320px, 0.82fr) minmax(420px, 1fr);
+  gap: clamp(24px, 4vw, 64px);
   align-items: center;
 }
 
 .page-donate .donation-ticker .block-kicker {
   color: var(--rf-gold);
-  margin: 0 0 6px;
+  margin: 0 0 10px;
+  font-size: clamp(16px, 1.15vw, 22px);
 }
 
 .page-donate .donation-ticker h2 {
   margin: 0;
   color: #fff;
-  font-size: clamp(30px, 3.4vw, 48px);
+  font-size: clamp(44px, 5.4vw, 86px);
   line-height: 0.98;
 }
 
 .page-donate .donation-ticker-total {
-  margin: 12px 0 0;
+  margin: clamp(18px, 2vw, 28px) 0 0;
   color: var(--rf-gold);
   font-family: "Oswald", sans-serif;
-  font-size: clamp(26px, 3vw, 42px);
+  font-size: clamp(42px, 5.8vw, 96px);
   line-height: 1;
 }
 
 .page-donate .donation-ticker-updated {
-  margin: 8px 0 0;
+  margin: 12px 0 0;
   color: rgba(255, 255, 255, 0.74);
-  font-size: 13px;
+  font-size: clamp(15px, 1.05vw, 20px);
 }
 
 .page-donate .donation-ticker-recent {
@@ -1393,16 +1395,17 @@ textarea:focus-visible {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 8px;
+  gap: clamp(10px, 1vw, 16px);
 }
 
 .page-donate .donation-ticker-item {
   display: flex;
   justify-content: space-between;
-  gap: 14px;
+  gap: clamp(18px, 2vw, 32px);
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.06);
-  padding: 10px 12px;
+  padding: clamp(14px, 1.4vw, 22px) clamp(16px, 1.8vw, 28px);
+  font-size: clamp(20px, 1.8vw, 34px);
 }
 
 .page-donate .donation-ticker-name {
@@ -1416,12 +1419,13 @@ textarea:focus-visible {
   color: var(--rf-gold);
   font-family: "Oswald", sans-serif;
   font-weight: 700;
+  font-size: 1.08em;
 }
 
 .page-donate .donation-ticker-empty {
   margin: 0;
   color: rgba(255, 255, 255, 0.76);
-  font-size: 15px;
+  font-size: clamp(19px, 1.55vw, 30px);
   line-height: 1.5;
 }
 
@@ -1436,10 +1440,10 @@ textarea:focus-visible {
 .page-donate .donation-choice-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  gap: clamp(12px, 1.2vw, 18px);
   align-items: stretch;
   width: 100%;
-  padding-top: 46px;
+  padding-top: clamp(50px, 4.2vw, 68px);
 }
 
 .page-donate .donation-choice-featured {
@@ -1457,8 +1461,8 @@ textarea:focus-visible {
   border: 1px solid #d8e2f2;
   background: #fff;
   text-align: left;
-  padding: 18px 18px 16px;
-  min-height: 380px;
+  padding: clamp(20px, 1.8vw, 30px);
+  min-height: clamp(400px, 26vw, 500px);
   cursor: pointer;
   font: inherit;
   color: #000;
@@ -1485,12 +1489,12 @@ textarea:focus-visible {
   left: 0;
   transform: translateY(calc(-100% - 8px));
   text-align: center;
-  padding: 8px 14px;
+  padding: clamp(9px, 0.8vw, 13px) clamp(14px, 1.2vw, 22px);
   border: 1px solid #c79d2a;
   background: #f2bf43;
   color: #000;
   font-family: "Oswald", sans-serif;
-  font-size: 14px;
+  font-size: clamp(14px, 1vw, 19px);
   line-height: 1;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1499,18 +1503,18 @@ textarea:focus-visible {
 }
 
 .page-donate .donation-choice-amount {
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   color: #000;
   font-family: "Oswald", sans-serif;
-  font-size: clamp(38px, 4.2vw, 60px);
+  font-size: clamp(48px, 4.6vw, 82px);
   line-height: 0.9;
 }
 
 .page-donate .donation-choice-title {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   color: #000;
   font-family: "Oswald", sans-serif;
-  font-size: clamp(19px, 1.35vw, 22px);
+  font-size: clamp(23px, 1.75vw, 34px);
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
@@ -1518,7 +1522,7 @@ textarea:focus-visible {
 .page-donate .donation-choice-copy {
   margin: 0;
   color: #000;
-  font-size: clamp(16px, 1.06vw, 18px);
+  font-size: clamp(18px, 1.28vw, 24px);
   line-height: 1.45;
 }
 
