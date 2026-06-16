@@ -242,6 +242,10 @@
       background: #000;
     }
 
+    .fullscreen-video.is-fill {
+      object-fit: cover;
+    }
+
     body.is-presenting {
       overflow: hidden;
     }
@@ -300,7 +304,7 @@
             <source src="assets/presentation-videos/TWR_TikTok_01_FINAL_V5.mp4?v=20260616b" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <button class="expand-button" type="button" data-video-src="assets/presentation-videos/TWR_TikTok_01_FINAL_V5.mp4?v=20260616b" data-video-title="TWR TikTok Final">Expand</button>
+          <button class="expand-button" type="button" data-video-index="0" data-video-src="assets/presentation-videos/TWR_TikTok_01_FINAL_V5.mp4?v=20260616b" data-video-title="TWR TikTok Final" data-video-fit="cover">Start Cycle</button>
         </div>
         <div class="caption">
           <h2>TWR TikTok Final</h2>
@@ -314,7 +318,7 @@
             <source src="assets/presentation-videos/recoverTWR2.mp4?v=20260616b" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <button class="expand-button" type="button" data-video-src="assets/presentation-videos/recoverTWR2.mp4?v=20260616b" data-video-title="Recover TWR 2">Expand</button>
+          <button class="expand-button" type="button" data-video-index="1" data-video-src="assets/presentation-videos/recoverTWR2.mp4?v=20260616b" data-video-title="Recover TWR 2" data-video-fit="contain">Start Here</button>
         </div>
         <div class="caption">
           <h2>Recover TWR 2</h2>
@@ -328,7 +332,7 @@
             <source src="assets/presentation-videos/Video.796326312.926483.mp4?v=20260616b" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <button class="expand-button" type="button" data-video-src="assets/presentation-videos/Video.796326312.926483.mp4?v=20260616b" data-video-title="Presentation Video 03">Expand</button>
+          <button class="expand-button" type="button" data-video-index="2" data-video-src="assets/presentation-videos/Video.796326312.926483.mp4?v=20260616b" data-video-title="Presentation Video 03" data-video-fit="contain">Start Here</button>
         </div>
         <div class="caption">
           <h2>Presentation Video</h2>
@@ -342,7 +346,7 @@
             <source src="assets/presentation-videos/Video.796325599.33697.mp4?v=20260616b" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <button class="expand-button" type="button" data-video-src="assets/presentation-videos/Video.796325599.33697.mp4?v=20260616b" data-video-title="Presentation Video 04">Expand</button>
+          <button class="expand-button" type="button" data-video-index="3" data-video-src="assets/presentation-videos/Video.796325599.33697.mp4?v=20260616b" data-video-title="Presentation Video 04" data-video-fit="contain">Start Here</button>
         </div>
         <div class="caption">
           <h2>Presentation Video</h2>
@@ -355,10 +359,10 @@
   <div class="fullscreen-player" id="fullscreen-player" aria-hidden="true" role="dialog" aria-label="Fullscreen video player">
     <div class="fullscreen-bar">
       <h2 class="fullscreen-title" id="fullscreen-title">Presentation Video</h2>
-      <button class="close-button" type="button" id="close-fullscreen">Close</button>
+      <button class="close-button" type="button" id="close-fullscreen">Stop</button>
     </div>
     <div class="fullscreen-video-wrap">
-      <video class="fullscreen-video" id="fullscreen-video" controls playsinline loop></video>
+      <video class="fullscreen-video" id="fullscreen-video" controls playsinline></video>
     </div>
   </div>
 
@@ -368,7 +372,14 @@
     const playerVideo = document.getElementById("fullscreen-video");
     const playerTitle = document.getElementById("fullscreen-title");
     const closeButton = document.getElementById("close-fullscreen");
-    const expandButtons = document.querySelectorAll(".expand-button");
+    const expandButtons = Array.from(document.querySelectorAll(".expand-button"));
+    const playlist = expandButtons.map((button) => ({
+      src: button.getAttribute("data-video-src"),
+      title: button.getAttribute("data-video-title") || "Presentation Video",
+      fit: button.getAttribute("data-video-fit") || "contain"
+    }));
+    let currentVideoIndex = 0;
+    let playlistActive = false;
 
     function pauseGridVideos() {
       document.querySelectorAll(".video-panel video").forEach((video) => {
@@ -388,37 +399,64 @@
       }
     }
 
-    async function openPresentationVideo(button) {
-      const src = button.getAttribute("data-video-src");
-      const title = button.getAttribute("data-video-title") || "Presentation Video";
-
-      pauseGridVideos();
-      playerTitle.textContent = title;
+    function loadPlaylistVideo(index) {
+      const videoItem = playlist[index];
+      currentVideoIndex = index;
+      playerTitle.textContent = videoItem.title;
+      playerVideo.classList.toggle("is-fill", videoItem.fit === "cover");
       playerVideo.pause();
       playerVideo.removeAttribute("src");
       playerVideo.load();
-      playerVideo.src = src;
-      player.setAttribute("aria-hidden", "false");
-      body.classList.add("is-presenting");
-
-      await requestPresentationFullscreen();
+      playerVideo.src = videoItem.src;
       playerVideo.load();
+    }
+
+    async function playCurrentVideo() {
       playerVideo.play().catch(() => {
         playerVideo.focus();
       });
     }
 
+    async function openPresentationVideo(index) {
+      pauseGridVideos();
+      playlistActive = true;
+      loadPlaylistVideo(index);
+      player.setAttribute("aria-hidden", "false");
+      body.classList.add("is-presenting");
+
+      await requestPresentationFullscreen();
+      await playCurrentVideo();
+    }
+
+    function playNextVideo() {
+      if (!playlistActive) {
+        return;
+      }
+
+      const nextIndex = (currentVideoIndex + 1) % playlist.length;
+      loadPlaylistVideo(nextIndex);
+      playCurrentVideo();
+    }
+
     function closePresentationVideo() {
+      playlistActive = false;
       playerVideo.pause();
       playerVideo.removeAttribute("src");
+      playerVideo.classList.remove("is-fill");
       playerVideo.load();
       player.setAttribute("aria-hidden", "true");
       body.classList.remove("is-presenting");
     }
 
     expandButtons.forEach((button) => {
-      button.addEventListener("click", () => openPresentationVideo(button));
+      button.addEventListener("click", () => openPresentationVideo(Number(button.getAttribute("data-video-index")) || 0));
     });
+
+    playerVideo.addEventListener("ended", playNextVideo);
+
+    window.presentationVideoPlaylist = {
+      next: playNextVideo
+    };
 
     closeButton.addEventListener("click", async () => {
       if (document.fullscreenElement && document.exitFullscreen) {
