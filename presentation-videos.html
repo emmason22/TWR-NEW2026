@@ -91,6 +91,7 @@
     }
 
     .video-panel {
+      position: relative;
       min-width: 0;
       min-height: 0;
       height: 100%;
@@ -103,12 +104,48 @@
       box-shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
     }
 
+    .video-panel:focus-within {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
     .video-frame {
+      position: relative;
       min-height: 0;
       overflow: hidden;
       display: grid;
       place-items: center;
       background: #000;
+    }
+
+    .expand-button,
+    .close-button {
+      border: 1px solid rgba(252, 178, 18, 0.74);
+      background: rgba(0, 0, 0, 0.72);
+      color: #fff;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .expand-button:hover,
+    .close-button:hover {
+      background: rgba(252, 178, 18, 0.94);
+      border-color: var(--gold);
+      color: #000;
+      transform: translateY(-1px);
+    }
+
+    .expand-button {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      line-height: 1;
     }
 
     video {
@@ -152,6 +189,63 @@
       font-size: 13px;
     }
 
+    .fullscreen-player {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      grid-template-rows: auto minmax(0, 1fr);
+      background: #000;
+      color: #fff;
+    }
+
+    .fullscreen-player[aria-hidden="false"] {
+      display: grid;
+    }
+
+    .fullscreen-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: clamp(12px, 2vw, 22px);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.48));
+    }
+
+    .fullscreen-title {
+      margin: 0;
+      font-size: clamp(18px, 2.2vw, 34px);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .close-button {
+      flex: 0 0 auto;
+      min-width: 84px;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .fullscreen-video-wrap {
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      background: #000;
+    }
+
+    .fullscreen-video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
+    body.is-presenting {
+      overflow: hidden;
+    }
+
     @media (max-width: 1180px) {
       .video-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -181,6 +275,11 @@
       video {
         aspect-ratio: 9 / 16;
       }
+
+      .expand-button {
+        top: 10px;
+        right: 10px;
+      }
     }
   </style>
 </head>
@@ -198,9 +297,10 @@
       <article class="video-panel">
         <div class="video-frame">
           <video controls playsinline preload="metadata">
-            <source src="assets/presentation-videos/TWR_TikTok_01_FINAL_V5.mp4" type="video/mp4" />
+            <source src="assets/presentation-videos/TWR_TikTok_01_FINAL_V5.mp4?v=20260616b" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          <button class="expand-button" type="button" data-video-src="assets/presentation-videos/TWR_TikTok_01_FINAL_V5.mp4?v=20260616b" data-video-title="TWR TikTok Final">Expand</button>
         </div>
         <div class="caption">
           <h2>TWR TikTok Final</h2>
@@ -211,9 +311,10 @@
       <article class="video-panel">
         <div class="video-frame">
           <video controls playsinline preload="metadata">
-            <source src="assets/presentation-videos/recoverTWR2.mp4" type="video/mp4" />
+            <source src="assets/presentation-videos/recoverTWR2.mp4?v=20260616b" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          <button class="expand-button" type="button" data-video-src="assets/presentation-videos/recoverTWR2.mp4?v=20260616b" data-video-title="Recover TWR 2">Expand</button>
         </div>
         <div class="caption">
           <h2>Recover TWR 2</h2>
@@ -224,9 +325,10 @@
       <article class="video-panel">
         <div class="video-frame">
           <video controls playsinline preload="metadata">
-            <source src="assets/presentation-videos/Video.796326312.926483.mp4" type="video/mp4" />
+            <source src="assets/presentation-videos/Video.796326312.926483.mp4?v=20260616b" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          <button class="expand-button" type="button" data-video-src="assets/presentation-videos/Video.796326312.926483.mp4?v=20260616b" data-video-title="Presentation Video 03">Expand</button>
         </div>
         <div class="caption">
           <h2>Presentation Video</h2>
@@ -237,9 +339,10 @@
       <article class="video-panel">
         <div class="video-frame">
           <video controls playsinline preload="metadata">
-            <source src="assets/presentation-videos/Video.796325599.33697.mp4" type="video/mp4" />
+            <source src="assets/presentation-videos/Video.796325599.33697.mp4?v=20260616b" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          <button class="expand-button" type="button" data-video-src="assets/presentation-videos/Video.796325599.33697.mp4?v=20260616b" data-video-title="Presentation Video 04">Expand</button>
         </div>
         <div class="caption">
           <h2>Presentation Video</h2>
@@ -248,5 +351,93 @@
       </article>
     </section>
   </main>
+
+  <div class="fullscreen-player" id="fullscreen-player" aria-hidden="true" role="dialog" aria-label="Fullscreen video player">
+    <div class="fullscreen-bar">
+      <h2 class="fullscreen-title" id="fullscreen-title">Presentation Video</h2>
+      <button class="close-button" type="button" id="close-fullscreen">Close</button>
+    </div>
+    <div class="fullscreen-video-wrap">
+      <video class="fullscreen-video" id="fullscreen-video" controls playsinline></video>
+    </div>
+  </div>
+
+  <script>
+    const body = document.body;
+    const player = document.getElementById("fullscreen-player");
+    const playerVideo = document.getElementById("fullscreen-video");
+    const playerTitle = document.getElementById("fullscreen-title");
+    const closeButton = document.getElementById("close-fullscreen");
+    const expandButtons = document.querySelectorAll(".expand-button");
+
+    function pauseGridVideos() {
+      document.querySelectorAll(".video-panel video").forEach((video) => {
+        video.pause();
+      });
+    }
+
+    async function requestPresentationFullscreen() {
+      if (!player.requestFullscreen || document.fullscreenElement) {
+        return;
+      }
+
+      try {
+        await player.requestFullscreen();
+      } catch (error) {
+        // Some browsers block fullscreen unless the click is fresh; the overlay still fills the page.
+      }
+    }
+
+    async function openPresentationVideo(button) {
+      const src = button.getAttribute("data-video-src");
+      const title = button.getAttribute("data-video-title") || "Presentation Video";
+
+      pauseGridVideos();
+      playerTitle.textContent = title;
+      playerVideo.pause();
+      playerVideo.removeAttribute("src");
+      playerVideo.load();
+      playerVideo.src = src;
+      player.setAttribute("aria-hidden", "false");
+      body.classList.add("is-presenting");
+
+      await requestPresentationFullscreen();
+      playerVideo.load();
+      playerVideo.play().catch(() => {
+        playerVideo.focus();
+      });
+    }
+
+    function closePresentationVideo() {
+      playerVideo.pause();
+      playerVideo.removeAttribute("src");
+      playerVideo.load();
+      player.setAttribute("aria-hidden", "true");
+      body.classList.remove("is-presenting");
+    }
+
+    expandButtons.forEach((button) => {
+      button.addEventListener("click", () => openPresentationVideo(button));
+    });
+
+    closeButton.addEventListener("click", async () => {
+      if (document.fullscreenElement && document.exitFullscreen) {
+        await document.exitFullscreen();
+      }
+      closePresentationVideo();
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      if (!document.fullscreenElement && player.getAttribute("aria-hidden") === "false") {
+        closePresentationVideo();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && player.getAttribute("aria-hidden") === "false") {
+        closePresentationVideo();
+      }
+    });
+  </script>
 </body>
 </html>
