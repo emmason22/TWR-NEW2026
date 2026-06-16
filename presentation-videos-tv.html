@@ -300,7 +300,7 @@
     <section class="video-grid" aria-label="Presentation video gallery">
       <article class="video-panel">
         <div class="video-frame">
-          <video controls playsinline loop preload="metadata">
+          <video controls playsinline preload="metadata">
             <source src="assets/presentation-videos/TWR_TikTok_01_FINAL_V5.mp4?v=20260616b" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -314,7 +314,7 @@
 
       <article class="video-panel">
         <div class="video-frame">
-          <video controls playsinline loop preload="metadata">
+          <video controls playsinline preload="metadata">
             <source src="assets/presentation-videos/recoverTWR2.mp4?v=20260616b" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -328,7 +328,7 @@
 
       <article class="video-panel">
         <div class="video-frame">
-          <video controls playsinline loop preload="metadata">
+          <video controls playsinline preload="metadata">
             <source src="assets/presentation-videos/Video.796326312.926483.mp4?v=20260616b" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -342,7 +342,7 @@
 
       <article class="video-panel">
         <div class="video-frame">
-          <video controls playsinline loop preload="metadata">
+          <video controls playsinline preload="metadata">
             <source src="assets/presentation-videos/Video.796325599.33697.mp4?v=20260616b" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -373,6 +373,7 @@
     const playerTitle = document.getElementById("fullscreen-title");
     const closeButton = document.getElementById("close-fullscreen");
     const expandButtons = Array.from(document.querySelectorAll(".expand-button"));
+    const gridVideos = Array.from(document.querySelectorAll(".video-panel video"));
     const playlist = expandButtons.map((button) => ({
       src: button.getAttribute("data-video-src"),
       title: button.getAttribute("data-video-title") || "Presentation Video",
@@ -450,6 +451,18 @@
 
     expandButtons.forEach((button) => {
       button.addEventListener("click", () => openPresentationVideo(Number(button.getAttribute("data-video-index")) || 0));
+    });
+
+    gridVideos.forEach((video, index) => {
+      video.addEventListener("play", () => {
+        if (player.getAttribute("aria-hidden") === "false") {
+          return;
+        }
+
+        video.pause();
+        video.currentTime = 0;
+        openPresentationVideo(index);
+      });
     });
 
     playerVideo.addEventListener("ended", playNextVideo);
