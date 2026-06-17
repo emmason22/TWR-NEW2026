@@ -1618,7 +1618,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initFoundingMemberPromo();
   initMailingListExitIntentPopup();
   initAboutNavDropdown();
-  initOutreachNavDropdown();
   initMobileNav();
   initImagePerformanceDefaults();
   initHomelessHeroVideoFade();
