@@ -322,7 +322,7 @@ textarea:focus-visible {
 .home-event-flyer {
   background: #080b10;
   color: #fff;
-  padding: clamp(28px, 4.5vw, 72px) 0;
+  padding: clamp(20px, 3vw, 44px) 0;
   border-bottom: 1px solid rgba(198, 157, 42, 0.34);
 }
 
@@ -331,18 +331,18 @@ textarea:focus-visible {
 }
 
 .home-event-flyer .container {
-  width: min(94vw, 1320px);
+  width: min(96vw, 1320px);
   max-width: 1320px;
   display: grid;
-  grid-template-columns: minmax(280px, 0.36fr) minmax(0, 1fr);
-  gap: clamp(22px, 3.4vw, 54px);
-  align-items: center;
+  gap: clamp(14px, 2vw, 26px);
+  justify-items: center;
 }
 
 .home-event-flyer-copy {
   display: grid;
-  gap: 14px;
-  align-content: center;
+  gap: 10px;
+  justify-items: center;
+  text-align: center;
 }
 
 .home-event-flyer .block-kicker {
@@ -355,7 +355,7 @@ textarea:focus-visible {
   margin: 0;
   color: #fff;
   font-family: "Oswald", sans-serif;
-  font-size: clamp(40px, 4.2vw, 72px);
+  font-size: clamp(30px, 3.2vw, 48px);
   line-height: 0.95;
   text-transform: uppercase;
 }
@@ -363,6 +363,7 @@ textarea:focus-visible {
 .home-event-flyer-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   margin-top: 4px;
 }
@@ -391,25 +392,12 @@ textarea:focus-visible {
 .home-event-flyer-image {
   width: 100%;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
+  object-fit: contain;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 22px 46px rgba(0, 0, 0, 0.28);
 }
 
 @media (max-width: 760px) {
-  .home-event-flyer .container {
-    grid-template-columns: 1fr;
-  }
-
-  .home-event-flyer-copy {
-    text-align: center;
-    justify-items: center;
-  }
-
-  .home-event-flyer-actions {
-    justify-content: center;
-  }
-
   .home-event-flyer-actions .hero-btn {
     width: min(100%, 320px);
   }
