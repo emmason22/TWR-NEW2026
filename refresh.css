@@ -55,7 +55,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: clamp(10px, 0.9vw, 13px);
+  font-size: clamp(10.5px, 0.95vw, 13.5px);
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #fff;
@@ -5241,7 +5241,7 @@ label,
   }
 
   .site-nav a {
-    font-size: clamp(11px, 0.9vw, 15px);
+    font-size: clamp(12px, 0.98vw, 16px);
     letter-spacing: 0.008em;
   }
 
@@ -5285,7 +5285,7 @@ label,
   }
 
   .site-nav a {
-    font-size: 10.5px;
+    font-size: 11px;
   }
 
   .header-actions .volunteer-btn,
