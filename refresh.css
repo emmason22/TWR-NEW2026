@@ -51,6 +51,10 @@ body {
 }
 
 .site-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   font-size: clamp(9px, 0.85vw, 12px);
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -5232,7 +5236,7 @@ label,
   .site-nav {
     gap: clamp(8px, 0.82vw, 16px);
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .site-nav a {
