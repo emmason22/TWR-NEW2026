@@ -55,7 +55,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: clamp(9px, 0.85vw, 12px);
+  font-size: clamp(10px, 0.9vw, 13px);
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #fff;
@@ -5223,6 +5223,7 @@ label,
 
   .brand {
     width: fit-content;
+    min-width: clamp(132px, 12vw, 184px);
     flex: 0 0 auto;
   }
 
@@ -5234,13 +5235,13 @@ label,
   }
 
   .site-nav {
-    gap: clamp(8px, 0.82vw, 16px);
+    gap: clamp(6px, 0.65vw, 12px);
     align-items: center;
     justify-content: center;
   }
 
   .site-nav a {
-    font-size: clamp(10px, 0.82vw, 14px);
+    font-size: clamp(11px, 0.9vw, 15px);
     letter-spacing: 0.008em;
   }
 
@@ -5269,6 +5270,10 @@ label,
     grid-template-columns: auto minmax(0, 1fr) auto;
   }
 
+  .brand {
+    min-width: 0;
+  }
+
   .site-header .brand-logo,
   .brand-logo {
     width: 62px;
@@ -5276,11 +5281,11 @@ label,
   }
 
   .site-nav {
-    gap: 8px;
+    gap: 6px;
   }
 
   .site-nav a {
-    font-size: 10px;
+    font-size: 10.5px;
   }
 
   .header-actions .volunteer-btn,
