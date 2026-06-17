@@ -334,59 +334,7 @@ textarea:focus-visible {
   width: min(96vw, 1320px);
   max-width: 1320px;
   display: grid;
-  gap: clamp(14px, 2vw, 26px);
   justify-items: center;
-}
-
-.home-event-flyer-copy {
-  display: grid;
-  gap: 10px;
-  justify-items: center;
-  text-align: center;
-}
-
-.home-event-flyer .block-kicker {
-  margin: 0;
-  color: var(--rf-gold);
-  font-size: clamp(16px, 1.1vw, 22px);
-}
-
-.home-event-flyer h2 {
-  margin: 0;
-  color: #fff;
-  font-family: "Oswald", sans-serif;
-  font-size: clamp(30px, 3.2vw, 48px);
-  line-height: 0.95;
-  text-transform: uppercase;
-}
-
-.home-event-flyer-actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 4px;
-}
-
-.home-event-flyer-actions .hero-btn {
-  min-width: 210px;
-  min-height: 46px;
-  border-radius: 0;
-  border-width: 2px;
-  font-size: clamp(18px, 1.25vw, 23px);
-}
-
-.home-event-flyer-actions .hero-btn-launch,
-.home-event-flyer-actions .hero-btn-donate {
-  background: var(--rf-gold);
-  border-color: var(--rf-gold);
-  color: #111;
-}
-
-.home-event-flyer-actions .hero-btn:hover,
-.home-event-flyer-actions .hero-btn:focus-visible {
-  filter: brightness(0.96);
-  color: #111;
 }
 
 .home-event-flyer-image {
@@ -395,12 +343,6 @@ textarea:focus-visible {
   object-fit: contain;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 22px 46px rgba(0, 0, 0, 0.28);
-}
-
-@media (max-width: 760px) {
-  .home-event-flyer-actions .hero-btn {
-    width: min(100%, 320px);
-  }
 }
 
 .home-impact-proof {
