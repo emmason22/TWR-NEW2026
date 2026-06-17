@@ -954,7 +954,7 @@ function initMobileNav() {
 function initOutreachNavDropdown() {
   const navs = document.querySelectorAll(".site-nav");
   navs.forEach((nav) => {
-    if (nav.querySelector(".nav-dropdown")) return;
+    if (nav.querySelector(".nav-dropdown-outreach")) return;
 
     const outreachLinks = [
       nav.querySelector("a[href='veteran-outreach.html'], a[href='../../veteran-outreach.html']"),
@@ -966,7 +966,7 @@ function initOutreachNavDropdown() {
     if (outreachLinks.length < 4) return;
 
     const dropdown = document.createElement("div");
-    dropdown.className = "nav-dropdown";
+    dropdown.className = "nav-dropdown nav-dropdown-outreach";
 
     const trigger = document.createElement("a");
     trigger.className = "nav-dropdown-trigger";
@@ -983,6 +983,49 @@ function initOutreachNavDropdown() {
       link.setAttribute("role", "menuitem");
       submenu.appendChild(link);
     });
+    dropdown.appendChild(submenu);
+  });
+}
+
+function initAboutNavDropdown() {
+  const navs = document.querySelectorAll(".site-nav");
+  navs.forEach((nav) => {
+    if (nav.querySelector(".nav-dropdown-about")) return;
+
+    const aboutLink = nav.querySelector("a[href='about.html'], a[href='../../about.html']");
+    if (!aboutLink) return;
+
+    const aboutHref = aboutLink.getAttribute("href") || "about.html";
+    const prefix = aboutHref.endsWith("about.html") ? aboutHref.slice(0, -10) : "";
+    const currentPage = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+
+    const dropdown = document.createElement("div");
+    dropdown.className = "nav-dropdown nav-dropdown-about";
+    aboutLink.insertAdjacentElement("beforebegin", dropdown);
+
+    const trigger = aboutLink;
+    trigger.classList.add("nav-dropdown-trigger");
+    dropdown.appendChild(trigger);
+
+    const submenu = document.createElement("div");
+    submenu.className = "nav-submenu";
+    submenu.setAttribute("role", "menu");
+
+    [
+      ["about.html", "About"],
+      ["our-team.html", "Our Team"],
+      ["team.html", "Meet the Board"],
+    ].forEach(([href, label]) => {
+      const link = document.createElement("a");
+      link.href = `${prefix}${href}`;
+      link.textContent = label;
+      link.setAttribute("role", "menuitem");
+      if (currentPage === href) {
+        link.setAttribute("aria-current", "page");
+      }
+      submenu.appendChild(link);
+    });
+
     dropdown.appendChild(submenu);
   });
 }
@@ -1574,6 +1617,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initExpiringSections();
   initFoundingMemberPromo();
   initMailingListExitIntentPopup();
+  initAboutNavDropdown();
+  initOutreachNavDropdown();
   initMobileNav();
   initImagePerformanceDefaults();
   initHomelessHeroVideoFade();
