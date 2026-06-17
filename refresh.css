@@ -320,10 +320,9 @@ textarea:focus-visible {
 }
 
 .home-event-flyer {
-  background: #080b10;
-  color: #fff;
-  padding: clamp(20px, 3vw, 44px) 0;
-  border-bottom: 1px solid rgba(198, 157, 42, 0.34);
+  background: transparent;
+  padding: 0;
+  border-bottom: 0;
 }
 
 .home-event-flyer[hidden] {
@@ -331,18 +330,18 @@ textarea:focus-visible {
 }
 
 .home-event-flyer .container {
-  width: min(96vw, 1320px);
-  max-width: 1320px;
-  display: grid;
-  justify-items: center;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 .home-event-flyer-image {
+  display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.28);
+  height: auto;
+  border: 0;
+  box-shadow: none;
 }
 
 .home-impact-proof {
