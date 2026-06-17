@@ -440,6 +440,16 @@ function isHomepageView() {
   return lastSegment === "" || lastSegment === "index.html";
 }
 
+function initExpiringSections() {
+  const expiringSections = document.querySelectorAll("[data-expires-at]");
+  expiringSections.forEach((section) => {
+    const expiresAt = new Date(section.getAttribute("data-expires-at") || "");
+    if (!Number.isNaN(expiresAt.getTime()) && Date.now() >= expiresAt.getTime()) {
+      section.hidden = true;
+    }
+  });
+}
+
 function incrementSessionVisitCount(key) {
   try {
     const previousCount = Number(sessionStorage.getItem(key) || "0");
@@ -1561,6 +1571,7 @@ function initDonationTicker() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initMotionReadyState();
+  initExpiringSections();
   initFoundingMemberPromo();
   initMailingListExitIntentPopup();
   initMobileNav();

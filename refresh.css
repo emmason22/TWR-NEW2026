@@ -319,6 +319,102 @@ textarea:focus-visible {
   color: #111;
 }
 
+.home-event-flyer {
+  background: #080b10;
+  color: #fff;
+  padding: clamp(28px, 4.5vw, 72px) 0;
+  border-bottom: 1px solid rgba(198, 157, 42, 0.34);
+}
+
+.home-event-flyer[hidden] {
+  display: none !important;
+}
+
+.home-event-flyer .container {
+  width: min(94vw, 1320px);
+  max-width: 1320px;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.36fr) minmax(0, 1fr);
+  gap: clamp(22px, 3.4vw, 54px);
+  align-items: center;
+}
+
+.home-event-flyer-copy {
+  display: grid;
+  gap: 14px;
+  align-content: center;
+}
+
+.home-event-flyer .block-kicker {
+  margin: 0;
+  color: var(--rf-gold);
+  font-size: clamp(16px, 1.1vw, 22px);
+}
+
+.home-event-flyer h2 {
+  margin: 0;
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(40px, 4.2vw, 72px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.home-event-flyer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.home-event-flyer-actions .hero-btn {
+  min-width: 210px;
+  min-height: 46px;
+  border-radius: 0;
+  border-width: 2px;
+  font-size: clamp(18px, 1.25vw, 23px);
+}
+
+.home-event-flyer-actions .hero-btn-launch,
+.home-event-flyer-actions .hero-btn-donate {
+  background: var(--rf-gold);
+  border-color: var(--rf-gold);
+  color: #111;
+}
+
+.home-event-flyer-actions .hero-btn:hover,
+.home-event-flyer-actions .hero-btn:focus-visible {
+  filter: brightness(0.96);
+  color: #111;
+}
+
+.home-event-flyer-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.28);
+}
+
+@media (max-width: 760px) {
+  .home-event-flyer .container {
+    grid-template-columns: 1fr;
+  }
+
+  .home-event-flyer-copy {
+    text-align: center;
+    justify-items: center;
+  }
+
+  .home-event-flyer-actions {
+    justify-content: center;
+  }
+
+  .home-event-flyer-actions .hero-btn {
+    width: min(100%, 320px);
+  }
+}
+
 .home-impact-proof {
   padding: 24px 0 14px;
 }
