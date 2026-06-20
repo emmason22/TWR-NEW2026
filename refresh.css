@@ -1675,7 +1675,9 @@ textarea:focus-visible {
 
 .page-monthly-giving .monthly-giving-any-amount-row {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: none;
   margin: 0 0 20px;
 }
 
@@ -3832,6 +3834,10 @@ label,
 
   .page-monthly-giving .monthly-tier-grid {
     grid-template-columns: 1fr;
+  }
+
+  .page-monthly-giving .monthly-giving-any-amount-row {
+    justify-content: center;
   }
 
   .page-monthly-giving .monthly-tier-card {
