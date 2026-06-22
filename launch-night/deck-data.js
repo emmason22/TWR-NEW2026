@@ -371,7 +371,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "DONATE NOW",
     kind: "site-preview",
-    siteUrl: "/donate-now.html",
+    siteUrl: "/donate-now.html#donation-tracker",
     links: [
       { label: "Donate Now", href: "/donate-now.html" }
     ]
@@ -399,16 +399,16 @@ window.TWRLaunchNightSlides = [
     time: "8:00 PM",
     eyebrow: "",
     title: "CARLTON VIDEO",
-    kind: "big-type",
-    image: "/assets/HomelessOutReachPic.png"
+    kind: "video",
+    video: "/assets/carlton-video.mp4"
   },
   {
     id: "23-stella-video",
     time: "8:00 PM",
     eyebrow: "",
     title: "STELLA VIDEO",
-    kind: "big-type",
-    image: "/assets/CommunityOutreachHero.png"
+    kind: "video",
+    video: "/assets/stella-video.mp4"
   },
   {
     id: "24-veteran-outreach",
@@ -512,7 +512,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "DONATE NOW",
     kind: "site-preview",
-    siteUrl: "/donate-now.html",
+    siteUrl: "/donate-now.html#donation-tracker",
     links: [
       { label: "Donate Now", href: "/donate-now.html" }
     ]
@@ -531,7 +531,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "DONATE NOW",
     kind: "site-preview",
-    siteUrl: "/donate-now.html",
+    siteUrl: "/donate-now.html#donation-tracker",
     links: [
       { label: "Donate Now", href: "/donate-now.html" }
     ]
@@ -622,7 +622,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "DONATE NOW",
     kind: "site-preview",
-    siteUrl: "/donate-now.html",
+    siteUrl: "/donate-now.html#donation-tracker",
     links: [
       { label: "Donate Now", href: "/donate-now.html" }
     ]
@@ -744,7 +744,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "DONATE NOW",
     kind: "site-preview",
-    siteUrl: "/donate-now.html",
+    siteUrl: "/donate-now.html#donation-tracker",
     links: [
       { label: "Donate Now", href: "/donate-now.html" }
     ]
