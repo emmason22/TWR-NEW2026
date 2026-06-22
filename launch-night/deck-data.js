@@ -94,7 +94,7 @@ window.TWRLaunchNightSlides = [
     title: "RAFFLE REMINDER",
     subtitle: "Reminder",
     kind: "reminder",
-    image: "/assets/TWREvent Flyer.jpg",
+    image: "/assets/real-auction-item-poster.png",
     bullets: [
       "Raffle tickets available tonight.",
       "Silent Auction available tonight.",
@@ -290,7 +290,7 @@ window.TWRLaunchNightSlides = [
     title: "RAFFLE/AUCTION",
     subtitle: "Reminder",
     kind: "reminder",
-    image: "/assets/TWRLaunchParty.jpg",
+    image: "/assets/real-auction-item-poster.png",
     bullets: [
       "Visit the Donate Now / Founding Member table.",
       "Visit the Volunteer table."
@@ -319,7 +319,7 @@ window.TWRLaunchNightSlides = [
       "Visit Founding Member and Volunteer tables"
     ],
     links: [
-      { label: "RAFFLE Tickets Poster", href: "/assets/TWRLaunchParty.png" },
+      { label: "RAFFLE Tickets Poster", href: "/assets/real-auction-item-poster.png" },
       { label: "Donate", href: "/donate/" }
     ]
   },
@@ -444,7 +444,7 @@ window.TWRLaunchNightSlides = [
     title: "Madison King",
     subtitle: "RAFFLE",
     kind: "band",
-    image: "/assets/TWRLaunchParty.png",
+    image: "/assets/madison-king-1.webp",
     bullets: [
       "Visit the Raffle Table",
       "Visit the Silent Auction",
@@ -566,7 +566,7 @@ window.TWRLaunchNightSlides = [
     title: "SILENT AUCTION CLOSING",
     subtitle: "Featured Items",
     kind: "reminder",
-    image: "/assets/TWRLaunchParty.jpg",
+    image: "/assets/real-auction-item-poster.png",
     bullets: [
       "Fuji Cruiser Bike - $500 Value",
       "CASA di LINO - $500 Gift Card",
@@ -582,7 +582,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "RAFFLE & SILENT AUCTION WINNERS",
     kind: "reminder",
-    image: "/assets/TWRLaunchParty.jpg",
+    image: "/assets/real-auction-item-poster.png",
     bullets: [
       "Announce Silent Auction Winners",
       "Raffle Drawings",
