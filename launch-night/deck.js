@@ -89,6 +89,7 @@
               playsinline
               preload="metadata"
             ></video>
+            ${slide.videoName ? `<p class="deck-media-name">${escapeHtml(slide.videoName)}</p>` : ""}
           </div>
         `;
       case "loop-video":
@@ -121,6 +122,7 @@
         return `
           <img class="deck-full-image" src="${escapeHtml(slide.image)}" alt="" />
           ${slide.overlayTitle ? `<p class="deck-image-overlay-title">${escapeHtml(slide.overlayTitle)}</p>` : ""}
+          ${slide.videoName ? `<p class="deck-media-name">${escapeHtml(slide.videoName)}</p>` : ""}
         `;
       case "link-grid":
         return `<div class="deck-link-grid">${(slide.links || []).map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`).join("")}</div>`;

@@ -400,6 +400,8 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "CARLTON VIDEO",
     kind: "video",
+    titleHidden: true,
+    videoName: "Carlton",
     video: "/assets/carlton-video.mp4"
   },
   {
@@ -408,6 +410,8 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "STELLA VIDEO",
     kind: "video",
+    titleHidden: true,
+    videoName: "Stella",
     video: "/assets/stella-video.mp4"
   },
   {
@@ -435,6 +439,7 @@ window.TWRLaunchNightSlides = [
     subtitle: "La La Video",
     kind: "full-image",
     image: "/assets/lala-video-frame.png",
+    videoName: "LaLa",
     links: [
       { label: "La La Video", href: "https://www.facebook.com/reel/2519750618491527" }
     ]
@@ -527,17 +532,6 @@ window.TWRLaunchNightSlides = [
     image: "/assets/TWRLaunchParty.png"
   },
   {
-    id: "30-donate-now",
-    time: "9:00 PM",
-    eyebrow: "",
-    title: "DONATE NOW",
-    kind: "site-preview",
-    siteUrl: "/donate-now.html#donation-tracker",
-    links: [
-      { label: "Donate Now", href: "/donate-now.html" }
-    ]
-  },
-  {
     id: "31-where-were-going",
     time: "9:00 PM",
     eyebrow: "",
@@ -581,10 +575,10 @@ window.TWRLaunchNightSlides = [
     kind: "logo-grid",
     image: "/assets/news/fox4-tonight-we-ride.png",
     logos: [
-      { label: "Good Morning Texas", href: "https://www.wfaa.com/video/entertainment/television/programs/good-morning-texas/tonight-we-ride-launch-party-preview/287-7166f769-cad0-4555-b515-c5fb253d700c" },
+      { label: "Good Morning Texas", src: "/assets/partner-logos/good-morning-texas.png", href: "https://www.wfaa.com/video/entertainment/television/programs/good-morning-texas/tonight-we-ride-launch-party-preview/287-7166f769-cad0-4555-b515-c5fb253d700c" },
       { label: "Dallas Observer", src: "/assets/partner-logos/dallas-observer.png", showLabel: true, href: "https://www.dallasobserver.com/" },
-      { label: "Dallas Morning News", src: "/assets/partner-logos/dallas-morning-news.png", showLabel: true, href: "https://www.dallasnews.com/" },
-      { label: "What In East Dallas Is Going On", src: "/assets/partner-logos/facebook.png", showLabel: true, href: "https://www.facebook.com/groups/whatineastdallas/" }
+      { label: "Dallas Morning News", src: "/assets/partner-logos/dallas-morning-news-white.png", showLabel: true, href: "https://www.dallasnews.com/" },
+      { label: "What In East Dallas Is Going On", src: "/assets/partner-logos/east-dallas-going-on.png", href: "https://www.facebook.com/groups/whatineastdallas/" }
     ],
     links: [
       { label: "News", href: "/news.html" },
@@ -598,6 +592,8 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "HELP US RESPOND TO THE NEXT ONE",
     kind: "qr-codes",
+    theme: "white",
+    className: "qr-white-slide",
     qrs: [
       { label: "Donate Now", src: "/assets/donate-qr.png", href: "/donate/" },
       { label: "Founding Member", src: "/assets/founding-qr.png", href: "/founding-member.html" }
@@ -694,10 +690,10 @@ window.TWRLaunchNightSlides = [
     theme: "white",
     image: "/assets/news/fox4-tonight-we-ride.png",
     logos: [
-      { label: "Good Morning Texas", href: "https://www.wfaa.com/video/entertainment/television/programs/good-morning-texas/tonight-we-ride-launch-party-preview/287-7166f769-cad0-4555-b515-c5fb253d700c" },
+      { label: "Good Morning Texas", src: "/assets/partner-logos/good-morning-texas.png", href: "https://www.wfaa.com/video/entertainment/television/programs/good-morning-texas/tonight-we-ride-launch-party-preview/287-7166f769-cad0-4555-b515-c5fb253d700c" },
       { label: "Dallas Observer", src: "/assets/partner-logos/dallas-observer.png", showLabel: true, href: "https://www.dallasobserver.com/" },
-      { label: "Dallas Morning News", src: "/assets/partner-logos/dallas-morning-news.png", showLabel: true, href: "https://www.dallasnews.com/" },
-      { label: "What In East Dallas Is Going On", src: "/assets/partner-logos/facebook.png", showLabel: true, href: "https://www.facebook.com/groups/whatineastdallas/" },
+      { label: "Dallas Morning News", src: "/assets/partner-logos/dallas-morning-news-white.png", showLabel: true, href: "https://www.dallasnews.com/" },
+      { label: "What In East Dallas Is Going On", src: "/assets/partner-logos/east-dallas-going-on.png", href: "https://www.facebook.com/groups/whatineastdallas/" },
       { label: "Rabbit Hat PR", src: "/assets/partner-logos/rabbit-hat-pr.png", href: "/rabbit-hat-press-release.html" }
     ],
     links: [
