@@ -3,8 +3,7 @@ window.TWRLaunchNightSlides = [
     id: "01-title",
     time: "7:00 PM",
     eyebrow: "",
-    title: "TONIGHT WE RIDE LAUNCH NIGHT",
-    subtitle: "Launch Night",
+    title: "LAUNCH PARTY",
     kind: "logo-title",
     logo: "/assets/TonightWeRideLogo.png",
     links: [

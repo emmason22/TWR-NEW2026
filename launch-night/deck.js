@@ -55,8 +55,8 @@
       case "logo-title":
         return `
           <div class="deck-logo-title">
+            <p>${escapeHtml(slide.title).replace(/\s+/g, "<br>")}</p>
             <img src="${escapeHtml(slide.logo || "/assets/TonightWeRideLogo.png")}" alt="Tonight We Ride" />
-            ${slide.subtitle ? `<p>${escapeHtml(slide.subtitle)}</p>` : ""}
           </div>
         `;
       case "video":
@@ -147,7 +147,6 @@
         ${renderBackground(slide)}
         <section class="${slideClass}">
           <div class="slide-topbar">
-            <img class="slide-logo" src="/assets/TonightWeRideLogo.png" alt="Tonight We Ride" />
           </div>
           <div class="slide-main">
             ${slide.eyebrow ? `<p class="deck-eyebrow">${escapeHtml(slide.eyebrow)}</p>` : ""}
