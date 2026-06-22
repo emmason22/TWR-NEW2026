@@ -211,10 +211,10 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "LIVE DEMO",
     subtitle: "Need Help Form Only",
-    kind: "browser-cue",
+    kind: "logo-grid",
     image: "/assets/CommunityOutreachHero.png",
-    bullets: [
-      "Use Barley House as sample submission"
+    logos: [
+      { label: "Barley House", src: "/assets/partner-logos/barley-house.png" }
     ],
     links: [
       { label: "Need Help Form Only", href: "/community-outreach.html" }
@@ -378,10 +378,10 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "COMMUNITY PARTNERSHIPS",
     subtitle: "No organization changes a community alone.",
-    kind: "statement",
+    kind: "logo-grid",
     image: "/TWR2/toy-drive/TheFamilyPlace.png",
-    bullets: [
-      "Featuring: The Family Place"
+    logos: [
+      { label: "The Family Place", src: "/assets/partner-logos/the-family-place.png", href: "/emergency-relief.html" }
     ],
     links: [
       { label: "Community Partners", href: "/emergency-relief.html" }
@@ -488,18 +488,13 @@ window.TWRLaunchNightSlides = [
     time: "9:15 PM",
     eyebrow: "",
     title: "THE STORY IS GROWING",
-    kind: "photo-grid",
-    images: [
-      "/assets/news/fox4-tonight-we-ride.png",
-      "/assets/TWRLaunchParty.png",
-      "/assets/TonightWeRideLogo.png",
-      "/assets/CommunityPartnersHero2.png"
-    ],
-    bullets: [
-      "Good Morning Texas",
-      "Dallas Observer",
-      "Dallas Morning News",
-      "What In East Dallas Is Going On"
+    kind: "logo-grid",
+    image: "/assets/news/fox4-tonight-we-ride.png",
+    logos: [
+      { label: "Good Morning Texas", href: "https://www.wfaa.com/video/entertainment/television/programs/good-morning-texas/tonight-we-ride-launch-party-preview/287-7166f769-cad0-4555-b515-c5fb253d700c" },
+      { label: "Dallas Observer", src: "/assets/partner-logos/dallas-observer.png", showLabel: true, href: "https://www.dallasobserver.com/" },
+      { label: "Dallas Morning News", src: "/assets/partner-logos/dallas-morning-news.png", showLabel: true, href: "https://www.dallasnews.com/" },
+      { label: "What In East Dallas Is Going On", src: "/assets/partner-logos/facebook.png", showLabel: true, href: "https://www.facebook.com/groups/whatineastdallas/" }
     ],
     links: [
       { label: "News", href: "/news.html" },
@@ -543,9 +538,6 @@ window.TWRLaunchNightSlides = [
     kind: "reminder",
     image: "/assets/real-auction-item-poster.png",
     bullets: [
-      "Fuji Cruiser Bike - $500 Value",
-      "CASA di LINO - $500 Gift Card",
-      "Dallas Opera Ticket Package - $340 Value",
       "Silent Auction Closed",
       "Finalize bids",
       "Prepare winner announcements"
@@ -569,7 +561,12 @@ window.TWRLaunchNightSlides = [
     time: "10:00 PM",
     eyebrow: "",
     title: "COMMUNITY PARTNERS",
-    kind: "link-grid",
+    kind: "logo-grid",
+    logos: [
+      { label: "The Family Place", src: "/assets/partner-logos/the-family-place.png", href: "/emergency-relief.html" },
+      { label: "Dallas Life", src: "/assets/partner-logos/dallas-life.png", href: "/emergency-relief.html" },
+      { label: "Additional Partners", href: "/emergency-relief.html" }
+    ],
     links: [
       { label: "The Family Place", href: "/emergency-relief.html" },
       { label: "Dallas Life", href: "/emergency-relief.html" },
@@ -581,19 +578,19 @@ window.TWRLaunchNightSlides = [
     time: "10:00 PM",
     eyebrow: "",
     title: "EVENT SUPPORTERS & DONORS",
-    kind: "reminder",
+    kind: "logo-grid",
     image: "/assets/TWRLaunchParty.png",
-    bullets: [
-      "Barley House",
-      "PlayTri",
-      "CASA di LINO",
-      "Dallas Opera",
-      "Granada Theater",
-      "AllGood Cafe",
-      "Tony's Pizza & Pasta",
-      "Sweet Cakes by Becca",
-      "CAVA",
-      "Working Hair"
+    logos: [
+      { label: "Barley House", src: "/assets/partner-logos/barley-house.png" },
+      { label: "PlayTri", src: "/assets/partner-logos/playtri.jpeg" },
+      { label: "CASA di LINO" },
+      { label: "Dallas Opera", src: "/assets/partner-logos/dallas-opera.png", showLabel: true },
+      { label: "Granada Theater", src: "/assets/partner-logos/granada-theater.png", showLabel: true },
+      { label: "AllGood Cafe" },
+      { label: "Tony's Pizza & Pasta", src: "/assets/partner-logos/tonys-pizza-pasta.png", showLabel: true },
+      { label: "Sweet Cakes by Becca", src: "/assets/partner-logos/sweet-cakes-by-becca.png" },
+      { label: "CAVA", src: "/assets/partner-logos/cava.png", showLabel: true },
+      { label: "Working Hair", src: "/assets/partner-logos/working-hair.png", showLabel: true }
     ]
   },
   {
@@ -601,14 +598,14 @@ window.TWRLaunchNightSlides = [
     time: "10:00 PM",
     eyebrow: "",
     title: "MEDIA & PROMOTIONAL SUPPORT",
-    kind: "reminder",
+    kind: "logo-grid",
     image: "/assets/news/fox4-tonight-we-ride.png",
-    bullets: [
-      "Good Morning Texas",
-      "Dallas Observer",
-      "Dallas Morning News",
-      "What In East Dallas Is Going On",
-      "Rabbit Hat PR"
+    logos: [
+      { label: "Good Morning Texas", href: "https://www.wfaa.com/video/entertainment/television/programs/good-morning-texas/tonight-we-ride-launch-party-preview/287-7166f769-cad0-4555-b515-c5fb253d700c" },
+      { label: "Dallas Observer", src: "/assets/partner-logos/dallas-observer.png", showLabel: true, href: "https://www.dallasobserver.com/" },
+      { label: "Dallas Morning News", src: "/assets/partner-logos/dallas-morning-news.png", showLabel: true, href: "https://www.dallasnews.com/" },
+      { label: "What In East Dallas Is Going On", src: "/assets/partner-logos/facebook.png", showLabel: true, href: "https://www.facebook.com/groups/whatineastdallas/" },
+      { label: "Rabbit Hat PR", src: "/assets/partner-logos/rabbit-hat-pr.png", href: "/rabbit-hat-press-release.html" }
     ],
     links: [
       { label: "News", href: "/news.html" },

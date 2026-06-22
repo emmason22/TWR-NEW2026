@@ -30,6 +30,20 @@
     return `<ul class="deck-bullets">${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
   };
 
+  const renderLogoGrid = (items) => {
+    if (!items || !items.length) return "";
+    return `<div class="deck-logo-grid">${items.map((item) => {
+      const logo = item.src
+        ? `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.label)}" />${item.showLabel ? `<span class="deck-logo-caption">${escapeHtml(item.label)}</span>` : ""}`
+        : `<span>${escapeHtml(item.label)}</span>`;
+      if (!item.href) return `<div class="deck-logo-card">${logo}</div>`;
+      return `
+      <a class="deck-logo-card" href="${escapeHtml(item.href)}" target="_blank" rel="noopener noreferrer">
+        ${logo}
+      </a>`;
+    }).join("")}</div>`;
+  };
+
   const renderBody = (slide) => {
     switch (slide.kind) {
       case "site-preview":
@@ -67,6 +81,8 @@
         `;
       case "link-grid":
         return `<div class="deck-link-grid">${(slide.links || []).map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`).join("")}</div>`;
+      case "logo-grid":
+        return renderLogoGrid(slide.logos);
       case "process":
         return `<ol class="deck-steps">${(slide.steps || []).map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>`;
       case "three-cards":
