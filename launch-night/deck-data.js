@@ -385,7 +385,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "VETERAN OUTREACH",
     kind: "statement",
-    image: "/assets/VeteranOutrechpic.png",
+    image: "/assets/VeteranHero.png",
     bullets: [
       "L.I.F.T.",
       "Resource Navigation",
