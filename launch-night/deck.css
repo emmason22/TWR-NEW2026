@@ -978,9 +978,68 @@ a {
   grid-row: 1 / span 4;
 }
 
+.slide.is-video.large-centered-video .slide-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  align-content: center;
+  padding: clamp(18px, 2.2vw, 40px);
+}
+
+.slide.is-video.large-centered-video .deck-video-frame {
+  grid-column: 1;
+  grid-row: auto;
+  width: min(96vw, calc(88vh * 16 / 9));
+  max-width: 1680px;
+  aspect-ratio: 16 / 9;
+}
+
+.slide.is-video.large-centered-video .deck-video {
+  object-fit: contain;
+}
+
 .slide.is-loop-video {
   padding: 0;
   grid-template-rows: 1fr;
+}
+
+.slide.is-video-cycle {
+  padding: 0;
+  grid-template-rows: 1fr;
+}
+
+.slide.is-video-cycle .slide-topbar,
+.slide.is-video-cycle .slide-footer {
+  display: none;
+}
+
+.slide.is-video-cycle .slide-main {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.deck-video-cycle,
+.deck-video-cycle-player {
+  position: absolute;
+  inset: 0;
+}
+
+.deck-video-cycle {
+  background: #000;
+  overflow: hidden;
+}
+
+.deck-video-cycle-player {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+
+.deck-video-cycle-player.is-fill {
+  object-fit: cover;
 }
 
 .slide.is-loop-video .slide-topbar,

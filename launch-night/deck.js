@@ -92,6 +92,18 @@
             ${slide.videoName ? `<p class="deck-media-name">${escapeHtml(slide.videoName)}</p>` : ""}
           </div>
         `;
+      case "video-cycle":
+        return `
+          <div class="deck-video-cycle" data-videos="${escapeHtml(JSON.stringify(slide.videos || []))}">
+            <video
+              class="deck-video-cycle-player"
+              autoplay
+              muted
+              playsinline
+              preload="auto"
+            ></video>
+          </div>
+        `;
       case "loop-video":
         return `
           <div class="deck-loop-video">
@@ -192,7 +204,7 @@
 
   const renderSlide = (slide, index) => {
     const titleClass = slide.title && slide.title.length > 34 ? "deck-title is-long" : "deck-title";
-    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "loop-video" ? "slide is-loop-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "logo-only" ? "slide is-logo-only" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : slide.kind === "full-image" ? "slide is-full-image" : slide.kind === "montage" ? "slide is-montage" : slide.kind === "qr-codes" ? "slide is-qr-codes" : "slide";
+    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "video-cycle" ? "slide is-video-cycle" : slide.kind === "loop-video" ? "slide is-loop-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "logo-only" ? "slide is-logo-only" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : slide.kind === "full-image" ? "slide is-full-image" : slide.kind === "montage" ? "slide is-montage" : slide.kind === "qr-codes" ? "slide is-qr-codes" : "slide";
     const themeClass = slide.theme ? ` theme-${escapeHtml(slide.theme)}` : "";
     const customClass = slide.className ? ` ${escapeHtml(slide.className)}` : "";
     const shellClass = slide.kind === "band" ? "deck-shell is-band-shell" : slide.kind === "poster" ? "deck-shell is-poster-shell" : "deck-shell";
@@ -206,8 +218,8 @@
           </div>
           <div class="slide-main">
             ${slide.eyebrow ? `<p class="deck-eyebrow">${escapeHtml(slide.eyebrow)}</p>` : ""}
-            ${!slide.titleHidden && slide.kind !== "logo-title" && slide.kind !== "logo-only" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "full-image" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
-            ${slide.subtitle && slide.kind !== "logo-title" && slide.kind !== "logo-only" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "full-image" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
+            ${!slide.titleHidden && slide.kind !== "logo-title" && slide.kind !== "logo-only" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "video-cycle" && slide.kind !== "full-image" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
+            ${slide.subtitle && slide.kind !== "logo-title" && slide.kind !== "logo-only" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "video-cycle" && slide.kind !== "full-image" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
             ${slide.accent ? `<p class="deck-accent">${escapeHtml(slide.accent)}</p>` : ""}
             ${renderBody(slide)}
           </div>
@@ -220,6 +232,38 @@
         ${renderControls(slide, index)}
       </main>
     `;
+    initializeVideoCycle();
+  };
+
+  const initializeVideoCycle = () => {
+    const cycle = document.querySelector(".deck-video-cycle");
+    if (!cycle) return;
+
+    let videos = [];
+    try {
+      videos = JSON.parse(cycle.dataset.videos || "[]");
+    } catch (error) {
+      videos = [];
+    }
+
+    const player = cycle.querySelector(".deck-video-cycle-player");
+    if (!player || !videos.length) return;
+
+    let index = 0;
+    const loadVideo = () => {
+      const item = videos[index % videos.length];
+      player.classList.toggle("is-fill", item.fit === "cover");
+      player.src = item.src;
+      player.load();
+      player.play().catch(() => {});
+    };
+
+    player.addEventListener("ended", () => {
+      index = (index + 1) % videos.length;
+      loadVideo();
+    });
+
+    loadVideo();
   };
 
   const renderController = () => {

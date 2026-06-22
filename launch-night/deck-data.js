@@ -3,13 +3,16 @@ window.TWRLaunchNightSlides = [
     id: "00-opening-video-loop",
     time: "7:00 PM",
     eyebrow: "",
-    title: "TONIGHT WE RIDE",
-    displayTitle: "Tonight We Ride",
-    tagline: "Changing the World, One Person At a Time",
-    kind: "loop-video",
-    video: "/assets/Dallas.mp4",
+    title: "PRESENTATION VIDEO LOOP",
+    kind: "video-cycle",
+    videos: [
+      { src: "/assets/presentation-videos/TWR_TikTok_01_FINAL_V5.mp4?v=20260616b", fit: "cover" },
+      { src: "/assets/presentation-videos/recoverTWR2.mp4?v=20260616b", fit: "contain" },
+      { src: "/assets/presentation-videos/Video.796326312.926483.mp4?v=20260616b", fit: "contain" },
+      { src: "/assets/presentation-videos/Video.796325599.33697.mp4?v=20260616b", fit: "contain" }
+    ],
     links: [
-      { label: "Homepage Video", href: "/assets/Dallas.mp4" }
+      { label: "Video Loop Page", href: "/presentation-videos-tv.html" }
     ]
   },
   {
@@ -400,6 +403,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "CARLTON VIDEO",
     kind: "video",
+    className: "large-centered-video",
     titleHidden: true,
     videoName: "Carlton",
     video: "/assets/carlton-video.mp4"
@@ -410,6 +414,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "STELLA VIDEO",
     kind: "video",
+    className: "large-centered-video",
     titleHidden: true,
     videoName: "Stella",
     video: "/assets/stella-video.mp4"
