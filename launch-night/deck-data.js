@@ -557,7 +557,7 @@ window.TWRLaunchNightSlides = [
     title: "Brent Best",
     subtitle: "Photos / Branding while playing",
     kind: "band",
-    image: "/assets/TWRLaunchParty.png"
+    image: "/assets/brent-best.jpg"
   },
   {
     id: "36-silent-auction-closing",
