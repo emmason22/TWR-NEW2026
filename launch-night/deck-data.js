@@ -539,14 +539,17 @@ window.TWRLaunchNightSlides = [
     kind: "logo-grid",
     theme: "white",
     logos: [
-      { label: "The Family Place", src: "/assets/partner-logos/the-family-place.png", href: "/emergency-relief.html" },
-      { label: "Dallas Life", src: "/assets/partner-logos/dallas-life.png", href: "/emergency-relief.html" },
-      { label: "Additional Partners", href: "/emergency-relief.html" }
+      { label: "Dallas Life", src: "/assets/DallasLifeLogo.png", href: "https://dallaslife.org/" },
+      { label: "The Bridge", src: "/assets/TheBridgeLogo.svg", href: "https://www.bridgehrc.org/" },
+      { label: "Barley House", src: "/TWR2/toy-drive/BarleyHouseLogo.png", href: "https://barleyhouse.com/" },
+      { label: "The Family Place", src: "/FamilyPlacelogo.png", href: "https://familyplace.org/" },
+      { label: "Albertsons", src: "/assets/Albertsons-Emblem.png", href: "https://www.albertsons.com/" },
+      { label: "Womack Real Estate", src: "/assets/WomackRealEstate.png", href: "https://www.womackrealestate.com/" },
+      { label: "Sweet Cakes by Becca", src: "/assets/SweetCakesbyBecca.png", href: "https://www.instagram.com/sweetcakesbybecca/" },
+      { label: "Playtri", src: "/assets/PlaytriLogo.jpeg", href: "https://playtristore.com/" }
     ],
     links: [
-      { label: "The Family Place", href: "/emergency-relief.html" },
-      { label: "Dallas Life", href: "/emergency-relief.html" },
-      { label: "Additional Partners", href: "/emergency-relief.html" }
+      { label: "Community Partners", href: "/emergency-relief.html" }
     ]
   },
   {

@@ -429,6 +429,31 @@ a {
   color: #050505;
 }
 
+.slide.theme-white .deck-logo-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: clamp(10px, 1.15vw, 18px);
+  width: min(100%, 1320px);
+  align-items: center;
+}
+
+.slide.theme-white .deck-logo-card {
+  min-height: clamp(90px, 9vw, 136px);
+  padding: clamp(10px, 1.35vw, 22px);
+}
+
+.slide.theme-white .deck-logo-card img {
+  max-width: min(100%, 190px);
+  max-height: clamp(56px, 6.6vw, 84px);
+}
+
+.slide.theme-white .deck-logo-card span {
+  font-size: clamp(17px, 1.5vw, 28px);
+}
+
+.slide.theme-white .deck-logo-card .deck-logo-caption {
+  font-size: clamp(11px, 0.9vw, 15px);
+}
+
 .slide.theme-white .slide-footer {
   color: rgba(0, 0, 0, 0.54);
 }
