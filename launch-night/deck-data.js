@@ -678,7 +678,8 @@ window.TWRLaunchNightSlides = [
       { label: "Sweet Cakes by Becca", src: "/assets/partner-logos/sweet-cakes-by-becca.png" },
       { label: "CAVA", src: "/assets/partner-logos/cava.png", showLabel: true },
       { label: "Working Hair", src: "/assets/partner-logos/working-hair.png" },
-      { label: "Sokyoot Gifts", src: "/assets/partner-logos/sokyoot-gifts.png" }
+      { label: "Sokyoot Gifts", src: "/assets/partner-logos/sokyoot-gifts.png" },
+      { label: "Rising Tides", src: "/assets/partner-logos/rising-tides.png" }
     ]
   },
   {
