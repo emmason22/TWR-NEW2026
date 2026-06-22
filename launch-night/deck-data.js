@@ -69,6 +69,18 @@ window.TWRLaunchNightSlides = [
     ]
   },
   {
+    id: "06-one-person-at-a-time",
+    time: "7:00 PM",
+    eyebrow: "",
+    title: "OUR MISSION",
+    kind: "photo-quote",
+    image: "/Gallery/optimized/IMG_7293.jpg",
+    links: [
+      { label: "Gallery", href: "/gallery.html" },
+      { label: "Homeless Outreach", href: "/homeless-outreach.html" }
+    ]
+  },
+  {
     id: "05-our-mission",
     time: "7:00 PM",
     eyebrow: "",
@@ -81,18 +93,6 @@ window.TWRLaunchNightSlides = [
     links: [
       { label: "About", href: "/about.html" },
       { label: "Community Partners", href: "/emergency-relief.html" }
-    ]
-  },
-  {
-    id: "06-one-person-at-a-time",
-    time: "7:00 PM",
-    eyebrow: "",
-    title: "CHANGING THE WORLD, ONE PERSON AT A TIME",
-    kind: "photo-quote",
-    image: "/Gallery/optimized/IMG_7293.jpg",
-    links: [
-      { label: "Gallery", href: "/gallery.html" },
-      { label: "Homeless Outreach", href: "/homeless-outreach.html" }
     ]
   },
   {
@@ -191,6 +191,8 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "FROM TRADITION TO IMPACT",
     kind: "photo-grid",
+    className: "photo-background-full",
+    image: "/assets/tradition-impact-background.jpeg",
     images: [
       "/assets/ToyDrivePoster.jpg",
       "/assets/ToyDrivepic.jpg",

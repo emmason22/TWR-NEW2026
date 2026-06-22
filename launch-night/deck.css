@@ -78,6 +78,21 @@ a {
   filter: saturate(1.08) contrast(1.08);
 }
 
+.slide.photo-background-full .slide-bg::after {
+  background: transparent;
+}
+
+.slide.photo-background-full .slide-bg img {
+  opacity: 1;
+  filter: none;
+}
+
+.slide.photo-background-full .deck-title,
+.slide.photo-background-full .deck-eyebrow,
+.slide.photo-background-full .deck-subtitle {
+  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.86);
+}
+
 .slide {
   position: relative;
   z-index: 1;
