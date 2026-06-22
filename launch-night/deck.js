@@ -72,6 +72,12 @@
             <p>${escapeHtml(slide.title).replace(/\s+/g, "<br>")}</p>
           </div>
         `;
+      case "logo-only":
+        return `
+          <div class="deck-logo-only">
+            <img src="${escapeHtml(slide.logo || "/assets/TonightWeRideLogo.png")}" alt="Tonight We Ride" />
+          </div>
+        `;
       case "video":
         return `
           <div class="deck-video-frame">
@@ -112,7 +118,10 @@
       case "montage":
         return `<div class="deck-montage">${(slide.images || []).map((src, imageIndex) => `<img style="--i:${imageIndex}" src="${escapeHtml(src)}" alt="" />`).join("")}</div>`;
       case "full-image":
-        return `<img class="deck-full-image" src="${escapeHtml(slide.image)}" alt="" />`;
+        return `
+          <img class="deck-full-image" src="${escapeHtml(slide.image)}" alt="" />
+          ${slide.overlayTitle ? `<p class="deck-image-overlay-title">${escapeHtml(slide.overlayTitle)}</p>` : ""}
+        `;
       case "link-grid":
         return `<div class="deck-link-grid">${(slide.links || []).map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`).join("")}</div>`;
       case "logo-grid":
@@ -181,7 +190,7 @@
 
   const renderSlide = (slide, index) => {
     const titleClass = slide.title && slide.title.length > 34 ? "deck-title is-long" : "deck-title";
-    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "loop-video" ? "slide is-loop-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : slide.kind === "full-image" ? "slide is-full-image" : slide.kind === "montage" ? "slide is-montage" : slide.kind === "qr-codes" ? "slide is-qr-codes" : "slide";
+    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "loop-video" ? "slide is-loop-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "logo-only" ? "slide is-logo-only" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : slide.kind === "full-image" ? "slide is-full-image" : slide.kind === "montage" ? "slide is-montage" : slide.kind === "qr-codes" ? "slide is-qr-codes" : "slide";
     const themeClass = slide.theme ? ` theme-${escapeHtml(slide.theme)}` : "";
     const customClass = slide.className ? ` ${escapeHtml(slide.className)}` : "";
     const shellClass = slide.kind === "band" ? "deck-shell is-band-shell" : slide.kind === "poster" ? "deck-shell is-poster-shell" : "deck-shell";
@@ -195,8 +204,8 @@
           </div>
           <div class="slide-main">
             ${slide.eyebrow ? `<p class="deck-eyebrow">${escapeHtml(slide.eyebrow)}</p>` : ""}
-            ${!slide.titleHidden && slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "full-image" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
-            ${slide.subtitle && slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "full-image" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
+            ${!slide.titleHidden && slide.kind !== "logo-title" && slide.kind !== "logo-only" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "full-image" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
+            ${slide.subtitle && slide.kind !== "logo-title" && slide.kind !== "logo-only" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "full-image" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
             ${slide.accent ? `<p class="deck-accent">${escapeHtml(slide.accent)}</p>` : ""}
             ${renderBody(slide)}
           </div>

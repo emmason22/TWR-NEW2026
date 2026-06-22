@@ -175,6 +175,32 @@ a {
   text-align: right;
 }
 
+.slide.is-logo-only {
+  grid-template-rows: 1fr;
+  padding: clamp(30px, 4vw, 72px);
+}
+
+.slide.is-logo-only .slide-topbar,
+.slide.is-logo-only .slide-footer {
+  display: none;
+}
+
+.slide.is-logo-only .slide-main {
+  place-items: center;
+}
+
+.deck-logo-only {
+  display: grid;
+  place-items: center;
+}
+
+.deck-logo-only img {
+  width: min(48vw, 68vh, 720px);
+  max-height: 74vh;
+  display: block;
+  filter: drop-shadow(0 34px 70px rgba(0, 0, 0, 0.58));
+}
+
 .slide.is-site-preview {
   grid-template-rows: 1fr;
   padding: 0;
@@ -255,6 +281,25 @@ a {
   display: block;
   object-fit: contain;
   background: #020202;
+}
+
+.deck-image-overlay-title {
+  position: absolute;
+  left: clamp(42px, 5vw, 90px);
+  bottom: clamp(42px, 5vw, 90px);
+  z-index: 2;
+  max-width: 10ch;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(70px, 9vw, 170px);
+  line-height: 0.86;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-shadow: 0 10px 38px rgba(0, 0, 0, 0.9);
+}
+
+.slide.next-chapter-photo .deck-full-image {
+  object-fit: cover;
 }
 
 .slide.is-montage .deck-title {

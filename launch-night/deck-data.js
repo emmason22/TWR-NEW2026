@@ -210,11 +210,21 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "THE NEXT CHAPTER",
     kind: "full-image",
+    className: "next-chapter-photo",
     image: "/assets/team-photo.jpg",
+    overlayTitle: "THE NEXT CHAPTER",
     links: [
       { label: "Donate", href: "/donate/" },
       { label: "Volunteer", href: "/volunteer.html" }
     ]
+  },
+  {
+    id: "10-logo-only",
+    time: "7:10 PM",
+    eyebrow: "",
+    title: "Tonight We Ride",
+    kind: "logo-only",
+    logo: "/assets/TonightWeRideLogo.png"
   },
   {
     id: "11-many-ways-to-help",
@@ -233,7 +243,6 @@ window.TWRLaunchNightSlides = [
     time: "7:15 PM",
     eyebrow: "",
     title: "EVERY FORM SUBMISSION REPRESENTS A REAL PERSON WITH A REAL NEED",
-    subtitle: "Full-screen impact slide",
     kind: "big-type",
     image: "/assets/RainyDayHero.png",
     links: [
@@ -323,16 +332,12 @@ window.TWRLaunchNightSlides = [
     id: "18-impact-dashboard",
     time: "7:25 PM",
     eyebrow: "",
-    title: "COMMUNITY IMPACT DASHBOARD",
-    subtitle: "Update after Stripe review.",
-    kind: "dashboard",
-    stats: [
-      { label: "Total Raised", value: "$56,000 Pre-Non Profit" },
-      { label: "Founding Members", value: "" }
-    ],
+    title: "DONATION TRACKER",
+    kind: "site-preview",
+    siteUrl: "/donate-now.html#donation-tracker",
     links: [
-      { label: "Donate Now", href: "/donate/" },
-      { label: "Donation Tracker", href: "https://twr-donation-ticker.tonightweride.workers.dev/donations/ticker" }
+      { label: "Donation Tracker", href: "/donate-now.html#donation-tracker" },
+      { label: "Donate Now", href: "/donate-now.html" }
     ]
   },
   {
