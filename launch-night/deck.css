@@ -141,7 +141,7 @@ a {
 
 .deck-logo-title img {
   width: min(36vw, 58vh, 560px);
-  justify-self: end;
+  justify-self: start;
   height: auto;
   display: block;
   filter: drop-shadow(0 32px 58px rgba(0, 0, 0, 0.58));
@@ -155,7 +155,7 @@ a {
   font-weight: 900;
   letter-spacing: 0;
   text-transform: uppercase;
-  text-align: left;
+  text-align: right;
 }
 
 .slide.is-site-preview {
@@ -223,6 +223,26 @@ a {
 .deck-shell.is-band-shell .slide-bg img {
   opacity: 1;
   filter: none;
+}
+
+.deck-shell.is-poster-shell .slide-bg::after {
+  display: none;
+}
+
+.deck-shell.is-poster-shell .slide-bg img {
+  opacity: 1;
+  filter: none;
+  object-fit: contain;
+}
+
+.slide.is-poster {
+  padding: 0;
+}
+
+.slide.is-poster .slide-topbar,
+.slide.is-poster .slide-main,
+.slide.is-poster .slide-footer {
+  display: none;
 }
 
 .slide.is-band .slide-main {

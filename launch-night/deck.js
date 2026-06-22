@@ -55,8 +55,8 @@
       case "logo-title":
         return `
           <div class="deck-logo-title">
-            <p>${escapeHtml(slide.title).replace(/\s+/g, "<br>")}</p>
             <img src="${escapeHtml(slide.logo || "/assets/TonightWeRideLogo.png")}" alt="Tonight We Ride" />
+            <p>${escapeHtml(slide.title).replace(/\s+/g, "<br>")}</p>
           </div>
         `;
       case "video":
@@ -138,8 +138,8 @@
 
   const renderSlide = (slide, index) => {
     const titleClass = slide.title && slide.title.length > 34 ? "deck-title is-long" : "deck-title";
-    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : "slide";
-    const shellClass = slide.kind === "band" ? "deck-shell is-band-shell" : "deck-shell";
+    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : "slide";
+    const shellClass = slide.kind === "band" ? "deck-shell is-band-shell" : slide.kind === "poster" ? "deck-shell is-poster-shell" : "deck-shell";
     document.title = `${String(index + 1).padStart(2, "0")} ${slide.title} | TWR Launch Night`;
     document.body.className = "deck-page";
     document.body.innerHTML = `

@@ -91,16 +91,8 @@ window.TWRLaunchNightSlides = [
     time: "7:05 PM",
     eyebrow: "",
     title: "RAFFLE REMINDER",
-    subtitle: "Reminder",
-    kind: "reminder",
+    kind: "poster",
     image: "/assets/real-auction-item-poster.png",
-    bullets: [
-      "Raffle tickets available tonight.",
-      "Silent Auction available tonight.",
-      "Signed event posters available for $25.",
-      "Visit Donate Now / Founding Member table.",
-      "Visit Volunteer table."
-    ],
     links: [
       { label: "Donate Now", href: "/donate/" },
       { label: "Founding Member", href: "/founding-member.html" },
@@ -287,13 +279,8 @@ window.TWRLaunchNightSlides = [
     time: "7:25 PM",
     eyebrow: "",
     title: "RAFFLE/AUCTION",
-    subtitle: "Reminder",
-    kind: "reminder",
+    kind: "poster",
     image: "/assets/real-auction-item-poster.png",
-    bullets: [
-      "Visit the Donate Now / Founding Member table.",
-      "Visit the Volunteer table."
-    ],
     links: [
       { label: "Donate Now", href: "/donate/" },
       { label: "Founding Member", href: "/founding-member.html" },
@@ -308,7 +295,7 @@ window.TWRLaunchNightSlides = [
     kind: "band",
     image: "/assets/TWRLaunchParty.png",
     links: [
-      { label: "RAFFLE Tickets Poster", href: "/assets/real-auction-item-poster.png" },
+      { label: "Auction Poster", href: "/assets/real-auction-item-poster.png" },
       { label: "Donate", href: "/donate/" }
     ]
   },
@@ -533,27 +520,16 @@ window.TWRLaunchNightSlides = [
     time: "9:45 PM",
     eyebrow: "",
     title: "SILENT AUCTION CLOSING",
-    subtitle: "Featured Items",
-    kind: "reminder",
-    image: "/assets/real-auction-item-poster.png",
-    bullets: [
-      "Silent Auction Closed",
-      "Finalize bids",
-      "Prepare winner announcements"
-    ]
+    kind: "poster",
+    image: "/assets/real-auction-item-poster.png"
   },
   {
     id: "37-raffle-silent-auction-winners",
     time: "10:00 PM",
     eyebrow: "",
     title: "RAFFLE & SILENT AUCTION WINNERS",
-    kind: "reminder",
-    image: "/assets/real-auction-item-poster.png",
-    bullets: [
-      "Announce Silent Auction Winners",
-      "Raffle Drawings",
-      "Recognize Prize Sponsors"
-    ]
+    kind: "poster",
+    image: "/assets/real-auction-item-poster.png"
   },
   {
     id: "38-community-partners",
