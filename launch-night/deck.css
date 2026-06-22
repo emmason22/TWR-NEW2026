@@ -116,6 +116,44 @@ a {
   min-width: 0;
 }
 
+.slide.is-logo-title {
+  grid-template-rows: 1fr;
+  padding: clamp(30px, 4vw, 72px);
+}
+
+.slide.is-logo-title .slide-topbar,
+.slide.is-logo-title .slide-footer {
+  display: none;
+}
+
+.slide.is-logo-title .slide-main {
+  place-items: center;
+  text-align: center;
+}
+
+.deck-logo-title {
+  display: grid;
+  place-items: center;
+  gap: clamp(22px, 3vw, 54px);
+}
+
+.deck-logo-title img {
+  width: min(68vw, 70vh, 680px);
+  max-width: 82%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 32px 58px rgba(0, 0, 0, 0.58));
+}
+
+.deck-logo-title p {
+  margin: 0;
+  color: var(--gold);
+  font-size: clamp(38px, 5vw, 92px);
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .deck-eyebrow {
   margin: 0;
   color: var(--gold);

@@ -32,6 +32,13 @@
 
   const renderBody = (slide) => {
     switch (slide.kind) {
+      case "logo-title":
+        return `
+          <div class="deck-logo-title">
+            <img src="${escapeHtml(slide.logo || "/assets/TonightWeRideLogo.png")}" alt="Tonight We Ride" />
+            ${slide.subtitle ? `<p>${escapeHtml(slide.subtitle)}</p>` : ""}
+          </div>
+        `;
       case "video":
         return `
           <div class="deck-video-frame">
@@ -93,7 +100,7 @@
 
   const renderSlide = (slide, index) => {
     const titleClass = slide.title && slide.title.length > 34 ? "deck-title is-long" : "deck-title";
-    const slideClass = slide.kind === "video" ? "slide is-video" : "slide";
+    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "logo-title" ? "slide is-logo-title" : "slide";
     document.title = `${String(index + 1).padStart(2, "0")} ${slide.title} | TWR Launch Night`;
     document.body.className = "deck-page";
     document.body.innerHTML = `
@@ -105,9 +112,9 @@
             <p class="slide-time">${escapeHtml(slide.time || "Launch Night")}</p>
           </div>
           <div class="slide-main">
-            <p class="deck-eyebrow">${escapeHtml(slide.eyebrow)}</p>
-            <h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>
-            ${slide.subtitle ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
+            ${slide.eyebrow ? `<p class="deck-eyebrow">${escapeHtml(slide.eyebrow)}</p>` : ""}
+            ${slide.kind !== "logo-title" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
+            ${slide.subtitle && slide.kind !== "logo-title" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
             ${slide.accent ? `<p class="deck-accent">${escapeHtml(slide.accent)}</p>` : ""}
             ${renderBody(slide)}
           </div>

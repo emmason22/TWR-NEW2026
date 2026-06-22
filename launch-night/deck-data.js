@@ -2,12 +2,11 @@ window.TWRLaunchNightSlides = [
   {
     id: "01-title",
     time: "7:00 PM",
-    eyebrow: "Launch Night",
+    eyebrow: "",
     title: "Tonight We Ride",
-    subtitle: "Website Launch Party & Fundraiser",
-    kind: "hero",
-    image: "/assets/TWRLaunchParty.png",
-    accent: "Changing the world, one person at a time.",
+    subtitle: "Launch Night",
+    kind: "logo-title",
+    logo: "/assets/TonightWeRideLogo.png",
     links: [
       { label: "Open Homepage", href: "/" },
       { label: "Donate", href: "/donate/" }
