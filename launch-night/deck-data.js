@@ -3,7 +3,7 @@ window.TWRLaunchNightSlides = [
     id: "01-title",
     time: "7:00 PM",
     eyebrow: "",
-    title: "Tonight We Ride",
+    title: "TONIGHT WE RIDE LAUNCH NIGHT",
     subtitle: "Launch Night",
     kind: "logo-title",
     logo: "/assets/TonightWeRideLogo.png",
@@ -15,9 +15,8 @@ window.TWRLaunchNightSlides = [
   {
     id: "02-mission-in-action",
     time: "7:00 PM",
-    eyebrow: "The Mission In Action",
-    title: "People Helping People",
-    subtitle: "Homeless outreach, veteran support, food distributions, and community care.",
+    eyebrow: "",
+    title: "THE MISSION IN ACTION",
     kind: "photo-grid",
     images: [
       "/assets/HomelessOutReachPic.png",
@@ -35,41 +34,42 @@ window.TWRLaunchNightSlides = [
   {
     id: "03-live-homepage",
     time: "7:00 PM",
-    eyebrow: "Live Website Homepage",
-    title: "TonightWeRide.org",
-    subtitle: "The official launch moment.",
+    eyebrow: "",
+    title: "LIVE WEBSITE HOMEPAGE",
+    subtitle: "Official website launch moment.",
     kind: "browser-cue",
     image: "/assets/DallasHero.png",
-    bullets: ["One place to find the mission", "One place to get involved", "One place to ask for help"],
     links: [
-      { label: "Launch Homepage", href: "/" },
-      { label: "News", href: "/news.html" }
+      { label: "LIVE WEBSITE HOMEPAGE", href: "/" }
     ]
   },
   {
     id: "04-website-launch-video",
     time: "7:00 PM",
-    eyebrow: "Website Launch Video",
-    title: "Website Intro Video",
-    subtitle: "Play full-screen from the presentation video page.",
+    eyebrow: "",
+    title: "WEBSITE LAUNCH VIDEO",
+    subtitle: "Play Website Intro Video",
     kind: "video",
     video: "/assets/presentation-videos/TWR_TikTok_01_FINAL_V5.mp4?v=20260616b",
     poster: "/assets/TWRLaunchParty.png",
     fit: "cover",
     links: [
-      { label: "Open Video Page", href: "/presentation-videos-tv.html" },
-      { label: "Open Homepage", href: "/" }
+      { label: "WEBSITE LAUNCH VIDEO", href: "/presentation-videos-tv.html" }
     ]
   },
   {
     id: "05-our-mission",
     time: "7:00 PM",
-    eyebrow: "Our Mission",
-    title: "Hope. Support. Practical Assistance.",
-    subtitle: "Connecting people with resources, restoring dignity, and creating lasting positive change.",
+    eyebrow: "",
+    title: "OUR MISSION",
     kind: "statement",
     image: "/assets/TonightWeRideLogo.png",
-    bullets: ["Homeless outreach", "Veteran support", "Crisis relief", "Community partnerships"],
+    bullets: [
+      "Tonight We Ride exists to provide hope, support, and practical assistance to individuals and families facing hardship.",
+      "Through homeless outreach, veteran support, crisis relief, and community partnerships, we work to connect people with resources, restore dignity, and create lasting positive change.",
+      "We believe that real impact happens one person, one family, and one act of kindness at a time.",
+      "Changing the World, one person at a time."
+    ],
     links: [
       { label: "About", href: "/about.html" },
       { label: "Community Partners", href: "/emergency-relief.html" }
@@ -78,9 +78,8 @@ window.TWRLaunchNightSlides = [
   {
     id: "06-one-person-at-a-time",
     time: "7:00 PM",
-    eyebrow: "The Heartbeat",
-    title: "Changing The World, One Person At A Time",
-    subtitle: "Sometimes it is a meal. Sometimes it is a ride. Sometimes it is helping someone feel seen.",
+    eyebrow: "",
+    title: "CHANGING THE WORLD, ONE PERSON AT A TIME",
     kind: "photo-quote",
     image: "/Gallery/optimized/IMG_7293.jpg",
     links: [
@@ -91,14 +90,20 @@ window.TWRLaunchNightSlides = [
   {
     id: "07-raffle-reminder",
     time: "7:05 PM",
-    eyebrow: "Reminder",
-    title: "Raffle. Silent Auction. Signed Posters.",
-    subtitle: "Visit the Donate Now / Founding Member table and the Volunteer table.",
+    eyebrow: "",
+    title: "RAFFLE REMINDER",
+    subtitle: "Reminder",
     kind: "reminder",
     image: "/assets/TWREvent Flyer.jpg",
-    bullets: ["Raffle tickets available tonight", "Silent auction open", "Signed event posters available for $25"],
+    bullets: [
+      "Raffle tickets available tonight.",
+      "Silent Auction available tonight.",
+      "Signed event posters available for $25.",
+      "Visit Donate Now / Founding Member table.",
+      "Visit Volunteer table."
+    ],
     links: [
-      { label: "Donate", href: "/donate/" },
+      { label: "Donate Now", href: "/donate/" },
       { label: "Founding Member", href: "/founding-member.html" },
       { label: "Volunteer", href: "/volunteer.html" }
     ]
@@ -106,11 +111,15 @@ window.TWRLaunchNightSlides = [
   {
     id: "08-where-it-began",
     time: "7:10 PM",
-    eyebrow: "Where It All Began",
-    title: "A Dallas Tradition",
-    subtitle: "From signs and chants to a community built around showing up.",
-    kind: "photo-quote",
-    image: "/assets/TWRLogo.png",
+    eyebrow: "",
+    title: "WHERE IT ALL BEGAN",
+    kind: "photo-grid",
+    images: [
+      "/assets/TWRLogo.png",
+      "/assets/TWRLaunchParty.png",
+      "/assets/ToyDrivePoster.jpg",
+      "/assets/ToyDrivepic.jpg"
+    ],
     links: [
       { label: "About", href: "/about.html" },
       { label: "Events", href: "/events.html" }
@@ -119,9 +128,8 @@ window.TWRLaunchNightSlides = [
   {
     id: "09-tradition-to-impact",
     time: "7:10 PM",
-    eyebrow: "From Tradition To Impact",
-    title: "The Toy Drive Grew. The Mission Grew.",
-    subtitle: "Community involvement became real impact.",
+    eyebrow: "",
+    title: "FROM TRADITION TO IMPACT",
     kind: "photo-grid",
     images: [
       "/assets/ToyDrivePoster.jpg",
@@ -130,19 +138,22 @@ window.TWRLaunchNightSlides = [
       "/TWR2/toy-drive/ToyDrive25.jpg"
     ],
     links: [
-      { label: "Toy Drive", href: "/TWR2/toy-drive/ToyDrive.html" },
+      { label: "Toy Drives", href: "/TWR2/toy-drive/ToyDrive.html" },
       { label: "Gallery", href: "/gallery.html" }
     ]
   },
   {
     id: "10-next-chapter",
     time: "7:10 PM",
-    eyebrow: "The Next Chapter",
-    title: "Growing Into A Nonprofit",
-    subtitle: "More needs. More requests. More structure to respond responsibly.",
-    kind: "statement",
-    image: "/assets/CommunityPartnersHero2.png",
-    bullets: ["A way for people to connect", "A way for volunteers to serve", "A way to grow responsibly"],
+    eyebrow: "",
+    title: "THE NEXT CHAPTER",
+    kind: "photo-grid",
+    images: [
+      "/assets/HomelessOutReachPic.png",
+      "/assets/CommunityOutreachHero.png",
+      "/assets/CommunityPartnersHero2.png",
+      "/assets/EmergencyOutreachpic.png"
+    ],
     links: [
       { label: "Donate", href: "/donate/" },
       { label: "Volunteer", href: "/volunteer.html" }
@@ -151,9 +162,8 @@ window.TWRLaunchNightSlides = [
   {
     id: "11-many-ways-to-help",
     time: "7:15 PM",
-    eyebrow: "One Mission. Many Ways To Help.",
-    title: "The Website Is Not The Mission.",
-    subtitle: "The mission is what the website allows Tonight We Ride to do.",
+    eyebrow: "",
+    title: "ONE MISSION. MANY WAYS TO HELP",
     kind: "link-grid",
     links: [
       { label: "Homeless Outreach", href: "/homeless-outreach.html" },
@@ -167,9 +177,9 @@ window.TWRLaunchNightSlides = [
   {
     id: "12-real-person-real-need",
     time: "7:15 PM",
-    eyebrow: "Impact",
-    title: "Every Form Submission Represents A Real Person With A Real Need",
-    subtitle: "The goal is not collecting forms. The goal is being able to respond.",
+    eyebrow: "",
+    title: "EVERY FORM SUBMISSION REPRESENTS A REAL PERSON WITH A REAL NEED",
+    subtitle: "Full-screen impact slide",
     kind: "big-type",
     image: "/assets/RainyDayHero.png",
     links: [
@@ -180,10 +190,16 @@ window.TWRLaunchNightSlides = [
   {
     id: "13-request-to-response",
     time: "7:20 PM",
-    eyebrow: "From Request To Response",
-    title: "Request Submitted. Help Delivered.",
+    eyebrow: "",
+    title: "FROM REQUEST TO RESPONSE",
     kind: "process",
-    steps: ["Request Submitted", "Reviewed", "Resources Evaluated", "Community Partners Engaged", "Help Delivered"],
+    steps: [
+      "Request Submitted",
+      "Reviewed",
+      "Resources Evaluated",
+      "Community Partners Engaged",
+      "Help Delivered"
+    ],
     links: [
       { label: "Need Help Form", href: "/community-outreach.html" },
       { label: "Community Partners", href: "/emergency-relief.html" }
@@ -192,22 +208,24 @@ window.TWRLaunchNightSlides = [
   {
     id: "14-need-help-demo",
     time: "7:20 PM",
-    eyebrow: "Live Demo",
-    title: "Need Help Form",
-    subtitle: "Use Barley House as the sample submission.",
+    eyebrow: "",
+    title: "LIVE DEMO",
+    subtitle: "Need Help Form Only",
     kind: "browser-cue",
     image: "/assets/CommunityOutreachHero.png",
-    bullets: ["Open the form", "Show how simple it is", "Return to the deck"],
+    bullets: [
+      "Use Barley House as sample submission"
+    ],
     links: [
-      { label: "Open Need Help Form", href: "/community-outreach.html" }
+      { label: "Need Help Form Only", href: "/community-outreach.html" }
     ]
   },
   {
     id: "15-answering-requests",
     time: "7:20 PM",
-    eyebrow: "The Real Challenge",
-    title: "The Challenge Is Not Collecting Requests",
-    subtitle: "The challenge is answering them.",
+    eyebrow: "",
+    title: "THE CHALLENGE ISN'T COLLECTING REQUESTS",
+    subtitle: "THE CHALLENGE IS ANSWERING THEM",
     kind: "big-type",
     image: "/assets/EmergencyReliefHero.png",
     links: [
@@ -218,8 +236,8 @@ window.TWRLaunchNightSlides = [
   {
     id: "16-three-ways",
     time: "7:25 PM",
-    eyebrow: "Three Ways To Make A Difference",
-    title: "Volunteer. Build. Give.",
+    eyebrow: "",
+    title: "THREE WAYS TO MAKE A DIFFERENCE",
     kind: "three-cards",
     cards: [
       { title: "Volunteer", subtitle: "Join The Mission", href: "/volunteer.html" },
@@ -229,15 +247,15 @@ window.TWRLaunchNightSlides = [
     links: [
       { label: "Volunteer", href: "/volunteer.html" },
       { label: "Founding Member", href: "/founding-member.html" },
-      { label: "Donate", href: "/donate/" }
+      { label: "Donate Now", href: "/donate/" }
     ]
   },
   {
     id: "17-founding-member",
     time: "7:25 PM",
-    eyebrow: "Become A Founding Member",
-    title: "Any Monthly Donation Makes You A Founding Member",
-    subtitle: "Monthly support gives Tonight We Ride stability.",
+    eyebrow: "",
+    title: "BECOME A FOUNDING MEMBER",
+    subtitle: "Any Monthly Donation Makes You A Founding Member",
     kind: "tiers",
     tiers: [
       { name: "Neighbor in Action", amount: "$50/month" },
@@ -246,36 +264,39 @@ window.TWRLaunchNightSlides = [
     ],
     links: [
       { label: "Founding Member", href: "/founding-member.html" },
-      { label: "Monthly Giving", href: "/monthly-giving.html" }
+      { label: "Monthly Donation", href: "/monthly-giving.html" }
     ]
   },
   {
     id: "18-impact-dashboard",
     time: "7:25 PM",
-    eyebrow: "Community Impact Dashboard",
-    title: "$56,000 Raised Before Nonprofit Launch",
-    subtitle: "Founding members and live giving updates support what comes next.",
+    eyebrow: "",
+    title: "COMMUNITY IMPACT DASHBOARD",
+    subtitle: "Update after Stripe review.",
     kind: "dashboard",
     stats: [
-      { label: "Pre-Nonprofit Raised", value: "$56,000" },
-      { label: "Founding Members", value: "Update After Stripe Review" }
+      { label: "Total Raised", value: "$56,000 Pre-Non Profit" },
+      { label: "Founding Members", value: "" }
     ],
     links: [
-      { label: "Donation Tracker", href: "/donate/" },
-      { label: "Cloudflare Ticker API", href: "https://twr-donation-ticker.tonightweride.workers.dev/donations/ticker" }
+      { label: "Donate Now", href: "/donate/" },
+      { label: "Donation Tracker", href: "https://twr-donation-ticker.tonightweride.workers.dev/donations/ticker" }
     ]
   },
   {
     id: "19-raffle-auction",
     time: "7:25 PM",
-    eyebrow: "Reminder",
-    title: "Raffle / Auction / Posters",
-    subtitle: "Visit the Donate Now / Founding Member table. Visit the Volunteer table.",
+    eyebrow: "",
+    title: "RAFFLE/AUCTION",
+    subtitle: "Reminder",
     kind: "reminder",
     image: "/assets/TWRLaunchParty.jpg",
-    bullets: ["Raffle tickets available", "Silent auction open", "Signed posters available for $25"],
+    bullets: [
+      "Visit the Donate Now / Founding Member table.",
+      "Visit the Volunteer table."
+    ],
     links: [
-      { label: "Donate", href: "/donate/" },
+      { label: "Donate Now", href: "/donate/" },
       { label: "Founding Member", href: "/founding-member.html" },
       { label: "Volunteer", href: "/volunteer.html" }
     ]
@@ -283,13 +304,22 @@ window.TWRLaunchNightSlides = [
   {
     id: "20-lasso-fiascos",
     time: "7:30 PM",
-    eyebrow: "Live Music",
+    eyebrow: "",
     title: "The Lasso Fiascos",
-    subtitle: "John Pedigo & Chad Stockslager",
+    subtitle: "RAFFLE",
     kind: "band",
     image: "/assets/TWRLaunchParty.png",
+    bullets: [
+      "Raffle tickets:",
+      "$10 each",
+      "3 for $25",
+      "7 for $50",
+      "Silent Auction open",
+      "Signed posters available for $25",
+      "Visit Founding Member and Volunteer tables"
+    ],
     links: [
-      { label: "Launch Flyer", href: "/assets/TWRLaunchParty.png" },
+      { label: "RAFFLE Tickets Poster", href: "/assets/TWRLaunchParty.png" },
       { label: "Donate", href: "/donate/" }
     ]
   }
