@@ -16,8 +16,8 @@
     .replace(/"/g, "&quot;");
 
   const renderBackground = (slide) => {
-    if (slide.kind === "video" && slide.video) {
-      return `<div class="slide-bg"><video src="${escapeHtml(slide.video)}" controls playsinline></video></div>`;
+    if (slide.kind === "video" && slide.poster) {
+      return `<div class="slide-bg"><img src="${escapeHtml(slide.poster)}" alt="" /></div>`;
     }
     if (slide.image) {
       return `<div class="slide-bg"><img src="${escapeHtml(slide.image)}" alt="" /></div>`;
@@ -32,6 +32,19 @@
 
   const renderBody = (slide) => {
     switch (slide.kind) {
+      case "video":
+        return `
+          <div class="deck-video-frame">
+            <video
+              class="deck-video"
+              src="${escapeHtml(slide.video)}"
+              ${slide.poster ? `poster="${escapeHtml(slide.poster)}"` : ""}
+              controls
+              playsinline
+              preload="metadata"
+            ></video>
+          </div>
+        `;
       case "photo-grid":
         return `<div class="deck-photo-grid">${(slide.images || []).map((src) => `<img src="${escapeHtml(src)}" alt="" />`).join("")}</div>`;
       case "link-grid":
@@ -80,12 +93,13 @@
 
   const renderSlide = (slide, index) => {
     const titleClass = slide.title && slide.title.length > 34 ? "deck-title is-long" : "deck-title";
+    const slideClass = slide.kind === "video" ? "slide is-video" : "slide";
     document.title = `${String(index + 1).padStart(2, "0")} ${slide.title} | TWR Launch Night`;
     document.body.className = "deck-page";
     document.body.innerHTML = `
       <main class="deck-shell" aria-label="${escapeHtml(slide.title)}">
         ${renderBackground(slide)}
-        <section class="slide">
+        <section class="${slideClass}">
           <div class="slide-topbar">
             <img class="slide-logo" src="/assets/TonightWeRideLogo.png" alt="Tonight We Ride" />
             <p class="slide-time">${escapeHtml(slide.time || "Launch Night")}</p>

@@ -55,6 +55,7 @@ window.TWRLaunchNightSlides = [
     subtitle: "Play full-screen from the presentation video page.",
     kind: "video",
     video: "/assets/presentation-videos/TWR_TikTok_01_FINAL_V5.mp4?v=20260616b",
+    poster: "/assets/TWRLaunchParty.png",
     fit: "cover",
     links: [
       { label: "Open Video Page", href: "/presentation-videos-tv.html" },
