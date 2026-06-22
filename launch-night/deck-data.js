@@ -464,13 +464,7 @@ window.TWRLaunchNightSlides = [
     time: "8:25 PM",
     eyebrow: "",
     title: "THE PEOPLE BEHIND THE MISSION",
-    kind: "photo-grid",
-    images: [
-      "/assets/CommunityPartnersHero2.png",
-      "/assets/Icons/Volunteer.png",
-      "/assets/HomelessOutReachPic.png",
-      "/assets/EmergencyOutreachpic.png"
-    ],
+    kind: "statement",
     accent: "Organizations don't change lives. People do.",
     bullets: [
       "Leadership Team",
@@ -528,7 +522,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "RYAN THOMAS BECKER",
     kind: "band",
-    image: "/assets/TWRLaunchParty.png"
+    image: "/assets/rtb-ryan-thomas-becker-live.jpg"
   },
   {
     id: "31-where-were-going",
