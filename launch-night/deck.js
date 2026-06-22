@@ -163,9 +163,19 @@
     if (target) window.location.href = slideUrl(target);
   };
 
+  let lastWheelNav = 0;
+  let touchStartY = 0;
+
+  const canNavigateFromEventTarget = (target) => {
+    const active = target || document.activeElement;
+    if (!active) return true;
+    if (["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(active.tagName)) return false;
+    if (active.closest && active.closest("video, .presenter-controls, iframe")) return false;
+    return true;
+  };
+
   window.addEventListener("keydown", (event) => {
-    const active = document.activeElement;
-    if (active && ["INPUT", "TEXTAREA", "SELECT"].includes(active.tagName)) return;
+    if (!canNavigateFromEventTarget(document.activeElement)) return;
     if (event.key === "ArrowRight" || event.key === " ") {
       event.preventDefault();
       goRelative(1);
@@ -179,6 +189,29 @@
       window.location.href = "/launch-night/";
     }
   });
+
+  window.addEventListener("wheel", (event) => {
+    if (!canNavigateFromEventTarget(event.target)) return;
+    if (Math.abs(event.deltaY) < 45) return;
+    const now = Date.now();
+    if (now - lastWheelNav < 850) return;
+    lastWheelNav = now;
+    event.preventDefault();
+    goRelative(event.deltaY > 0 ? 1 : -1);
+  }, { passive: false });
+
+  window.addEventListener("touchstart", (event) => {
+    if (!canNavigateFromEventTarget(event.target)) return;
+    touchStartY = event.changedTouches[0]?.clientY || 0;
+  }, { passive: true });
+
+  window.addEventListener("touchend", (event) => {
+    if (!canNavigateFromEventTarget(event.target)) return;
+    const touchEndY = event.changedTouches[0]?.clientY || 0;
+    const deltaY = touchStartY - touchEndY;
+    if (Math.abs(deltaY) < 60) return;
+    goRelative(deltaY > 0 ? 1 : -1);
+  }, { passive: true });
 
   const currentId = getSlideIdFromPath();
   if (currentId === "controller") {
