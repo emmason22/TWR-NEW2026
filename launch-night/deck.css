@@ -401,6 +401,20 @@ a {
   font-weight: 900;
 }
 
+.slide.mission-only .slide-main {
+  place-items: center;
+  text-align: center;
+}
+
+.slide.mission-only .deck-accent {
+  max-width: 14ch;
+  color: #fff;
+  font-size: clamp(60px, 8vw, 142px);
+  line-height: 0.92;
+  text-transform: uppercase;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.88);
+}
+
 .deck-bullets,
 .deck-steps,
 .deck-cards,

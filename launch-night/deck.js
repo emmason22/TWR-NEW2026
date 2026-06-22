@@ -171,18 +171,19 @@
     const titleClass = slide.title && slide.title.length > 34 ? "deck-title is-long" : "deck-title";
     const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "loop-video" ? "slide is-loop-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : slide.kind === "full-image" ? "slide is-full-image" : slide.kind === "montage" ? "slide is-montage" : "slide";
     const themeClass = slide.theme ? ` theme-${escapeHtml(slide.theme)}` : "";
+    const customClass = slide.className ? ` ${escapeHtml(slide.className)}` : "";
     const shellClass = slide.kind === "band" ? "deck-shell is-band-shell" : slide.kind === "poster" ? "deck-shell is-poster-shell" : "deck-shell";
     document.title = `${String(index + 1).padStart(2, "0")} ${slide.title} | TWR Launch Night`;
     document.body.className = "deck-page";
     document.body.innerHTML = `
       <main class="${shellClass}" aria-label="${escapeHtml(slide.title)}">
         ${renderBackground(slide)}
-        <section class="${slideClass}${themeClass}">
+        <section class="${slideClass}${themeClass}${customClass}">
           <div class="slide-topbar">
           </div>
           <div class="slide-main">
             ${slide.eyebrow ? `<p class="deck-eyebrow">${escapeHtml(slide.eyebrow)}</p>` : ""}
-            ${slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "full-image" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
+            ${!slide.titleHidden && slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "full-image" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
             ${slide.subtitle && slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "full-image" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
             ${slide.accent ? `<p class="deck-accent">${escapeHtml(slide.accent)}</p>` : ""}
             ${renderBody(slide)}

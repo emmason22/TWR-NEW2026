@@ -61,13 +61,10 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "OUR MISSION",
     kind: "statement",
+    className: "mission-only",
     image: "/assets/TonightWeRideLogo.png",
-    bullets: [
-      "Tonight We Ride exists to provide hope, support, and practical assistance to individuals and families facing hardship.",
-      "Through homeless outreach, veteran support, crisis relief, and community partnerships, we work to connect people with resources, restore dignity, and create lasting positive change.",
-      "We believe that real impact happens one person, one family, and one act of kindness at a time.",
-      "Changing the World, one person at a time."
-    ],
+    titleHidden: true,
+    accent: "Changing the World, one person at a time.",
     links: [
       { label: "About", href: "/about.html" },
       { label: "Community Partners", href: "/emergency-relief.html" }
