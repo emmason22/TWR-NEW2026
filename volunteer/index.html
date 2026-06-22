@@ -3,12 +3,70 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Redirecting…</title>
-  <link rel="canonical" href="https://tonightweride.org/volunteer" />
-  <meta http-equiv="refresh" content="0; url=/volunteer.html" />
-  <script>window.location.replace('/volunteer.html');</script>
+  <link rel="icon" type="image/png" href="../assets/TonightWeRideFavcon-rounded.png" />
+  <meta name="robots" content="noindex,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="twr-form-endpoint" content="https://script.google.com/macros/s/AKfycbzfuDxh3cTNzRy3skLhk8efWCgxHQ0tkDCMGrnyHBhaWpsk1zBU8oJoFEEYhoidlY1wAQ/exec" />
+  <meta name="twr-analytics-endpoint" content="" />
+  <meta name="twr-disable-popups" content="true" />
+  <title>Volunteer | Tonight We Ride</title>
+  <meta name="description" content="Sign up to volunteer with Tonight We Ride." />
+  <link rel="canonical" href="https://tonightweride.org/volunteer/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../refresh.css?v=63" />
 </head>
-<body>
-  <p>Redirecting to <a href="/volunteer.html">Volunteer</a>…</p>
+<body class="page-volunteer page-volunteer-signup standalone-form-page">
+  <main class="subpage-main" id="main-content">
+    <section class="subpage-section volunteer-signup-section" aria-labelledby="volunteer-signup-title">
+      <div class="container narrow">
+        <div class="volunteer-signup-shell">
+          <img class="standalone-form-logo" src="../assets/TonightWeRideLogo.png" alt="Tonight We Ride" />
+          <h1 id="volunteer-signup-title">Sign Up to Volunteer</h1>
+          <p class="volunteer-signup-intro">Join outreach teams supporting homeless neighbors, veterans, and families in crisis across Dallas.</p>
+
+          <form class="support-form volunteer-signup-form" data-form-name="Volunteer Signup" data-sheet-tab="Newsletter" novalidate>
+            <input type="hidden" name="tab" value="Newsletter" />
+            <input type="hidden" name="email_opt_in" value="yes" />
+            <input type="hidden" name="source" value="standalone_volunteer_page" />
+            <input type="hidden" name="name" id="volunteer-full-name" value="" />
+            <input type="hidden" name="request" id="volunteer-request-field" value="" />
+            <input type="hidden" name="volunteer_role" id="volunteer-role-field" value="Outreach Volunteer" />
+
+            <div class="volunteer-signup-name-grid">
+              <div>
+                <label class="sr-only" for="volunteer-first-name">First Name</label>
+                <input id="volunteer-first-name" name="first_name" type="text" required placeholder="First Name" autocomplete="given-name" />
+              </div>
+              <div>
+                <label class="sr-only" for="volunteer-last-name">Last Name</label>
+                <input id="volunteer-last-name" name="last_name" type="text" required placeholder="Last Name" autocomplete="family-name" />
+              </div>
+            </div>
+
+            <div>
+              <label class="sr-only" for="volunteer-email">Email</label>
+              <input id="volunteer-email" name="email" type="email" inputmode="email" required placeholder="Email" autocomplete="email" />
+            </div>
+
+            <div>
+              <label class="sr-only" for="volunteer-phone">Phone (optional)</label>
+              <input id="volunteer-phone" name="phone" type="tel" inputmode="tel" placeholder="Phone (optional)" autocomplete="tel" />
+            </div>
+
+            <button type="submit" class="donate-btn volunteer-signup-submit" data-track="standalone-volunteer-submit">Sign Up to Volunteer</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <p class="volunteer-signup-note">After the thank-you message appears, this form resets automatically in 10 seconds.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../script.js?v=3" defer></script>
+  <script src="../app.js?v=42" defer></script>
 </body>
 </html>

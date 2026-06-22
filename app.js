@@ -1,4 +1,5 @@
 const APPS_SCRIPT_WEB_APP_URL = "APPS_SCRIPT_WEB_APP_URL";
+const FORM_RETURN_DELAY_MS = 10 * 1000;
 
 function serializeForm(form) {
   const data = new FormData(form);
@@ -83,6 +84,31 @@ function setStatusMessage(statusEl, message, state = "info") {
   // Restart small entrance animation when message changes.
   void statusEl.offsetWidth;
   statusEl.classList.add("status-burst");
+}
+
+function clearStatusMessage(statusEl) {
+  if (!statusEl) return;
+  statusEl.textContent = "";
+  statusEl.removeAttribute("data-state");
+  statusEl.classList.remove("status-burst");
+}
+
+function scheduleFormReturn(form, statusEl) {
+  if (!form) return;
+  const existingTimer = form.getAttribute("data-return-timer");
+  if (existingTimer) {
+    window.clearTimeout(Number(existingTimer));
+  }
+
+  const timer = window.setTimeout(() => {
+    form.reset();
+    clearFormValidityStates(form);
+    clearStatusMessage(statusEl);
+    form.setAttribute("data-started-at", String(Date.now()));
+    form.removeAttribute("data-return-timer");
+  }, FORM_RETURN_DELAY_MS);
+
+  form.setAttribute("data-return-timer", String(timer));
 }
 
 async function submitPayload(endpoint, payload) {
@@ -237,6 +263,22 @@ function buildGoogleSheetsPayload(form, payload) {
     };
   }
 
+  if (tab === "Newsletter") {
+    return {
+      tab,
+      submitted_at: submittedAt,
+      status: "new",
+      name: payload.name || [payload.first_name, payload.last_name].filter(Boolean).join(" ") || "",
+      email: payload.email || "",
+      phone: payload.phone || "",
+      email_opt_in: "yes",
+      source: payload.source || "standalone_form",
+      mailerlite_group: mailerliteGroup,
+      mailerlite_status: mailerliteStatus,
+      internal_notes: "",
+    };
+  }
+
   return null;
 }
 
@@ -381,6 +423,7 @@ function initSupportForms() {
         form.reset();
         clearFormValidityStates(form);
         form.setAttribute("data-started-at", String(Date.now()));
+        scheduleFormReturn(form, statusEl);
       } catch (error) {
         setStatusMessage(statusEl, "We could not submit right now. Please try again shortly.", "error");
         emitTelemetry("form_submit_error", { formName, message: String(error) });
@@ -414,6 +457,7 @@ function initInsiderForms() {
       setStatusMessage(statusEl, "Thanks for signing up. You are on the insider list.", "success");
       emitTelemetry("insider_signup", { location: window.location.pathname });
       form.reset();
+      scheduleFormReturn(form, statusEl);
     });
   });
 }
@@ -805,6 +849,14 @@ function showMailingListPopup(options = {}) {
 
 function initMailingListExitIntentPopup() {
   const pathname = window.location.pathname || "";
+  if (getMetaContent("twr-disable-popups") === "true") {
+    emitTelemetry("mailing_popup_exit_intent_skipped", {
+      path: pathname,
+      reason: "page_disabled",
+    });
+    return;
+  }
+
   const highIntentPage = /\/(donate-now|founding-member)\.html$/i.test(pathname);
   const shownKey = "twr_exit_intent_popup_shown";
 
@@ -1528,6 +1580,26 @@ function initDonateConversionPanel() {
   updateCta();
 }
 
+function initDonationReturnMessage() {
+  const statusEl = document.querySelector("[data-donation-return-status]");
+  if (!statusEl) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const isSuccess = ["success", "donation_success", "checkout_success"].some((key) => {
+    const value = String(params.get(key) || "").toLowerCase();
+    return value === "1" || value === "true" || value === "yes";
+  });
+
+  if (!isSuccess) return;
+
+  setStatusMessage(statusEl, "Thanks for riding with us. Your support helps us answer the next need.", "success");
+  window.setTimeout(() => {
+    clearStatusMessage(statusEl);
+    const cleanUrl = `${window.location.origin}${window.location.pathname}${window.location.hash || ""}`;
+    window.history.replaceState({}, document.title, cleanUrl);
+  }, FORM_RETURN_DELAY_MS);
+}
+
 function initDonationTicker() {
   const ticker = document.querySelector("[data-donation-ticker]");
   if (!ticker) return;
@@ -1627,6 +1699,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initVolunteerConversionFlow();
   initVolunteerSignupPage();
   initDonateConversionPanel();
+  initDonationReturnMessage();
   initDonationTicker();
   initFormAccessibility();
   initFoundingMemberSection();
