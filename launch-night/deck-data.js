@@ -229,13 +229,11 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "LIVE DEMO",
     subtitle: "Need Help Form Only",
-    kind: "logo-grid",
-    image: "/assets/CommunityOutreachHero.png",
-    logos: [
-      { label: "Barley House", src: "/assets/partner-logos/barley-house.png" }
-    ],
+    kind: "site-preview",
+    siteUrl: "https://tonightweride.org/community-outreach.html#support-form",
     links: [
-      { label: "Need Help Form Only", href: "/community-outreach.html" }
+      { label: "Need Help Form", href: "https://tonightweride.org/community-outreach.html#support-form" },
+      { label: "Need Help Page", href: "https://tonightweride.org/community-outreach.html" }
     ]
   },
   {
