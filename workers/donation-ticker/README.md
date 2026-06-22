@@ -8,6 +8,9 @@ This Cloudflare Worker receives Stripe donation webhooks, stores public-safe don
   - Requires Stripe's `stripe-signature` header.
   - Handles `charge.succeeded` and `charge.refunded`.
   - Stores first name only, never full name or email.
+- `POST /donations/manual`
+  - Requires an `Authorization: Bearer <MANUAL_DONATION_SECRET>` header.
+  - Adds cash, Venmo, check, or other in-room gifts from the private event entry page.
 - `GET /donations/ticker`
   - Returns the running total, recent donations, and `updated_at`.
 
@@ -26,12 +29,16 @@ This Cloudflare Worker receives Stripe donation webhooks, stores public-safe don
    ```sh
    wrangler secret put STRIPE_WEBHOOK_SECRET
    ```
+5. Set the private manual-entry secret for cash/Venmo/check gifts:
+   ```sh
+   wrangler secret put MANUAL_DONATION_SECRET
+   ```
    `STRIPE_SECRET_KEY` is not required for the current webhook-only Worker. Add it later only if you build a reconciliation task that calls Stripe's API directly.
-5. Deploy:
+6. Deploy:
    ```sh
    wrangler deploy
    ```
-6. In Stripe, add a webhook endpoint:
+7. In Stripe, add a webhook endpoint:
    ```text
    https://<worker-domain>/stripe/webhook
    ```
@@ -41,10 +48,16 @@ This Cloudflare Worker receives Stripe donation webhooks, stores public-safe don
 
 ## Frontend
 
-After deployment, update the `twr-donation-ticker-endpoint` meta tag in `donate-now.html` to:
+The live donate pages use this ticker endpoint:
 
-```html
-<meta name="twr-donation-ticker-endpoint" content="https://<worker-domain>/donations/ticker" />
+```text
+https://twr-donation-ticker.tonightweride.workers.dev/donations/ticker
 ```
 
-Until that URL is configured, the donate page shows a quiet fallback state and does not block donation checkout.
+The hidden manual-entry page is:
+
+```text
+https://tonightweride.org/donation-admin.html
+```
+
+Use it during the live event for cash, Venmo, check, or other in-room donations. It requires the `MANUAL_DONATION_SECRET`; do not publish that secret or place it in the public site code.

@@ -6,7 +6,7 @@ const jsonHeaders = {
   "content-type": "application/json; charset=utf-8",
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET,POST,OPTIONS",
-  "access-control-allow-headers": "content-type,stripe-signature",
+  "access-control-allow-headers": "authorization,content-type,stripe-signature",
   "cache-control": "no-store",
 };
 
@@ -24,6 +24,10 @@ export default {
 
     if (request.method === "POST" && url.pathname === "/stripe/webhook") {
       return handleStripeWebhook(request, env);
+    }
+
+    if (request.method === "POST" && url.pathname === "/donations/manual") {
+      return handleManualDonation(request, env);
     }
 
     return jsonResponse({ error: "Not found" }, 404);
@@ -66,6 +70,78 @@ export async function handleStripeWebhook(request, env) {
   }
 
   return jsonResponse({ ok: true });
+}
+
+export async function handleManualDonation(request, env) {
+  if (!env.DONATIONS_DB) {
+    return jsonResponse({ error: "DONATIONS_DB binding is not configured." }, 500);
+  }
+
+  if (!env.MANUAL_DONATION_SECRET) {
+    return jsonResponse({ error: "MANUAL_DONATION_SECRET is not configured." }, 500);
+  }
+
+  const expectedHeader = `Bearer ${env.MANUAL_DONATION_SECRET}`;
+  if (request.headers.get("authorization") !== expectedHeader) {
+    return jsonResponse({ error: "Unauthorized." }, 401);
+  }
+
+  let payload;
+  try {
+    payload = await request.json();
+  } catch (_) {
+    return jsonResponse({ error: "Invalid JSON payload." }, 400);
+  }
+
+  const amountCents = normalizeManualAmountCents(payload);
+  if (!Number.isFinite(amountCents) || amountCents <= 0) {
+    return jsonResponse({ error: "Enter a donation amount greater than $0." }, 400);
+  }
+
+  const source = sanitizeManualSource(payload.source);
+  const firstName = sanitizePublicName(payload.display_name || payload.first_name || "Supporter");
+  const createdAt = normalizeManualCreatedAt(payload.created_at);
+  const now = new Date().toISOString();
+  const manualId = createManualDonationId(payload, source, amountCents, createdAt);
+
+  await env.DONATIONS_DB.prepare(
+    `INSERT INTO donations (
+      stripe_charge_id,
+      amount_cents,
+      refunded_amount_cents,
+      currency,
+      first_name,
+      status,
+      created_at,
+      updated_at
+    )
+    VALUES (?, ?, 0, ?, ?, 'succeeded', ?, ?)
+    ON CONFLICT(stripe_charge_id) DO UPDATE SET
+      amount_cents = excluded.amount_cents,
+      currency = excluded.currency,
+      first_name = excluded.first_name,
+      status = 'succeeded',
+      updated_at = excluded.updated_at`
+  ).bind(
+    manualId,
+    amountCents,
+    normalizeCurrency(payload.currency || "usd"),
+    firstName,
+    createdAt,
+    now
+  ).run();
+
+  return jsonResponse({
+    ok: true,
+    donation: {
+      id: manualId,
+      amount_cents: amountCents,
+      currency: normalizeCurrency(payload.currency || "usd"),
+      display_name: toPublicDisplayName(firstName),
+      source,
+      created_at: createdAt,
+    },
+  });
 }
 
 export async function getTickerData(env, url) {
@@ -260,6 +336,41 @@ function sanitizePublicName(value) {
   const sanitized = String(value || "").replace(/[^a-zA-Z'-]/g, "").slice(0, 24);
   if (!sanitized) return "Supporter";
   return sanitized.charAt(0).toUpperCase() + sanitized.slice(1);
+}
+
+function sanitizeManualSource(value) {
+  const source = String(value || "manual").toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 20);
+  if (source === "cash" || source === "venmo" || source === "check" || source === "manual") return source;
+  return "manual";
+}
+
+function normalizeManualAmountCents(payload) {
+  if (Number.isFinite(Number(payload.amount_cents))) {
+    return Math.round(Number(payload.amount_cents));
+  }
+
+  const dollars = Number(String(payload.amount || "").replace(/[^0-9.]/g, ""));
+  if (!Number.isFinite(dollars)) return 0;
+  return Math.round(dollars * 100);
+}
+
+function normalizeManualCreatedAt(value) {
+  const date = value ? new Date(value) : new Date();
+  if (Number.isNaN(date.getTime())) return new Date().toISOString();
+  return date.toISOString();
+}
+
+function createManualDonationId(payload, source, amountCents, createdAt) {
+  const explicitKey = String(payload.idempotency_key || payload.reference || "").trim();
+  if (explicitKey) {
+    return `manual_${sanitizeManualSource(source)}_${explicitKey.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 64)}`;
+  }
+
+  if (crypto.randomUUID) {
+    return `manual_${source}_${crypto.randomUUID()}`;
+  }
+
+  return `manual_${source}_${createdAt.replace(/[^0-9]/g, "")}_${amountCents}`;
 }
 
 function toPublicDisplayName(firstName) {

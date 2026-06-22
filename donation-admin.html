@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#050505" />
+  <title>Donation Entry | Tonight We Ride</title>
+  <link rel="icon" type="image/png" href="assets/TonightWeRideFavcon-rounded.png" />
+  <style>
+    :root {
+      --gold: #fcb212;
+      --ink: #050505;
+      --line: rgba(255, 255, 255, 0.16);
+      --panel: #111827;
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.74);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(252, 178, 18, 0.18), transparent 28rem),
+        linear-gradient(135deg, #0b1220, var(--ink));
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    main {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: clamp(28px, 6vw, 72px) 0;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 26px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    img {
+      width: 86px;
+      height: auto;
+    }
+
+    h1,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 86px);
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .kicker {
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    form,
+    .result {
+      border: 1px solid var(--line);
+      background: rgba(17, 24, 39, 0.9);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      padding: clamp(20px, 4vw, 38px);
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    label.full {
+      grid-column: 1 / -1;
+    }
+
+    input,
+    select,
+    button {
+      width: 100%;
+      min-height: 54px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 0;
+      font: inherit;
+      font-size: 20px;
+    }
+
+    input,
+    select {
+      background: #050505;
+      color: #fff;
+      padding: 12px 14px;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 3px solid rgba(252, 178, 18, 0.45);
+      border-color: var(--gold);
+    }
+
+    button {
+      grid-column: 1 / -1;
+      border-color: var(--gold);
+      background: var(--gold);
+      color: #050505;
+      cursor: pointer;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    button[disabled] {
+      cursor: wait;
+      opacity: 0.68;
+    }
+
+    .result {
+      margin-top: 18px;
+      min-height: 64px;
+      padding: 18px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.4;
+    }
+
+    .result strong {
+      color: var(--gold);
+    }
+
+    .hint {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 720px) {
+      header,
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        display: grid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <img src="assets/TonightWeRideLogo.png" alt="Tonight We Ride" />
+      <div>
+        <p class="kicker">Private Event Tool</p>
+        <h1>Donation Entry</h1>
+      </div>
+    </header>
+
+    <form id="donation-entry-form">
+      <label>
+        Amount
+        <input name="amount" type="number" min="1" step="0.01" inputmode="decimal" placeholder="50" required />
+      </label>
+      <label>
+        Source
+        <select name="source">
+          <option value="cash">Cash</option>
+          <option value="venmo">Venmo</option>
+          <option value="check">Check</option>
+          <option value="manual">Other</option>
+        </select>
+      </label>
+      <label>
+        Public Name
+        <input name="display_name" type="text" maxlength="24" placeholder="Supporter" autocomplete="off" />
+      </label>
+      <label>
+        Reference
+        <input name="reference" type="text" maxlength="64" placeholder="Optional receipt or note" autocomplete="off" />
+      </label>
+      <label class="full">
+        Manual Entry Secret
+        <input name="secret" type="password" autocomplete="off" required />
+      </label>
+      <button type="submit">Add Donation</button>
+    </form>
+
+    <div class="result" id="donation-entry-result" role="status" aria-live="polite">Enter cash, Venmo, check, or other in-room donations here. Stripe gifts update automatically through the webhook.</div>
+    <p class="hint">This page is intentionally unlinked and hidden from search. The secret is required before any donation can be added.</p>
+  </main>
+
+  <script>
+    const endpoint = "https://twr-donation-ticker.tonightweride.workers.dev/donations/manual";
+    const form = document.getElementById("donation-entry-form");
+    const result = document.getElementById("donation-entry-result");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const submitButton = form.querySelector("button");
+      const data = new FormData(form);
+      const amount = Number(data.get("amount"));
+      const secret = String(data.get("secret") || "").trim();
+
+      if (!amount || amount <= 0 || !secret) {
+        result.textContent = "Enter an amount and the manual entry secret.";
+        return;
+      }
+
+      submitButton.disabled = true;
+      result.textContent = "Adding donation...";
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "authorization": `Bearer ${secret}`,
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            amount,
+            source: data.get("source"),
+            display_name: data.get("display_name") || "Supporter",
+            reference: data.get("reference"),
+          }),
+        });
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.error || "Donation entry failed.");
+
+        const formatted = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(payload.donation.amount_cents / 100);
+        result.innerHTML = `<strong>Added:</strong> ${payload.donation.display_name} gave ${formatted}. The public ticker will update within 30 seconds.`;
+        form.elements.amount.value = "";
+        form.elements.display_name.value = "";
+        form.elements.reference.value = "";
+      } catch (error) {
+        result.textContent = error.message || "Donation entry failed.";
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

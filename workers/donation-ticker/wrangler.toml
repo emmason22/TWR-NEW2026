@@ -5,4 +5,4 @@ compatibility_date = "2026-06-16"
 [[d1_databases]]
 binding = "DONATIONS_DB"
 database_name = "twr-donations"
-database_id = "REPLACE_WITH_CLOUDFLARE_D1_DATABASE_ID"
+database_id = "44491b2a-9395-4e4e-9c45-903579b1a2f5"
