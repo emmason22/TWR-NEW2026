@@ -77,15 +77,6 @@ export async function handleManualDonation(request, env) {
     return jsonResponse({ error: "DONATIONS_DB binding is not configured." }, 500);
   }
 
-  if (!env.MANUAL_DONATION_SECRET) {
-    return jsonResponse({ error: "MANUAL_DONATION_SECRET is not configured." }, 500);
-  }
-
-  const expectedHeader = `Bearer ${env.MANUAL_DONATION_SECRET}`;
-  if (request.headers.get("authorization") !== expectedHeader) {
-    return jsonResponse({ error: "Unauthorized." }, 401);
-  }
-
   let payload;
   try {
     payload = await request.json();

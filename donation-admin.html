@@ -201,15 +201,11 @@
         Reference
         <input name="reference" type="text" maxlength="64" placeholder="Optional receipt or note" autocomplete="off" />
       </label>
-      <label class="full">
-        Manual Entry Secret
-        <input name="secret" type="password" autocomplete="off" required />
-      </label>
       <button type="submit">Add Donation</button>
     </form>
 
     <div class="result" id="donation-entry-result" role="status" aria-live="polite">Enter cash, Venmo, check, or other in-room donations here. Stripe gifts update automatically through the webhook.</div>
-    <p class="hint">This page is intentionally unlinked and hidden from search. The secret is required before any donation can be added.</p>
+    <p class="hint">This page is intentionally unlinked and hidden from search. Anyone with this page can add manual cash, Venmo, check, or other in-room donations to the live total.</p>
   </main>
 
   <script>
@@ -222,10 +218,9 @@
       const submitButton = form.querySelector("button");
       const data = new FormData(form);
       const amount = Number(data.get("amount"));
-      const secret = String(data.get("secret") || "").trim();
 
-      if (!amount || amount <= 0 || !secret) {
-        result.textContent = "Enter an amount and the manual entry secret.";
+      if (!amount || amount <= 0) {
+        result.textContent = "Enter a donation amount greater than $0.";
         return;
       }
 
@@ -236,7 +231,6 @@
         const response = await fetch(endpoint, {
           method: "POST",
           headers: {
-            "authorization": `Bearer ${secret}`,
             "content-type": "application/json",
           },
           body: JSON.stringify({

@@ -9,7 +9,6 @@ This Cloudflare Worker receives Stripe donation webhooks, stores public-safe don
   - Handles `charge.succeeded` and `charge.refunded`.
   - Stores first name only, never full name or email.
 - `POST /donations/manual`
-  - Requires an `Authorization: Bearer <MANUAL_DONATION_SECRET>` header.
   - Adds cash, Venmo, check, or other in-room gifts from the private event entry page.
 - `GET /donations/ticker`
   - Returns the running total, recent donations, and `updated_at`.
@@ -29,16 +28,11 @@ This Cloudflare Worker receives Stripe donation webhooks, stores public-safe don
    ```sh
    wrangler secret put STRIPE_WEBHOOK_SECRET
    ```
-5. Set the private manual-entry secret for cash/Venmo/check gifts:
-   ```sh
-   wrangler secret put MANUAL_DONATION_SECRET
-   ```
-   `STRIPE_SECRET_KEY` is not required for the current webhook-only Worker. Add it later only if you build a reconciliation task that calls Stripe's API directly.
-6. Deploy:
+5. Deploy:
    ```sh
    wrangler deploy
    ```
-7. In Stripe, add a webhook endpoint:
+6. In Stripe, add a webhook endpoint:
    ```text
    https://<worker-domain>/stripe/webhook
    ```
@@ -60,4 +54,4 @@ The hidden manual-entry page is:
 https://tonightweride.org/donation-admin.html
 ```
 
-Use it during the live event for cash, Venmo, check, or other in-room donations. It requires the `MANUAL_DONATION_SECRET`; do not publish that secret or place it in the public site code.
+Use it during the live event for cash, Venmo, check, or other in-room donations. It is intentionally unlinked, but it does not require a password.
