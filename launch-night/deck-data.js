@@ -280,7 +280,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "RAFFLE/AUCTION",
     kind: "poster",
-    image: "/assets/real-auction-item-poster.png",
+    image: "/assets/raffle-prizes-poster.png",
     links: [
       { label: "Donate Now", href: "/donate/" },
       { label: "Founding Member", href: "/founding-member.html" },
@@ -529,7 +529,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "RAFFLE & SILENT AUCTION WINNERS",
     kind: "poster",
-    image: "/assets/real-auction-item-poster.png"
+    image: "/assets/raffle-prizes-poster.png"
   },
   {
     id: "38-community-partners",

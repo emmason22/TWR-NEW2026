@@ -225,24 +225,41 @@ a {
   filter: none;
 }
 
-.deck-shell.is-poster-shell .slide-bg::after {
-  display: none;
-}
-
-.deck-shell.is-poster-shell .slide-bg img {
-  opacity: 1;
-  filter: none;
-  object-fit: contain;
-}
-
 .slide.is-poster {
-  padding: 0;
+  padding: clamp(28px, 4vw, 74px);
+  grid-template-rows: 1fr;
 }
 
 .slide.is-poster .slide-topbar,
-.slide.is-poster .slide-main,
 .slide.is-poster .slide-footer {
   display: none;
+}
+
+.slide.is-poster .slide-main {
+  align-content: stretch;
+}
+
+.deck-poster-layout {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.68fr) minmax(360px, 1fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 90px);
+  width: 100%;
+  height: 100%;
+}
+
+.deck-poster-logo {
+  width: min(34vw, 58vh, 520px);
+  justify-self: center;
+  filter: drop-shadow(0 28px 54px rgba(0, 0, 0, 0.58));
+}
+
+.deck-poster-image {
+  width: 100%;
+  max-height: calc(100vh - clamp(56px, 8vw, 148px));
+  object-fit: contain;
+  justify-self: center;
+  filter: drop-shadow(0 28px 60px rgba(0, 0, 0, 0.48));
 }
 
 .slide.is-band .slide-main {

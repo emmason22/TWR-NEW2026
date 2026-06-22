@@ -16,6 +16,9 @@
     .replace(/"/g, "&quot;");
 
   const renderBackground = (slide) => {
+    if (slide.kind === "poster") {
+      return '<div class="slide-bg"></div>';
+    }
     if (slide.kind === "video" && slide.poster) {
       return `<div class="slide-bg"><img src="${escapeHtml(slide.poster)}" alt="" /></div>`;
     }
@@ -83,6 +86,13 @@
         return `<div class="deck-link-grid">${(slide.links || []).map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`).join("")}</div>`;
       case "logo-grid":
         return renderLogoGrid(slide.logos);
+      case "poster":
+        return `
+          <div class="deck-poster-layout">
+            <img class="deck-poster-logo" src="${escapeHtml(slide.logo || "/assets/TonightWeRideLogo.png")}" alt="Tonight We Ride" />
+            <img class="deck-poster-image" src="${escapeHtml(slide.image)}" alt="" />
+          </div>
+        `;
       case "process":
         return `<ol class="deck-steps">${(slide.steps || []).map((step) => `<li>${escapeHtml(step)}</li>`).join("")}</ol>`;
       case "three-cards":
@@ -150,8 +160,8 @@
           </div>
           <div class="slide-main">
             ${slide.eyebrow ? `<p class="deck-eyebrow">${escapeHtml(slide.eyebrow)}</p>` : ""}
-            ${slide.kind !== "logo-title" && slide.kind !== "site-preview" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
-            ${slide.subtitle && slide.kind !== "logo-title" && slide.kind !== "site-preview" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
+            ${slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
+            ${slide.subtitle && slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
             ${slide.accent ? `<p class="deck-accent">${escapeHtml(slide.accent)}</p>` : ""}
             ${renderBody(slide)}
           </div>
