@@ -568,10 +568,10 @@ window.TWRLaunchNightSlides = [
     kind: "logo-grid",
     image: "/assets/news/fox4-tonight-we-ride.png",
     logos: [
-      { label: "Good Morning Texas", src: "/assets/partner-logos/good-morning-texas.png", href: "https://www.wfaa.com/video/entertainment/television/programs/good-morning-texas/tonight-we-ride-launch-party-preview/287-7166f769-cad0-4555-b515-c5fb253d700c" },
+      { label: "Good Morning Texas", src: "/assets/partner-logos/good-morning-texas.png", showLabel: true, href: "https://www.wfaa.com/video/entertainment/television/programs/good-morning-texas/tonight-we-ride-launch-party-preview/287-7166f769-cad0-4555-b515-c5fb253d700c" },
       { label: "Dallas Observer", src: "/assets/partner-logos/dallas-observer.png", showLabel: true, href: "https://www.dallasobserver.com/" },
       { label: "Dallas Morning News", src: "/assets/partner-logos/dallas-morning-news-white.png", showLabel: true, href: "https://www.dallasnews.com/" },
-      { label: "What In East Dallas Is Going On", src: "/assets/partner-logos/east-dallas-going-on.png", href: "https://www.facebook.com/groups/whatineastdallas/" }
+      { label: "What In East Dallas Is Going On", src: "/assets/partner-logos/east-dallas-going-on.png", showLabel: true, href: "https://www.facebook.com/groups/whatineastdallas/" }
     ],
     links: [
       { label: "News", href: "/news.html" },
@@ -685,11 +685,11 @@ window.TWRLaunchNightSlides = [
     theme: "white",
     image: "/assets/news/fox4-tonight-we-ride.png",
     logos: [
-      { label: "Good Morning Texas", src: "/assets/partner-logos/good-morning-texas.png", href: "https://www.wfaa.com/video/entertainment/television/programs/good-morning-texas/tonight-we-ride-launch-party-preview/287-7166f769-cad0-4555-b515-c5fb253d700c" },
+      { label: "Good Morning Texas", src: "/assets/partner-logos/good-morning-texas.png", showLabel: true, href: "https://www.wfaa.com/video/entertainment/television/programs/good-morning-texas/tonight-we-ride-launch-party-preview/287-7166f769-cad0-4555-b515-c5fb253d700c" },
       { label: "Dallas Observer", src: "/assets/partner-logos/dallas-observer.png", showLabel: true, href: "https://www.dallasobserver.com/" },
-      { label: "Dallas Morning News", src: "/assets/partner-logos/dallas-morning-news-white.png", showLabel: true, href: "https://www.dallasnews.com/" },
-      { label: "What In East Dallas Is Going On", src: "/assets/partner-logos/east-dallas-going-on.png", href: "https://www.facebook.com/groups/whatineastdallas/" },
-      { label: "Rabbit Hat PR", src: "/assets/partner-logos/rabbit-hat-pr.png", href: "/rabbit-hat-press-release.html" }
+      { label: "Dallas Morning News", src: "/assets/partner-logos/dallas-morning-news.png", showLabel: true, href: "https://www.dallasnews.com/" },
+      { label: "What In East Dallas Is Going On", src: "/assets/partner-logos/east-dallas-going-on.png", showLabel: true, href: "https://www.facebook.com/groups/whatineastdallas/" },
+      { label: "Rabbit Hat PR", src: "/assets/partner-logos/rabbit-hat-pr.png", showLabel: true, href: "/rabbit-hat-press-release.html" }
     ],
     links: [
       { label: "News", href: "/news.html" },
