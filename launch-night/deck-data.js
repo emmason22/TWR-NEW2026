@@ -103,8 +103,6 @@ window.TWRLaunchNightSlides = [
     kind: "montage",
     images: [
       "/assets/ToyDrivePoster.jpg",
-      "/TWR2/toy-drive/ToyDrivePosterHero.png",
-      "/TWR2/toy-drive/ToyDrivePoster.jpg",
       "/assets/ToyDrivepic.jpg",
       "/assets/ToyDriveHero.png",
       "/TWR2/toy-drive/ToyDrive18.jpg",
@@ -160,6 +158,17 @@ window.TWRLaunchNightSlides = [
     ],
     links: [
       { label: "About", href: "/about.html" },
+      { label: "Events", href: "/events.html" }
+    ]
+  },
+  {
+    id: "08-twr-stars",
+    time: "7:10 PM",
+    eyebrow: "",
+    title: "TONIGHT WE RIDE STARS",
+    kind: "full-image",
+    image: "/assets/twr-stars.jpg",
+    links: [
       { label: "Events", href: "/events.html" }
     ]
   },
