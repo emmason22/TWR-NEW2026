@@ -1560,7 +1560,7 @@ function initDonationTicker() {
   const renderFallback = (message) => {
     if (totalEl) totalEl.textContent = "Raised tonight: --";
     if (updatedEl) updatedEl.textContent = message;
-    if (emptyEl) emptyEl.hidden = false;
+    if (emptyEl) emptyEl.hidden = true;
     if (listEl) listEl.replaceChildren();
   };
 
@@ -1570,7 +1570,7 @@ function initDonationTicker() {
     if (updatedEl) updatedEl.textContent = formatUpdatedAt(data.updated_at);
 
     const recent = Array.isArray(data.recent) ? data.recent : [];
-    if (emptyEl) emptyEl.hidden = recent.length > 0;
+    if (emptyEl) emptyEl.hidden = true;
     if (!listEl) return;
 
     const items = recent.slice(0, 8).map((donation) => {
