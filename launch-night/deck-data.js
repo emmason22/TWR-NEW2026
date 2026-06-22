@@ -400,9 +400,12 @@ window.TWRLaunchNightSlides = [
     time: "8:00 PM",
     eyebrow: "",
     title: "COMMS UP VIDEO",
-    subtitle: "After video plays - Leave the opening frame with La La on the screen after video",
-    kind: "big-type",
-    image: "/assets/VeteranHero.png"
+    subtitle: "La La Video",
+    kind: "full-image",
+    image: "/assets/lala-video-frame.png",
+    links: [
+      { label: "La La Video", href: "https://www.facebook.com/reel/2519750618491527" }
+    ]
   },
   {
     id: "26-community-partnerships",
