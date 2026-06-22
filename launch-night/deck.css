@@ -650,6 +650,31 @@ a {
   font-size: clamp(11px, 0.9vw, 15px);
 }
 
+.slide.theme-white.community-partners-two-line .slide-main {
+  align-content: center;
+}
+
+.slide.theme-white.community-partners-two-line .deck-logo-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 48px);
+  width: min(100%, 1480px);
+}
+
+.slide.theme-white.community-partners-two-line .deck-logo-card {
+  min-height: clamp(150px, 15vw, 230px);
+  padding: clamp(18px, 2vw, 32px);
+}
+
+.slide.theme-white.community-partners-two-line .deck-logo-card img {
+  max-width: min(100%, 285px);
+  max-height: clamp(90px, 9vw, 140px);
+}
+
+.slide.theme-white.community-partners-two-line .deck-logo-card.is-featured-partner img {
+  max-width: min(100%, 360px);
+  max-height: clamp(110px, 11vw, 170px);
+}
+
 .slide.theme-white .slide-footer {
   color: rgba(0, 0, 0, 0.54);
 }

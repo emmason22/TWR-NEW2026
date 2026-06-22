@@ -1,5 +1,18 @@
 window.TWRLaunchNightSlides = [
   {
+    id: "00-opening-video-loop",
+    time: "7:00 PM",
+    eyebrow: "",
+    title: "TONIGHT WE RIDE",
+    displayTitle: "Tonight We Ride",
+    tagline: "Changing the World, One Person At a Time",
+    kind: "loop-video",
+    video: "/assets/Dallas.mp4",
+    links: [
+      { label: "Homepage Video", href: "/assets/Dallas.mp4" }
+    ]
+  },
+  {
     id: "01-title",
     time: "7:00 PM",
     eyebrow: "",
@@ -346,6 +359,17 @@ window.TWRLaunchNightSlides = [
     ]
   },
   {
+    id: "20-donate-now",
+    time: "7:30 PM",
+    eyebrow: "",
+    title: "DONATE NOW",
+    kind: "site-preview",
+    siteUrl: "/donate-now.html",
+    links: [
+      { label: "Donate Now", href: "/donate-now.html" }
+    ]
+  },
+  {
     id: "21-people-behind-the-mission",
     time: "8:00 PM",
     eyebrow: "",
@@ -476,12 +500,34 @@ window.TWRLaunchNightSlides = [
     ]
   },
   {
+    id: "29-donate-now",
+    time: "8:30 PM",
+    eyebrow: "",
+    title: "DONATE NOW",
+    kind: "site-preview",
+    siteUrl: "/donate-now.html",
+    links: [
+      { label: "Donate Now", href: "/donate-now.html" }
+    ]
+  },
+  {
     id: "30-ryan-thomas-becker",
     time: "9:00 PM",
     eyebrow: "",
     title: "RYAN THOMAS BECKER",
     kind: "band",
     image: "/assets/TWRLaunchParty.png"
+  },
+  {
+    id: "30-donate-now",
+    time: "9:00 PM",
+    eyebrow: "",
+    title: "DONATE NOW",
+    kind: "site-preview",
+    siteUrl: "/donate-now.html",
+    links: [
+      { label: "Donate Now", href: "/donate-now.html" }
+    ]
   },
   {
     id: "31-where-were-going",
@@ -564,6 +610,17 @@ window.TWRLaunchNightSlides = [
     image: "/assets/brent-best-live.webp"
   },
   {
+    id: "35-donate-now",
+    time: "9:30 PM",
+    eyebrow: "",
+    title: "DONATE NOW",
+    kind: "site-preview",
+    siteUrl: "/donate-now.html",
+    links: [
+      { label: "Donate Now", href: "/donate-now.html" }
+    ]
+  },
+  {
     id: "36-silent-auction-closing",
     time: "9:45 PM",
     eyebrow: "",
@@ -586,18 +643,16 @@ window.TWRLaunchNightSlides = [
     title: "COMMUNITY PARTNERS",
     kind: "logo-grid",
     theme: "white",
+    className: "community-partners-two-line",
     logos: [
-      { label: "Dallas Life", src: "/assets/DallasLifeLogo.png", href: "https://dallaslife.org/" },
-      { label: "The Bridge", src: "/assets/TheBridgeLogo.svg", href: "https://www.bridgehrc.org/" },
-      { label: "Barley House", src: "/TWR2/toy-drive/BarleyHouseLogo.png", href: "https://barleyhouse.com/" },
-      { label: "The Family Place", src: "/FamilyPlacelogo.png", href: "https://familyplace.org/", className: "is-featured-partner" },
-      { label: "Albertsons", src: "/assets/Albertsons-Emblem.png", href: "https://www.albertsons.com/" },
-      { label: "Womack Real Estate", src: "/assets/WomackRealEstate.png", href: "https://www.womackrealestate.com/" },
-      { label: "Sweet Cakes by Becca", src: "/assets/SweetCakesbyBecca.png", href: "https://www.instagram.com/sweetcakesbybecca/" },
-      { label: "Playtri", src: "/assets/PlaytriLogo.jpeg", href: "https://playtristore.com/" }
-    ],
-    links: [
-      { label: "Community Partners", href: "/emergency-relief.html" }
+      { label: "Dallas Life", src: "/assets/DallasLifeLogo.png" },
+      { label: "The Bridge", src: "/assets/TheBridgeLogo.svg" },
+      { label: "Barley House", src: "/TWR2/toy-drive/BarleyHouseLogo.png" },
+      { label: "The Family Place", src: "/FamilyPlacelogo.png", className: "is-featured-partner" },
+      { label: "Albertsons", src: "/assets/Albertsons-Emblem.png" },
+      { label: "Womack Real Estate", src: "/assets/WomackRealEstate.png" },
+      { label: "Sweet Cakes by Becca", src: "/assets/SweetCakesbyBecca.png" },
+      { label: "Playtri", src: "/assets/partner-logos/playtri.jpeg" }
     ]
   },
   {
@@ -675,5 +730,16 @@ window.TWRLaunchNightSlides = [
     title: "RTB2",
     kind: "band",
     image: "/TWR2/toy-drive/RTB2.jpg"
+  },
+  {
+    id: "43-donate-now",
+    time: "10:30 PM",
+    eyebrow: "",
+    title: "DONATE NOW",
+    kind: "site-preview",
+    siteUrl: "/donate-now.html",
+    links: [
+      { label: "Donate Now", href: "/donate-now.html" }
+    ]
   }
 ];
