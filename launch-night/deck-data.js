@@ -417,7 +417,7 @@ window.TWRLaunchNightSlides = [
     theme: "white",
     image: "/TWR2/toy-drive/TheFamilyPlace.png",
     logos: [
-      { label: "The Family Place", src: "/assets/partner-logos/the-family-place.png", href: "/emergency-relief.html" }
+      { label: "The Family Place", src: "/assets/partner-logos/the-family-place.png", href: "/emergency-relief.html", className: "is-featured-partner" }
     ],
     links: [
       { label: "Community Partners", href: "/emergency-relief.html" }
@@ -543,12 +543,10 @@ window.TWRLaunchNightSlides = [
     time: "9:20 PM",
     eyebrow: "",
     title: "HELP US RESPOND TO THE NEXT ONE",
-    subtitle: "2 QR Codes Donate Now and Founding Member",
-    kind: "three-cards",
-    cards: [
-      { title: "Volunteer", subtitle: "", href: "/volunteer.html" },
-      { title: "Donate", subtitle: "", href: "/donate/" },
-      { title: "Nominate", subtitle: "", href: "/community-outreach.html" }
+    kind: "qr-codes",
+    qrs: [
+      { label: "Donate Now", src: "/assets/donate-qr.png", href: "/donate/" },
+      { label: "Founding Member", src: "/assets/founding-qr.png", href: "/founding-member.html" }
     ],
     links: [
       { label: "Donate Now", href: "/donate/" },
@@ -592,7 +590,7 @@ window.TWRLaunchNightSlides = [
       { label: "Dallas Life", src: "/assets/DallasLifeLogo.png", href: "https://dallaslife.org/" },
       { label: "The Bridge", src: "/assets/TheBridgeLogo.svg", href: "https://www.bridgehrc.org/" },
       { label: "Barley House", src: "/TWR2/toy-drive/BarleyHouseLogo.png", href: "https://barleyhouse.com/" },
-      { label: "The Family Place", src: "/FamilyPlacelogo.png", href: "https://familyplace.org/" },
+      { label: "The Family Place", src: "/FamilyPlacelogo.png", href: "https://familyplace.org/", className: "is-featured-partner" },
       { label: "Albertsons", src: "/assets/Albertsons-Emblem.png", href: "https://www.albertsons.com/" },
       { label: "Womack Real Estate", src: "/assets/WomackRealEstate.png", href: "https://www.womackrealestate.com/" },
       { label: "Sweet Cakes by Becca", src: "/assets/SweetCakesbyBecca.png", href: "https://www.instagram.com/sweetcakesbybecca/" },

@@ -632,6 +632,16 @@ a {
   max-height: clamp(56px, 6.6vw, 84px);
 }
 
+.slide.theme-white .deck-logo-card.is-featured-partner img {
+  max-width: min(100%, 340px);
+  max-height: clamp(88px, 10.5vw, 150px);
+}
+
+.slide.theme-white .deck-logo-grid .deck-logo-card:only-child.is-featured-partner img {
+  max-width: min(70vw, 650px);
+  max-height: min(42vh, 360px);
+}
+
 .slide.theme-white .deck-logo-card span {
   font-size: clamp(17px, 1.5vw, 28px);
 }
@@ -690,6 +700,37 @@ a {
   min-height: 210px;
   color: #fff;
   align-content: center;
+}
+
+.is-qr-codes .slide-main {
+  gap: clamp(22px, 3vw, 48px);
+}
+
+.deck-qr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(28px, 4.5vw, 84px);
+  width: min(100%, 1040px);
+  align-items: start;
+  justify-items: center;
+}
+
+.deck-qr-card {
+  display: grid;
+  gap: clamp(14px, 1.4vw, 24px);
+  justify-items: center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.deck-qr-card img {
+  width: min(31vw, 420px);
+  max-width: 100%;
+  max-height: min(62vh, 640px);
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 18px 56px rgba(0, 0, 0, 0.38);
 }
 
 .card-title,

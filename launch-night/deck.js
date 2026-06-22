@@ -36,15 +36,25 @@
   const renderLogoGrid = (items) => {
     if (!items || !items.length) return "";
     return `<div class="deck-logo-grid">${items.map((item) => {
+      const className = item.className ? ` ${escapeHtml(item.className)}` : "";
       const logo = item.src
         ? `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.label)}" />${item.showLabel ? `<span class="deck-logo-caption">${escapeHtml(item.label)}</span>` : ""}`
         : `<span>${escapeHtml(item.label)}</span>`;
-      if (!item.href) return `<div class="deck-logo-card">${logo}</div>`;
+      if (!item.href) return `<div class="deck-logo-card${className}">${logo}</div>`;
       return `
-      <a class="deck-logo-card" href="${escapeHtml(item.href)}" target="_blank" rel="noopener noreferrer">
+      <a class="deck-logo-card${className}" href="${escapeHtml(item.href)}" target="_blank" rel="noopener noreferrer">
         ${logo}
       </a>`;
     }).join("")}</div>`;
+  };
+
+  const renderQrCodes = (items) => {
+    if (!items || !items.length) return "";
+    return `<div class="deck-qr-grid">${items.map((item) => `
+      <a class="deck-qr-card" href="${escapeHtml(item.href)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(item.label)}">
+        <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.label)} QR code" />
+      </a>
+    `).join("")}</div>`;
   };
 
   const renderBody = (slide) => {
@@ -123,6 +133,8 @@
             <p class="card-subtitle">${escapeHtml(card.subtitle)}</p>
           </a>
         `).join("")}</div>`;
+      case "qr-codes":
+        return renderQrCodes(slide.qrs);
       case "tiers":
         return `<ul class="deck-tiers">${(slide.tiers || []).map((tier) => `
           <li>
@@ -169,7 +181,7 @@
 
   const renderSlide = (slide, index) => {
     const titleClass = slide.title && slide.title.length > 34 ? "deck-title is-long" : "deck-title";
-    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "loop-video" ? "slide is-loop-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : slide.kind === "full-image" ? "slide is-full-image" : slide.kind === "montage" ? "slide is-montage" : "slide";
+    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "loop-video" ? "slide is-loop-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : slide.kind === "full-image" ? "slide is-full-image" : slide.kind === "montage" ? "slide is-montage" : slide.kind === "qr-codes" ? "slide is-qr-codes" : "slide";
     const themeClass = slide.theme ? ` theme-${escapeHtml(slide.theme)}` : "";
     const customClass = slide.className ? ` ${escapeHtml(slide.className)}` : "";
     const shellClass = slide.kind === "band" ? "deck-shell is-band-shell" : slide.kind === "poster" ? "deck-shell is-poster-shell" : "deck-shell";
