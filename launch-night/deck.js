@@ -32,6 +32,12 @@
 
   const renderBody = (slide) => {
     switch (slide.kind) {
+      case "site-preview":
+        return `
+          <div class="deck-site-preview">
+            <iframe src="${escapeHtml(slide.siteUrl || "/")}" title="${escapeHtml(slide.title)}"></iframe>
+          </div>
+        `;
       case "logo-title":
         return `
           <div class="deck-logo-title">
@@ -100,7 +106,7 @@
 
   const renderSlide = (slide, index) => {
     const titleClass = slide.title && slide.title.length > 34 ? "deck-title is-long" : "deck-title";
-    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "logo-title" ? "slide is-logo-title" : "slide";
+    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : "slide";
     document.title = `${String(index + 1).padStart(2, "0")} ${slide.title} | TWR Launch Night`;
     document.body.className = "deck-page";
     document.body.innerHTML = `
@@ -112,8 +118,8 @@
           </div>
           <div class="slide-main">
             ${slide.eyebrow ? `<p class="deck-eyebrow">${escapeHtml(slide.eyebrow)}</p>` : ""}
-            ${slide.kind !== "logo-title" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
-            ${slide.subtitle && slide.kind !== "logo-title" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
+            ${slide.kind !== "logo-title" && slide.kind !== "site-preview" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
+            ${slide.subtitle && slide.kind !== "logo-title" && slide.kind !== "site-preview" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
             ${slide.accent ? `<p class="deck-accent">${escapeHtml(slide.accent)}</p>` : ""}
             ${renderBody(slide)}
           </div>

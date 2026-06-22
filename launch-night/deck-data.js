@@ -37,8 +37,8 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "LIVE WEBSITE HOMEPAGE",
     subtitle: "Official website launch moment.",
-    kind: "browser-cue",
-    image: "/assets/DallasHero.png",
+    kind: "site-preview",
+    siteUrl: "/",
     links: [
       { label: "LIVE WEBSITE HOMEPAGE", href: "/" }
     ]
