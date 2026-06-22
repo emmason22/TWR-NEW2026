@@ -563,11 +563,12 @@ window.TWRLaunchNightSlides = [
       { label: "CASA di LINO" },
       { label: "Dallas Opera", src: "/assets/partner-logos/dallas-opera.png", showLabel: true },
       { label: "Granada Theater", src: "/assets/partner-logos/granada-theater.png", showLabel: true },
-      { label: "AllGood Cafe" },
-      { label: "Tony's Pizza & Pasta", src: "/assets/partner-logos/tonys-pizza-pasta.png", showLabel: true },
+      { label: "AllGood Cafe", src: "/assets/partner-logos/allgood-cafe.png" },
+      { label: "Tony's Pizza & Pasta", src: "/assets/partner-logos/tonys-pizza-pasta.png" },
       { label: "Sweet Cakes by Becca", src: "/assets/partner-logos/sweet-cakes-by-becca.png" },
       { label: "CAVA", src: "/assets/partner-logos/cava.png", showLabel: true },
-      { label: "Working Hair", src: "/assets/partner-logos/working-hair.png", showLabel: true }
+      { label: "Working Hair", src: "/assets/partner-logos/working-hair.png" },
+      { label: "Sokyoot Gifts", src: "/assets/partner-logos/sokyoot-gifts.png" }
     ]
   },
   {
