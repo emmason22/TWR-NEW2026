@@ -292,7 +292,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "The Lasso Fiascos",
     kind: "band",
-    image: "/assets/TWRLaunchParty.png",
+    image: "/assets/lasso-fiascos.jpg",
     links: [
       { label: "Auction Poster", href: "/assets/real-auction-item-poster.png" },
       { label: "Donate", href: "/donate/" }

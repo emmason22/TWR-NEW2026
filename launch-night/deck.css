@@ -213,7 +213,7 @@ a {
 }
 
 .slide.is-band {
-  padding: clamp(22px, 3vw, 52px);
+  padding: 0;
 }
 
 .deck-shell.is-band-shell .slide-bg::after {
@@ -264,6 +264,7 @@ a {
 
 .slide.is-band .slide-main {
   align-content: end;
+  padding: clamp(22px, 3vw, 52px);
 }
 
 .slide.is-band .deck-title {
