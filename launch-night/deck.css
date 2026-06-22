@@ -1,0 +1,446 @@
+:root {
+  --gold: #fcb212;
+  --gold-soft: #ffd46a;
+  --ink: #040404;
+  --panel: rgba(12, 12, 12, 0.82);
+  --line: rgba(255, 255, 255, 0.18);
+  --muted: rgba(255, 255, 255, 0.72);
+  --text: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--ink);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 80% 12%, rgba(252, 178, 18, 0.14), transparent 26rem),
+    linear-gradient(135deg, rgba(8, 16, 34, 0.9), #000 55%);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+.deck-page {
+  min-height: 100vh;
+  display: grid;
+}
+
+.deck-shell {
+  width: min(100vw, 177.777vh);
+  aspect-ratio: 16 / 9;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  background: #050505;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 28px 90px rgba(0, 0, 0, 0.55);
+}
+
+.slide-bg,
+.slide-bg::after,
+.slide-bg img,
+.slide-bg video {
+  position: absolute;
+  inset: 0;
+}
+
+.slide-bg {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 70% 18%, rgba(255, 255, 255, 0.12), transparent 22rem),
+    #050505;
+}
+
+.slide-bg::after {
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.48) 50%, rgba(0, 0, 0, 0.7)),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.56), transparent 46%);
+}
+
+.slide-bg img,
+.slide-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.54;
+  filter: saturate(1.08) contrast(1.08);
+}
+
+.slide {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: clamp(24px, 3.2vw, 58px);
+}
+
+.slide-topbar,
+.slide-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.slide-logo {
+  width: clamp(70px, 7.2vw, 132px);
+  height: auto;
+  display: block;
+}
+
+.slide-time {
+  padding: 8px 12px;
+  color: var(--gold-soft);
+  border: 1px solid rgba(252, 178, 18, 0.5);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.42);
+}
+
+.slide-main {
+  display: grid;
+  align-content: center;
+  gap: clamp(16px, 2vw, 30px);
+  min-width: 0;
+}
+
+.deck-eyebrow {
+  margin: 0;
+  color: var(--gold);
+  font-weight: 900;
+  font-size: clamp(15px, 1.4vw, 26px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.deck-title {
+  max-width: 13ch;
+  margin: 0;
+  font-size: clamp(58px, 8.2vw, 148px);
+  line-height: 0.88;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.deck-title.is-long {
+  max-width: 18ch;
+  font-size: clamp(44px, 6.2vw, 112px);
+}
+
+.deck-subtitle {
+  max-width: 850px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(22px, 2.5vw, 44px);
+  line-height: 1.08;
+  font-weight: 800;
+}
+
+.deck-accent {
+  margin: 0;
+  color: var(--gold-soft);
+  font-size: clamp(22px, 2.2vw, 38px);
+  font-weight: 900;
+}
+
+.deck-bullets,
+.deck-steps,
+.deck-cards,
+.deck-tiers,
+.deck-stats,
+.deck-link-grid,
+.deck-photo-grid {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.deck-bullets {
+  max-width: 760px;
+}
+
+.deck-bullets li,
+.deck-steps li,
+.deck-link-grid a,
+.deck-cards a,
+.deck-tiers li,
+.deck-stats li {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+}
+
+.deck-bullets li {
+  padding: 14px 18px;
+  font-size: clamp(20px, 1.8vw, 32px);
+  font-weight: 800;
+}
+
+.deck-photo-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  height: clamp(220px, 26vw, 420px);
+}
+
+.deck-photo-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  filter: saturate(1.08) contrast(1.05);
+}
+
+.deck-link-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1120px;
+}
+
+.deck-link-grid a,
+.deck-cards a,
+.deck-tiers li,
+.deck-stats li {
+  display: grid;
+  gap: 8px;
+  padding: clamp(18px, 2vw, 30px);
+  text-decoration: none;
+}
+
+.deck-link-grid a {
+  min-height: 118px;
+  align-content: center;
+  color: #fff;
+  font-size: clamp(24px, 2.2vw, 40px);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.deck-steps {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.deck-steps li {
+  min-height: 190px;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  text-align: center;
+  font-size: clamp(20px, 1.9vw, 34px);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.deck-cards,
+.deck-tiers,
+.deck-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.deck-cards a,
+.deck-tiers li,
+.deck-stats li {
+  min-height: 210px;
+  color: #fff;
+  align-content: center;
+}
+
+.card-title,
+.tier-name,
+.stat-value {
+  margin: 0;
+  color: var(--gold);
+  font-size: clamp(32px, 3.4vw, 62px);
+  line-height: 0.95;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.card-subtitle,
+.tier-amount,
+.stat-label {
+  margin: 0;
+  font-size: clamp(18px, 1.7vw, 30px);
+  font-weight: 900;
+  color: #fff;
+}
+
+.deck-stats {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 1100px;
+}
+
+.deck-stats li {
+  min-height: 240px;
+}
+
+.slide-footer {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: clamp(12px, 1vw, 18px);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.presenter-controls {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 36px);
+  padding: 8px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(252, 178, 18, 0.42);
+  background: rgba(0, 0, 0, 0.76);
+  opacity: 0.18;
+  transition: opacity 160ms ease;
+}
+
+.presenter-controls:hover,
+.presenter-controls:focus-within {
+  opacity: 1;
+}
+
+.presenter-controls a,
+.presenter-controls button {
+  min-height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.presenter-controls a:hover,
+.presenter-controls button:hover {
+  border-color: var(--gold);
+  color: #000;
+  background: var(--gold);
+}
+
+.controller-page {
+  min-height: 100vh;
+  overflow: auto;
+  padding: clamp(20px, 3vw, 48px);
+}
+
+.controller-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.controller-header img {
+  width: clamp(86px, 8vw, 130px);
+}
+
+.controller-header h1 {
+  margin: 0;
+  font-size: clamp(42px, 6vw, 96px);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.controller-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.controller-card {
+  display: grid;
+  gap: 10px;
+  min-height: 190px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.07);
+  text-decoration: none;
+}
+
+.controller-card:hover {
+  border-color: var(--gold);
+  background: rgba(252, 178, 18, 0.14);
+}
+
+.controller-card span {
+  color: var(--gold);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.controller-card strong {
+  font-size: 26px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.controller-card em {
+  color: var(--muted);
+  font-style: normal;
+}
+
+@media (max-aspect-ratio: 16 / 9) {
+  .deck-shell {
+    width: 100vw;
+    height: auto;
+  }
+}
+
+@media (max-width: 800px) {
+  body {
+    overflow: auto;
+  }
+
+  .deck-shell {
+    width: 100%;
+    min-height: 100vh;
+    aspect-ratio: auto;
+  }
+
+  .slide {
+    min-height: 100vh;
+  }
+
+  .deck-photo-grid,
+  .deck-link-grid,
+  .deck-steps,
+  .deck-cards,
+  .deck-tiers,
+  .deck-stats {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .presenter-controls {
+    position: fixed;
+    opacity: 1;
+    overflow-x: auto;
+  }
+}
