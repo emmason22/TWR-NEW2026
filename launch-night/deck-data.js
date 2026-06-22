@@ -666,6 +666,7 @@ window.TWRLaunchNightSlides = [
     title: "EVENT SUPPORTERS & DONORS",
     kind: "logo-grid",
     theme: "white",
+    className: "event-supporters-two-row",
     image: "/assets/TWRLaunchParty.png",
     logos: [
       { label: "Barley House", src: "/assets/partner-logos/barley-house.png" },

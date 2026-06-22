@@ -735,6 +735,31 @@ a {
   max-height: clamp(96px, 9.4vw, 145px);
 }
 
+.slide.theme-white.event-supporters-two-row .slide-main {
+  align-content: center;
+  gap: clamp(18px, 2vw, 30px);
+}
+
+.slide.theme-white.event-supporters-two-row .deck-logo-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(12px, 1.4vw, 22px) clamp(16px, 1.8vw, 28px);
+  width: min(100%, 1500px);
+}
+
+.slide.theme-white.event-supporters-two-row .deck-logo-card {
+  min-height: clamp(112px, 11vw, 168px);
+  padding: clamp(10px, 1.25vw, 20px);
+}
+
+.slide.theme-white.event-supporters-two-row .deck-logo-card img {
+  max-width: min(100%, 205px);
+  max-height: clamp(62px, 6.4vw, 96px);
+}
+
+.slide.theme-white.event-supporters-two-row .deck-logo-card span {
+  font-size: clamp(18px, 1.65vw, 30px);
+}
+
 .slide.theme-white .slide-footer {
   color: rgba(0, 0, 0, 0.54);
 }
