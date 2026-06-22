@@ -306,18 +306,8 @@ window.TWRLaunchNightSlides = [
     time: "7:30 PM",
     eyebrow: "",
     title: "The Lasso Fiascos",
-    subtitle: "RAFFLE",
     kind: "band",
     image: "/assets/TWRLaunchParty.png",
-    bullets: [
-      "Raffle tickets:",
-      "$10 each",
-      "3 for $25",
-      "7 for $50",
-      "Silent Auction open",
-      "Signed posters available for $25",
-      "Visit Founding Member and Volunteer tables"
-    ],
     links: [
       { label: "RAFFLE Tickets Poster", href: "/assets/real-auction-item-poster.png" },
       { label: "Donate", href: "/donate/" }
@@ -442,16 +432,8 @@ window.TWRLaunchNightSlides = [
     time: "8:30 PM",
     eyebrow: "",
     title: "Madison King",
-    subtitle: "RAFFLE",
     kind: "band",
     image: "/assets/madison-king-1.webp",
-    bullets: [
-      "Visit the Raffle Table",
-      "Visit the Silent Auction",
-      "Signed Event Posters available for $25",
-      "Visit Donate Now / Founding Member table",
-      "Visit Volunteer table"
-    ],
     links: [
       { label: "Donate", href: "/donate/" },
       { label: "Volunteer", href: "/volunteer.html" }
@@ -462,14 +444,8 @@ window.TWRLaunchNightSlides = [
     time: "9:00 PM",
     eyebrow: "",
     title: "RYAN THOMAS BECKER",
-    subtitle: "Please welcome Ryan Thomas Becker.",
     kind: "band",
-    image: "/assets/TWRLaunchParty.png",
-    bullets: [
-      "Photos",
-      "Performance Images",
-      "Connection to TWR"
-    ]
+    image: "/assets/TWRLaunchParty.png"
   },
   {
     id: "31-where-were-going",
@@ -555,7 +531,6 @@ window.TWRLaunchNightSlides = [
     time: "9:30 PM",
     eyebrow: "",
     title: "Brent Best",
-    subtitle: "Photos / Branding while playing",
     kind: "band",
     image: "/assets/brent-best.jpg"
   },
@@ -677,13 +652,7 @@ window.TWRLaunchNightSlides = [
     time: "10:30 PM",
     eyebrow: "",
     title: "RTB2",
-    subtitle: "END OF PROGRAM",
     kind: "band",
-    image: "/TWR2/toy-drive/RTB2.jpg",
-    bullets: [
-      "Photos",
-      "Branding",
-      "Performance Images"
-    ]
+    image: "/TWR2/toy-drive/RTB2.jpg"
   }
 ];
