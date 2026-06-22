@@ -482,36 +482,40 @@ window.TWRLaunchNightSlides = [
     id: "27a-mission-video-01",
     time: "8:25 PM",
     eyebrow: "",
-    title: "MISSION VIDEO",
-    subtitle: "1",
+    title: "MISSION VIDEO 1",
+    titleHidden: true,
     kind: "video",
+    className: "large-centered-video",
     video: "/assets/launch-night/mission-video-01.mp4"
   },
   {
     id: "27b-mission-video-02",
     time: "8:25 PM",
     eyebrow: "",
-    title: "MISSION VIDEO",
-    subtitle: "2",
+    title: "MISSION VIDEO 2",
+    titleHidden: true,
     kind: "video",
+    className: "large-centered-video",
     video: "/assets/launch-night/mission-video-02.mp4"
   },
   {
     id: "27c-mission-video-03",
     time: "8:25 PM",
     eyebrow: "",
-    title: "MISSION VIDEO",
-    subtitle: "3",
+    title: "MISSION VIDEO 3",
+    titleHidden: true,
     kind: "video",
+    className: "large-centered-video",
     video: "/assets/launch-night/mission-video-03.mp4"
   },
   {
     id: "27d-mission-video-04",
     time: "8:25 PM",
     eyebrow: "",
-    title: "MISSION VIDEO",
-    subtitle: "4",
+    title: "MISSION VIDEO 4",
+    titleHidden: true,
     kind: "video",
+    className: "large-centered-video",
     video: "/assets/launch-night/mission-video-04.mp4"
   },
   {
