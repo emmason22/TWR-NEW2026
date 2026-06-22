@@ -1558,7 +1558,7 @@ function initDonationTicker() {
   };
 
   const renderFallback = (message) => {
-    if (totalEl) totalEl.textContent = "Raised so far: --";
+    if (totalEl) totalEl.textContent = "Raised tonight: --";
     if (updatedEl) updatedEl.textContent = message;
     if (emptyEl) emptyEl.hidden = false;
     if (listEl) listEl.replaceChildren();
@@ -1566,7 +1566,7 @@ function initDonationTicker() {
 
   const renderTicker = (data) => {
     const currency = data.currency || "usd";
-    if (totalEl) totalEl.textContent = `Raised so far: ${formatCurrency(data.total_cents, currency)}`;
+    if (totalEl) totalEl.textContent = `Raised tonight: ${formatCurrency(data.total_cents, currency)}`;
     if (updatedEl) updatedEl.textContent = formatUpdatedAt(data.updated_at);
 
     const recent = Array.isArray(data.recent) ? data.recent : [];

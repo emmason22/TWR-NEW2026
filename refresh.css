@@ -1402,10 +1402,18 @@ textarea:focus-visible {
 }
 
 .page-donate .donation-ticker-total {
-  margin: clamp(18px, 2vw, 28px) 0 0;
+  margin: clamp(10px, 1.2vw, 18px) 0 0;
   color: var(--rf-gold);
   font-family: "Oswald", sans-serif;
   font-size: clamp(42px, 5.8vw, 96px);
+  line-height: 1;
+}
+
+.page-donate .donation-ticker-lifetime {
+  margin: clamp(18px, 2vw, 28px) 0 0;
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(30px, 3.7vw, 64px);
   line-height: 1;
 }
 
