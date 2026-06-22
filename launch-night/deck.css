@@ -264,6 +264,27 @@ a {
   height: clamp(220px, 26vw, 420px);
 }
 
+.deck-photo-content {
+  display: grid;
+  gap: clamp(14px, 1.6vw, 24px);
+}
+
+.deck-photo-content.has-bullets .deck-photo-grid {
+  height: clamp(170px, 18vw, 300px);
+}
+
+.deck-photo-content .deck-bullets {
+  max-width: 1120px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.deck-photo-content .deck-bullets li {
+  display: grid;
+  place-items: center;
+  min-height: 76px;
+  text-align: center;
+}
+
 .deck-photo-grid img {
   width: 100%;
   height: 100%;

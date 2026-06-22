@@ -59,7 +59,12 @@
           </div>
         `;
       case "photo-grid":
-        return `<div class="deck-photo-grid">${(slide.images || []).map((src) => `<img src="${escapeHtml(src)}" alt="" />`).join("")}</div>`;
+        return `
+          <div class="deck-photo-content${slide.bullets && slide.bullets.length ? " has-bullets" : ""}">
+            <div class="deck-photo-grid">${(slide.images || []).map((src) => `<img src="${escapeHtml(src)}" alt="" />`).join("")}</div>
+            ${renderBullets(slide.bullets)}
+          </div>
+        `;
       case "link-grid":
         return `<div class="deck-link-grid">${(slide.links || []).map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`).join("")}</div>`;
       case "process":

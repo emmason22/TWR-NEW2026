@@ -322,5 +322,368 @@ window.TWRLaunchNightSlides = [
       { label: "RAFFLE Tickets Poster", href: "/assets/TWRLaunchParty.png" },
       { label: "Donate", href: "/donate/" }
     ]
+  },
+  {
+    id: "21-people-behind-the-mission",
+    time: "8:00 PM",
+    eyebrow: "",
+    title: "THE PEOPLE BEHIND THE MISSION",
+    kind: "photo-grid",
+    images: [
+      "/assets/HomelessOutReachPic.png",
+      "/assets/CommunityOutreachHero.png",
+      "/assets/EmergencyOutreachpic.png",
+      "/Gallery/optimized/IMG_7293.jpg"
+    ],
+    accent: "Every Form Submission Represents A Real Person With A Real Need",
+    links: [
+      { label: "Need Help", href: "/community-outreach.html" },
+      { label: "Homeless Outreach", href: "/homeless-outreach.html" }
+    ]
+  },
+  {
+    id: "22-carlton-video",
+    time: "8:00 PM",
+    eyebrow: "",
+    title: "CARLTON VIDEO",
+    kind: "big-type",
+    image: "/assets/HomelessOutReachPic.png"
+  },
+  {
+    id: "23-stella-video",
+    time: "8:00 PM",
+    eyebrow: "",
+    title: "STELLA VIDEO",
+    kind: "big-type",
+    image: "/assets/CommunityOutreachHero.png"
+  },
+  {
+    id: "24-veteran-outreach",
+    time: "8:00 PM",
+    eyebrow: "",
+    title: "VETERAN OUTREACH",
+    kind: "statement",
+    image: "/assets/VeteranOutrechpic.png",
+    bullets: [
+      "L.I.F.T.",
+      "Resource Navigation",
+      "Comms Up"
+    ],
+    links: [
+      { label: "Veteran Outreach", href: "/veteran-outreach.html" }
+    ]
+  },
+  {
+    id: "25-comms-up-video",
+    time: "8:00 PM",
+    eyebrow: "",
+    title: "COMMS UP VIDEO",
+    subtitle: "After video plays - Leave the opening frame with La La on the screen after video",
+    kind: "big-type",
+    image: "/assets/VeteranHero.png"
+  },
+  {
+    id: "26-community-partnerships",
+    time: "8:15 PM",
+    eyebrow: "",
+    title: "COMMUNITY PARTNERSHIPS",
+    subtitle: "No organization changes a community alone.",
+    kind: "statement",
+    image: "/TWR2/toy-drive/TheFamilyPlace.png",
+    bullets: [
+      "Featuring: The Family Place"
+    ],
+    links: [
+      { label: "Community Partners", href: "/emergency-relief.html" }
+    ]
+  },
+  {
+    id: "27-people-behind-the-mission-team",
+    time: "8:25 PM",
+    eyebrow: "",
+    title: "THE PEOPLE BEHIND THE MISSION",
+    kind: "photo-grid",
+    images: [
+      "/assets/CommunityPartnersHero2.png",
+      "/assets/Icons/Volunteer.png",
+      "/assets/HomelessOutReachPic.png",
+      "/assets/EmergencyOutreachpic.png"
+    ],
+    accent: "Organizations don't change lives. People do.",
+    bullets: [
+      "Leadership Team",
+      "Board Members",
+      "Volunteers",
+      "Community supporters",
+      "Behind-the-scenes contributors"
+    ],
+    links: [
+      { label: "Leadership Team", href: "/team.html" },
+      { label: "Volunteer", href: "/volunteer.html" }
+    ]
+  },
+  {
+    id: "28-join-the-mission",
+    time: "8:25 PM",
+    eyebrow: "",
+    title: "JOIN THE MISSION",
+    subtitle: "Volunteer Opportunities",
+    kind: "link-grid",
+    links: [
+      { label: "Homeless Outreach", href: "/homeless-outreach.html" },
+      { label: "Veteran Outreach", href: "/veteran-outreach.html" },
+      { label: "Events", href: "/events.html" },
+      { label: "Fundraising", href: "/donate/" },
+      { label: "Media & Social Media", href: "/volunteer.html" }
+    ]
+  },
+  {
+    id: "29-madison-king",
+    time: "8:30 PM",
+    eyebrow: "",
+    title: "Madison King",
+    subtitle: "RAFFLE",
+    kind: "band",
+    image: "/assets/TWRLaunchParty.png",
+    bullets: [
+      "Visit the Raffle Table",
+      "Visit the Silent Auction",
+      "Signed Event Posters available for $25",
+      "Visit Donate Now / Founding Member table",
+      "Visit Volunteer table"
+    ],
+    links: [
+      { label: "Donate", href: "/donate/" },
+      { label: "Volunteer", href: "/volunteer.html" }
+    ]
+  },
+  {
+    id: "30-ryan-thomas-becker",
+    time: "9:00 PM",
+    eyebrow: "",
+    title: "RYAN THOMAS BECKER",
+    subtitle: "Please welcome Ryan Thomas Becker.",
+    kind: "band",
+    image: "/assets/TWRLaunchParty.png",
+    bullets: [
+      "Photos",
+      "Performance Images",
+      "Connection to TWR"
+    ]
+  },
+  {
+    id: "31-where-were-going",
+    time: "9:00 PM",
+    eyebrow: "",
+    title: "WHERE WE'RE GOING",
+    kind: "photo-grid",
+    images: [
+      "/assets/HomelessOutReachPic.png",
+      "/assets/VeteranOutrechpic.png",
+      "/assets/CommunityOutreachHero.png",
+      "/assets/CommunityPartnersHero2.png"
+    ],
+    bullets: [
+      "More Volunteers",
+      "More Partnerships",
+      "More Lives Impacted",
+      "More Requests Answered"
+    ],
+    links: [
+      { label: "Volunteer", href: "/volunteer.html" },
+      { label: "Donate", href: "/donate/" }
+    ]
+  },
+  {
+    id: "32-help-us-respond",
+    time: "9:00 PM",
+    eyebrow: "",
+    title: "EVERY FORM SUBMISSION REPRESENTS A REAL PERSON WITH A REAL NEED",
+    subtitle: "HELP US RESPOND TO THE NEXT ONE",
+    kind: "big-type",
+    image: "/assets/RainyDayHero.png",
+    links: [
+      { label: "Donate", href: "/donate/" },
+      { label: "Need Help", href: "/community-outreach.html" }
+    ]
+  },
+  {
+    id: "33-the-story-is-growing",
+    time: "9:15 PM",
+    eyebrow: "",
+    title: "THE STORY IS GROWING",
+    kind: "photo-grid",
+    images: [
+      "/assets/news/fox4-tonight-we-ride.png",
+      "/assets/TWRLaunchParty.png",
+      "/assets/TonightWeRideLogo.png",
+      "/assets/CommunityPartnersHero2.png"
+    ],
+    bullets: [
+      "Good Morning Texas",
+      "Dallas Observer",
+      "Dallas Morning News",
+      "What In East Dallas Is Going On"
+    ],
+    links: [
+      { label: "News", href: "/news.html" },
+      { label: "Good Morning Texas", href: "https://www.wfaa.com/video/entertainment/television/programs/good-morning-texas/tonight-we-ride-launch-party-preview/287-7166f769-cad0-4555-b515-c5fb253d700c" },
+      { label: "FOX 4", href: "https://www.fox4news.com/video/fmc-eih41h9b8wn08yyq" }
+    ]
+  },
+  {
+    id: "34-final-call-to-action",
+    time: "9:20 PM",
+    eyebrow: "",
+    title: "HELP US RESPOND TO THE NEXT ONE",
+    subtitle: "2 QR Codes Donate Now and Founding Member",
+    kind: "three-cards",
+    cards: [
+      { title: "Volunteer", subtitle: "", href: "/volunteer.html" },
+      { title: "Donate", subtitle: "", href: "/donate/" },
+      { title: "Nominate", subtitle: "", href: "/community-outreach.html" }
+    ],
+    links: [
+      { label: "Donate Now", href: "/donate/" },
+      { label: "Founding Member", href: "/founding-member.html" },
+      { label: "Volunteer", href: "/volunteer.html" },
+      { label: "Need Help", href: "/community-outreach.html" }
+    ]
+  },
+  {
+    id: "35-brent-best",
+    time: "9:30 PM",
+    eyebrow: "",
+    title: "Brent Best",
+    subtitle: "Photos / Branding while playing",
+    kind: "band",
+    image: "/assets/TWRLaunchParty.png"
+  },
+  {
+    id: "36-silent-auction-closing",
+    time: "9:45 PM",
+    eyebrow: "",
+    title: "SILENT AUCTION CLOSING",
+    subtitle: "Featured Items",
+    kind: "reminder",
+    image: "/assets/TWRLaunchParty.jpg",
+    bullets: [
+      "Fuji Cruiser Bike - $500 Value",
+      "CASA di LINO - $500 Gift Card",
+      "Dallas Opera Ticket Package - $340 Value",
+      "Silent Auction Closed",
+      "Finalize bids",
+      "Prepare winner announcements"
+    ]
+  },
+  {
+    id: "37-raffle-silent-auction-winners",
+    time: "10:00 PM",
+    eyebrow: "",
+    title: "RAFFLE & SILENT AUCTION WINNERS",
+    kind: "reminder",
+    image: "/assets/TWRLaunchParty.jpg",
+    bullets: [
+      "Announce Silent Auction Winners",
+      "Raffle Drawings",
+      "Recognize Prize Sponsors"
+    ]
+  },
+  {
+    id: "38-community-partners",
+    time: "10:00 PM",
+    eyebrow: "",
+    title: "COMMUNITY PARTNERS",
+    kind: "link-grid",
+    links: [
+      { label: "The Family Place", href: "/emergency-relief.html" },
+      { label: "Dallas Life", href: "/emergency-relief.html" },
+      { label: "Additional Partners", href: "/emergency-relief.html" }
+    ]
+  },
+  {
+    id: "39-event-supporters-donors",
+    time: "10:00 PM",
+    eyebrow: "",
+    title: "EVENT SUPPORTERS & DONORS",
+    kind: "reminder",
+    image: "/assets/TWRLaunchParty.png",
+    bullets: [
+      "Barley House",
+      "PlayTri",
+      "CASA di LINO",
+      "Dallas Opera",
+      "Granada Theater",
+      "AllGood Cafe",
+      "Tony's Pizza & Pasta",
+      "Sweet Cakes by Becca",
+      "CAVA",
+      "Working Hair"
+    ]
+  },
+  {
+    id: "40-media-promotional-support",
+    time: "10:00 PM",
+    eyebrow: "",
+    title: "MEDIA & PROMOTIONAL SUPPORT",
+    kind: "reminder",
+    image: "/assets/news/fox4-tonight-we-ride.png",
+    bullets: [
+      "Good Morning Texas",
+      "Dallas Observer",
+      "Dallas Morning News",
+      "What In East Dallas Is Going On",
+      "Rabbit Hat PR"
+    ],
+    links: [
+      { label: "News", href: "/news.html" },
+      { label: "Rabbit Hat PR", href: "/rabbit-hat-press-release.html" }
+    ]
+  },
+  {
+    id: "41-tonights-artists",
+    time: "10:00 PM",
+    eyebrow: "",
+    title: "TONIGHT'S ARTISTS",
+    kind: "reminder",
+    image: "/assets/TWRLaunchParty.png",
+    bullets: [
+      "The Lasso Fiascos",
+      "Madison King",
+      "Brent Best",
+      "RTB2"
+    ]
+  },
+  {
+    id: "42-thank-you",
+    time: "10:15 PM",
+    eyebrow: "",
+    title: "THANK YOU FOR BEING PART OF THE MISSION",
+    subtitle: "Changing the world, one person at a time.",
+    kind: "statement",
+    image: "/assets/TonightWeRideLogo.png",
+    bullets: [
+      "TonightWeRide.org",
+      "Every Form Submission Represents A Real Person With A Real Need."
+    ],
+    links: [
+      { label: "TonightWeRide.org", href: "/" },
+      { label: "Donate", href: "/donate/" },
+      { label: "Volunteer", href: "/volunteer.html" }
+    ]
+  },
+  {
+    id: "43-rtb2",
+    time: "10:30 PM",
+    eyebrow: "",
+    title: "RTB2",
+    subtitle: "END OF PROGRAM",
+    kind: "band",
+    image: "/TWR2/toy-drive/RTB2.jpg",
+    bullets: [
+      "Photos",
+      "Branding",
+      "Performance Images"
+    ]
   }
 ];
