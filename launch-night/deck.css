@@ -279,11 +279,12 @@ a {
   object-fit: cover;
   border: clamp(3px, 0.35vw, 7px) solid rgba(255, 255, 255, 0.9);
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.42);
-  transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  opacity: 0.72;
+  transform: translate3d(0, 0, 0) rotate(-0.8deg) scale(0.92);
   animation:
-    montagePulse 10s ease-in-out infinite alternate,
+    montagePop 13s ease-in-out infinite,
     montageFloat 18s ease-in-out infinite alternate;
-  animation-delay: calc(var(--i) * -0.55s), calc(var(--i) * -0.9s);
+  animation-delay: calc(var(--i) * -0.72s), calc(var(--i) * -0.9s);
 }
 
 .deck-montage img:nth-child(1),
@@ -311,7 +312,7 @@ a {
 }
 
 .deck-montage img:nth-child(3n) {
-  animation-duration: 12s, 22s;
+  animation-duration: 11s, 22s;
 }
 
 .deck-montage img:nth-child(4n) {
@@ -320,6 +321,14 @@ a {
 
 .deck-montage img:nth-child(5n) {
   animation-direction: alternate-reverse;
+}
+
+.deck-montage img:nth-child(7n) {
+  animation-duration: 15s, 20s;
+}
+
+.deck-montage img:nth-child(9n) {
+  transform-origin: 40% 30%;
 }
 
 @keyframes montageDrift {
@@ -332,13 +341,36 @@ a {
   }
 }
 
-@keyframes montagePulse {
-  from {
-    transform: translateY(-2%) rotate(-0.7deg) scale(1.01);
+@keyframes montagePop {
+  0% {
+    opacity: 0.44;
+    transform: translate3d(0, 2%, 0) rotate(-1.2deg) scale(0.9);
   }
 
-  to {
-    transform: translateY(2%) rotate(0.7deg) scale(1.11);
+  14% {
+    opacity: 0.78;
+    transform: translate3d(0, 0, 0) rotate(-0.4deg) scale(1);
+  }
+
+  28% {
+    opacity: 1;
+    transform: translate3d(0, -2%, 0) rotate(0.9deg) scale(1.22);
+    z-index: 4;
+  }
+
+  42% {
+    opacity: 0.86;
+    transform: translate3d(0, 1%, 0) rotate(0.3deg) scale(1.04);
+  }
+
+  64% {
+    opacity: 0.58;
+    transform: translate3d(0, -1%, 0) rotate(-0.8deg) scale(0.94);
+  }
+
+  100% {
+    opacity: 0.42;
+    transform: translate3d(0, 2%, 0) rotate(1.1deg) scale(0.88);
   }
 }
 
