@@ -31,6 +31,19 @@ window.TWRLaunchNightSlides = [
     ]
   },
   {
+    id: "04-website-launch-video",
+    time: "7:00 PM",
+    eyebrow: "",
+    title: "TONIGHT WE RIDE",
+    displayTitle: "Tonight We Ride",
+    tagline: "Changing the World, One Person At a Time",
+    kind: "loop-video",
+    video: "/assets/Dallas.mp4",
+    links: [
+      { label: "Homepage Video", href: "/assets/Dallas.mp4" }
+    ]
+  },
+  {
     id: "03-live-homepage",
     time: "7:00 PM",
     eyebrow: "",
@@ -40,20 +53,6 @@ window.TWRLaunchNightSlides = [
     siteUrl: "/",
     links: [
       { label: "LIVE WEBSITE HOMEPAGE", href: "/" }
-    ]
-  },
-  {
-    id: "04-website-launch-video",
-    time: "7:00 PM",
-    eyebrow: "",
-    title: "WEBSITE LAUNCH VIDEO",
-    subtitle: "Play Website Intro Video",
-    kind: "video",
-    video: "/assets/presentation-videos/TWR_TikTok_01_FINAL_V5.mp4?v=20260616b",
-    poster: "/assets/TWRLaunchParty.png",
-    fit: "cover",
-    links: [
-      { label: "WEBSITE LAUNCH VIDEO", href: "/presentation-videos-tv.html" }
     ]
   },
   {

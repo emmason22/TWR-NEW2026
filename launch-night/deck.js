@@ -75,6 +75,23 @@
             ></video>
           </div>
         `;
+      case "loop-video":
+        return `
+          <div class="deck-loop-video">
+            <video
+              src="${escapeHtml(slide.video)}"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+            ></video>
+            <div class="deck-loop-copy">
+              <p>${escapeHtml(slide.displayTitle || slide.title)}</p>
+              ${slide.tagline ? `<span>${escapeHtml(slide.tagline)}</span>` : ""}
+            </div>
+          </div>
+        `;
       case "photo-grid":
         return `
           <div class="deck-photo-content${slide.bullets && slide.bullets.length ? " has-bullets" : ""}">
@@ -148,7 +165,7 @@
 
   const renderSlide = (slide, index) => {
     const titleClass = slide.title && slide.title.length > 34 ? "deck-title is-long" : "deck-title";
-    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : "slide";
+    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "loop-video" ? "slide is-loop-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : "slide";
     const shellClass = slide.kind === "band" ? "deck-shell is-band-shell" : slide.kind === "poster" ? "deck-shell is-poster-shell" : "deck-shell";
     document.title = `${String(index + 1).padStart(2, "0")} ${slide.title} | TWR Launch Night`;
     document.body.className = "deck-page";
@@ -160,8 +177,8 @@
           </div>
           <div class="slide-main">
             ${slide.eyebrow ? `<p class="deck-eyebrow">${escapeHtml(slide.eyebrow)}</p>` : ""}
-            ${slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
-            ${slide.subtitle && slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
+            ${slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
+            ${slide.subtitle && slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
             ${slide.accent ? `<p class="deck-accent">${escapeHtml(slide.accent)}</p>` : ""}
             ${renderBody(slide)}
           </div>
