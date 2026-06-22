@@ -109,7 +109,6 @@
         <section class="${slideClass}">
           <div class="slide-topbar">
             <img class="slide-logo" src="/assets/TonightWeRideLogo.png" alt="Tonight We Ride" />
-            <p class="slide-time">${escapeHtml(slide.time || "Launch Night")}</p>
           </div>
           <div class="slide-main">
             ${slide.eyebrow ? `<p class="deck-eyebrow">${escapeHtml(slide.eyebrow)}</p>` : ""}
@@ -142,7 +141,7 @@
       <main class="controller-grid" aria-label="Launch night slides">
         ${slides.map((slide, index) => `
           <a class="controller-card" href="${slideUrl(slide)}">
-            <span>${String(index + 1).padStart(2, "0")} ${escapeHtml(slide.time || "")}</span>
+            <span>${String(index + 1).padStart(2, "0")}</span>
             <strong>${escapeHtml(slide.title)}</strong>
             <em>${escapeHtml(slide.eyebrow || "")}</em>
           </a>
