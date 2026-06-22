@@ -166,13 +166,14 @@
   const renderSlide = (slide, index) => {
     const titleClass = slide.title && slide.title.length > 34 ? "deck-title is-long" : "deck-title";
     const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "loop-video" ? "slide is-loop-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : "slide";
+    const themeClass = slide.theme ? ` theme-${escapeHtml(slide.theme)}` : "";
     const shellClass = slide.kind === "band" ? "deck-shell is-band-shell" : slide.kind === "poster" ? "deck-shell is-poster-shell" : "deck-shell";
     document.title = `${String(index + 1).padStart(2, "0")} ${slide.title} | TWR Launch Night`;
     document.body.className = "deck-page";
     document.body.innerHTML = `
       <main class="${shellClass}" aria-label="${escapeHtml(slide.title)}">
         ${renderBackground(slide)}
-        <section class="${slideClass}">
+        <section class="${slideClass}${themeClass}">
           <div class="slide-topbar">
           </div>
           <div class="slide-main">

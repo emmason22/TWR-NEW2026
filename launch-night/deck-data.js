@@ -364,6 +364,7 @@ window.TWRLaunchNightSlides = [
     title: "COMMUNITY PARTNERSHIPS",
     subtitle: "No organization changes a community alone.",
     kind: "logo-grid",
+    theme: "white",
     image: "/TWR2/toy-drive/TheFamilyPlace.png",
     logos: [
       { label: "The Family Place", src: "/assets/partner-logos/the-family-place.png", href: "/emergency-relief.html" }
@@ -536,6 +537,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "COMMUNITY PARTNERS",
     kind: "logo-grid",
+    theme: "white",
     logos: [
       { label: "The Family Place", src: "/assets/partner-logos/the-family-place.png", href: "/emergency-relief.html" },
       { label: "Dallas Life", src: "/assets/partner-logos/dallas-life.png", href: "/emergency-relief.html" },
@@ -553,6 +555,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "EVENT SUPPORTERS & DONORS",
     kind: "logo-grid",
+    theme: "white",
     image: "/assets/TWRLaunchParty.png",
     logos: [
       { label: "Barley House", src: "/assets/partner-logos/barley-house.png" },
@@ -573,6 +576,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "MEDIA & PROMOTIONAL SUPPORT",
     kind: "logo-grid",
+    theme: "white",
     image: "/assets/news/fox4-tonight-we-ride.png",
     logos: [
       { label: "Good Morning Texas", href: "https://www.wfaa.com/video/entertainment/television/programs/good-morning-texas/tonight-we-ride-launch-party-preview/287-7166f769-cad0-4555-b515-c5fb253d700c" },

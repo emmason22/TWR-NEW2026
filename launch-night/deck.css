@@ -313,9 +313,9 @@ a {
 .deck-cards a,
 .deck-tiers li,
 .deck-stats li {
-  border: 1px solid var(--line);
-  background: var(--panel);
-  backdrop-filter: blur(10px);
+  border: 0;
+  background: transparent;
+  backdrop-filter: none;
 }
 
 .deck-bullets li {
@@ -376,12 +376,12 @@ a {
   place-items: center;
   gap: 10px;
   padding: clamp(18px, 2.2vw, 34px);
-  border: 1px solid rgba(252, 178, 18, 0.34);
-  background: rgba(255, 255, 255, 0.92);
-  color: #070707;
+  border: 0;
+  background: transparent;
+  color: #fff;
   text-align: center;
   text-decoration: none;
-  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
+  box-shadow: none;
 }
 
 .deck-logo-card img {
@@ -401,6 +401,35 @@ a {
 .deck-logo-card .deck-logo-caption {
   font-size: clamp(13px, 1vw, 18px);
   line-height: 1;
+}
+
+.slide.theme-white {
+  background: #fff;
+  color: #050505;
+}
+
+.slide.theme-white .slide-main {
+  justify-items: center;
+}
+
+.slide.theme-white .deck-title,
+.slide.theme-white .deck-subtitle {
+  color: #050505;
+  text-align: center;
+  max-width: 100%;
+}
+
+.slide.theme-white .deck-eyebrow,
+.slide.theme-white .deck-accent {
+  color: #9c6a00;
+}
+
+.slide.theme-white .deck-logo-card {
+  color: #050505;
+}
+
+.slide.theme-white .slide-footer {
+  color: rgba(0, 0, 0, 0.54);
 }
 
 .deck-link-grid a,
