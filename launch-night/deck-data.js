@@ -185,13 +185,8 @@ window.TWRLaunchNightSlides = [
     time: "7:10 PM",
     eyebrow: "",
     title: "THE NEXT CHAPTER",
-    kind: "photo-grid",
-    images: [
-      "/assets/HomelessOutReachPic.png",
-      "/assets/CommunityOutreachHero.png",
-      "/assets/CommunityPartnersHero2.png",
-      "/assets/EmergencyOutreachpic.png"
-    ],
+    kind: "full-image",
+    image: "/assets/team-photo.jpg",
     links: [
       { label: "Donate", href: "/donate/" },
       { label: "Volunteer", href: "/volunteer.html" }
