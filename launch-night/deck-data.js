@@ -384,13 +384,7 @@ window.TWRLaunchNightSlides = [
     time: "8:00 PM",
     eyebrow: "",
     title: "THE PEOPLE BEHIND THE MISSION",
-    kind: "photo-grid",
-    images: [
-      "/assets/HomelessOutReachPic.png",
-      "/assets/CommunityOutreachHero.png",
-      "/assets/EmergencyOutreachpic.png",
-      "/Gallery/optimized/IMG_7293.jpg"
-    ],
+    kind: "statement",
     accent: "Every Form Submission Represents A Real Person With A Real Need",
     links: [
       { label: "Need Help", href: "/community-outreach.html" },
