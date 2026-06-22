@@ -103,12 +103,25 @@ window.TWRLaunchNightSlides = [
     time: "7:10 PM",
     eyebrow: "",
     title: "WHERE IT ALL BEGAN",
-    kind: "photo-grid",
+    kind: "montage",
     images: [
-      "/assets/TWRLogo.png",
-      "/assets/TWRLaunchParty.png",
       "/assets/ToyDrivePoster.jpg",
-      "/assets/ToyDrivepic.jpg"
+      "/TWR2/toy-drive/ToyDrivePosterHero.png",
+      "/TWR2/toy-drive/ToyDrivePoster.jpg",
+      "/assets/ToyDrivepic.jpg",
+      "/TWR2/toy-drive/ToyDrive20.jpg",
+      "/TWR2/toy-drive/ToyDrive21.jpg",
+      "/TWR2/toy-drive/ToyDrive22.jpg",
+      "/TWR2/toy-drive/ToyDrive23.jpg",
+      "/TWR2/toy-drive/ToyDrive24.jpg",
+      "/TWR2/toy-drive/ToyDrive25.jpg",
+      "/assets/toy-drive-dropoff/IMG_0998.JPG",
+      "/assets/toy-drive-dropoff/IMG_1065.JPG",
+      "/assets/toy-drive-dropoff/IMG_1111.JPG",
+      "/assets/toy-drive-dropoff/IMG_1167.JPG",
+      "/assets/stars.jpg",
+      "/assets/stars-2.jpg",
+      "/assets/stars-3.jpg"
     ],
     links: [
       { label: "About", href: "/about.html" },
@@ -513,7 +526,7 @@ window.TWRLaunchNightSlides = [
     eyebrow: "",
     title: "Brent Best",
     kind: "band",
-    image: "/assets/brent-best.jpg"
+    image: "/assets/brent-best-live.webp"
   },
   {
     id: "36-silent-auction-closing",
@@ -599,14 +612,8 @@ window.TWRLaunchNightSlides = [
     time: "10:00 PM",
     eyebrow: "",
     title: "TONIGHT'S ARTISTS",
-    kind: "reminder",
-    image: "/assets/TWRLaunchParty.png",
-    bullets: [
-      "The Lasso Fiascos",
-      "Madison King",
-      "Brent Best",
-      "RTB2"
-    ]
+    kind: "full-image",
+    image: "/assets/TWRLaunchParty.png"
   },
   {
     id: "42-thank-you",

@@ -16,7 +16,7 @@
     .replace(/"/g, "&quot;");
 
   const renderBackground = (slide) => {
-    if (slide.kind === "poster") {
+    if (slide.kind === "poster" || slide.kind === "full-image" || slide.kind === "montage") {
       return '<div class="slide-bg"></div>';
     }
     if (slide.kind === "video" && slide.poster) {
@@ -99,6 +99,10 @@
             ${renderBullets(slide.bullets)}
           </div>
         `;
+      case "montage":
+        return `<div class="deck-montage">${(slide.images || []).map((src, imageIndex) => `<img style="--i:${imageIndex}" src="${escapeHtml(src)}" alt="" />`).join("")}</div>`;
+      case "full-image":
+        return `<img class="deck-full-image" src="${escapeHtml(slide.image)}" alt="" />`;
       case "link-grid":
         return `<div class="deck-link-grid">${(slide.links || []).map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`).join("")}</div>`;
       case "logo-grid":
@@ -165,7 +169,7 @@
 
   const renderSlide = (slide, index) => {
     const titleClass = slide.title && slide.title.length > 34 ? "deck-title is-long" : "deck-title";
-    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "loop-video" ? "slide is-loop-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : "slide";
+    const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "loop-video" ? "slide is-loop-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : slide.kind === "band" ? "slide is-band" : slide.kind === "poster" ? "slide is-poster" : slide.kind === "full-image" ? "slide is-full-image" : slide.kind === "montage" ? "slide is-montage" : "slide";
     const themeClass = slide.theme ? ` theme-${escapeHtml(slide.theme)}` : "";
     const shellClass = slide.kind === "band" ? "deck-shell is-band-shell" : slide.kind === "poster" ? "deck-shell is-poster-shell" : "deck-shell";
     document.title = `${String(index + 1).padStart(2, "0")} ${slide.title} | TWR Launch Night`;
@@ -178,8 +182,8 @@
           </div>
           <div class="slide-main">
             ${slide.eyebrow ? `<p class="deck-eyebrow">${escapeHtml(slide.eyebrow)}</p>` : ""}
-            ${slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
-            ${slide.subtitle && slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
+            ${slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "full-image" ? `<h1 class="${titleClass}">${escapeHtml(slide.title)}</h1>` : ""}
+            ${slide.subtitle && slide.kind !== "logo-title" && slide.kind !== "site-preview" && slide.kind !== "poster" && slide.kind !== "loop-video" && slide.kind !== "full-image" ? `<p class="deck-subtitle">${escapeHtml(slide.subtitle)}</p>` : ""}
             ${slide.accent ? `<p class="deck-accent">${escapeHtml(slide.accent)}</p>` : ""}
             ${renderBody(slide)}
           </div>
