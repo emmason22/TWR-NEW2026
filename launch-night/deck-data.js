@@ -415,12 +415,13 @@ window.TWRLaunchNightSlides = [
     time: "8:00 PM",
     eyebrow: "",
     title: "VETERAN OUTREACH",
-    kind: "statement",
+    kind: "logo-grid",
+    className: "veteran-logo-row",
     image: "/assets/VeteranHero.png",
-    bullets: [
-      "L.I.F.T.",
-      "Resource Navigation",
-      "Comms Up"
+    logos: [
+      { label: "L.I.F.T.", src: "/assets/lift-logo-white.png" },
+      { label: "Resource Navigation", src: "/assets/resource-navigation-logo-white.png" },
+      { label: "Comms Up", src: "/assets/comms-up-logo-white.png" }
     ],
     links: [
       { label: "Veteran Outreach", href: "/veteran-outreach.html" }

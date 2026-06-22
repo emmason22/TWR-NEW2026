@@ -739,6 +739,33 @@ a {
   color: rgba(0, 0, 0, 0.54);
 }
 
+.slide.veteran-logo-row .slide-main {
+  align-content: center;
+}
+
+.slide.veteran-logo-row .deck-title {
+  max-width: 100%;
+  text-align: center;
+}
+
+.slide.veteran-logo-row .deck-logo-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(26px, 3vw, 56px);
+  width: min(100%, 1460px);
+}
+
+.slide.veteran-logo-row .deck-logo-card {
+  min-height: clamp(120px, 13vw, 210px);
+  padding: clamp(8px, 1.2vw, 18px);
+}
+
+.slide.veteran-logo-row .deck-logo-card img {
+  max-width: 100%;
+  max-height: clamp(78px, 8.6vw, 142px);
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.58));
+}
+
 .deck-link-grid a,
 .deck-cards a,
 .deck-tiers li,
