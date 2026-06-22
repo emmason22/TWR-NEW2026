@@ -31,10 +31,10 @@ window.TWRLaunchNightSlides = [
     title: "THE MISSION IN ACTION",
     kind: "photo-grid",
     images: [
-      "/assets/HomelessOutReachPic.png",
-      "/assets/VeteranOutrechpic.png",
-      "/assets/EmergencyOutreachpic.png",
-      "/assets/CommunityOutreachHero.png"
+      "/assets/mission-action-01.png",
+      "/assets/mission-action-02.png",
+      "/assets/mission-action-03.png",
+      "/assets/mission-action-04.png"
     ],
     accent: "Changing the world, one person at a time.",
     links: [
