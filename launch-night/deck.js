@@ -104,6 +104,17 @@
     `;
   };
 
+  const renderSideArrows = (index) => {
+    const previous = slides[index - 1];
+    const next = slides[index + 1];
+    return `
+      <nav class="slide-side-arrows" aria-label="Slide navigation">
+        ${previous ? `<a class="slide-arrow slide-arrow-left" href="${slideUrl(previous)}" aria-label="Previous slide">‹</a>` : ""}
+        ${next ? `<a class="slide-arrow slide-arrow-right" href="${slideUrl(next)}" aria-label="Next slide">›</a>` : ""}
+      </nav>
+    `;
+  };
+
   const renderSlide = (slide, index) => {
     const titleClass = slide.title && slide.title.length > 34 ? "deck-title is-long" : "deck-title";
     const slideClass = slide.kind === "video" ? "slide is-video" : slide.kind === "logo-title" ? "slide is-logo-title" : slide.kind === "site-preview" ? "slide is-site-preview" : "slide";
@@ -128,6 +139,7 @@
             <span>${String(index + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}</span>
           </div>
         </section>
+        ${renderSideArrows(index)}
         ${renderControls(slide, index)}
       </main>
     `;

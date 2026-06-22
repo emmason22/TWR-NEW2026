@@ -405,6 +405,49 @@ a {
   text-transform: uppercase;
 }
 
+.slide-side-arrows {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.slide-arrow {
+  position: absolute;
+  top: 50%;
+  width: clamp(42px, 4vw, 58px);
+  height: clamp(58px, 5.2vw, 78px);
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 1px solid rgba(252, 178, 18, 0.58);
+  background: rgba(0, 0, 0, 0.58);
+  color: var(--gold-soft);
+  font-size: clamp(40px, 4.8vw, 66px);
+  line-height: 1;
+  font-weight: 400;
+  text-decoration: none;
+  pointer-events: auto;
+  opacity: 0.62;
+  transition: opacity 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.slide-arrow-left {
+  left: clamp(10px, 1.4vw, 24px);
+}
+
+.slide-arrow-right {
+  right: clamp(10px, 1.4vw, 24px);
+}
+
+.slide-arrow:hover,
+.slide-arrow:focus-visible {
+  opacity: 1;
+  background: var(--gold);
+  color: #000;
+  outline: none;
+}
+
 .presenter-controls {
   position: absolute;
   left: 50%;
