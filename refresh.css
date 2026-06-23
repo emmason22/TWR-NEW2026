@@ -1446,12 +1446,11 @@ textarea:focus-visible {
 }
 
 .page-donate .donation-ticker-item {
-  display: flex;
-  justify-content: space-between;
-  gap: clamp(18px, 2vw, 32px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.06);
-  padding: clamp(14px, 1.4vw, 22px) clamp(16px, 1.8vw, 28px);
+  display: block;
+  width: fit-content;
+  border: 0;
+  background: transparent;
+  padding: 0;
   font-size: clamp(20px, 1.8vw, 34px);
 }
 
@@ -1462,7 +1461,7 @@ textarea:focus-visible {
 }
 
 .page-donate .donation-ticker-amount {
-  flex: 0 0 auto;
+  display: inline-block;
   color: var(--rf-gold);
   font-family: "Oswald", sans-serif;
   font-weight: 700;
