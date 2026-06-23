@@ -1650,15 +1650,11 @@ function initDonationTicker() {
       const item = document.createElement("li");
       item.className = "donation-ticker-item";
 
-      const name = document.createElement("span");
-      name.className = "donation-ticker-name";
-      name.textContent = "Gift received";
-
       const amount = document.createElement("span");
       amount.className = "donation-ticker-amount";
       amount.textContent = formatCurrency(donation.amount_cents, donation.currency || currency);
 
-      item.append(name, amount);
+      item.append(amount);
       return item;
     });
 
