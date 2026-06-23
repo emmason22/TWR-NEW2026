@@ -1,6 +1,4 @@
 const STRIPE_SIGNATURE_TOLERANCE_SECONDS = 300;
-const DEFAULT_RECENT_LIMIT = 12;
-const MAX_RECENT_LIMIT = 25;
 
 const jsonHeaders = {
   "content-type": "application/json; charset=utf-8",
@@ -149,9 +147,6 @@ export async function getTickerData(env, url) {
     };
   }
 
-  const limitParam = Number(url.searchParams.get("limit") || DEFAULT_RECENT_LIMIT);
-  const limit = Math.min(Math.max(Number.isFinite(limitParam) ? limitParam : DEFAULT_RECENT_LIMIT, 1), MAX_RECENT_LIMIT);
-
   const totalRow = await env.DONATIONS_DB.prepare(
     `SELECT
       COALESCE(SUM(
@@ -166,24 +161,10 @@ export async function getTickerData(env, url) {
     FROM donations`
   ).first();
 
-  const recentResult = await env.DONATIONS_DB.prepare(
-    `SELECT amount_cents, currency, first_name, created_at
-     FROM donations
-     WHERE status IN ('succeeded', 'partially_refunded')
-       AND amount_cents > COALESCE(refunded_amount_cents, 0)
-     ORDER BY created_at DESC
-     LIMIT ?`
-  ).bind(limit).all();
-
   return {
     total_cents: Number(totalRow?.total_cents || 0),
     currency: normalizeCurrency(totalRow?.currency || "usd"),
-    recent: (recentResult.results || []).map((row) => ({
-      amount_cents: Number(row.amount_cents || 0),
-      currency: normalizeCurrency(row.currency || "usd"),
-      display_name: toPublicDisplayName(row.first_name),
-      created_at: row.created_at,
-    })),
+    recent: [],
     updated_at: totalRow?.updated_at || new Date().toISOString(),
   };
 }
