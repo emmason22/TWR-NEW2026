@@ -15,6 +15,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2199291');
+  </script>
+  <!-- End MailerLite Universal -->
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../refresh.css?v=63" />
 </head>
@@ -27,83 +36,14 @@
           <h1 id="mailing-list-title">Join Our Mailing List</h1>
           <p class="volunteer-signup-intro">Get outreach updates, event announcements, and ways to support Tonight We Ride.</p>
 
-          <form class="volunteer-signup-form" id="mailing-list-form" novalidate>
-            <input type="hidden" name="tab" value="Newsletter" />
-            <input type="hidden" name="email_opt_in" value="yes" />
-            <input type="hidden" name="source" value="standalone_mailing_list_page" />
+          <div class="support-form support-form-mailerlite insider-mailerlite-form" aria-label="Mailing list MailerLite form embed">
+            <div class="ml-embedded" data-form="NwEkXj"></div>
+          </div>
 
-            <div>
-              <label class="sr-only" for="mailing-name">Name</label>
-              <input id="mailing-name" name="name" type="text" placeholder="Name" autocomplete="name" />
-            </div>
-
-            <div>
-              <label class="sr-only" for="mailing-email">Email</label>
-              <input id="mailing-email" name="email" type="email" inputmode="email" required placeholder="Email" autocomplete="email" />
-            </div>
-
-            <button type="submit" class="donate-btn volunteer-signup-submit" data-track="standalone-mailing-list-submit">Join the Mailing List</button>
-            <p class="form-status" role="status" aria-live="polite"></p>
-          </form>
-
-          <p class="volunteer-signup-note">After the thank-you message appears, this form resets automatically in 10 seconds.</p>
+          <p class="volunteer-signup-note">This form connects to the same MailerLite mailing list used on the homepage.</p>
         </div>
       </div>
     </section>
   </main>
-
-  <script>
-    const mailingListForm = document.getElementById("mailing-list-form");
-    const mailingListStatus = mailingListForm.querySelector(".form-status");
-    const mailingListEndpoint = "https://twr-donation-ticker.tonightweride.workers.dev/mailing-list";
-
-    function setMailingListStatus(message, type) {
-      mailingListStatus.textContent = message;
-      mailingListStatus.className = `form-status ${type || ""}`.trim();
-    }
-
-    mailingListForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const emailField = mailingListForm.querySelector("input[name='email']");
-      const submitButton = mailingListForm.querySelector("button[type='submit']");
-
-      if (!mailingListForm.checkValidity()) {
-        setMailingListStatus("Please enter a valid email address.", "error");
-        emailField.focus();
-        emailField.reportValidity();
-        return;
-      }
-
-      const data = new FormData(mailingListForm);
-      submitButton.disabled = true;
-      submitButton.setAttribute("aria-busy", "true");
-      setMailingListStatus("Submitting...", "info");
-
-      try {
-        const response = await fetch(mailingListEndpoint, {
-          method: "POST",
-          headers: { "content-type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({
-            name: data.get("name") || "",
-            email: data.get("email") || "",
-            source: "standalone_mailing_list_page",
-          }),
-        });
-        const payload = await response.json();
-        if (!response.ok || payload.ok !== true) throw new Error(payload.error || "Could not submit right now.");
-
-        setMailingListStatus("Thanks. You are signed up for updates.", "success");
-        mailingListForm.reset();
-        window.setTimeout(() => {
-          setMailingListStatus("", "");
-        }, 10000);
-      } catch (error) {
-        setMailingListStatus(error.message || "We could not submit right now. Please try again shortly.", "error");
-      } finally {
-        submitButton.disabled = false;
-        submitButton.setAttribute("aria-busy", "false");
-      }
-    });
-  </script>
 </body>
 </html>
