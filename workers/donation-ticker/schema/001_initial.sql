@@ -18,3 +18,16 @@ CREATE TABLE IF NOT EXISTS donations (
 
 CREATE INDEX IF NOT EXISTS donations_status_created_at_idx
   ON donations (status, created_at DESC);
+
+CREATE TABLE IF NOT EXISTS mailing_list_signups (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL DEFAULT '',
+  source TEXT NOT NULL DEFAULT 'mailing_list_page',
+  status TEXT NOT NULL DEFAULT 'active',
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS mailing_list_signups_created_at_idx
+  ON mailing_list_signups (created_at DESC);

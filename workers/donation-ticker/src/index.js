@@ -30,6 +30,10 @@ export default {
       return handleManualDonation(request, env);
     }
 
+    if (request.method === "POST" && url.pathname === "/mailing-list") {
+      return handleMailingListSignup(request, env);
+    }
+
     return jsonResponse({ error: "Not found" }, 404);
   },
 };
@@ -182,6 +186,51 @@ export async function getTickerData(env, url) {
     })),
     updated_at: totalRow?.updated_at || new Date().toISOString(),
   };
+}
+
+export async function handleMailingListSignup(request, env) {
+  if (!env.DONATIONS_DB) {
+    return jsonResponse({ error: "DONATIONS_DB binding is not configured." }, 500);
+  }
+
+  let payload;
+  try {
+    payload = await parseJsonRequest(request);
+  } catch (_) {
+    return jsonResponse({ error: "Invalid JSON payload." }, 400);
+  }
+
+  const email = sanitizeEmail(payload.email);
+  if (!email) {
+    return jsonResponse({ error: "Enter a valid email address." }, 400);
+  }
+
+  const now = new Date().toISOString();
+  const name = sanitizePlainText(payload.name || "", 80);
+  const source = sanitizePlainText(payload.source || "mailing_list_page", 80);
+
+  await env.DONATIONS_DB.prepare(
+    `INSERT INTO mailing_list_signups (
+      email,
+      name,
+      source,
+      status,
+      created_at,
+      updated_at
+    )
+    VALUES (?, ?, ?, 'active', ?, ?)
+    ON CONFLICT(email) DO UPDATE SET
+      name = CASE WHEN excluded.name <> '' THEN excluded.name ELSE mailing_list_signups.name END,
+      source = excluded.source,
+      status = 'active',
+      updated_at = excluded.updated_at`
+  ).bind(email, name, source, now, now).run();
+
+  return jsonResponse({
+    ok: true,
+    tab: "Newsletter",
+    mailerlite_status: "captured",
+  });
 }
 
 async function recordStripeEvent(env, event) {
@@ -370,6 +419,22 @@ function toPublicDisplayName(firstName) {
 
 function normalizeCurrency(currency) {
   return String(currency || "usd").toLowerCase();
+}
+
+async function parseJsonRequest(request) {
+  const rawBody = await request.text();
+  if (!rawBody) return {};
+  return JSON.parse(rawBody);
+}
+
+function sanitizeEmail(value) {
+  const email = String(value || "").trim().toLowerCase().slice(0, 254);
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "";
+  return email;
+}
+
+function sanitizePlainText(value, maxLength = 120) {
+  return String(value || "").replace(/[<>]/g, "").trim().slice(0, maxLength);
 }
 
 function jsonResponse(payload, status = 200) {

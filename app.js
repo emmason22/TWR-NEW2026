@@ -374,6 +374,7 @@ function initSupportForms() {
       const formName = form.getAttribute("data-form-name") || "Support Request";
       const endpoint = getFormEndpoint(form);
       const endpointConfigured = isLiveEndpoint(endpoint);
+      const successMessage = form.getAttribute("data-success-message") || "Thanks. Your request was submitted successfully.";
 
       if (payload.company) {
         setStatusMessage(statusEl, "Submission blocked.", "error");
@@ -410,7 +411,7 @@ function initSupportForms() {
               ...payload,
             });
           }
-          setStatusMessage(statusEl, "Thanks. Your request was submitted successfully.", "success");
+          setStatusMessage(statusEl, successMessage, "success");
           emitTelemetry("form_submit_success", { formName, endpointConfigured: true });
         } else {
           setStatusMessage(
