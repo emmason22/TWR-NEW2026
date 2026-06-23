@@ -1608,8 +1608,6 @@ function initDonationTicker() {
   const endpoint = getMetaContent("twr-donation-ticker-endpoint");
   const totalEl = ticker.querySelector("[data-donation-ticker-total]");
   const updatedEl = ticker.querySelector("[data-donation-ticker-updated]");
-  const emptyEl = ticker.querySelector("[data-donation-ticker-empty]");
-  const listEl = ticker.querySelector("[data-donation-ticker-list]");
 
   const formatCurrency = (amountCents, currency = "usd") => {
     const amount = Number(amountCents || 0) / 100;
@@ -1633,32 +1631,12 @@ function initDonationTicker() {
   const renderFallback = (message) => {
     if (totalEl) totalEl.textContent = "Total since we went live: --";
     if (updatedEl) updatedEl.textContent = message;
-    if (emptyEl) emptyEl.hidden = true;
-    if (listEl) listEl.replaceChildren();
   };
 
   const renderTicker = (data) => {
     const currency = data.currency || "usd";
     if (totalEl) totalEl.textContent = `Total since we went live: ${formatCurrency(data.total_cents, currency)}`;
     if (updatedEl) updatedEl.textContent = formatUpdatedAt(data.updated_at);
-
-    const recent = Array.isArray(data.recent) ? data.recent : [];
-    if (emptyEl) emptyEl.hidden = true;
-    if (!listEl) return;
-
-    const items = recent.slice(0, 8).map((donation) => {
-      const item = document.createElement("li");
-      item.className = "donation-ticker-item";
-
-      const amount = document.createElement("span");
-      amount.className = "donation-ticker-amount";
-      amount.textContent = formatCurrency(donation.amount_cents, donation.currency || currency);
-
-      item.append(amount);
-      return item;
-    });
-
-    listEl.replaceChildren(...items);
   };
 
   if (!endpoint) {
