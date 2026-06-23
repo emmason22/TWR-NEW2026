@@ -1652,7 +1652,7 @@ function initDonationTicker() {
 
       const name = document.createElement("span");
       name.className = "donation-ticker-name";
-      name.textContent = `${donation.display_name || "Supporter"} gave`;
+      name.textContent = "Gift received";
 
       const amount = document.createElement("span");
       amount.className = "donation-ticker-amount";

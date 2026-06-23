@@ -1,5 +1,17 @@
 window.TWRLaunchNightSlides = [
   {
+    id: "20-lasso-fiascos",
+    time: "7:30 PM",
+    eyebrow: "",
+    title: "The Lasso Fiascos",
+    kind: "band",
+    image: "/assets/lasso-fiascos.jpg",
+    links: [
+      { label: "Auction Poster", href: "/assets/real-auction-item-poster.png" },
+      { label: "Donate", href: "/donate/" }
+    ]
+  },
+  {
     id: "00-opening-video-loop",
     time: "7:00 PM",
     eyebrow: "",
@@ -354,18 +366,6 @@ window.TWRLaunchNightSlides = [
       { label: "Donate Now", href: "/donate/" },
       { label: "Founding Member", href: "/founding-member.html" },
       { label: "Volunteer", href: "/volunteer.html" }
-    ]
-  },
-  {
-    id: "20-lasso-fiascos",
-    time: "7:30 PM",
-    eyebrow: "",
-    title: "The Lasso Fiascos",
-    kind: "band",
-    image: "/assets/lasso-fiascos.jpg",
-    links: [
-      { label: "Auction Poster", href: "/assets/real-auction-item-poster.png" },
-      { label: "Donate", href: "/donate/" }
     ]
   },
   {
