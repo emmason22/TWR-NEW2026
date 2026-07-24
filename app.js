@@ -1629,13 +1629,13 @@ function initDonationTicker() {
   };
 
   const renderFallback = (message) => {
-    if (totalEl) totalEl.textContent = "Total since we went live: --";
+    if (totalEl) totalEl.textContent = "--";
     if (updatedEl) updatedEl.textContent = message;
   };
 
   const renderTicker = (data) => {
     const currency = data.currency || "usd";
-    if (totalEl) totalEl.textContent = `Total since we went live: ${formatCurrency(data.total_cents, currency)}`;
+    if (totalEl) totalEl.textContent = formatCurrency(data.total_cents, currency);
     if (updatedEl) updatedEl.textContent = formatUpdatedAt(data.updated_at);
   };
 
