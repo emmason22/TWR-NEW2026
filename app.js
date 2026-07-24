@@ -1607,7 +1607,6 @@ function initDonationTicker() {
 
   const endpoint = getMetaContent("twr-donation-ticker-endpoint");
   const totalEl = ticker.querySelector("[data-donation-ticker-total]");
-  const updatedEl = ticker.querySelector("[data-donation-ticker-updated]");
 
   const formatCurrency = (amountCents, currency = "usd") => {
     const amount = Number(amountCents || 0) / 100;
@@ -1622,25 +1621,17 @@ function initDonationTicker() {
     }
   };
 
-  const formatUpdatedAt = (value) => {
-    const date = new Date(value);
-    if (Number.isNaN(date.getTime())) return "Live tracker updated recently.";
-    return `Last updated ${date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}`;
-  };
-
-  const renderFallback = (message) => {
+  const renderFallback = () => {
     if (totalEl) totalEl.textContent = "--";
-    if (updatedEl) updatedEl.textContent = message;
   };
 
   const renderTicker = (data) => {
     const currency = data.currency || "usd";
     if (totalEl) totalEl.textContent = formatCurrency(data.total_cents, currency);
-    if (updatedEl) updatedEl.textContent = formatUpdatedAt(data.updated_at);
   };
 
   if (!endpoint) {
-    renderFallback("Live tracker is coming online.");
+    renderFallback();
     return;
   }
 
@@ -1650,7 +1641,7 @@ function initDonationTicker() {
       if (!response.ok) throw new Error(`Ticker request failed with status ${response.status}`);
       renderTicker(await response.json());
     } catch (error) {
-      renderFallback("Live tracker is temporarily unavailable. Donation checkout still works.");
+      renderFallback();
       console.warn("Donation ticker failed:", error);
     }
   };
