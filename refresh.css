@@ -109,6 +109,31 @@ body {
   color: #000;
 }
 
+.wishlist-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 13px;
+  color: #fff;
+  border: 1px solid #fff;
+  background: #000;
+  border-radius: 999px;
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.wishlist-btn:hover,
+.wishlist-btn:focus-visible {
+  background: #fff;
+  border-color: #fff;
+  color: #000;
+}
+
 .site-nav a:hover {
   color: #ffd96a;
 }
@@ -1362,6 +1387,39 @@ textarea:focus-visible {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.page-donate .wishlist-callout {
+  margin: 16px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid #d5e0f0;
+  text-align: center;
+}
+
+.page-donate .wishlist-callout .wishlist-cta {
+  min-width: 240px;
+  min-height: 48px;
+  border-color: #111;
+  border-radius: 4px;
+  background: #111;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.page-donate .wishlist-callout .wishlist-cta:hover,
+.page-donate .wishlist-callout .wishlist-cta:focus-visible {
+  border-color: var(--rf-gold);
+  background: var(--rf-gold);
+  color: #111;
+}
+
+.page-donate .donate-hero-panel .wishlist-callout > p {
+  max-width: 760px;
+  margin: 10px auto 0;
+  font-size: clamp(14px, 1.15vw, 17px);
+  line-height: 1.5;
 }
 
 .page-donate .donation-options-panel {
@@ -5297,7 +5355,8 @@ label,
   }
 
   .header-actions .volunteer-btn,
-  .header-actions .donate-btn {
+  .header-actions .donate-btn,
+  .header-actions .wishlist-btn {
     min-height: 46px;
     padding: 10px 18px;
     font-size: clamp(11px, 0.78vw, 13px);
@@ -5334,10 +5393,11 @@ label,
   }
 
   .header-actions .volunteer-btn,
-  .header-actions .donate-btn {
+  .header-actions .donate-btn,
+  .header-actions .wishlist-btn {
     min-height: 42px;
-    padding: 9px 12px;
-    font-size: 11px;
+    padding: 9px 10px;
+    font-size: 10.5px;
   }
 }
 
@@ -5470,7 +5530,7 @@ label,
   .mobile-nav-actions {
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
     padding-top: 12px;
     margin-top: 6px;
@@ -5483,6 +5543,7 @@ label,
     padding: 10px 12px;
     font-size: 13px;
     justify-content: center;
+    text-align: center;
   }
 }
 
