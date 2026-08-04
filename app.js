@@ -1608,6 +1608,7 @@ function initDonationTicker() {
 
   const endpoint = getMetaContent("twr-donation-ticker-endpoint");
   const totalEl = ticker.querySelector("[data-donation-ticker-total]");
+  if (!totalEl) return;
 
   const formatCurrency = (amountCents, currency = "usd") => {
     const amount = Number(amountCents || 0) / 100;

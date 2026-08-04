@@ -1461,14 +1461,6 @@ textarea:focus-visible {
   line-height: 0.98;
 }
 
-.page-donate .donation-ticker-total {
-  margin: clamp(10px, 1.2vw, 18px) 0 0;
-  color: var(--rf-gold);
-  font-family: "Oswald", sans-serif;
-  font-size: clamp(42px, 5.8vw, 96px);
-  line-height: 1;
-}
-
 .page-donate .donation-ticker-lifetime {
   margin: clamp(4px, 0.7vw, 10px) 0 0;
   color: #fff;
@@ -5321,14 +5313,14 @@ label,
     max-width: 100%;
     min-height: 78px;
     padding: 6px clamp(28px, 3vw, 54px);
-    gap: clamp(24px, 2.4vw, 44px);
+    gap: clamp(12px, 1.2vw, 22px);
     align-items: center;
     grid-template-columns: auto minmax(0, 1fr) auto;
   }
 
   .brand {
     width: fit-content;
-    min-width: clamp(132px, 12vw, 184px);
+    min-width: 0;
     flex: 0 0 auto;
   }
 
@@ -5342,7 +5334,7 @@ label,
   .site-nav {
     gap: clamp(6px, 0.65vw, 12px);
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .site-nav a {
@@ -5360,8 +5352,8 @@ label,
   .header-actions .donate-btn,
   .header-actions .wishlist-btn {
     min-height: 46px;
-    padding: 10px 18px;
-    font-size: clamp(11px, 0.78vw, 13px);
+    padding: 10px 14px;
+    font-size: clamp(11.5px, 0.72vw, 13px);
     letter-spacing: 0.01em;
     white-space: nowrap;
     border-radius: 0;
@@ -5403,19 +5395,19 @@ label,
   }
 }
 
-/* Keep the Home header readable when three calls to action are present. */
+/* Keep headers readable when three calls to action are present. */
 @media (min-width: 901px) and (max-width: 1700px) {
-  .page-home .header-inner {
+  .header-inner {
     min-height: 78px;
     padding: 8px 86px 8px 28px;
     grid-template-columns: auto minmax(0, 1fr) auto;
   }
 
-  .page-home .brand {
+  .brand {
     min-width: 0;
   }
 
-  .page-home .site-header .nav-toggle {
+  .site-header .nav-toggle {
     display: inline-flex !important;
     flex-direction: column;
     align-items: center;
@@ -5432,7 +5424,7 @@ label,
     z-index: 110;
   }
 
-  .page-home .site-header .nav-toggle span {
+  .site-header .nav-toggle span {
     display: block;
     width: 20px;
     min-height: 2px;
@@ -5442,7 +5434,7 @@ label,
     flex: 0 0 2px;
   }
 
-  .page-home .site-header .site-nav {
+  .site-header .site-nav {
     display: none;
     position: absolute;
     top: 100%;
@@ -5460,11 +5452,11 @@ label,
     z-index: 100;
   }
 
-  .page-home .site-header.nav-open .site-nav {
+  .site-header.nav-open .site-nav {
     display: flex;
   }
 
-  .page-home .site-header .site-nav > a {
+  .site-header .site-nav > a {
     width: 100%;
     min-height: 44px;
     padding: 8px 0;
@@ -5473,11 +5465,11 @@ label,
     letter-spacing: 0.035em;
   }
 
-  .page-home .header-actions {
+  .header-actions {
     display: none;
   }
 
-  .page-home .mobile-nav-actions {
+  .mobile-nav-actions {
     display: grid;
     width: 100%;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -5487,7 +5479,7 @@ label,
     border-top: 1px solid rgba(255, 255, 255, 0.18);
   }
 
-  .page-home .site-header .site-nav .mobile-nav-actions a {
+  .site-header .site-nav .mobile-nav-actions a {
     width: 100%;
     min-height: 46px;
     padding: 10px 14px;

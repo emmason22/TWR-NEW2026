@@ -145,7 +145,7 @@ SHARED SITE HEADER (MATCHES MAIN SITE)
   display: flex;
   gap: clamp(10px, 1.6vw, 20px);
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: nowrap;
   min-width: 0;
   overflow-x: auto;
@@ -237,6 +237,29 @@ SHARED SITE HEADER (MATCHES MAIN SITE)
   filter: brightness(0.95);
   transform: none;
   box-shadow: none;
+}
+
+.site-header .wishlist-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 14px;
+  color: #fff;
+  border: 1px solid #fff;
+  background: #000;
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.site-header .wishlist-btn:hover,
+.site-header .wishlist-btn:focus-visible {
+  background: #fff;
+  color: #000;
 }
 
 .site-header.nav-open .nav-toggle span:nth-child(1) {
@@ -1116,8 +1139,8 @@ RESPONSIVE
   .header-inner {
     grid-template-columns: auto auto;
     grid-template-areas:
-      "brand actions"
-      "toggle toggle"
+      "brand toggle"
+      "actions actions"
       "nav nav";
     gap: 8px;
     padding: 12px 14px;
@@ -1129,10 +1152,12 @@ RESPONSIVE
 
   .nav-toggle {
     display: inline-flex;
+    justify-self: end;
   }
 
   .header-actions {
-    justify-content: flex-end;
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
 
   .site-header .donate-btn {
@@ -1250,7 +1275,7 @@ RESPONSIVE
   }
 }
 
-@media (min-width: 981px) and (max-width: 1500px) {
+@media (min-width: 981px) {
   .header-inner {
     grid-template-columns: auto auto;
     grid-template-areas:
