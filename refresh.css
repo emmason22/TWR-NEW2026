@@ -5918,6 +5918,16 @@ label,
   margin-right: auto !important;
 }
 
+/* MailerLite offsets its invisible opt-in checkbox by half the label width.
+   Keep the control aligned with its custom checkbox so it cannot widen the page. */
+.ml-embedded .ml-form-checkboxRow label.checkbox > input[type="checkbox"] {
+  left: 0 !important;
+  right: auto !important;
+  width: 24px !important;
+  max-width: 24px !important;
+  margin-left: 0 !important;
+}
+
 /* About page mailing list MailerLite sizing */
 #about-connect .about-mailing-form {
   margin: 10px 0 26px;
