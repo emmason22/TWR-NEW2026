@@ -5338,7 +5338,7 @@ label,
   }
 
   .site-nav a {
-    font-size: clamp(13px, 1.05vw, 17px);
+    font-size: 13px;
     letter-spacing: 0.008em;
   }
 
@@ -5395,15 +5395,14 @@ label,
   }
 }
 
-/* Keep navigation visible at regular desktop and tablet widths without collisions. */
-@media (min-width: 901px) and (max-width: 1700px) {
+/* Keep navigation and actions on one line at regular desktop widths. */
+@media (min-width: 1051px) and (max-width: 1700px) {
   .header-inner {
-    min-height: 0;
-    padding: 10px 28px;
-    grid-template-columns: auto minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    column-gap: 18px;
-    row-gap: 10px;
+    min-height: 78px;
+    padding: 8px 24px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-rows: auto;
+    gap: 14px;
   }
 
   .brand {
@@ -5428,28 +5427,28 @@ label,
     max-height: none;
     overflow: visible;
     padding: 0;
-    gap: 6px 10px;
+    gap: 6px 9px;
     background: transparent;
     border: 0;
     box-shadow: none;
   }
 
-  .site-header .site-nav > a {
+  .site-header .site-nav a {
     width: auto;
     min-height: 0;
     padding: 4px 0;
-    font-size: clamp(12px, 0.85vw, 14px);
+    font-size: 13px;
     line-height: 1.15;
-    letter-spacing: 0.015em;
+    letter-spacing: 0.01em;
   }
 
   .header-actions {
     display: flex;
-    grid-column: 1 / -1;
-    grid-row: 2;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    grid-column: 3;
+    grid-row: 1;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: nowrap;
   }
 
   .mobile-nav-actions {
@@ -5460,8 +5459,8 @@ label,
   .header-actions .donate-btn,
   .header-actions .wishlist-btn {
     min-height: 44px;
-    padding: 9px 14px;
-    font-size: 12.5px;
+    padding: 9px 12px;
+    font-size: 12px;
   }
 }
 
@@ -5486,7 +5485,7 @@ label,
   display: none;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1050px) {
   html,
   body {
     max-width: 100%;
