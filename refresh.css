@@ -215,6 +215,23 @@ textarea:focus-visible {
 
 .page-home .hero {
   min-height: clamp(640px, 80vh, 760px);
+  overflow: hidden;
+}
+
+.page-home .hero > .hero-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.page-home .hero > .hero-media > .hero-video {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  height: 100% !important;
+  object-fit: cover;
 }
 
 .page-home .hero .hero-intro {
