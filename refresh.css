@@ -5395,8 +5395,8 @@ label,
   }
 }
 
-/* Keep navigation and actions on one line at regular desktop widths. */
-@media (min-width: 1051px) and (max-width: 1700px) {
+/* Keep navigation visible while stacking the action group at medium widths. */
+@media (min-width: 901px) and (max-width: 1399px) {
   .header-inner {
     min-height: 78px;
     padding: 8px 24px;
@@ -5443,12 +5443,12 @@ label,
   }
 
   .header-actions {
-    display: flex;
+    display: grid;
     grid-column: 3;
     grid-row: 1;
-    justify-content: flex-end;
+    width: 240px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
-    flex-wrap: nowrap;
   }
 
   .mobile-nav-actions {
@@ -5461,6 +5461,11 @@ label,
     min-height: 44px;
     padding: 9px 12px;
     font-size: 12px;
+    width: 100%;
+  }
+
+  .header-actions .wishlist-btn {
+    grid-column: 1 / -1;
   }
 }
 
@@ -5485,7 +5490,7 @@ label,
   display: none;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 900px) {
   html,
   body {
     max-width: 100%;
