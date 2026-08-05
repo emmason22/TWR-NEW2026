@@ -1710,24 +1710,28 @@ textarea:focus-visible {
   color: #000;
 }
 
+.page-donate .donate-support-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(8px, 1vw, 14px);
+  width: min(100%, 680px);
+  margin: 6px auto 0;
+}
+
 .page-donate .donate-monthly-row {
-  margin-top: 6px;
-  margin-bottom: 0;
+  margin: 0;
   width: 100%;
 }
 
 .page-donate .donate-founding-row {
-  margin-top: 8px;
-  margin-bottom: 0;
+  margin: 0;
   width: 100%;
 }
 
-.page-donate .donate-monthly-btn {
-  min-width: 260px;
-}
-
+.page-donate .donate-monthly-btn,
 .page-donate .donate-founding-btn {
-  min-width: 260px;
+  width: 100%;
+  min-width: 0;
 }
 
 .page-donate .donation-checkout-reassurance {
@@ -3891,6 +3895,10 @@ label,
 }
 
 @media (max-width: 640px) {
+  .page-donate .donate-support-row {
+    grid-template-columns: 1fr;
+  }
+
   .page-donate .donate-cta-stripe-row {
     grid-template-columns: 1fr;
   }
