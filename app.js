@@ -997,8 +997,7 @@ function initMobileNav() {
     });
 
     window.addEventListener("resize", () => {
-      const expandedHeaderBreakpoint = document.body.classList.contains("page-home") ? 1700 : 900;
-      if (window.innerWidth > expandedHeaderBreakpoint) {
+      if (window.innerWidth > 900) {
         closeNav();
       }
     });
