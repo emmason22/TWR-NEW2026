@@ -234,6 +234,26 @@ textarea:focus-visible {
   object-fit: cover;
 }
 
+.hero[aria-label="About hero"] {
+  overflow: hidden;
+}
+
+.hero[aria-label="About hero"] > .hero-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero[aria-label="About hero"] > .hero-media > .hero-video {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+}
+
 .page-home .hero .hero-intro {
   animation: homeIntroHide 520ms ease 4.2s forwards;
 }
@@ -5626,7 +5646,11 @@ label,
     left: 0;
     right: 0;
     flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
     max-height: calc(100vh - 88px);
+    max-height: calc(100dvh - 88px);
+    overflow-x: hidden;
     overflow-y: auto;
     padding: 14px 18px 18px;
     background: #000;
@@ -5654,6 +5678,10 @@ label,
   .mobile-nav-actions {
     display: grid;
     width: 100%;
+    min-width: 0;
+    flex: 0 0 auto;
+    align-self: stretch;
+    box-sizing: border-box;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
     padding-top: 12px;
@@ -5663,6 +5691,8 @@ label,
 
   .site-header .site-nav .mobile-nav-actions a {
     width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     min-height: 44px;
     padding: 10px 12px;
     font-size: 13px;
@@ -6446,5 +6476,19 @@ label,
 
   .home-video-cta-btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-impact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .home-impact-grid .impact-stat {
+    padding-inline: 6px;
+  }
+
+  .home-impact-grid .impact-stat:last-child {
+    grid-column: 1 / -1;
   }
 }
