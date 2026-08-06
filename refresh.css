@@ -2874,6 +2874,41 @@ label,
   body {
     font-size: 16px;
   }
+
+  .site-footer .container,
+  .footer-col,
+  .footer-bottom {
+    text-align: center;
+  }
+
+  .footer-extended {
+    justify-items: stretch;
+  }
+
+  .footer-logo {
+    margin-inline: auto;
+  }
+
+  .footer-col ul {
+    justify-items: center;
+  }
+
+  .footer-social-links {
+    justify-content: center;
+  }
+
+  .footer-cta-buttons,
+  .footer-insider,
+  .footer-mailing-form {
+    width: min(100%, 480px);
+    margin-inline: auto;
+  }
+
+  .footer-mailing-form .ml-form-embedContent,
+  .footer-mailing-form .ml-form-successBody,
+  .footer-mailing-form .ml-form-embedSubmit {
+    text-align: center !important;
+  }
 }
 
 /* Mobile navigation (progressive enhancement) */

@@ -1260,7 +1260,7 @@ RESPONSIVE
 
   .footer-top {
     grid-template-columns: 1fr;
-    text-align: left;
+    text-align: center;
   }
 
   .footer-logo-block {
@@ -1268,7 +1268,16 @@ RESPONSIVE
   }
 
   .footer-mission-and-social {
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-social {
+    align-items: center;
+  }
+
+  .footer-social a {
+    justify-content: center;
   }
 
   .past-drives-grid {
