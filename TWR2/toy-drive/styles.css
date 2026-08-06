@@ -247,6 +247,7 @@ SHARED SITE HEADER (MATCHES MAIN SITE)
   color: #fff;
   border: 1px solid #fff;
   background: #000;
+  border-radius: 0;
   text-decoration: none;
   font-family: "Oswald", sans-serif;
   font-size: 0.85rem;

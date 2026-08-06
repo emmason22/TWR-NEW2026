@@ -117,7 +117,7 @@ body {
   color: #fff;
   border: 1px solid #fff;
   background: #000;
-  border-radius: 999px;
+  border-radius: 0;
   text-decoration: none;
   font-family: "Oswald", sans-serif;
   font-size: 12px;
