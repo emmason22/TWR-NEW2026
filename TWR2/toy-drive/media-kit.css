@@ -369,6 +369,7 @@ a {
 
 .photo-story__feature img {
   aspect-ratio: 16 / 9;
+  object-position: center 20%;
 }
 
 .photo-story__secondary img {
@@ -381,6 +382,71 @@ a {
   color: rgba(16, 32, 43, 0.68);
   font-size: 0.88rem;
   font-weight: 600;
+}
+
+.poster-history {
+  margin-top: 90px;
+  padding-top: 62px;
+  border-top: 1px solid var(--line);
+}
+
+.poster-history__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.65fr);
+  gap: clamp(48px, 8vw, 110px);
+  align-items: end;
+}
+
+.poster-history__intro h3 {
+  margin: 0;
+  font: 600 clamp(2.2rem, 4vw, 4rem)/1 "Oswald", sans-serif;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.poster-history__intro > p {
+  margin: 0;
+  color: rgba(16, 32, 43, 0.68);
+}
+
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.poster-card {
+  margin: 0;
+}
+
+.poster-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: center top;
+  background: var(--navy);
+  box-shadow: 0 16px 35px rgba(6, 29, 46, 0.14);
+}
+
+.poster-card figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 2px 0;
+}
+
+.poster-card figcaption span {
+  font: 700 1.15rem/1 "Oswald", sans-serif;
+}
+
+.poster-card figcaption small {
+  color: rgba(16, 32, 43, 0.58);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
 }
 
 .section-heading--split {
@@ -777,6 +843,15 @@ a {
     grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.7fr);
   }
 
+  .poster-history__intro {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .poster-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .value-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -872,6 +947,21 @@ a {
 
   .photo-story__secondary {
     display: none;
+  }
+
+  .poster-history {
+    margin-top: 64px;
+    padding-top: 48px;
+  }
+
+  .poster-grid {
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .poster-card figcaption {
+    display: grid;
+    gap: 5px;
   }
 
   .value-grid,
@@ -977,6 +1067,11 @@ a {
 
   .photo-story {
     margin-top: 0.25in;
+  }
+
+  .poster-history,
+  .poster-card {
+    break-inside: avoid;
   }
 
   .package-grid {
