@@ -449,6 +449,69 @@ a {
   text-transform: uppercase;
 }
 
+.past-supporters {
+  margin-top: 72px;
+  padding: clamp(30px, 5vw, 54px);
+  color: var(--white);
+  background: var(--navy);
+  box-shadow: var(--shadow);
+}
+
+.past-supporters__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.6fr);
+  gap: clamp(42px, 7vw, 90px);
+  align-items: end;
+}
+
+.past-supporters__intro h3 {
+  max-width: 760px;
+  margin: 0;
+  font: 600 clamp(2rem, 3.6vw, 3.55rem)/1.03 "Oswald", sans-serif;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.past-supporters__intro > p {
+  margin: 0;
+  color: rgba(255, 253, 248, 0.64);
+  font-size: 0.88rem;
+}
+
+.past-supporters__grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 42px;
+  border-top: 1px solid rgba(255, 255, 255, 0.17);
+  border-left: 1px solid rgba(255, 255, 255, 0.17);
+}
+
+.supporter-card {
+  min-height: 190px;
+  padding: 24px 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.17);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.17);
+}
+
+.supporter-card__mark {
+  color: var(--gold);
+  font: 700 0.78rem/1 "Oswald", sans-serif;
+  letter-spacing: 0.14em;
+}
+
+.supporter-card h4 {
+  margin: 64px 0 8px;
+  font: 600 1.12rem/1.15 "Oswald", sans-serif;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+}
+
+.supporter-card p {
+  margin: 0;
+  color: rgba(255, 253, 248, 0.58);
+  font-size: 0.78rem;
+}
+
 .section-heading--split {
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.65fr);
@@ -852,6 +915,15 @@ a {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .past-supporters__intro {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .past-supporters__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .value-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -964,6 +1036,22 @@ a {
     gap: 5px;
   }
 
+  .past-supporters {
+    margin-top: 52px;
+  }
+
+  .past-supporters__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .supporter-card {
+    min-height: 150px;
+  }
+
+  .supporter-card h4 {
+    margin-top: 42px;
+  }
+
   .value-grid,
   .package-grid {
     grid-template-columns: 1fr;
@@ -1070,7 +1158,9 @@ a {
   }
 
   .poster-history,
-  .poster-card {
+  .poster-card,
+  .past-supporters,
+  .supporter-card {
     break-inside: avoid;
   }
 
