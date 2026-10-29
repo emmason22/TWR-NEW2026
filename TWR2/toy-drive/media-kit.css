@@ -1,13 +1,13 @@
 :root {
   --navy: #061d2e;
   --navy-soft: #0c2b40;
-  --cream: #f4eddf;
-  --cream-2: #e9ddc8;
+  --cream: #f2f7fa;
+  --cream-2: #dfeaf0;
   --gold: #f1bd45;
   --red: #b92e28;
   --red-dark: #91211d;
   --ink: #10202b;
-  --white: #fffdf8;
+  --white: #ffffff;
   --line: rgba(16, 32, 43, 0.18);
   --shadow: 0 22px 70px rgba(6, 29, 46, 0.12);
   --shell: min(1180px, calc(100% - 40px));
@@ -348,6 +348,61 @@ a {
   line-height: 1.5;
 }
 
+.beneficiary-partners {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(48px, 8vw, 110px);
+  margin-top: 72px;
+  padding: clamp(28px, 4vw, 44px);
+  border: 1px solid rgba(16, 32, 43, 0.12);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.beneficiary-partners__intro {
+  align-self: center;
+}
+
+.beneficiary-partners__intro h3 {
+  margin: 0;
+  font: 600 clamp(1.75rem, 3vw, 2.85rem)/1.05 "Oswald", sans-serif;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.beneficiary-partners__logos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.beneficiary-logo {
+  min-height: 170px;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  border: 1px solid rgba(16, 32, 43, 0.12);
+  background: var(--cream);
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.beneficiary-logo:hover,
+.beneficiary-logo:focus-visible {
+  border-color: var(--red);
+  transform: translateY(-3px);
+}
+
+.beneficiary-logo img {
+  width: 100%;
+  max-width: 280px;
+  max-height: 110px;
+  object-fit: contain;
+}
+
+.beneficiary-logo:first-child img {
+  max-width: 235px;
+}
+
 .photo-story {
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.7fr);
@@ -580,7 +635,7 @@ a {
   flex-direction: column;
   padding: clamp(28px, 4vw, 44px);
   border: 1px solid var(--line);
-  background: rgba(255, 253, 248, 0.72);
+  background: rgba(255, 255, 255, 0.88);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
 }
 
@@ -895,6 +950,7 @@ a {
   }
 
   .story-grid,
+  .beneficiary-partners,
   .section-heading--split,
   .activation-grid,
   .media-grid {
@@ -904,6 +960,10 @@ a {
 
   .photo-story {
     grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.7fr);
+  }
+
+  .beneficiary-partners {
+    gap: 28px;
   }
 
   .poster-history__intro {
@@ -1015,6 +1075,19 @@ a {
   .photo-story {
     grid-template-columns: 1fr;
     margin-top: 48px;
+  }
+
+  .beneficiary-partners {
+    margin-top: 52px;
+    padding: 24px;
+  }
+
+  .beneficiary-partners__logos {
+    grid-template-columns: 1fr;
+  }
+
+  .beneficiary-logo {
+    min-height: 145px;
   }
 
   .photo-story__secondary {
