@@ -656,6 +656,17 @@ a {
   background: var(--red-dark);
 }
 
+.package-card--toy-drop {
+  min-height: 390px;
+  grid-column: 1 / -1;
+}
+
+.package-card--toy-drop ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(30px, 6vw, 90px);
+}
+
 .package-card__topline {
   display: flex;
   align-items: baseline;
@@ -1140,6 +1151,14 @@ a {
 
   .package-card {
     min-height: 0;
+  }
+
+  .package-card--toy-drop {
+    grid-column: auto;
+  }
+
+  .package-card--toy-drop ul {
+    grid-template-columns: 1fr;
   }
 
   .package-card > a {
