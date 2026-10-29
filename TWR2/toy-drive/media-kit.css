@@ -127,7 +127,7 @@ a {
   align-items: end;
   overflow: hidden;
   color: var(--white);
-  background: var(--navy);
+  background: var(--red);
 }
 
 .hero__art,
@@ -145,8 +145,8 @@ a {
 
 .hero__wash {
   background:
-    linear-gradient(90deg, rgba(3, 18, 29, 0.98) 0%, rgba(3, 18, 29, 0.88) 38%, rgba(3, 18, 29, 0.36) 73%, rgba(3, 18, 29, 0.12) 100%),
-    linear-gradient(0deg, rgba(3, 18, 29, 0.96) 0%, rgba(3, 18, 29, 0.1) 60%);
+    linear-gradient(90deg, rgba(98, 20, 18, 0.98) 0%, rgba(133, 30, 26, 0.9) 38%, rgba(133, 30, 26, 0.48) 73%, rgba(133, 30, 26, 0.22) 100%),
+    linear-gradient(0deg, rgba(91, 17, 16, 0.96) 0%, rgba(91, 17, 16, 0.18) 60%);
 }
 
 .hero__content {
@@ -275,7 +275,7 @@ a {
 
 .button--dark {
   color: var(--white);
-  background: var(--navy);
+  background: var(--red);
 }
 
 .button--outline {
@@ -289,8 +289,8 @@ a {
 .button--outline:hover,
 .button--outline:focus-visible {
   color: var(--white);
-  background: var(--red);
-  border-color: var(--red);
+  background: var(--navy);
+  border-color: var(--navy);
 }
 
 .hero__proof {
@@ -340,12 +340,12 @@ a {
 
 .section--navy {
   color: var(--white);
-  background: var(--navy);
+  background: var(--red);
 }
 
 .section--red {
   color: var(--white);
-  background: var(--red);
+  background: var(--navy);
 }
 
 .section-heading h2,
@@ -510,7 +510,7 @@ a {
   aspect-ratio: 2 / 3;
   object-fit: cover;
   object-position: center top;
-  background: var(--navy);
+  background: var(--red);
   box-shadow: 0 16px 35px rgba(6, 29, 46, 0.14);
 }
 
@@ -538,7 +538,7 @@ a {
   margin-top: 72px;
   padding: clamp(30px, 5vw, 54px);
   color: var(--white);
-  background: var(--navy);
+  background: var(--red);
   box-shadow: var(--shadow);
 }
 
@@ -671,8 +671,8 @@ a {
 
 .package-card--featured {
   color: var(--white);
-  border-color: var(--navy);
-  background: var(--navy);
+  border-color: var(--red);
+  background: var(--red);
   box-shadow: var(--shadow);
 }
 
@@ -682,8 +682,8 @@ a {
 
 .package-card--ink {
   color: var(--white);
-  border-color: var(--red-dark);
-  background: var(--red-dark);
+  border-color: var(--navy);
+  background: var(--navy);
 }
 
 .package-card--toy-drop {
@@ -946,7 +946,7 @@ a {
 
 .kit-footer {
   color: rgba(255, 253, 248, 0.65);
-  background: #03131f;
+  background: var(--red-dark);
 }
 
 .kit-footer__inner {
@@ -992,8 +992,8 @@ a {
 
   .hero__wash {
     background:
-      linear-gradient(90deg, rgba(3, 18, 29, 0.98) 0%, rgba(3, 18, 29, 0.78) 68%, rgba(3, 18, 29, 0.35) 100%),
-      linear-gradient(0deg, rgba(3, 18, 29, 0.98) 0%, rgba(3, 18, 29, 0.12) 62%);
+      linear-gradient(90deg, rgba(98, 20, 18, 0.98) 0%, rgba(133, 30, 26, 0.82) 68%, rgba(133, 30, 26, 0.4) 100%),
+      linear-gradient(0deg, rgba(91, 17, 16, 0.98) 0%, rgba(91, 17, 16, 0.2) 62%);
   }
 
   .story-grid,
@@ -1068,8 +1068,8 @@ a {
 
   .hero__wash {
     background:
-      linear-gradient(90deg, rgba(3, 18, 29, 0.94), rgba(3, 18, 29, 0.48)),
-      linear-gradient(0deg, rgba(3, 18, 29, 1) 0%, rgba(3, 18, 29, 0.76) 54%, rgba(3, 18, 29, 0.22) 100%);
+      linear-gradient(90deg, rgba(98, 20, 18, 0.96), rgba(133, 30, 26, 0.58)),
+      linear-gradient(0deg, rgba(91, 17, 16, 1) 0%, rgba(91, 17, 16, 0.82) 54%, rgba(91, 17, 16, 0.3) 100%);
   }
 
   .hero__content {
