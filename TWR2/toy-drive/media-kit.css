@@ -197,6 +197,36 @@ a {
   line-height: 1.6;
 }
 
+.hero__event-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 24px 0 0;
+  color: var(--white);
+  font-family: "Oswald", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.hero__event-line span {
+  position: relative;
+}
+
+.hero__event-line span::before {
+  content: "•";
+  position: absolute;
+  left: -15px;
+  color: var(--gold);
+}
+
+.hero__nonprofit {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.84rem;
+}
+
 .hero__actions,
 .media-downloads {
   display: flex;
@@ -667,6 +697,12 @@ a {
   column-gap: clamp(30px, 6vw, 90px);
 }
 
+.package-card__detail {
+  max-width: 940px;
+  margin: 0 0 22px;
+  font-size: 0.94rem;
+}
+
 .package-card__topline {
   display: flex;
   align-items: baseline;
@@ -1047,6 +1083,16 @@ a {
 
   .hero__lede {
     font-size: 1rem;
+  }
+
+  .hero__event-line {
+    display: grid;
+    gap: 4px;
+    font-size: 0.9rem;
+  }
+
+  .hero__event-line span::before {
+    content: none;
   }
 
   .hero__actions .button {
