@@ -2,7 +2,7 @@ const STRIPE_SIGNATURE_TOLERANCE_SECONDS = 300;
 
 const jsonHeaders = {
   "content-type": "application/json; charset=utf-8",
-  "access-control-allow-origin": "*",
+  "access-control-allow-origin": "https://tonightweride.org",
   "access-control-allow-methods": "GET,POST,OPTIONS",
   "access-control-allow-headers": "authorization,content-type,stripe-signature",
   "cache-control": "no-store",
@@ -75,6 +75,9 @@ export async function handleStripeWebhook(request, env) {
 }
 
 export async function handleManualDonation(request, env) {
+  const authorizationError = authorizeManualDonation(request, env);
+  if (authorizationError) return authorizationError;
+
   if (!env.DONATIONS_DB) {
     return jsonResponse({ error: "DONATIONS_DB binding is not configured." }, 500);
   }
@@ -340,6 +343,24 @@ function timingSafeEqual(left, right) {
     result |= left.charCodeAt(index) ^ right.charCodeAt(index);
   }
   return result === 0;
+}
+
+function authorizeManualDonation(request, env) {
+  const configuredToken = String(env.DONATION_ADMIN_TOKEN || "").trim();
+  if (!configuredToken) {
+    return jsonResponse({ error: "Manual donation entry is disabled." }, 503);
+  }
+
+  const authorization = request.headers.get("authorization") || "";
+  const providedToken = authorization.startsWith("Bearer ")
+    ? authorization.slice("Bearer ".length).trim()
+    : "";
+
+  if (!providedToken || !timingSafeEqual(providedToken, configuredToken)) {
+    return jsonResponse({ error: "Valid administrator authorization is required." }, 401);
+  }
+
+  return null;
 }
 
 function extractFirstName(name, email) {

@@ -18,6 +18,7 @@
   <meta name="twitter:title" content="Tonight We Ride | Dallas Community Outreach" />
   <meta name="twitter:description" content="Tonight We Ride is a Dallas community outreach nonprofit serving through homeless outreach, veteran support, crisis relief, community partnerships, and seasonal giving." />
   <meta name="twitter:image" content="https://tonightweride.org/assets/DallasHero.png" />
+  <link rel="preload" as="image" href="assets/optimized/dallas-hero-1600.jpg" fetchpriority="high" />
   <meta name="twr-analytics-endpoint" content="" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,7 +93,7 @@
   <header class="site-header" role="banner">
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Tonight We Ride home">
-        <img class="brand-logo" src="assets/TonightWeRideLogo.png" alt="Tonight We Ride logo" data-asset="assets/TonightWeRideLogo.png" />
+        <img class="brand-logo" src="assets/optimized/twr-logo-320.png" width="320" height="320" alt="Tonight We Ride logo" data-asset="assets/optimized/twr-logo-320.png" decoding="async" />
       </a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open navigation">
@@ -127,21 +128,20 @@
       <div class="hero-media">
         <video
           class="hero-video"
-          autoplay
           muted
           playsinline
-          preload="metadata"
-          poster="assets/DallasHero.png"
+          preload="none"
+          poster="assets/optimized/dallas-hero-1600.jpg"
           aria-label="Video background showing Dallas"
-          data-asset="assets/Dallas.mp4"
+          data-asset="assets/optimized/dallas-hero-1280.mp4"
         >
-          <source src="assets/Dallas.mp4" type="video/mp4" />
+          <source data-src="assets/optimized/dallas-hero-1280.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
         <div class="hero-video-error" role="alert" aria-live="polite">
           <strong>Video unavailable.</strong>
-          <div>Could not load <code>assets/Dallas.mp4</code>. Showing poster image if available.</div>
+          <div>Could not load the homepage background video. Showing the Dallas poster image instead.</div>
         </div>
       </div>
 
@@ -164,7 +164,7 @@
 
     <section class="home-event-flyer" aria-label="Website Launch Party and Fundraiser flyer" data-expires-at="2026-06-23T00:00:00-05:00">
       <div class="container">
-        <img class="home-event-flyer-image" src="assets/TWRLaunchParty.jpg" alt="Tonight We Ride website launch party and fundraiser flyer for June 22, 2026 at Barley House at 7 PM" loading="eager" decoding="async" />
+        <img class="home-event-flyer-image" src="assets/optimized/launch-party-960.jpg" width="960" height="540" alt="Tonight We Ride website launch party and fundraiser flyer for June 22, 2026 at Barley House at 7 PM" loading="lazy" decoding="async" />
       </div>
     </section>
 
@@ -245,7 +245,7 @@
           <p class="programs-copy">
             Tonight We Ride runs relationship-first outreach in Dallas through homeless outreach, veteran support, need-help intake, and a growing community partner network. We deliver practical aid quickly, then stay present long enough to build trust and connect people to stable next steps.
           </p>
-          <img class="programs-lead-photo" src="assets/DallasHero.png" alt="Dallas skyline" data-asset="assets/DallasHero.png" />
+          <img class="programs-lead-photo" src="assets/optimized/dallas-program-840.jpg" width="840" height="525" alt="Dallas skyline" data-asset="assets/optimized/dallas-program-840.jpg" loading="lazy" decoding="async" />
           <h3 class="programs-subtitle">The Heart of Tonight We Ride</h3>
           <p class="programs-copy">
             Tonight We Ride exists to restore dignity, hope, and human connection to people often overlooked, beginning in Dallas.
@@ -258,28 +258,28 @@
 
         <div class="program-cards">
           <article class="program-card">
-            <img class="program-photo" src="assets/HomelessHomepage.png" alt="Homeless outreach in Dallas" data-asset="assets/HomelessHomepage.png" />
+            <img class="program-photo" src="assets/optimized/homeless-outreach-480.jpg" srcset="assets/optimized/homeless-outreach-480.jpg 480w, assets/optimized/homeless-outreach-960.jpg 960w" sizes="(max-width: 760px) 100vw, 25vw" width="960" height="960" alt="Homeless outreach in Dallas" data-asset="assets/optimized/homeless-outreach-480.jpg" loading="lazy" decoding="async" />
             <h3>Homeless Outreach</h3>
             <p>We meet people where they are with practical support, dignity, and consistency while building trust over time.</p>
             <a class="editorial-link" href="homeless-outreach.html">Explore Program <span aria-hidden="true">→</span></a>
           </article>
 
           <article class="program-card">
-            <img class="program-photo" src="assets/DallasVAHospital.jpeg" alt="Veteran support program" data-asset="assets/DallasVAHospital.jpeg" />
+            <img class="program-photo" src="assets/optimized/veteran-outreach-480.jpg" srcset="assets/optimized/veteran-outreach-480.jpg 480w, assets/optimized/veteran-outreach-960.jpg 960w" sizes="(max-width: 760px) 100vw, 25vw" width="960" height="960" alt="Veteran support program" data-asset="assets/optimized/veteran-outreach-480.jpg" loading="lazy" decoding="async" />
             <h3>Veteran Outreach</h3>
             <p>We support veterans facing housing instability, financial crisis, and isolation with urgent aid and follow-through.</p>
             <a class="editorial-link" href="veteran-outreach.html">Explore Program <span aria-hidden="true">→</span></a>
           </article>
 
           <article class="program-card">
-            <img class="program-photo" src="assets/EmergencyOutreachpic.png" alt="Emergency relief support" data-asset="assets/EmergencyOutreachpic.png" />
+            <img class="program-photo" src="assets/optimized/community-partners-480.jpg" srcset="assets/optimized/community-partners-480.jpg 480w, assets/optimized/community-partners-960.jpg 960w" sizes="(max-width: 760px) 100vw, 25vw" width="960" height="960" alt="Community partners supporting Dallas outreach" data-asset="assets/optimized/community-partners-480.jpg" loading="lazy" decoding="async" />
             <h3>Community Partners</h3>
             <p>Local organizations and businesses help expand our reach, provide vital resources, and strengthen every outreach effort.</p>
             <a class="editorial-link" href="emergency-relief.html">Explore Program <span aria-hidden="true">→</span></a>
           </article>
 
           <article class="program-card">
-            <img class="program-photo" src="assets/CommunityOutreachHero.png" alt="Crisis relief outreach support" data-asset="assets/CommunityOutreachHero.png" />
+            <img class="program-photo" src="assets/optimized/crisis-relief-480.jpg" srcset="assets/optimized/crisis-relief-480.jpg 480w, assets/optimized/crisis-relief-960.jpg 960w" sizes="(max-width: 760px) 100vw, 25vw" width="960" height="960" alt="Crisis relief outreach support" data-asset="assets/optimized/crisis-relief-480.jpg" loading="lazy" decoding="async" />
             <h3>Crisis Relief</h3>
             <p>When crisis strikes, Tonight We Ride rallies people, raises resources, and turns community support into direct relief for families facing sudden hardship.</p>
             <a class="editorial-link" href="crisis-relief.html">Explore Program <span aria-hidden="true">→</span></a>
@@ -396,7 +396,7 @@
     <div class="container">
       <div class="footer-extended">
         <div class="footer-col">
-          <img class="footer-logo" src="assets/TonightWeRideLogo.png" alt="Tonight We Ride logo" data-asset="assets/TonightWeRideLogo.png" loading="lazy" decoding="async" />
+          <img class="footer-logo" src="assets/optimized/twr-logo-320.png" width="320" height="320" alt="Tonight We Ride logo" data-asset="assets/optimized/twr-logo-320.png" loading="lazy" decoding="async" />
           <h3>Tonight We Ride</h3>
           <p>
             Dallas-based community outreach focused on dignity, consistency, and practical support for neighbors in crisis.
@@ -452,7 +452,7 @@
     </div>
   </footer>
 
-  <script src="script.js?v=3" defer></script>
-  <script src="app.js?v=52" defer></script>
+  <script src="script.js?v=4" defer></script>
+  <script src="app.js?v=53" defer></script>
 </body>
 </html>

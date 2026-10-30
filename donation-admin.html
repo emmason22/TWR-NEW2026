@@ -180,6 +180,10 @@
     </header>
 
     <form id="donation-entry-form">
+      <label class="full">
+        Administrator token
+        <input name="admin_token" type="password" autocomplete="current-password" required />
+      </label>
       <label>
         Amount
         <input name="amount" type="number" min="1" step="0.01" inputmode="decimal" placeholder="50" required />
@@ -205,7 +209,7 @@
     </form>
 
     <div class="result" id="donation-entry-result" role="status" aria-live="polite">Enter cash, Venmo, check, or other in-room donations here. Stripe gifts update automatically through the webhook.</div>
-    <p class="hint">This page is intentionally unlinked and hidden from search. Anyone with this page can add manual cash, Venmo, check, or other in-room donations to the live total.</p>
+    <p class="hint">This page is intentionally unlinked and hidden from search. A valid administrator token is required for every manual donation entry. The token is sent only with the request and is not stored by this page.</p>
   </main>
 
   <script>
@@ -218,9 +222,15 @@
       const submitButton = form.querySelector("button");
       const data = new FormData(form);
       const amount = Number(data.get("amount"));
+      const adminToken = String(data.get("admin_token") || "").trim();
 
       if (!amount || amount <= 0) {
         result.textContent = "Enter a donation amount greater than $0.";
+        return;
+      }
+
+      if (!adminToken) {
+        result.textContent = "Enter the administrator token.";
         return;
       }
 
@@ -232,6 +242,7 @@
           method: "POST",
           headers: {
             "content-type": "application/json",
+            "authorization": `Bearer ${adminToken}`,
           },
           body: JSON.stringify({
             amount,

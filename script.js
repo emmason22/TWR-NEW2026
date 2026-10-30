@@ -83,6 +83,7 @@ function initHeroVideoFallback() {
   });
 
   video.addEventListener("error", () => {
+    if (!video.currentSrc && !video.querySelector("source[src]")) return;
     if (errorBox) errorBox.style.display = "block";
     if (hero) hero.classList.add("hero-video-failed");
     console.warn("Hero video failed to load:", video.getAttribute("data-asset") || video.currentSrc);

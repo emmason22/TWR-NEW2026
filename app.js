@@ -1651,6 +1651,26 @@ function initDonationTicker() {
   window.setInterval(fetchTicker, 30000);
 }
 
+function initHomeHeroVideo() {
+  const video = document.querySelector(".page-home .hero-video");
+  const source = video?.querySelector("source[data-src]");
+  if (!video || !source) return;
+
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const shouldLoadVideo = window.matchMedia("(min-width: 900px)").matches
+    && !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    && !connection?.saveData;
+
+  if (!shouldLoadVideo) return;
+
+  source.src = source.dataset.src;
+  video.autoplay = true;
+  video.load();
+  video.play().catch(() => {
+    // The optimized poster remains visible when browser autoplay policy blocks playback.
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initMotionReadyState();
   initExpiringSections();
@@ -1668,6 +1688,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initDonateConversionPanel();
   initDonationReturnMessage();
   initDonationTicker();
+  initHomeHeroVideo();
   initFormAccessibility();
   initFoundingMemberSection();
   initSupportForms();
