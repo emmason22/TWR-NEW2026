@@ -1,6 +1,6 @@
 # Prevent internal dashboard exports from being published with this public site.
-assets/Risepoint Partners Outreach Dashboard.html
-assets/Risepoint Partners Outreach Dashboard_files/
+assets/*Outreach Dashboard.html
+assets/*Outreach Dashboard_files/
 
 # Local development and Cloudflare tooling state.
 .playwright-mcp/
