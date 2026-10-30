@@ -137,10 +137,11 @@ a {
 }
 
 .hero__art {
-  background-image: url("ToyDrivePosterHero.png");
-  background-position: center;
-  background-size: cover;
-  transform: scale(1.015);
+  background-color: var(--navy);
+  background-image: url("ToyDrive27.jpg");
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
 }
 
 .hero__wash {
@@ -496,13 +497,22 @@ a {
 
 .poster-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
   margin-top: 40px;
 }
 
 .poster-card {
   margin: 0;
+}
+
+.poster-card > a {
+  display: block;
+}
+
+.poster-card > a:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 5px;
 }
 
 .poster-card img {

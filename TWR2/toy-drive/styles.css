@@ -426,17 +426,13 @@ WITHOUT CROPPING WIDTH
 
 .hero {
   width: 100%;
-  background:
-    radial-gradient(circle at 50% 10%, rgba(37, 105, 209, 0.45) 0%, rgba(12, 44, 104, 0.78) 38%, rgba(5, 16, 38, 0.98) 72%, rgba(2, 6, 16, 1) 100%),
-    radial-gradient(circle at 50% 88%, rgba(226, 182, 73, 0.18) 0%, rgba(226, 182, 73, 0) 52%),
-    linear-gradient(180deg, #0a1f45 0%, #07152b 48%, #030814 100%);
-  padding: clamp(18px, 2.6vw, 34px) 0;
+  background: #020610;
+  padding: 0;
   margin: 0;
   position: relative;
   isolation: isolate;
 
-  /* Slightly smaller hero so poster does not dominate page height */
-  min-height: 78vh;
+  min-height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -486,6 +482,119 @@ WITHOUT CROPPING WIDTH
   border: 0;
   box-shadow: none;
   filter: saturate(1.03) contrast(1.02);
+}
+
+/* =============================================
+EVENT COUNTDOWN
+============================================= */
+
+.event-countdown {
+  position: relative;
+  padding: clamp(42px, 6vw, 76px) 0;
+  color: var(--text-dark);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(214, 69, 47, 0.22), transparent 42%),
+    linear-gradient(180deg, #07152b 0%, #020814 100%);
+  border-top: 2px solid rgba(226, 182, 73, 0.8);
+  border-bottom: 2px solid rgba(226, 182, 73, 0.8);
+  overflow: hidden;
+}
+
+.event-countdown::before,
+.event-countdown::after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border: 1px solid rgba(226, 182, 73, 0.14);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.event-countdown::before {
+  top: -160px;
+  left: -90px;
+}
+
+.event-countdown::after {
+  right: -100px;
+  bottom: -170px;
+}
+
+.event-countdown-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.countdown-kicker {
+  margin: 0 0 var(--spacing-xs);
+  color: var(--primary-color);
+  font-family: "Oswald", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.event-countdown h2 {
+  margin: 0;
+  color: #fff8e8;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1.55rem, 3.3vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.event-countdown h2 span {
+  color: var(--primary-color);
+}
+
+.countdown-grid {
+  width: min(900px, 100%);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 2vw, 22px);
+  margin: clamp(28px, 4vw, 44px) auto 0;
+}
+
+.countdown-unit {
+  min-width: 0;
+  padding: clamp(18px, 3vw, 30px) 10px;
+  background: rgba(13, 39, 71, 0.82);
+  border: 1px solid rgba(226, 182, 73, 0.28);
+  border-top: 4px solid var(--primary-color);
+  box-shadow: var(--shadow-md);
+}
+
+.countdown-unit strong {
+  display: block;
+  color: #fff8e8;
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 7vw, 5.7rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  line-height: 0.9;
+}
+
+.countdown-unit span {
+  display: block;
+  margin-top: 12px;
+  color: var(--primary-color);
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(0.72rem, 1.3vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.countdown-status {
+  margin: var(--spacing-lg) 0 0;
+  color: var(--text-light);
+  font-size: 0.95rem;
 }
 
 /* =============================================
@@ -565,36 +674,6 @@ ABOUT SECTION
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.about-bands-heading,
-.about-details-heading {
-  text-align: center;
-  margin-top: var(--spacing-lg);
-  margin-bottom: var(--spacing-sm);
-}
-
-.about-bands-list {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: var(--spacing-lg);
-  font-family: var(--font-primary);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--text-dark);
-  max-width: 420px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.about-bands-list li + li {
-  margin-top: 0.25rem;
-}
-
-.about-bands-list .note {
-  font-size: 0.95rem;
-  color: var(--text-light);
-  font-style: italic;
 }
 
 /* =============================================
@@ -678,7 +757,7 @@ BANDS SECTION — IMAGES + DARK OVERLAY
 
 .bands-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--spacing-xl);
 }
 
@@ -694,6 +773,10 @@ BANDS SECTION — IMAGES + DARK OVERLAY
   border-radius: 12px;
   box-shadow: var(--shadow-md);
   margin-bottom: var(--spacing-md);
+}
+
+.band-img--portrait {
+  object-position: center 28%;
 }
 
 .band-card h3 {
@@ -821,6 +904,14 @@ CHARITIES SECTION — LOGOS + DONATE QR
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+button.qr-item {
+  width: 100%;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
 /* ✅ Make Venmo card feel clickable */
 .qr-item--venmo {
   cursor: pointer;
@@ -843,6 +934,7 @@ CHARITIES SECTION — LOGOS + DONATE QR
 
 /* Text directly under QR (Venmo/PayPal/Zelle labels) */
 .qr-text {
+  display: block;
   margin-top: 0;
   margin-bottom: var(--spacing-xs);
   font-family: var(--font-primary);
@@ -882,6 +974,48 @@ CHARITIES SECTION — LOGOS + DONATE QR
   box-shadow: var(--shadow-xl);
 }
 
+.qr-item:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 4px;
+}
+
+.qr-account {
+  max-width: 100%;
+  margin-top: var(--spacing-sm);
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.qr-copy-action {
+  margin-top: var(--spacing-sm);
+  padding: 0.55rem 0.9rem;
+  border: 1px solid rgba(226, 182, 73, 0.65);
+  border-radius: 999px;
+  color: #07152b;
+  background: var(--primary-color);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.qr-item.is-copied .qr-copy-action {
+  color: #fff;
+  background: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.copy-status {
+  min-height: 1.5rem;
+  margin: var(--spacing-md) auto 0;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
 /* Clickable link styling under QR */
 .qr-link {
   margin-top: var(--spacing-xs);
@@ -906,37 +1040,6 @@ CHARITIES SECTION — LOGOS + DONATE QR
 .qr-link:hover {
   background-color: rgba(10, 25, 55, 0.95);
   border-color: var(--primary-color);
-}
-
-/* ---------------------------------------------
-   SIMPLE DONATION TEXT (JUST LINES OF TEXT)
----------------------------------------------- */
-
-.donation-text {
-  margin-top: var(--spacing-xl);
-  text-align: center;
-  font-family: var(--font-primary);
-}
-
-.donation-text h3 {
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--primary-color);
-  margin-bottom: var(--spacing-sm);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.donation-text p {
-  font-size: 1rem;
-  color: var(--text-dark);
-  line-height: 1.6;
-}
-
-.donation-text p span {
-  font-weight: 600;
-  color: var(--text-light);
 }
 
 /* =============================================
@@ -1002,7 +1105,7 @@ PAST TOY DRIVES – POSTER GALLERY
 
 .past-drives-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--spacing-xl);
   align-items: stretch;
 }
@@ -1017,11 +1120,22 @@ PAST TOY DRIVES – POSTER GALLERY
   transition: transform 0.25s ease;
 }
 
+.past-drive-link {
+  display: block;
+  border-radius: 8px;
+}
+
+.past-drive-link:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 5px;
+}
+
 /* consistent height on posters (desktop/tablet) */
 .past-drive-card img {
   width: 100%;
   height: 320px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #020814;
   border-radius: 8px;
   display: block;
   margin-bottom: var(--spacing-xs);
@@ -1281,7 +1395,11 @@ RESPONSIVE
   }
 
   .past-drives-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bands-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1315,13 +1433,47 @@ RESPONSIVE
 
   .hero-poster {
     width: 100%;
+    max-width: none;
     height: auto;
     max-height: none;
     object-fit: contain;
+    border-radius: 0;
+    border: 0;
+    box-shadow: none;
   }
 
   .container {
     padding: 0 var(--spacing-md);
+  }
+
+  .event-countdown {
+    padding: 40px 0;
+  }
+
+  .event-countdown h2 span {
+    display: none;
+  }
+
+  .countdown-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .countdown-unit strong {
+    font-size: clamp(3rem, 16vw, 4.4rem);
+  }
+
+  .bands-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .past-drives-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .past-drive-card img {
+    height: auto;
+    aspect-ratio: 2 / 3;
   }
 
   .site-header .donate-btn {
