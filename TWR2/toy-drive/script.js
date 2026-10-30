@@ -1,4 +1,21 @@
 // Toy Drive page interactions
+(function initGoogleAnalytics() {
+  const measurementId = "G-S2WZ0N6HV8";
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer.push(arguments);
+  };
+
+  window.gtag("js", new Date());
+  window.gtag("config", measurementId);
+
+  const googleTag = document.createElement("script");
+  googleTag.async = true;
+  googleTag.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+  document.head.appendChild(googleTag);
+})();
+
 (function () {
   const header = document.querySelector(".site-header");
   const navToggle = document.getElementById("navToggle");

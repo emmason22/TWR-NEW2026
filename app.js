@@ -44,6 +44,33 @@ function emitTelemetry(eventType, details) {
 
   console.info("TWR telemetry:", payload);
 
+  if (typeof window.gtag === "function") {
+    const allowedDetailKeys = [
+      "amount",
+      "endpointConfigured",
+      "formName",
+      "location",
+      "path",
+      "reason",
+      "role",
+      "side",
+      "trackId",
+      "visitNumber",
+    ];
+    const eventParameters = {
+      page_path: window.location.pathname,
+    };
+
+    allowedDetailKeys.forEach((key) => {
+      const value = details && details[key];
+      if (["string", "number", "boolean"].includes(typeof value)) {
+        eventParameters[key.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)] = value;
+      }
+    });
+
+    window.gtag("event", eventType, eventParameters);
+  }
+
   const endpoint = getAnalyticsEndpoint();
   if (!endpoint) return;
 

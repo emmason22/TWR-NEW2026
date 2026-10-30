@@ -4,6 +4,23 @@
  * - Shows a visible error overlay if the hero video fails to load.
  */
 
+(function initGoogleAnalytics() {
+  const measurementId = "G-S2WZ0N6HV8";
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer.push(arguments);
+  };
+
+  window.gtag("js", new Date());
+  window.gtag("config", measurementId);
+
+  const googleTag = document.createElement("script");
+  googleTag.async = true;
+  googleTag.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+  document.head.appendChild(googleTag);
+})();
+
 function replaceWithMissingAsset(el, expectedPath, altText) {
   const div = document.createElement("div");
   div.className = "asset-missing";
