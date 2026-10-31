@@ -47,14 +47,17 @@ function emitTelemetry(eventType, details) {
   if (typeof window.gtag === "function") {
     const allowedDetailKeys = [
       "amount",
+      "conversionType",
       "endpointConfigured",
       "formName",
       "location",
       "path",
+      "position",
       "reason",
       "role",
       "side",
       "trackId",
+      "transactionId",
       "visitNumber",
     ];
     const eventParameters = {
@@ -69,6 +72,21 @@ function emitTelemetry(eventType, details) {
     });
 
     window.gtag("event", eventType, eventParameters);
+
+    if (eventType === "form_submit_success" && /volunteer/i.test(String(details?.formName || ""))) {
+      window.gtag("event", "generate_lead", {
+        lead_source: "volunteer_form",
+        form_name: details.formName,
+        page_path: window.location.pathname,
+      });
+    }
+
+    if (eventType === "mailing_list_signup_completed") {
+      window.gtag("event", "sign_up", {
+        method: "mailerlite",
+        page_path: window.location.pathname,
+      });
+    }
   }
 
   const endpoint = getAnalyticsEndpoint();
@@ -487,6 +505,47 @@ function initInsiderForms() {
       form.reset();
       scheduleFormReturn(form, statusEl);
     });
+  });
+}
+
+function initMailerLiteCompletionTracking() {
+  const embeds = document.querySelectorAll(".ml-embedded");
+  if (!embeds.length) return;
+
+  const successSelector = ".row-success, .ml-form-successBody, .ml-form-successContent, [data-form-success]";
+
+  embeds.forEach((embed) => {
+    let tracked = false;
+
+    const isVisible = (element) => {
+      if (!element || element.hidden) return false;
+      const style = window.getComputedStyle(element);
+      return style.display !== "none" && style.visibility !== "hidden" && element.getClientRects().length > 0;
+    };
+
+    const checkForSuccess = () => {
+      if (tracked) return true;
+      const hasVisibleSuccess = Array.from(embed.querySelectorAll(successSelector)).some(isVisible);
+      if (!hasVisibleSuccess) return false;
+
+      tracked = true;
+      emitTelemetry("mailing_list_signup_completed", { location: window.location.pathname });
+      return true;
+    };
+
+    if (checkForSuccess()) return;
+
+    const observer = new MutationObserver(() => {
+      if (checkForSuccess()) observer.disconnect();
+    });
+    observer.observe(embed, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+      attributeFilter: ["class", "hidden", "style"],
+    });
+
+    window.setTimeout(() => observer.disconnect(), 30 * 60 * 1000);
   });
 }
 
@@ -1136,6 +1195,82 @@ function initImagePerformanceDefaults() {
   });
 }
 
+function initToyDropoffGalleryLightbox() {
+  const links = Array.from(document.querySelectorAll("[data-gallery-lightbox]"));
+  if (!links.length) return;
+
+  const lightbox = document.createElement("div");
+  lightbox.className = "gallery-lightbox";
+  lightbox.hidden = true;
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
+  lightbox.setAttribute("aria-label", "Toy Drive photo viewer");
+  lightbox.innerHTML = `
+    <button class="gallery-lightbox-close" type="button" aria-label="Close photo viewer">×</button>
+    <button class="gallery-lightbox-nav gallery-lightbox-prev" type="button" aria-label="Previous photo">‹</button>
+    <figure class="gallery-lightbox-figure">
+      <img class="gallery-lightbox-image" alt="" />
+      <figcaption class="gallery-lightbox-status" aria-live="polite"></figcaption>
+    </figure>
+    <button class="gallery-lightbox-nav gallery-lightbox-next" type="button" aria-label="Next photo">›</button>
+  `;
+  document.body.appendChild(lightbox);
+
+  const image = lightbox.querySelector(".gallery-lightbox-image");
+  const status = lightbox.querySelector(".gallery-lightbox-status");
+  const closeButton = lightbox.querySelector(".gallery-lightbox-close");
+  const previousButton = lightbox.querySelector(".gallery-lightbox-prev");
+  const nextButton = lightbox.querySelector(".gallery-lightbox-next");
+  let activeIndex = 0;
+  let returnFocus = null;
+
+  const render = (index) => {
+    activeIndex = (index + links.length) % links.length;
+    const link = links[activeIndex];
+    const thumbnail = link.querySelector("img");
+    image.src = link.href;
+    image.alt = thumbnail?.alt || "Tonight We Ride Toy Drive photo";
+    status.textContent = `Photo ${activeIndex + 1} of ${links.length}`;
+  };
+
+  const close = () => {
+    if (lightbox.hidden) return;
+    lightbox.hidden = true;
+    image.removeAttribute("src");
+    document.body.classList.remove("gallery-lightbox-open");
+    if (returnFocus instanceof HTMLElement) returnFocus.focus();
+  };
+
+  const open = (index, trigger) => {
+    returnFocus = trigger;
+    render(index);
+    lightbox.hidden = false;
+    document.body.classList.add("gallery-lightbox-open");
+    closeButton.focus();
+    emitTelemetry("gallery_photo_opened", { position: index + 1 });
+  };
+
+  links.forEach((link, index) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      open(index, link);
+    });
+  });
+
+  closeButton.addEventListener("click", close);
+  previousButton.addEventListener("click", () => render(activeIndex - 1));
+  nextButton.addEventListener("click", () => render(activeIndex + 1));
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) close();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (lightbox.hidden) return;
+    if (event.key === "Escape") close();
+    if (event.key === "ArrowLeft") render(activeIndex - 1);
+    if (event.key === "ArrowRight") render(activeIndex + 1);
+  });
+}
+
 function initRevealOnScroll() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -1628,6 +1763,36 @@ function initDonationReturnMessage() {
   }, FORM_RETURN_DELAY_MS);
 }
 
+function initDonationCompletionTracking() {
+  const confirmation = document.querySelector("[data-donation-confirmation]");
+  if (!confirmation || typeof window.gtag !== "function") return;
+
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = String(params.get("session_id") || "").trim();
+  if (!/^cs_(?:test|live)_[A-Za-z0-9]+$/.test(sessionId)) return;
+
+  const storageKey = `twr_donation_completed_${sessionId}`;
+  try {
+    if (window.sessionStorage.getItem(storageKey)) return;
+    window.sessionStorage.setItem(storageKey, "1");
+  } catch (_) {
+    // Continue tracking when storage is unavailable.
+  }
+
+  window.gtag("event", "purchase", {
+    transaction_id: sessionId,
+    affiliation: "Tonight We Ride",
+    currency: "USD",
+    page_path: window.location.pathname,
+  });
+  emitTelemetry("donation_completed", {
+    conversionType: "stripe_checkout",
+    transactionId: sessionId,
+  });
+
+  window.history.replaceState({}, document.title, window.location.pathname);
+}
+
 function initDonationTicker() {
   const ticker = document.querySelector("[data-donation-ticker]");
   if (!ticker) return;
@@ -1706,6 +1871,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initAboutNavDropdown();
   initMobileNav();
   initImagePerformanceDefaults();
+  initToyDropoffGalleryLightbox();
   initHomelessHeroVideoFade();
   initHomelessSupportFormToggle();
   initHomelessMailerLiteToggle();
@@ -1714,11 +1880,13 @@ document.addEventListener("DOMContentLoaded", () => {
   initVolunteerSignupPage();
   initDonateConversionPanel();
   initDonationReturnMessage();
+  initDonationCompletionTracking();
   initDonationTicker();
   initHomeHeroVideo();
   initFormAccessibility();
   initFoundingMemberSection();
   initSupportForms();
   initInsiderForms();
+  initMailerLiteCompletionTracking();
   initTrackedInteractions();
 });
