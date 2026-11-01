@@ -14,7 +14,7 @@ For every one-time and recurring donation Payment Link, set the post-payment beh
 https://tonightweride.org/donation-thank-you.html?session_id={CHECKOUT_SESSION_ID}
 ```
 
-The thank-you page records the `purchase` event once per Checkout Session in the visitor's browser. It does not place donor names, email addresses, or payment details in Google Analytics.
+The thank-you page records the `purchase` event once per Checkout Session in the visitor's browser. Fixed one-time and monthly selections also include the donation value and a donation item for GA4 revenue reporting. Custom-amount donations omit value because Stripe remains the authoritative source for the amount actually paid. The site does not place donor names, email addresses, or payment details in Google Analytics.
 
 Stripe webhooks remain the source of truth for donation fulfillment and accounting. The browser redirect is used only for analytics attribution and the donor thank-you experience.
 

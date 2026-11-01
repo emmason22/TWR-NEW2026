@@ -47,7 +47,7 @@ body {
   font-weight: 300;
   line-height: 1.65;
   color: var(--text-dark);
-  background-image: url('StarryBackground.jpg');
+  background-image: url('StarryBackground-1200.webp');
   background-size: cover;
   background-repeat: repeat-y;
   background-position: center top;
@@ -251,6 +251,28 @@ SHARED SITE HEADER (MATCHES MAIN SITE)
   box-shadow: none;
 }
 
+.site-header .volunteer-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 14px;
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.site-header .volunteer-btn:hover,
+.site-header .volunteer-btn:focus-visible {
+  background: #fff;
+  color: #000;
+}
+
 .site-header .wishlist-btn {
   display: inline-flex;
   align-items: center;
@@ -333,7 +355,7 @@ p {
 .band-card h3,
 .charity-card h3,
 .cta-card h3,
-.footer-section h4 {
+.footer-section h3 {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   letter-spacing: 0.06em;
@@ -1213,7 +1235,7 @@ FOOTER
 }
 
 /* Mission text */
-.footer-mission h4 {
+.footer-mission h3 {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   margin-bottom: var(--spacing-sm);
@@ -1290,6 +1312,11 @@ RESPONSIVE
   .site-header .donate-btn {
     padding: 10px 14px;
     font-size: 0.9rem;
+  }
+
+  .site-header .volunteer-btn {
+    padding: 8px 12px;
+    font-size: 0.82rem;
   }
 
   .site-nav {

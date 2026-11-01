@@ -1783,8 +1783,14 @@ textarea:focus-visible {
   margin: 4px 0 0;
   width: 100%;
   font-size: 13px;
-  color: #6a7b96;
+  color: #44566f;
   text-align: center;
+}
+
+.page-donate .donation-impact-note a {
+  color: #173f78;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .page-monthly-giving .monthly-giving-section {

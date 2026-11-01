@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="icon" type="image/png" href="../../assets/optimized/twr-favicon-64.png" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Chad D's 27th Annual Toy Drive brings six live acts to Barley House in Dallas on December 14, 2026, benefiting Dallas Life and The Family Place." />
@@ -69,11 +71,13 @@
     </script>
     <title>Chad D's 27th Annual Toy Drive | Tonight We Ride</title>
 
+    <link rel="preload" as="image" href="ToyDrive27-1024.avif" type="image/avif" fetchpriority="high" />
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css?v=8" />
+    <link rel="stylesheet" href="styles.css?v=9" />
 </head>
 
 <body>
@@ -83,7 +87,7 @@
 <header class="site-header" role="banner">
     <div class="header-inner">
         <a class="brand" href="../../index.html" aria-label="Tonight We Ride home">
-            <img class="brand-logo" src="../../assets/TonightWeRideLogo.png" alt="Tonight We Ride logo" />
+            <img class="brand-logo" src="../../assets/optimized/twr-logo-512.webp" width="512" height="512" alt="Tonight We Ride logo" />
         </a>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="toyDriveNav">
             <span></span>
@@ -103,8 +107,8 @@
             <a href="../../community-outreach.html">Need Help?</a>
         </nav>
         <div class="header-actions">
-            <a class="volunteer-btn" href="../../volunteer.html" aria-label="Volunteer">VOLUNTEER</a>
-            <a class="donate-btn" href="../../donate-now.html" aria-label="Donate">DONATE NOW</a>
+            <a class="volunteer-btn" href="../../volunteer.html">VOLUNTEER</a>
+            <a class="donate-btn" href="../../donate-now.html">DONATE NOW</a>
             <a class="wishlist-btn" href="https://www.amazon.com/hz/wishlist/ls/N95PLY45QFCL?ref_=wl_share" target="_blank" rel="noopener noreferrer" aria-label="Shop our Current Greatest Needs on Amazon">CURRENT GREATEST NEEDS</a>
         </div>
     </div>
@@ -114,7 +118,10 @@
      HERO
 ======================================================== -->
 <header class="hero">
-    <img src="ToyDrive27.jpg" alt="Poster for Chad D's 27th Annual Toy Drive on December 14, 2026" class="hero-poster" />
+    <picture>
+        <source srcset="ToyDrive27-1024.avif" type="image/avif" />
+        <img src="ToyDrive27-1024.webp" width="1024" height="1536" alt="Poster for Chad D's 27th Annual Toy Drive on December 14, 2026" class="hero-poster" fetchpriority="high" decoding="async" />
+    </picture>
 </header>
 
 <!-- ========================================================
@@ -321,7 +328,7 @@
                 </a>
 
                 <!-- PAYPAL -->
-                <button class="qr-item qr-item--copy" type="button" data-copy-value="TOYDRIVE214@gmail.com" data-copy-label="PayPal email" aria-label="Copy the PayPal donation email TOYDRIVE214@gmail.com">
+                <button class="qr-item qr-item--copy" type="button" data-copy-value="TOYDRIVE214@gmail.com" data-copy-label="PayPal email" aria-label="PayPal TOYDRIVE214@gmail.com — Copy PayPal email">
                     <img src="PayPalQR.jpg" alt="PayPal QR" loading="lazy" />
                     <span class="qr-text">PayPal</span>
                     <span class="qr-account">TOYDRIVE214@gmail.com</span>
@@ -329,7 +336,7 @@
                 </button>
 
                 <!-- ZELLE -->
-                <button class="qr-item qr-item--copy" type="button" data-copy-value="TOYDRIVE214@gmail.com" data-copy-label="Zelle email" aria-label="Copy the Zelle donation email TOYDRIVE214@gmail.com">
+                <button class="qr-item qr-item--copy" type="button" data-copy-value="TOYDRIVE214@gmail.com" data-copy-label="Zelle email" aria-label="Zelle TOYDRIVE214@gmail.com — Copy Zelle email">
                     <img src="ZelleQR.jpg" alt="Zelle QR" loading="lazy" />
                     <span class="qr-text">Zelle</span>
                     <span class="qr-account">TOYDRIVE214@gmail.com</span>
@@ -469,14 +476,14 @@
         <div class="footer-top">
 
             <div class="footer-logo-block">
-                <img src="TonightWeRideLogo.png" alt="Tonight We Ride Logo" class="footer-logo-img" />
+                <img src="../../assets/optimized/twr-logo-512.webp" width="512" height="512" alt="Tonight We Ride Logo" class="footer-logo-img" loading="lazy" decoding="async" />
                 <p class="footer-tagline">Changing the world, one person at a time</p>
             </div>
 
             <div class="footer-mission-and-social">
 
                 <div class="footer-mission">
-                    <h4>Our Mission</h4>
+                    <h3>Our Mission</h3>
                     <p>
                         We unite our community to take action when it matters most —
                         providing comfort during crises, joy during the holidays,

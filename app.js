@@ -49,6 +49,7 @@ function emitTelemetry(eventType, details) {
       "amount",
       "conversionType",
       "endpointConfigured",
+      "frequency",
       "formName",
       "location",
       "path",
@@ -688,12 +689,11 @@ function initFoundingMemberPromo() {
   // Built in JS so the promotion is managed in one place and only appears on homepage.
   const promo = document.createElement("aside");
   promo.className = "founding-promo";
-  promo.setAttribute("role", "dialog");
   promo.setAttribute("aria-labelledby", "founding-promo-title");
   promo.setAttribute("aria-describedby", "founding-promo-copy");
 
   promo.innerHTML = `
-    <button type="button" class="founding-promo-dismiss" aria-label="Dismiss Founding Member promotion">Close</button>
+    <button type="button" class="founding-promo-dismiss" aria-label="Close Founding Member promotion">Close</button>
     <p class="founding-promo-kicker">Limited Promotion</p>
     <h2 id="founding-promo-title">Become a Founding Member</h2>
     <p id="founding-promo-copy">
@@ -772,7 +772,7 @@ function showMailingListPopup(options = {}) {
   overlay.innerHTML = `
     <aside class="mailing-popup" role="dialog" aria-modal="true" aria-labelledby="mailing-popup-title" aria-describedby="mailing-popup-copy">
       <button type="button" class="mailing-popup-dismiss" aria-label="Close mailing list popup">Close</button>
-      <img class="mailing-popup-logo" src="assets/TonightWeRideLogo.png" alt="Tonight We Ride logo" loading="lazy" decoding="async" />
+      <img class="mailing-popup-logo" src="assets/optimized/twr-logo-512.webp" width="512" height="512" alt="Tonight We Ride logo" loading="lazy" decoding="async" />
       <p class="mailing-popup-kicker">Stay Connected</p>
       <h2 id="mailing-popup-title">Join Our Mailing List</h2>
       <p id="mailing-popup-copy">Get outreach updates, event announcements, and ways to support Tonight We Ride.</p>
@@ -1726,6 +1726,13 @@ function initDonateConversionPanel() {
     cta.setAttribute("rel", "noopener noreferrer");
   };
 
+  cta.addEventListener("click", () => {
+    const customValue = Number(customInput.value || "0");
+    const hasCustomValue = Number.isFinite(customValue) && customValue > 0;
+    const fixedValue = Number(String(selectedCard?.getAttribute("data-amount") || "").replace(/[^0-9.]/g, ""));
+    rememberPendingDonation(hasCustomValue ? null : fixedValue, "one-time");
+  });
+
   cards.forEach((card) => {
     card.setAttribute("aria-pressed", card === selectedCard ? "true" : "false");
     card.addEventListener("click", () => {
@@ -1741,6 +1748,52 @@ function initDonateConversionPanel() {
 
   customInput.addEventListener("input", updateCta);
   updateCta();
+}
+
+const PENDING_DONATION_STORAGE_KEY = "twr_pending_donation";
+const PENDING_DONATION_MAX_AGE_MS = 24 * 60 * 60 * 1000;
+
+function rememberPendingDonation(value, frequency = "one-time") {
+  const numericValue = Number(value);
+  const payload = {
+    frequency: frequency === "monthly" ? "monthly" : "one-time",
+    capturedAt: Date.now(),
+  };
+
+  if (Number.isFinite(numericValue) && numericValue > 0) {
+    payload.value = numericValue;
+  }
+
+  try {
+    window.localStorage.setItem(PENDING_DONATION_STORAGE_KEY, JSON.stringify(payload));
+  } catch (_) {
+    // Conversion counting still works when storage is unavailable.
+  }
+}
+
+function readPendingDonation() {
+  try {
+    const raw = window.localStorage.getItem(PENDING_DONATION_STORAGE_KEY);
+    if (!raw) return null;
+    window.localStorage.removeItem(PENDING_DONATION_STORAGE_KEY);
+    const parsed = JSON.parse(raw);
+    const capturedAt = Number(parsed?.capturedAt || 0);
+    if (!capturedAt || Date.now() - capturedAt > PENDING_DONATION_MAX_AGE_MS) return null;
+    return parsed;
+  } catch (_) {
+    return null;
+  }
+}
+
+function initDonationLinkTracking() {
+  document.querySelectorAll("a[data-donation-value]").forEach((link) => {
+    link.addEventListener("click", () => {
+      rememberPendingDonation(
+        Number(link.getAttribute("data-donation-value") || "0"),
+        link.getAttribute("data-donation-frequency") || "one-time"
+      );
+    });
+  });
 }
 
 function initDonationReturnMessage() {
@@ -1779,15 +1832,33 @@ function initDonationCompletionTracking() {
     // Continue tracking when storage is unavailable.
   }
 
-  window.gtag("event", "purchase", {
+  const pendingDonation = readPendingDonation();
+  const donationValue = Number(pendingDonation?.value || 0);
+  const frequency = pendingDonation?.frequency === "monthly" ? "monthly" : "one-time";
+  const item = {
+    item_id: frequency === "monthly" ? "monthly_donation" : "one_time_donation",
+    item_name: frequency === "monthly" ? "Monthly donation" : "One-time donation",
+    quantity: 1,
+  };
+  const purchaseParameters = {
     transaction_id: sessionId,
     affiliation: "Tonight We Ride",
     currency: "USD",
     page_path: window.location.pathname,
-  });
+    items: [item],
+  };
+
+  if (Number.isFinite(donationValue) && donationValue > 0) {
+    purchaseParameters.value = donationValue;
+    item.price = donationValue;
+  }
+
+  window.gtag("event", "purchase", purchaseParameters);
   emitTelemetry("donation_completed", {
     conversionType: "stripe_checkout",
     transactionId: sessionId,
+    frequency,
+    ...(donationValue > 0 ? { amount: donationValue } : {}),
   });
 
   window.history.replaceState({}, document.title, window.location.pathname);
@@ -1879,6 +1950,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initVolunteerConversionFlow();
   initVolunteerSignupPage();
   initDonateConversionPanel();
+  initDonationLinkTracking();
   initDonationReturnMessage();
   initDonationCompletionTracking();
   initDonationTicker();
