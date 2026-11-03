@@ -77,7 +77,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css?v=9" />
+    <link rel="stylesheet" href="styles.css?v=10" />
 </head>
 
 <body>
@@ -118,7 +118,7 @@
      HERO
 ======================================================== -->
 <header class="hero">
-    <picture>
+    <picture class="hero-poster-frame">
         <source srcset="ToyDrive27-1024.avif" type="image/avif" />
         <img src="ToyDrive27-1024.webp" width="1024" height="1536" alt="Poster for Chad D's 27th Annual Toy Drive on December 14, 2026" class="hero-poster" fetchpriority="high" decoding="async" />
     </picture>
@@ -154,12 +154,18 @@
 </section>
 
 <!-- ========================================================
-     DONATE NOW BAR
+     EVENT ACTIONS
 ======================================================== -->
-<section class="donate-bar">
-    <button class="donate-btn" onclick="document.querySelector('#charities').scrollIntoView({ behavior: 'smooth' })">
-        Donate Now
-    </button>
+<section class="donate-bar" aria-label="Toy Drive actions">
+    <div class="container event-actions">
+        <a class="event-action-btn event-action-btn--donate" href="#charities">Donate Now</a>
+        <a class="event-action-btn event-action-btn--sponsor" href="media-kit.html">
+            Corporate Sponsorship Opportunities
+            <span>Starting at $250</span>
+        </a>
+        <a class="event-action-btn" href="../../volunteer.html">Volunteer</a>
+        <a class="event-action-btn" href="ToyDrive27.jpg" download>Download Poster</a>
+    </div>
 </section>
 
 <!-- ========================================================

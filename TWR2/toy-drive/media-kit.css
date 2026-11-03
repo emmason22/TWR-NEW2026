@@ -449,11 +449,24 @@ a {
   grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.7fr);
   gap: 22px;
   margin-top: 74px;
-  align-items: end;
+  align-items: start;
 }
 
 .photo-story figure {
+  min-width: 0;
   margin: 0;
+}
+
+.photo-story__link {
+  height: clamp(360px, 34vw, 500px);
+  display: block;
+  overflow: hidden;
+  background: var(--navy);
+}
+
+.photo-story__link:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 5px;
 }
 
 .photo-story img {
@@ -464,12 +477,7 @@ a {
 }
 
 .photo-story__feature img {
-  aspect-ratio: 16 / 9;
   object-position: center 20%;
-}
-
-.photo-story__secondary img {
-  aspect-ratio: 4 / 5;
 }
 
 .photo-story figcaption {
@@ -478,6 +486,16 @@ a {
   color: rgba(16, 32, 43, 0.68);
   font-size: 0.88rem;
   font-weight: 600;
+}
+
+.photo-story__gallery-link {
+  display: block;
+  width: fit-content;
+  margin-top: 8px;
+  color: var(--red);
+  font-weight: 800;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
 
 .poster-history {
@@ -1250,6 +1268,14 @@ a {
   .photo-story {
     grid-template-columns: 1fr;
     margin-top: 48px;
+  }
+
+  .photo-story__link {
+    height: auto;
+  }
+
+  .photo-story__feature img {
+    aspect-ratio: 16 / 9;
   }
 
   .beneficiary-partners {
