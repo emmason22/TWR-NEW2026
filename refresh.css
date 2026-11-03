@@ -1628,6 +1628,8 @@ textarea:focus-visible {
   cursor: pointer;
   font: inherit;
   color: #000;
+  text-decoration: none;
+  touch-action: manipulation;
   transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
@@ -1686,6 +1688,23 @@ textarea:focus-visible {
   color: #000;
   font-size: clamp(18px, 1.28vw, 24px);
   line-height: 1.45;
+}
+
+.page-donate .donation-choice-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  margin-top: auto;
+  padding-top: 22px;
+  border-bottom: 2px solid currentColor;
+  color: #173f78;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(17px, 1.2vw, 22px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  text-transform: uppercase;
 }
 
 .page-donate .donation-custom-input {
@@ -1771,8 +1790,11 @@ textarea:focus-visible {
   width: 100%;
 }
 
-.page-donate .donate-submit-btn {
-  min-width: 250px;
+.page-donate .donate-submit-row .donate-submit-btn {
+  min-width: clamp(340px, 34vw, 520px);
+  min-height: 68px;
+  padding: 16px 34px;
+  font-size: clamp(19px, 1.8vw, 26px);
 }
 
 .page-donate .donation-options-panel.is-monthly .donate-submit-btn {
@@ -4035,7 +4057,7 @@ label,
   }
 
   .page-donate .donate-hero-cta,
-  .page-donate .donate-submit-btn,
+  .page-donate .donate-submit-row .donate-submit-btn,
   .page-donate .donation-options-panel.is-monthly .donate-submit-btn {
     width: 100%;
     min-width: 0;

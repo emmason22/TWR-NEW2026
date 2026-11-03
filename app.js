@@ -1699,7 +1699,13 @@ function initDonateConversionPanel() {
     cards.forEach((card) => {
       const isActive = card === activeCard;
       card.classList.toggle("is-selected", isActive);
-      card.setAttribute("aria-pressed", isActive ? "true" : "false");
+      if (card.tagName === "BUTTON") {
+        card.setAttribute("aria-pressed", isActive ? "true" : "false");
+      } else if (isActive) {
+        card.setAttribute("aria-current", "true");
+      } else {
+        card.removeAttribute("aria-current");
+      }
     });
     selectedCard = activeCard;
   };
@@ -1734,11 +1740,12 @@ function initDonateConversionPanel() {
   });
 
   cards.forEach((card) => {
-    card.setAttribute("aria-pressed", card === selectedCard ? "true" : "false");
     card.addEventListener("click", () => {
       setCardState(card);
       if (customInput.value) customInput.value = "";
       updateCta();
+      const fixedValue = Number(String(card.getAttribute("data-amount") || "").replace(/[^0-9.]/g, ""));
+      rememberPendingDonation(fixedValue, "one-time");
       emitTelemetry("donation_option_selected", {
         path: window.location.pathname,
         amount: card.getAttribute("data-amount") || "unknown",
@@ -1746,6 +1753,7 @@ function initDonateConversionPanel() {
     });
   });
 
+  setCardState(selectedCard);
   customInput.addEventListener("input", updateCta);
   updateCta();
 }
