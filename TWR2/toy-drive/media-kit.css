@@ -563,11 +563,16 @@ a {
 }
 
 .past-supporters {
+  --sponsor-cream: #f4eadb;
   margin-top: 72px;
   padding: clamp(30px, 5vw, 54px);
-  color: var(--white);
-  background: var(--red);
+  color: var(--ink);
+  background: var(--sponsor-cream);
   box-shadow: var(--shadow);
+}
+
+.past-supporters .eyebrow {
+  color: var(--red-dark);
 }
 
 .past-supporters__intro {
@@ -587,7 +592,7 @@ a {
 
 .past-supporters__intro > p {
   margin: 0;
-  color: rgba(255, 253, 248, 0.64);
+  color: rgba(16, 32, 43, 0.68);
   font-size: 0.88rem;
 }
 
@@ -595,8 +600,8 @@ a {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 42px;
-  border-top: 1px solid rgba(255, 255, 255, 0.17);
-  border-left: 1px solid rgba(255, 255, 255, 0.17);
+  border-top: 1px solid rgba(16, 32, 43, 0.16);
+  border-left: 1px solid rgba(16, 32, 43, 0.16);
 }
 
 .supporter-card {
@@ -604,8 +609,8 @@ a {
   display: flex;
   flex-direction: column;
   padding: 24px 20px;
-  border-right: 1px solid rgba(255, 255, 255, 0.17);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.17);
+  border-right: 1px solid rgba(16, 32, 43, 0.16);
+  border-bottom: 1px solid rgba(16, 32, 43, 0.16);
 }
 
 .supporter-card__logo {
@@ -614,7 +619,7 @@ a {
   place-items: center;
   overflow: hidden;
   padding: 14px;
-  background: var(--white);
+  background: transparent;
 }
 
 .supporter-card__logo img,
@@ -631,7 +636,39 @@ a {
 
 .supporter-card__logo--poster {
   padding: 0;
-  background: var(--navy);
+  background: transparent;
+}
+
+.supporter-card__logo--poster svg {
+  filter: invert(1) hue-rotate(180deg) contrast(1.12) saturate(1.1);
+  mix-blend-mode: multiply;
+}
+
+.supporter-card__logo--state-fair,
+.supporter-card__logo--starbase {
+  position: relative;
+}
+
+.supporter-card__logo--state-fair::before,
+.supporter-card__logo--starbase::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 1;
+  width: 24%;
+  background: var(--sponsor-cream);
+}
+
+.supporter-card__logo--starbase::before {
+  width: 30%;
+}
+
+.supporter-card__logo--state-fair::before {
+  width: 10%;
+}
+
+.supporter-card__logo:not(.supporter-card__logo--poster) img {
+  mix-blend-mode: multiply;
 }
 
 .supporter-card__logo--wide {
@@ -640,10 +677,11 @@ a {
 
 .supporter-card__logo--tall svg {
   width: 58%;
+  filter: invert(1) hue-rotate(180deg) contrast(2.2) brightness(1.05) saturate(1.2);
 }
 
 .supporter-card__logo--womack img {
-  max-height: 92px;
+  max-height: 72px;
 }
 
 .supporter-card h4 {
@@ -655,7 +693,7 @@ a {
 
 .supporter-card p {
   margin: 0;
-  color: rgba(255, 253, 248, 0.58);
+  color: rgba(16, 32, 43, 0.64);
   font-size: 0.78rem;
 }
 
