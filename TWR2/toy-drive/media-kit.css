@@ -1134,6 +1134,33 @@ a {
   overflow-wrap: anywhere;
 }
 
+.media-donation-card__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  align-self: stretch;
+  margin-top: 14px;
+  padding: 10px 12px;
+  color: var(--white) !important;
+  background: var(--red);
+  font-family: "Oswald", sans-serif;
+  font-size: 0.78rem !important;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.media-donation-card__action span {
+  color: inherit;
+  font-size: inherit;
+}
+
+.media-donation-card:hover .media-donation-card__action,
+.media-donation-card:focus-visible .media-donation-card__action {
+  background: var(--red-dark);
+}
+
 .closing {
   position: relative;
   overflow: hidden;
