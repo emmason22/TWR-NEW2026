@@ -393,7 +393,7 @@ textarea:focus-visible {
 
 .home-toy-drive-banner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(max-content, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
   gap: clamp(18px, 4vw, 64px);
   padding: 18px clamp(20px, 5vw, 72px);
@@ -6782,7 +6782,7 @@ label,
 
 @media (max-width: 620px) {
   .home-toy-drive-banner {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr 1fr;
     display: grid;
     gap: 8px 16px;
     padding: 16px 18px;
@@ -6793,8 +6793,15 @@ label,
     font-size: clamp(16px, 4.8vw, 28px);
   }
 
+  .home-toy-drive-banner__date {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
   .home-toy-drive-banner__action {
-    justify-self: end;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: center;
   }
 
   .page-home .hero {
