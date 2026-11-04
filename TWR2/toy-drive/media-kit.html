@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Oswald:wght@500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Oswald:wght@500;600;700&amp;display=swap" /></noscript>
-  <link rel="stylesheet" href="media-kit.css?v=15" />
+  <link rel="stylesheet" href="media-kit.css?v=16" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to sponsorship information</a>
@@ -429,29 +429,40 @@
             <h3>Short description</h3>
             <p>Chad D’s 27th Annual Toy Drive takes place Monday, December 14, 2026, at 7:00 PM at Barley House in Dallas. Six live acts bring music and community generosity together in support of Dallas Life and The Family Place. Guests contribute new, unwrapped toys or monetary donations, and on Christmas Day the volunteer team delivers collected gifts and essential items to the beneficiary organizations.</p>
           </div>
-          <div class="media-donations" aria-labelledby="media-donations-title">
+          <div class="media-donations" aria-labelledby="media-donations-title" data-qr-donations>
             <h3 id="media-donations-title">Donation QR codes</h3>
-            <p>Share a direct way to support the Toy Drive from a phone or printed partner materials.</p>
+            <p>Donate directly with your preferred payment app, or scan and share a QR code.</p>
             <div class="media-donations__grid">
-              <a class="media-donation-card" href="VenmoQR.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open the Venmo donation QR code">
-                <img src="VenmoQR.jpg" alt="Venmo donation QR code" loading="lazy" decoding="async" />
-                <strong>Venmo</strong>
-                <span>@CHADD214</span>
-                <span class="media-donation-card__action">Donate with Venmo <span aria-hidden="true">↗</span></span>
-              </a>
-              <a class="media-donation-card" href="PayPalQR.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open the PayPal donation QR code">
-                <img src="PayPalQR.jpg" alt="PayPal donation QR code" loading="lazy" decoding="async" />
-                <strong>PayPal</strong>
-                <span>TOYDRIVE214@gmail.com</span>
-                <span class="media-donation-card__action">Donate with PayPal <span aria-hidden="true">↗</span></span>
-              </a>
-              <a class="media-donation-card" href="ZelleQR.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open the Zelle donation QR code">
-                <img src="ZelleQR.jpg" alt="Zelle donation QR code" loading="lazy" decoding="async" />
-                <strong>Zelle</strong>
-                <span>TOYDRIVE214@gmail.com</span>
-                <span class="media-donation-card__action">Donate with Zelle <span aria-hidden="true">↗</span></span>
-              </a>
+              <article class="media-donation-card">
+                <a class="qr-image-link" href="VenmoQR.jpg" target="_blank" rel="noopener noreferrer" aria-label="View Venmo donation QR code">
+                  <img src="VenmoQR.jpg" alt="Venmo donation QR code" loading="lazy" decoding="async" />
+                </a>
+                <strong class="media-donation-card__name">Venmo</strong>
+                <span class="media-donation-card__handle">@CHADD214</span>
+                <a class="media-donation-card__action" href="https://venmo.com/u/CHADD214" target="_blank" rel="noopener noreferrer">Donate with Venmo <span aria-hidden="true">↗</span></a>
+                <a class="qr-view-link" href="VenmoQR.jpg" target="_blank" rel="noopener noreferrer">View QR code</a>
+              </article>
+              <article class="media-donation-card">
+                <a class="qr-image-link" href="PayPalQR.jpg" target="_blank" rel="noopener noreferrer" aria-label="View PayPal donation QR code">
+                  <img src="PayPalQR.jpg" alt="PayPal donation QR code" loading="lazy" decoding="async" />
+                </a>
+                <strong class="media-donation-card__name">PayPal</strong>
+                <span class="media-donation-card__handle">TOYDRIVE214@gmail.com</span>
+                <a class="media-donation-card__action" href="https://www.paypal.com/qrcodes/p2pqrc/Y74NHU3M8CWCG" target="_blank" rel="noopener noreferrer">Donate with PayPal <span aria-hidden="true">↗</span></a>
+                <a class="qr-view-link" href="PayPalQR.jpg" target="_blank" rel="noopener noreferrer">View QR code</a>
+              </article>
+              <article class="media-donation-card">
+                <a class="qr-image-link" href="ZelleQR.jpg" target="_blank" rel="noopener noreferrer" aria-label="View Zelle donation QR code">
+                  <img src="ZelleQR.jpg" alt="Zelle donation QR code" loading="lazy" decoding="async" />
+                </a>
+                <strong class="media-donation-card__name">Zelle</strong>
+                <span class="media-donation-card__handle">TOYDRIVE214@gmail.com</span>
+                <a class="media-donation-card__action" href="https://enroll.zellepay.com/qr-codes?data=ewogICJ0b2tlbiIgOiAidG95ZHJpdmUyMTRAZ21haWwuY29tIiwKICAibmFtZSIgOiAiQ0hBRCIsCiAgImFjdGlvbiIgOiAicGF5bWVudCIKfQ==" target="_blank" rel="noopener noreferrer">Donate with Zelle <span aria-hidden="true">↗</span></a>
+                <a class="qr-view-link" href="ZelleQR.jpg" target="_blank" rel="noopener noreferrer">View QR code</a>
+                <button class="qr-copy-email" type="button" data-copy-zelle="TOYDRIVE214@gmail.com">Copy Zelle email</button>
+              </article>
             </div>
+            <p class="qr-donation-status" role="status" aria-live="polite"></p>
           </div>
           <div class="media-downloads" aria-label="Media assets">
             <a class="button button--dark" href="TonightWeRideLogo.png" download>Download logo</a>
@@ -480,5 +491,6 @@
       <p>Tonight We Ride · P.O. Box 570026, Dallas, TX 75357<br />© 2026 Tonight We Ride</p>
     </div>
   </footer>
+  <script src="../../scripts/donation-qr.js?v=1" defer></script>
 </body>
 </html>

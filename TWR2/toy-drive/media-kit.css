@@ -1114,6 +1114,37 @@ a {
   transform: translateY(-2px);
 }
 
+.qr-image-link {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.qr-view-link,
+.qr-copy-email {
+  color: #173f78;
+  font: 600 0.85rem/1.4 "Source Sans 3", Arial, sans-serif;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 10px 4px;
+}
+
+.qr-copy-email {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.qr-donation-status {
+  color: #10202b;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.qr-donation-status:empty {
+  display: none;
+}
+
 .media-donation-card img {
   width: 100%;
   aspect-ratio: 1;
