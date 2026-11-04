@@ -1368,6 +1368,7 @@ RESPONSIVE
 
 @media (max-width: 980px) {
   body {
+    background-image: linear-gradient(180deg, #07152b 0%, #020814 100%);
     background-attachment: scroll;
   }
 

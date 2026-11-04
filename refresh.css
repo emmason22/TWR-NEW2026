@@ -6706,7 +6706,7 @@ label,
   min-height: 100vh;
   background:
     linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.88)),
-    url("assets/optimized/dallas-hero-1600.jpg") center / cover fixed;
+    url("assets/optimized/dallas-hero-1600.webp") center / cover fixed;
 }
 
 .donation-thank-you-main {
