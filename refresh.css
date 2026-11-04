@@ -392,6 +392,7 @@ textarea:focus-visible {
 }
 
 .home-toy-drive-banner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -432,6 +433,9 @@ textarea:focus-visible {
 }
 
 .home-toy-drive-banner__date {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   color: #f1bd45;
   font-size: clamp(19px, 2.5vw, 30px);
   font-weight: 600;
