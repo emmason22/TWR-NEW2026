@@ -392,9 +392,9 @@ textarea:focus-visible {
 }
 
 .home-toy-drive-banner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: clamp(18px, 4vw, 64px);
   padding: 18px clamp(20px, 5vw, 72px);
   color: #fff;
@@ -423,9 +423,12 @@ textarea:focus-visible {
 }
 
 .home-toy-drive-banner__name {
+  flex: 1 1 auto;
+  min-width: 0;
   font-size: clamp(22px, 3vw, 38px);
   font-weight: 700;
   letter-spacing: 0.045em;
+  white-space: nowrap;
 }
 
 .home-toy-drive-banner__date {
@@ -437,7 +440,8 @@ textarea:focus-visible {
 }
 
 .home-toy-drive-banner__action {
-  justify-self: end;
+  flex: 0 0 auto;
+  text-align: right;
   font-size: clamp(14px, 1.7vw, 20px);
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -6779,12 +6783,14 @@ label,
 @media (max-width: 620px) {
   .home-toy-drive-banner {
     grid-template-columns: 1fr auto;
+    display: grid;
     gap: 8px 16px;
     padding: 16px 18px;
   }
 
   .home-toy-drive-banner__name {
     grid-column: 1 / -1;
+    font-size: clamp(16px, 4.8vw, 28px);
   }
 
   .home-toy-drive-banner__action {
