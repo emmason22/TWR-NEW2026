@@ -121,6 +121,7 @@ a {
 }
 
 .hero {
+  --hero-poster-top: 88px;
   position: relative;
   min-height: 880px;
   display: grid;
@@ -139,15 +140,14 @@ a {
 .hero__art {
   background-color: var(--navy);
   background-image: url("ToyDrive27.jpg");
-  background-position: right center;
+  background-position: right var(--hero-poster-top);
   background-repeat: no-repeat;
-  background-size: auto 100%;
+  background-size: auto calc(100% - var(--hero-poster-top));
 }
 
 .hero__wash {
   background:
-    linear-gradient(90deg, rgba(98, 20, 18, 1) 0%, rgba(133, 30, 26, 0.98) 34%, rgba(133, 30, 26, 0.76) 48%, rgba(133, 30, 26, 0.16) 62%, rgba(133, 30, 26, 0) 72%),
-    linear-gradient(0deg, rgba(6, 29, 46, 0.82) 0%, rgba(6, 29, 46, 0.26) 38%, rgba(6, 29, 46, 0) 62%);
+    linear-gradient(90deg, rgba(98, 20, 18, 0.98) 0%, rgba(133, 30, 26, 0.9) 30%, rgba(133, 30, 26, 0.56) 50%, rgba(133, 30, 26, 0.16) 70%, rgba(133, 30, 26, 0) 84%);
 }
 
 .hero__content {
@@ -1036,6 +1036,73 @@ a {
   color: rgba(16, 32, 43, 0.76);
 }
 
+.media-donations {
+  margin-top: 24px;
+  padding: 24px;
+  background: var(--cream);
+}
+
+.media-donations h3 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+.media-donations > p {
+  margin: 0;
+  color: rgba(16, 32, 43, 0.68);
+  font-size: 0.88rem;
+}
+
+.media-donations__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.media-donation-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--white);
+  text-align: center;
+  text-decoration: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.media-donation-card:hover,
+.media-donation-card:focus-visible {
+  border-color: var(--red);
+  box-shadow: 0 10px 22px rgba(6, 29, 46, 0.12);
+  transform: translateY(-2px);
+}
+
+.media-donation-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: var(--white);
+}
+
+.media-donation-card strong {
+  font: 700 0.9rem/1.1 "Oswald", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.media-donation-card span {
+  color: rgba(16, 32, 43, 0.66);
+  font-size: 0.68rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
 .closing {
   position: relative;
   overflow: hidden;
@@ -1127,8 +1194,11 @@ a {
 
   .hero__wash {
     background:
-      linear-gradient(90deg, rgba(98, 20, 18, 0.98) 0%, rgba(133, 30, 26, 0.82) 50%, rgba(133, 30, 26, 0.12) 78%, rgba(133, 30, 26, 0) 100%),
-      linear-gradient(0deg, rgba(6, 29, 46, 0.94) 0%, rgba(6, 29, 46, 0.24) 62%, rgba(6, 29, 46, 0) 100%);
+      linear-gradient(90deg, rgba(98, 20, 18, 0.98) 0%, rgba(133, 30, 26, 0.86) 34%, rgba(133, 30, 26, 0.44) 58%, rgba(133, 30, 26, 0.1) 80%, rgba(133, 30, 26, 0) 94%);
+  }
+
+  .hero {
+    --hero-poster-top: 78px;
   }
 
   .story-grid,
@@ -1194,7 +1264,7 @@ a {
   }
 
   .hero__art {
-    background-position: 67% center;
+    background-position: 67% var(--hero-poster-top);
   }
 
   .hero__wash {
@@ -1276,6 +1346,16 @@ a {
 
   .photo-story__feature img {
     aspect-ratio: 16 / 9;
+  }
+
+  .media-donations {
+    padding: 18px;
+  }
+
+  .media-donations__grid {
+    grid-template-columns: 1fr;
+    max-width: 220px;
+    margin-inline: auto;
   }
 
   .beneficiary-partners {
