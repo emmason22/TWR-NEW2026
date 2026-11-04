@@ -393,7 +393,7 @@ textarea:focus-visible {
 
 .home-toy-drive-banner {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: max-content minmax(max-content, 1fr) max-content;
   align-items: center;
   gap: clamp(18px, 4vw, 64px);
   padding: 18px clamp(20px, 5vw, 72px);
@@ -441,6 +441,7 @@ textarea:focus-visible {
 
 .home-toy-drive-banner__action {
   justify-self: end;
+  white-space: nowrap;
   text-align: right;
   font-size: clamp(14px, 1.7vw, 20px);
   font-weight: 600;
