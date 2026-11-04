@@ -45,7 +45,7 @@
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "NonProfit",
+          "@type": "Organization",
           "@id": "https://tonightweride.org/#organization",
           "name": "Tonight We Ride",
           "url": "https://tonightweride.org/",
@@ -61,22 +61,8 @@
             "https://tonightweride.org/",
             "https://www.facebook.com/profile.php?id=61582349795893",
             "https://www.instagram.com/twrbigd/"
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://tonightweride.org/#website",
-          "url": "https://tonightweride.org/",
-          "name": "Tonight We Ride",
-          "publisher": {
-            "@id": "https://tonightweride.org/#organization"
-          }
-        },
-        {
-          "@type": "Organization",
-          "@id": "https://tonightweride.org/#organization-contact",
-          "name": "Tonight We Ride",
-          "url": "https://tonightweride.org/",
+          ],
+          "nonprofitStatus": "https://schema.org/Nonprofit501c3",
           "contactPoint": [
             {
               "@type": "ContactPoint",
@@ -89,6 +75,15 @@
               "url": "https://tonightweride.org/donate-now.html"
             }
           ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://tonightweride.org/#website",
+          "url": "https://tonightweride.org/",
+          "name": "Tonight We Ride",
+          "publisher": {
+            "@id": "https://tonightweride.org/#organization"
+          }
         }
       ]
     }
