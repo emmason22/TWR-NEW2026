@@ -365,7 +365,9 @@ a {
 
 .section--navy {
   color: var(--white);
-  background: var(--red);
+  background:
+    radial-gradient(circle at 86% 6%, rgba(255, 255, 255, 0.08), transparent 28%),
+    var(--red);
 }
 
 .section--red {
@@ -733,6 +735,15 @@ a {
   object-position: center;
 }
 
+.supporter-card__logo--four-corners {
+  padding: 4px 18px;
+}
+
+.supporter-card__logo--four-corners img {
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
 .supporter-card h4 {
   margin: 24px 0 8px;
   font: 600 1.12rem/1.15 "Oswald", sans-serif;
@@ -775,6 +786,7 @@ a {
   padding: 30px 26px;
   border-right: 1px solid rgba(255, 255, 255, 0.18);
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(98, 20, 18, 0.09);
 }
 
 .value-card__number {
@@ -784,7 +796,7 @@ a {
 }
 
 .value-card h3 {
-  margin: 92px 0 12px;
+  margin: clamp(54px, 6vw, 76px) 0 12px;
   font-size: 1.42rem;
   letter-spacing: 0.01em;
   line-height: 1.2;
