@@ -56,6 +56,7 @@
   <!-- End MailerLite Universal -->
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="refresh.css?v=94" />
+  <link rel="stylesheet" href="donation-qr.css?v=1" />
 </head>
 <body class="page-donate">
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -119,11 +120,10 @@
           </section>
         </div>
 
-        <section class="donation-qr-panel" aria-labelledby="donation-qr-title" data-qr-donations>
+        <section class="donation-qr-panel qr-showcase" aria-labelledby="donation-qr-title" data-qr-donations>
           <div>
-            <p class="block-kicker">More ways to give</p>
-            <h2 id="donation-qr-title">Donate by QR code</h2>
-            <p>Donate directly with your preferred payment app, or scan and share a QR code.</p>
+            <h2 id="donation-qr-title">Donate</h2>
+            <p>Scan or click to donate</p>
           </div>
           <div class="donation-qr-grid">
             <article class="donation-qr-card">
@@ -131,6 +131,7 @@
                 <img src="assets/optimized/venmo-qr-520.webp" alt="Venmo donation QR code" loading="lazy" decoding="async" />
               </a>
               <strong class="donation-qr-card__name">Venmo</strong>
+              <div class="qr-brand qr-brand--venmo" aria-hidden="true"><img src="assets/optimized/venmo-logo-160.webp" alt="" width="160" height="160" loading="lazy" /></div>
               <span class="donation-qr-card__handle">@CHADD214</span>
               <a class="donation-qr-card__action" href="https://venmo.com/u/CHADD214" target="_blank" rel="noopener noreferrer">Donate with Venmo <span aria-hidden="true">↗</span></a>
               <a class="qr-view-link" href="TWR2/toy-drive/VenmoQR.jpg" target="_blank" rel="noopener noreferrer">View QR code</a>
@@ -140,15 +141,19 @@
                 <img src="assets/optimized/paypal-qr-520.webp" alt="PayPal donation QR code" loading="lazy" decoding="async" />
               </a>
               <strong class="donation-qr-card__name">PayPal</strong>
+              <div class="qr-brand qr-brand--paypal" aria-hidden="true"><img src="TWR2/toy-drive/paypal.svg" alt="" width="64" height="64" loading="lazy" /><span>Pay<span>Pal</span></span></div>
               <span class="donation-qr-card__handle">TOYDRIVE214@gmail.com</span>
               <a class="donation-qr-card__action" href="https://www.paypal.com/qrcodes/p2pqrc/Y74NHU3M8CWCG" target="_blank" rel="noopener noreferrer">Donate with PayPal <span aria-hidden="true">↗</span></a>
               <a class="qr-view-link" href="TWR2/toy-drive/PayPalQR.jpg" target="_blank" rel="noopener noreferrer">View QR code</a>
+              <button class="qr-copy-email" type="button" data-copy-paypal="TOYDRIVE214@gmail.com">Copy PayPal email</button>
             </article>
-            <article class="donation-qr-card">
+            <article class="donation-qr-card qr-option--featured">
+              <span class="qr-feature-badge">No fees*</span>
               <a class="qr-image-link" href="TWR2/toy-drive/ZelleQR.jpg" target="_blank" rel="noopener noreferrer" aria-label="View Zelle donation QR code">
                 <img src="assets/optimized/zelle-qr-520.webp" alt="Zelle donation QR code" loading="lazy" decoding="async" />
               </a>
               <strong class="donation-qr-card__name">Zelle</strong>
+              <div class="qr-brand qr-brand--zelle" aria-hidden="true"><img src="assets/optimized/zelle-logo-white.png" alt="" loading="lazy" /></div>
               <span class="donation-qr-card__handle">TOYDRIVE214@gmail.com</span>
               <a class="donation-qr-card__action" href="https://enroll.zellepay.com/qr-codes?data=ewogICJ0b2tlbiIgOiAidG95ZHJpdmUyMTRAZ21haWwuY29tIiwKICAibmFtZSIgOiAiQ0hBRCIsCiAgImFjdGlvbiIgOiAicGF5bWVudCIKfQ==" target="_blank" rel="noopener noreferrer">Donate with Zelle <span aria-hidden="true">↗</span></a>
               <a class="qr-view-link" href="TWR2/toy-drive/ZelleQR.jpg" target="_blank" rel="noopener noreferrer">View QR code</a>
@@ -156,6 +161,7 @@
             </article>
           </div>
           <p class="qr-donation-status" role="status" aria-live="polite"></p>
+          <p class="qr-fee-note">*Zelle typically has no consumer fees. Check with your bank or credit union for any applicable fees.</p>
         </section>
 
         <div class="donation-options-panel" id="donation-options">
@@ -294,7 +300,7 @@
     </div>
   </footer>
 
-  <script src="scripts/donation-qr.js?v=1" defer></script>
+  <script src="scripts/donation-qr.js?v=2" defer></script>
   <script src="script.js?v=3" defer></script>
   <script src="app.js?v=57" defer></script>
 </body>
