@@ -392,11 +392,16 @@ textarea:focus-visible {
 }
 
 .home-toy-drive-banner {
+  position: sticky;
+  top: var(--home-header-height, 113px);
+  z-index: 80;
   display: grid;
   grid-template-columns: max-content minmax(max-content, 1fr) max-content;
   align-items: center;
-  gap: clamp(18px, 4vw, 64px);
-  padding: 18px clamp(20px, 5vw, 72px);
+  gap: clamp(16px, 2vw, 28px);
+  padding: 26px clamp(18px, 3vw, 48px);
+  border-bottom: 2px solid #f1bd45;
+  box-shadow: 0 8px 24px rgba(15, 31, 53, 0.22);
   color: #fff;
   background:
     linear-gradient(90deg, rgba(98, 20, 18, 0.98), rgba(185, 46, 40, 0.94)),
@@ -424,7 +429,7 @@ textarea:focus-visible {
 
 .home-toy-drive-banner__name {
   min-width: 0;
-  font-size: clamp(22px, 3vw, 38px);
+  font-size: clamp(28px, 3.2vw, 44px);
   font-weight: 700;
   letter-spacing: 0.045em;
   white-space: nowrap;
@@ -433,7 +438,7 @@ textarea:focus-visible {
 .home-toy-drive-banner__date {
   justify-self: center;
   color: #f1bd45;
-  font-size: clamp(19px, 2.5vw, 30px);
+  font-size: clamp(22px, 2.8vw, 36px);
   font-weight: 600;
   letter-spacing: 0.08em;
   white-space: nowrap;
@@ -443,7 +448,7 @@ textarea:focus-visible {
   justify-self: end;
   white-space: nowrap;
   text-align: right;
-  font-size: clamp(14px, 1.7vw, 20px);
+  font-size: clamp(16px, 1.8vw, 24px);
   font-weight: 600;
   letter-spacing: 0.12em;
 }
@@ -6812,17 +6817,18 @@ label,
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .home-toy-drive-banner {
     grid-template-columns: 1fr 1fr;
     display: grid;
-    gap: 8px 16px;
-    padding: 16px 18px;
+    gap: 6px 16px;
+    padding: 20px 18px;
+    line-height: 1.15;
   }
 
   .home-toy-drive-banner__name {
     grid-column: 1 / -1;
-    font-size: clamp(16px, 4.8vw, 28px);
+    font-size: clamp(20px, 4.4vw, 38px);
   }
 
   .home-toy-drive-banner__date {
@@ -6834,6 +6840,30 @@ label,
     grid-column: 1 / -1;
     grid-row: 3;
     justify-self: center;
+  }
+}
+
+/* Clipping horizontal overflow must not create a non-scrolling sticky ancestor. */
+html:has(body.page-home),
+body.page-home {
+  overflow-x: clip;
+}
+
+html:has(body.page-home) {
+  scroll-padding-top: calc(var(--home-header-height, 113px) + var(--home-banner-height, 120px) + 16px);
+}
+
+@media (max-width: 600px) {
+  .home-toy-drive-banner__name {
+    font-size: clamp(16px, 5.5vw, 30px);
+  }
+
+  .home-toy-drive-banner__date {
+    font-size: 26px;
+  }
+
+  .home-toy-drive-banner__action {
+    font-size: 18px;
   }
 }
 
