@@ -1044,10 +1044,11 @@ function initMobileNav() {
       }
     }
 
-    const closeNav = () => {
+    const closeNav = (restoreFocus = false) => {
       header.classList.remove("nav-open");
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "Open navigation");
+      if (restoreFocus === true) toggle.focus();
     };
 
     toggle.addEventListener("click", () => {
@@ -1079,7 +1080,7 @@ function initMobileNav() {
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeNav();
+      if (event.key === "Escape" && header.classList.contains("nav-open")) closeNav(true);
     });
 
     window.addEventListener("resize", () => {

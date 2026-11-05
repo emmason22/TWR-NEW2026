@@ -7006,6 +7006,136 @@ label,
   text-decoration: underline;
 }
 
+/* Shared spacing and accessible controls; preserve each page's hero treatment. */
+:root {
+  --rf-section-space: clamp(32px, 5vw, 72px);
+  --rf-card-gap: clamp(16px, 2vw, 24px);
+  --rf-panel-space: clamp(18px, 2.5vw, 30px);
+}
+
+.subpage-main > .subpage-section:not(.home-impact-proof):not(.volunteer-role-section),
+.page-home main > :is(.mission, .programs-structure, .be-insider-section, .donate-jumbo) {
+  padding-block: var(--rf-section-space);
+}
+
+:is(.page-home, .page-volunteer) main > .home-impact-proof {
+  padding-block: clamp(24px, 3vw, 40px);
+}
+
+.page-volunteer .volunteer-role-section {
+  padding-block: var(--rf-section-space);
+}
+
+:is(.program-cards, .event-grid, .news-grid, .volunteer-role-grid),
+.page-donate .donation-choice-grid,
+.page-monthly-giving .monthly-tier-grid {
+  gap: var(--rf-card-gap);
+}
+
+:is(.program-cards, .event-grid, .news-grid, .volunteer-role-grid) > *,
+.page-donate .donation-choice-grid > *,
+.page-monthly-giving .monthly-tier-grid > * {
+  min-width: 0;
+}
+
+.page-monthly-giving .monthly-giving-shell,
+.page-volunteer-signup .volunteer-signup-shell {
+  padding: var(--rf-panel-space);
+}
+
+.page-monthly-giving .monthly-giving-shell > section {
+  margin-top: clamp(28px, 4vw, 48px);
+}
+
+.page-monthly-giving .monthly-giving-shell > section h2 {
+  margin: 0 0 16px;
+}
+
+.page-monthly-giving .monthly-giving-shell > section p {
+  max-width: 72ch;
+  margin: 0 0 16px;
+}
+
+.page-volunteer-signup .volunteer-signup-shell > p:not(.volunteer-signup-intro) {
+  max-width: 72ch;
+  margin: 20px auto;
+  line-height: 1.6;
+}
+
+.page-volunteer .volunteer-role-section .container > p {
+  max-width: 72ch;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+
+:is(a, button, input, textarea, select, [tabindex="0"]):focus-visible {
+  outline: 3px solid #1a4ca9;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+:is(.site-header, .site-footer) :focus-visible {
+  outline-color: #ffd96a;
+  box-shadow: 0 0 0 2px #000;
+}
+
+.site-header .site-nav a {
+  min-height: 32px;
+}
+
+.site-footer li > a,
+.site-footer .footer-social-links > a,
+.editorial-link,
+.qr-view-link,
+.qr-copy-email {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.site-footer .footer-social-links > a {
+  min-width: 44px;
+  justify-content: center;
+}
+
+main :is(input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not([type="submit"]), select) {
+  min-height: 48px;
+}
+
+main textarea {
+  min-height: 120px;
+}
+
+main input:is([type="checkbox"], [type="radio"]) {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.page-donate .donation-custom-input:focus-within {
+  outline: 3px solid #1a4ca9;
+  outline-offset: 3px;
+}
+
+@media (min-width: 821px) and (max-width: 1100px) {
+  .page-monthly-giving .monthly-tier-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1100px) {
+  .page-monthly-giving .monthly-giving-shell > h1 {
+    font-size: clamp(36px, 5.5vw, 56px);
+    line-height: 1.08;
+  }
+}
+
+@media (max-width: 600px) {
+  main :is(input:not([type="checkbox"]):not([type="radio"]), textarea, select) {
+    font-size: max(16px, 1em);
+  }
+}
+
 @media (max-width: 520px) {
   .donation-thank-you-actions {
     display: grid;

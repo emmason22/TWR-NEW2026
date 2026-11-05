@@ -1094,7 +1094,10 @@ button.qr-item {
   box-shadow: var(--shadow-xl);
 }
 
-.qr-item:focus-visible {
+.qr-item:focus-visible,
+a:focus-visible,
+button:focus-visible,
+[tabindex="0"]:focus-visible {
   outline: 3px solid var(--primary-color);
   outline-offset: 4px;
 }

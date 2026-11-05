@@ -1264,8 +1264,38 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid var(--gold);
+  outline: 3px solid var(--navy);
   outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--white);
+}
+
+.kit-nav a,
+.button,
+.qr-view-link,
+.qr-copy-email {
+  min-height: 44px;
+}
+
+.kit-nav a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.qr-view-link,
+.qr-copy-email {
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (min-width: 681px) and (max-width: 1100px) {
+  .section {
+    padding-block: 72px;
+  }
+
+  .value-grid,
+  .package-grid {
+    margin-top: 40px;
+  }
 }
 
 @media (max-width: 960px) {
