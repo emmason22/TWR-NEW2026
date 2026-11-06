@@ -78,7 +78,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;700&display=swap"></noscript>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css?v=12" />
+    <link rel="stylesheet" href="styles.css?v=13" />
     <link rel="stylesheet" href="../../donation-qr.css?v=1" />
 </head>
 
@@ -243,39 +243,87 @@
     <div class="container">
         <h2>6 Live Acts</h2>
 
-        <div class="bands-grid">
+        <div class="band-preview-controls">
+            <p id="band-preview-instructions">Enable sound, then hover over a band to hear a 15-second preview. On a phone or tablet, tap Play.</p>
+            <button class="band-sound-toggle" type="button" data-band-sound-toggle aria-pressed="false" aria-describedby="band-preview-instructions">
+                <span aria-hidden="true">&#128266;</span>
+                <span data-band-sound-label>Enable sound previews</span>
+            </button>
+            <p class="band-preview-status" data-band-preview-status aria-live="polite"></p>
+        </div>
 
-            <div class="band-card">
-                <img src="RTB2.jpg" class="band-img" alt="RTB2" loading="lazy" decoding="async" />
+        <div class="bands-grid" data-band-previews>
+
+            <article class="band-card" data-band-preview data-audio-src="audio/rtb2-hands-where-words-cannot-go.mp3" data-track-title="Hands Where Words Cannot Go">
+                <div class="band-media">
+                    <img src="RTB2.jpg" class="band-img" alt="RTB2" loading="lazy" decoding="async" />
+                    <button class="band-preview-button" type="button" aria-label="Play Hands Where Words Cannot Go by RTB2" aria-pressed="false">
+                        <span class="band-preview-icon" aria-hidden="true">&#9654;</span>
+                        <span class="band-preview-label">Play preview</span>
+                    </button>
+                </div>
                 <h3>RTB2</h3>
-            </div>
+                <p class="band-track-title">Hands Where Words Cannot Go</p>
+            </article>
 
-            <div class="band-card">
-                <img src="ArmchairRebels.jpg" class="band-img" alt="Armchair Rebels" loading="lazy" decoding="async" />
+            <article class="band-card" data-band-preview data-audio-src="audio/armchair-rebels-1000-miles-away.mp3" data-track-title="1000 Miles Away">
+                <div class="band-media">
+                    <img src="ArmchairRebels.jpg" class="band-img" alt="Armchair Rebels" loading="lazy" decoding="async" />
+                    <button class="band-preview-button" type="button" aria-label="Play 1000 Miles Away by Armchair Rebels" aria-pressed="false">
+                        <span class="band-preview-icon" aria-hidden="true">&#9654;</span>
+                        <span class="band-preview-label">Play preview</span>
+                    </button>
+                </div>
                 <h3>Armchair Rebels</h3>
-            </div>
+                <p class="band-track-title">1000 Miles Away</p>
+            </article>
 
-            <div class="band-card">
-                <img src="JohnDufilho.jpg" class="band-img band-img--portrait" alt="John Dufilho" loading="lazy" decoding="async" />
+            <article class="band-card" data-band-preview data-audio-src="audio/john-dufilho-accidents.mp3" data-track-title="Accidents">
+                <div class="band-media">
+                    <img src="JohnDufilho.jpg" class="band-img band-img--portrait" alt="John Dufilho" loading="lazy" decoding="async" />
+                    <button class="band-preview-button" type="button" aria-label="Play Accidents by John Dufilho" aria-pressed="false">
+                        <span class="band-preview-icon" aria-hidden="true">&#9654;</span>
+                        <span class="band-preview-label">Play preview</span>
+                    </button>
+                </div>
                 <h3>John Dufilho</h3>
-            </div>
+                <p class="band-track-title">Accidents</p>
+            </article>
 
-            <div class="band-card">
-                <img src="MeatSweats.jpg" class="band-img" alt="Meat Sweats" loading="lazy" decoding="async" />
+            <article class="band-card" data-band-preview data-audio-src="audio/meat-sweats-girl-who-dips.mp3" data-track-title="Girl Who Dips">
+                <div class="band-media">
+                    <img src="MeatSweats.jpg" class="band-img" alt="Meat Sweats" loading="lazy" decoding="async" />
+                    <button class="band-preview-button" type="button" aria-label="Play Girl Who Dips by Meat Sweats" aria-pressed="false">
+                        <span class="band-preview-icon" aria-hidden="true">&#9654;</span>
+                        <span class="band-preview-label">Play preview</span>
+                    </button>
+                </div>
                 <h3>Meat Sweats</h3>
-            </div>
+                <p class="band-track-title">Girl Who Dips</p>
+            </article>
 
-            <div class="band-card">
-                <img src="MidnightCigarette.jpg" class="band-img" alt="Midnight Cigarette performing live" loading="lazy" decoding="async" />
+            <article class="band-card band-card--no-preview">
+                <div class="band-media">
+                    <img src="MidnightCigarette.jpg?v=2" class="band-img" alt="Midnight Cigarette performing live" loading="lazy" decoding="async" />
+                </div>
                 <h3>Midnight Cigarette</h3>
-            </div>
+                <p class="band-track-title">Preview coming soon</p>
+            </article>
 
-            <div class="band-card">
-                <img src="NewEllum.jpg" class="band-img" alt="New Ellum" loading="lazy" decoding="async" />
+            <article class="band-card" data-band-preview data-audio-src="audio/new-ellum-wedding-ring.mp3" data-track-title="Wedding Ring">
+                <div class="band-media">
+                    <img src="NewEllum.jpg" class="band-img" alt="New Ellum" loading="lazy" decoding="async" />
+                    <button class="band-preview-button" type="button" aria-label="Play Wedding Ring by New Ellum" aria-pressed="false">
+                        <span class="band-preview-icon" aria-hidden="true">&#9654;</span>
+                        <span class="band-preview-label">Play preview</span>
+                    </button>
+                </div>
                 <h3>New Ellum</h3>
-            </div>
+                <p class="band-track-title">Wedding Ring</p>
+            </article>
 
         </div>
+        <audio data-band-preview-audio preload="metadata"></audio>
     </div>
 </section>
 
@@ -525,7 +573,7 @@
     </div>
 </footer>
 
-<script src="script.js?v=3"></script>
+<script src="script.js?v=4"></script>
 <script src="../../scripts/donation-qr.js?v=2" defer></script>
 
 </body>

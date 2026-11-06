@@ -150,4 +150,144 @@
       }
     });
   });
+
+  const bandPreviewGrid = document.querySelector("[data-band-previews]");
+  const bandPreviewAudio = document.querySelector("[data-band-preview-audio]");
+  const bandSoundToggle = document.querySelector("[data-band-sound-toggle]");
+  const bandSoundLabel = document.querySelector("[data-band-sound-label]");
+  const bandPreviewStatus = document.querySelector("[data-band-preview-status]");
+
+  if (bandPreviewGrid && bandPreviewAudio && bandSoundToggle) {
+    const bandCards = Array.from(bandPreviewGrid.querySelectorAll("[data-band-preview]"));
+    const hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    let activeBandCard = null;
+    let soundEnabled = false;
+
+    const setPreviewStatus = function (message) {
+      if (bandPreviewStatus) bandPreviewStatus.textContent = message;
+    };
+
+    const setSoundEnabled = function (enabled) {
+      soundEnabled = enabled;
+      bandSoundToggle.setAttribute("aria-pressed", enabled ? "true" : "false");
+      if (bandSoundLabel) {
+        bandSoundLabel.textContent = enabled ? "Sound previews on" : "Enable sound previews";
+      }
+    };
+
+    const setCardPlaying = function (card, playing) {
+      const button = card ? card.querySelector(".band-preview-button") : null;
+      const icon = button ? button.querySelector(".band-preview-icon") : null;
+      const label = button ? button.querySelector(".band-preview-label") : null;
+
+      if (!card || !button) return;
+      card.classList.toggle("is-playing", playing);
+      button.setAttribute("aria-pressed", playing ? "true" : "false");
+      button.setAttribute(
+        "aria-label",
+        (playing ? "Stop " : "Play ") + card.dataset.trackTitle + " by " + card.querySelector("h3").textContent
+      );
+      if (icon) icon.textContent = playing ? "■" : "▶";
+      if (label) label.textContent = playing ? "Stop preview" : "Play preview";
+    };
+
+    const stopBandPreview = function () {
+      bandPreviewAudio.pause();
+      bandPreviewAudio.currentTime = 0;
+      if (activeBandCard) setCardPlaying(activeBandCard, false);
+      activeBandCard = null;
+    };
+
+    const playBandPreview = async function (card) {
+      if (!card || !card.dataset.audioSrc) return;
+
+      if (activeBandCard !== card) {
+        stopBandPreview();
+        activeBandCard = card;
+        bandPreviewAudio.src = card.dataset.audioSrc;
+      } else {
+        bandPreviewAudio.currentTime = 0;
+      }
+
+      try {
+        await bandPreviewAudio.play();
+        setCardPlaying(card, true);
+        setPreviewStatus("Playing “" + card.dataset.trackTitle + ".”");
+      } catch (error) {
+        setCardPlaying(card, false);
+        activeBandCard = null;
+        setSoundEnabled(false);
+        setPreviewStatus("Your browser blocked sound. Tap Play preview to listen.");
+      }
+    };
+
+    const enableBandPreviews = async function () {
+      const firstCard = bandCards[0];
+      if (!firstCard) return;
+
+      bandPreviewAudio.src = firstCard.dataset.audioSrc;
+      bandPreviewAudio.muted = true;
+
+      try {
+        await bandPreviewAudio.play();
+        bandPreviewAudio.pause();
+        bandPreviewAudio.currentTime = 0;
+        setSoundEnabled(true);
+        setPreviewStatus(hoverQuery.matches ? "Sound is on. Hover over a band to listen." : "Sound is on. Tap Play on a band to listen.");
+      } catch (error) {
+        setSoundEnabled(false);
+        setPreviewStatus("Tap Play on a band to enable its preview.");
+      } finally {
+        bandPreviewAudio.muted = false;
+      }
+    };
+
+    bandSoundToggle.addEventListener("click", function () {
+      if (soundEnabled) {
+        stopBandPreview();
+        setSoundEnabled(false);
+        setPreviewStatus("Sound previews are off.");
+      } else {
+        enableBandPreviews();
+      }
+    });
+
+    bandCards.forEach(function (card) {
+      const button = card.querySelector(".band-preview-button");
+
+      card.addEventListener("pointerenter", function () {
+        if (hoverQuery.matches && soundEnabled) playBandPreview(card);
+      });
+
+      card.addEventListener("pointerleave", function () {
+        if (hoverQuery.matches && activeBandCard === card) {
+          stopBandPreview();
+          setPreviewStatus("Sound is on. Hover over a band to listen.");
+        }
+      });
+
+      if (button) {
+        button.addEventListener("click", function () {
+          if (activeBandCard === card && !bandPreviewAudio.paused) {
+            stopBandPreview();
+            setPreviewStatus(soundEnabled ? "Preview stopped." : "");
+            return;
+          }
+
+          setSoundEnabled(true);
+          playBandPreview(card);
+        });
+      }
+    });
+
+    bandPreviewAudio.addEventListener("ended", function () {
+      const finishedTitle = activeBandCard ? activeBandCard.dataset.trackTitle : "Preview";
+      stopBandPreview();
+      setPreviewStatus(finishedTitle + " preview finished.");
+    });
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stopBandPreview();
+    });
+  }
 })();
