@@ -34,6 +34,55 @@ function isNarrowViewport() {
   return window.matchMedia("(max-width: 680px)").matches;
 }
 
+function emitMetaPixelEvent(eventName, parameters = {}) {
+  if (typeof window.fbq !== "function") return;
+  window.fbq("track", eventName, parameters);
+}
+
+function emitMetaConversion(eventType, details = {}) {
+  const pagePath = window.location.pathname;
+
+  if (eventType === "form_submit_success" && /volunteer/i.test(String(details.formName || ""))) {
+    emitMetaPixelEvent("Lead", {
+      content_category: "volunteer",
+      content_name: "Volunteer form submission",
+      page_path: pagePath,
+    });
+    return;
+  }
+
+  if (
+    [
+      "insider_signup",
+      "mailing_list_signup_completed",
+      "mailing_popup_submit_success",
+    ].includes(eventType)
+  ) {
+    emitMetaPixelEvent("Lead", {
+      content_category: "mailing_list",
+      content_name: "Mailing list signup",
+      page_path: pagePath,
+    });
+    return;
+  }
+
+  if (eventType === "donation_completed") {
+    const amount = Number(details.amount || 0);
+    const parameters = {
+      content_category: "donation",
+      content_name: details.frequency === "monthly" ? "Monthly donation" : "One-time donation",
+      currency: "USD",
+      page_path: pagePath,
+    };
+
+    if (Number.isFinite(amount) && amount > 0) {
+      parameters.value = amount;
+    }
+
+    emitMetaPixelEvent("Purchase", parameters);
+  }
+}
+
 function emitTelemetry(eventType, details) {
   const payload = {
     eventType,
@@ -43,6 +92,7 @@ function emitTelemetry(eventType, details) {
   };
 
   console.info("TWR telemetry:", payload);
+  emitMetaConversion(eventType, details);
 
   if (typeof window.gtag === "function") {
     const allowedDetailKeys = [
@@ -1733,20 +1783,11 @@ function initDonateConversionPanel() {
     cta.setAttribute("rel", "noopener noreferrer");
   };
 
-  cta.addEventListener("click", () => {
-    const customValue = Number(customInput.value || "0");
-    const hasCustomValue = Number.isFinite(customValue) && customValue > 0;
-    const fixedValue = Number(String(selectedCard?.getAttribute("data-amount") || "").replace(/[^0-9.]/g, ""));
-    rememberPendingDonation(hasCustomValue ? null : fixedValue, "one-time");
-  });
-
   cards.forEach((card) => {
     card.addEventListener("click", () => {
       setCardState(card);
       if (customInput.value) customInput.value = "";
       updateCta();
-      const fixedValue = Number(String(card.getAttribute("data-amount") || "").replace(/[^0-9.]/g, ""));
-      rememberPendingDonation(fixedValue, "one-time");
       emitTelemetry("donation_option_selected", {
         path: window.location.pathname,
         amount: card.getAttribute("data-amount") || "unknown",
@@ -1794,13 +1835,49 @@ function readPendingDonation() {
   }
 }
 
+function getDonationCheckoutDetails(link) {
+  const customInput = link.id === "donation-primary-cta"
+    ? document.querySelector("#donation-custom-amount")
+    : null;
+  const customValue = Number(customInput?.value || "0");
+  const closestTier = link.closest("[data-monthly-amount]");
+  const valueSource =
+    (Number.isFinite(customValue) && customValue > 0 ? customValue : null) ??
+    link.getAttribute("data-donation-value") ??
+    link.getAttribute("data-amount") ??
+    closestTier?.getAttribute("data-monthly-amount") ??
+    link.textContent;
+  const valueMatch = String(valueSource || "").match(/\d+(?:\.\d{1,2})?/);
+  const value = valueMatch ? Number(valueMatch[0]) : null;
+  const frequencySource = [
+    link.getAttribute("data-donation-frequency"),
+    link.textContent,
+    closestTier?.getAttribute("data-monthly-amount"),
+  ].join(" ");
+  const frequency = /month|monthly/i.test(frequencySource) ? "monthly" : "one-time";
+
+  return {
+    frequency,
+    value: Number.isFinite(value) && value > 0 ? value : null,
+  };
+}
+
 function initDonationLinkTracking() {
-  document.querySelectorAll("a[data-donation-value]").forEach((link) => {
+  document.querySelectorAll("a[href*='buy.stripe.com']").forEach((link) => {
     link.addEventListener("click", () => {
-      rememberPendingDonation(
-        Number(link.getAttribute("data-donation-value") || "0"),
-        link.getAttribute("data-donation-frequency") || "one-time"
-      );
+      const details = getDonationCheckoutDetails(link);
+      rememberPendingDonation(details.value, details.frequency);
+
+      const parameters = {
+        content_category: "donation",
+        content_name: details.frequency === "monthly" ? "Monthly donation" : "One-time donation",
+        currency: "USD",
+        num_items: 1,
+        page_path: window.location.pathname,
+      };
+      if (details.value) parameters.value = details.value;
+
+      emitMetaPixelEvent("InitiateCheckout", parameters);
     });
   });
 }
@@ -1827,7 +1904,7 @@ function initDonationReturnMessage() {
 
 function initDonationCompletionTracking() {
   const confirmation = document.querySelector("[data-donation-confirmation]");
-  if (!confirmation || typeof window.gtag !== "function") return;
+  if (!confirmation) return;
 
   const params = new URLSearchParams(window.location.search);
   const sessionId = String(params.get("session_id") || "").trim();
@@ -1862,7 +1939,9 @@ function initDonationCompletionTracking() {
     item.price = donationValue;
   }
 
-  window.gtag("event", "purchase", purchaseParameters);
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "purchase", purchaseParameters);
+  }
   emitTelemetry("donation_completed", {
     conversionType: "stripe_checkout",
     transactionId: sessionId,
