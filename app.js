@@ -1966,15 +1966,16 @@ function initDonationTicker() {
       return new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: String(currency || "usd").toUpperCase(),
-        maximumFractionDigits: amount % 1 === 0 ? 0 : 2,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
       }).format(amount);
     } catch (_) {
-      return `$${amount.toLocaleString("en-US", { maximumFractionDigits: 2 })}`;
+      return `$${amount.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
   };
 
   const renderFallback = () => {
-    if (totalEl) totalEl.textContent = "--";
+    if (totalEl) totalEl.textContent = "$250.00";
   };
 
   const renderTicker = (data) => {

@@ -168,7 +168,7 @@ assert.equal((await response.json()).duplicate, true);
 
 response = await worker.fetch(new Request("https://ticker.example.com/donations/ticker"), env);
 let ticker = await response.json();
-assert.equal(ticker.total_cents, 5000);
+assert.equal(ticker.total_cents, 30000);
 assert.equal(ticker.recent.length, 1);
 assert.equal(ticker.recent[0].display_name, "Rick");
 
@@ -189,7 +189,7 @@ assert.equal(response.status, 200);
 
 response = await worker.fetch(new Request("https://ticker.example.com/donations/ticker"), env);
 ticker = await response.json();
-assert.equal(ticker.total_cents, 3000);
+assert.equal(ticker.total_cents, 28000);
 
 const badResponse = await worker.fetch(
   new Request("https://ticker.example.com/stripe/webhook", {

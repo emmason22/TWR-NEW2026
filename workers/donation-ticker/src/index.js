@@ -1,4 +1,5 @@
 const STRIPE_SIGNATURE_TOLERANCE_SECONDS = 300;
+const FUNDRAISING_COUNTER_START_CENTS = 25000;
 
 const jsonHeaders = {
   "content-type": "application/json; charset=utf-8",
@@ -143,7 +144,7 @@ export async function handleManualDonation(request, env) {
 export async function getTickerData(env, url) {
   if (!env.DONATIONS_DB) {
     return {
-      total_cents: 0,
+      total_cents: FUNDRAISING_COUNTER_START_CENTS,
       currency: "usd",
       recent: [],
       updated_at: new Date().toISOString(),
@@ -165,7 +166,7 @@ export async function getTickerData(env, url) {
   ).first();
 
   return {
-    total_cents: Number(totalRow?.total_cents || 0),
+    total_cents: FUNDRAISING_COUNTER_START_CENTS + Number(totalRow?.total_cents || 0),
     currency: normalizeCurrency(totalRow?.currency || "usd"),
     recent: [],
     updated_at: totalRow?.updated_at || new Date().toISOString(),
